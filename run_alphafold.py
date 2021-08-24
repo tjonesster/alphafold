@@ -122,12 +122,19 @@ def predict_structure(
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir)
 
+
+  # If you want to do read from file instead of reprocessing this then chagne this section
+
+
   # Get features.
   t_0 = time.time()
   feature_dict = data_pipeline.process(
       input_fasta_path=fasta_path,
       msa_output_dir=msa_output_dir)
+
   timings['features'] = time.time() - t_0
+
+  # If you only want to run part 1 then exit here... 
 
   # Write out features as a pickled dictionary.
   features_output_path = os.path.join(output_dir, 'features.pkl')

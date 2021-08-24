@@ -139,15 +139,15 @@ class DataPipeline:
         jackhmmer_uniref90_result['sto'], max_sequences=self.uniref_max_hits)
     hhsearch_result = self.hhsearch_pdb70_runner.query(uniref90_msa_as_a3m)
 
-    uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto')
+    uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto') #This
     with open(uniref90_out_path, 'w') as f:
       f.write(jackhmmer_uniref90_result['sto'])
 
-    mgnify_out_path = os.path.join(msa_output_dir, 'mgnify_hits.sto')
+    mgnify_out_path = os.path.join(msa_output_dir, 'mgnify_hits.sto') # This 
     with open(mgnify_out_path, 'w') as f:
       f.write(jackhmmer_mgnify_result['sto'])
 
-    pdb70_out_path = os.path.join(msa_output_dir, 'pdb70_hits.hhr')
+    pdb70_out_path = os.path.join(msa_output_dir, 'pdb70_hits.hhr') # This 
     with open(pdb70_out_path, 'w') as f:
       f.write(hhsearch_result)
 
@@ -163,7 +163,7 @@ class DataPipeline:
       jackhmmer_small_bfd_result = self.jackhmmer_small_bfd_runner.query(
           input_fasta_path)[0]
 
-      bfd_out_path = os.path.join(msa_output_dir, 'small_bfd_hits.a3m')
+      bfd_out_path = os.path.join(msa_output_dir, 'small_bfd_hits.a3m') # This
       with open(bfd_out_path, 'w') as f:
         f.write(jackhmmer_small_bfd_result['sto'])
 
@@ -173,7 +173,7 @@ class DataPipeline:
       hhblits_bfd_uniclust_result = self.hhblits_bfd_uniclust_runner.query(
           input_fasta_path)
 
-      bfd_out_path = os.path.join(msa_output_dir, 'bfd_uniclust_hits.a3m')
+      bfd_out_path = os.path.join(msa_output_dir, 'bfd_uniclust_hits.a3m') # This
       with open(bfd_out_path, 'w') as f:
         f.write(hhblits_bfd_uniclust_result['a3m'])
 
@@ -207,3 +207,36 @@ class DataPipeline:
                  templates_result.features['template_domain_names'].shape[0])
 
     return {**sequence_features, **msa_features, **templates_result.features}
+
+def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> FeatureDict:
+  
+  # Read in the files in each of these paths. 
+  # Add some checks to ensure that all of the files exist ... etc
+  uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto') #This
+  mgnify_out_path = os.path.join(msa_output_dir, 'mgnify_hits.sto') # This 
+  pdb70_out_path = os.path.join(msa_output_dir, 'pdb70_hits.hhr') # This 
+  bfd_out_path = os.path.join(msa_output_dir, 'small_bfd_hits.a3m') # This
+  bfd_out_path = os.path.join(msa_output_dir, 'bfd_uniclust_hits.a3m') # This
+
+  input_sequence = input_seqs[0]
+  num_res = len(input_sequence)
+  input_description = input_descs[0]
+
+  templates_result = self.template_featurizer.get_templates(
+      query_sequence=input_sequence,
+      query_pdb_code=None,
+      query_release_date=None,
+      hits=hhsearch_hits) # This
+
+  sequence_features = make_sequence_features(
+      sequence=input_sequence,
+      description=input_description,
+      num_res=num_res)
+
+  msa_features = make_msa_features(
+        msas=(uniref90_msa, bfd_msa, mgnify_msa),
+        deletion_matrices=(uniref90_deletion_matrix,
+                           bfd_deletion_matrix,
+                           mgnify_deletion_matrix))
+
+  return {**sequence_features, **msa_features, **templates_result.features}
