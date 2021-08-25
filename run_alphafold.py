@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Copyright 2021 DeepMind Technologies Limited
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,6 +37,8 @@ from alphafold.relax import relax
 import numpy as np
 # Internal import (7716).
 
+# /home/jonestl5/hmmer-3.3.1/src
+
 flags.DEFINE_list('fasta_paths', None, 'Paths to FASTA files, each containing '
                   'one sequence. Paths should be separated by commas. '
                   'All FASTA paths must have a unique basename as the '
@@ -45,8 +48,11 @@ flags.DEFINE_string('output_dir', None, 'Path to a directory that will '
                     'store the results.')
 flags.DEFINE_list('model_names', None, 'Names of models to use.')
 flags.DEFINE_string('data_dir', None, 'Path to directory of supporting data.')
+# flags.DEFINE_string('jackhmmer_binary_path', '/usr/bin/jackhmmer',
+                    # 'Path to the JackHMMER executable.')
 flags.DEFINE_string('jackhmmer_binary_path', '/usr/bin/jackhmmer',
                     'Path to the JackHMMER executable.')
+
 flags.DEFINE_string('hhblits_binary_path', '/usr/bin/hhblits',
                     'Path to the HHblits executable.')
 flags.DEFINE_string('hhsearch_binary_path', '/usr/bin/hhsearch',
@@ -88,6 +94,24 @@ flags.DEFINE_integer('random_seed', None, 'The random seed for the data '
                      'that even if this is set, Alphafold may still not be '
                      'deterministic, because processes like GPU inference are '
                      'nondeterministic.')
+
+# FLAGS ADDED BY TAYLOR 
+flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.")
+flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models? ")
+flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
+# END FLAGS ADDED BY TAYLOR
+
+# flags.DEFINE_boolean() #reload from pickle 
+# flags.DEFINE_boolean() #reload from msa files
+
+# flags.DEFINE_boolean()
+
+# Select best models
+
+# Add another flag to reload from the pickle 
+
+# flags  # -- overwrite flag 
+
 FLAGS = flags.FLAGS
 
 MAX_TEMPLATE_HITS = 20
@@ -97,12 +121,10 @@ RELAX_STIFFNESS = 10.0
 RELAX_EXCLUDE_RESIDUES = []
 RELAX_MAX_OUTER_ITERATIONS = 20
 
-
 def _check_flag(flag_name: str, preset: str, should_be_set: bool):
   if should_be_set != bool(FLAGS[flag_name].value):
     verb = 'be' if should_be_set else 'not be'
     raise ValueError(f'{flag_name} must {verb} set for preset "{preset}"')
-
 
 def predict_structure(
     fasta_path: str,
@@ -122,29 +144,48 @@ def predict_structure(
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir)
 
+  features_output_path = os.path.join(output_dir, 'features.pkl')
 
   # If you want to do read from file instead of reprocessing this then chagne this section
 
-
   # Get features.
   t_0 = time.time()
-  feature_dict = data_pipeline.process(
-      input_fasta_path=fasta_path,
-      msa_output_dir=msa_output_dir)
 
-  timings['features'] = time.time() - t_0
+  if FLAGS.process_msa == True: # Process from scratch 
+    feature_dict = data_pipeline.process(
+        input_fasta_path=fasta_path,
+        msa_output_dir=msa_output_dir)
 
-  # If you only want to run part 1 then exit here... 
+    timings['features'] = time.time() - t_0
+      with open(features_output_path, 'wb') as f:
+        pickle.dump(feature_dict, f, protocol=4)
+    
+  else: 
+    # If reload from pickle ... 
+    # If reload from alignments ... 
+    if os.path.exists(features_output_path): # Reload from pickle 
+      logging.info("Reloading features from pickle file") 
+      with open(features_output_path, 'rb') as f:
+        feature_dict = pickle.load(f)
 
-  # Write out features as a pickled dictionary.
-  features_output_path = os.path.join(output_dir, 'features.pkl')
-  with open(features_output_path, 'wb') as f:
-    pickle.dump(feature_dict, f, protocol=4)
+    else:  #reload from alignments 
+      logging.info("Reloading features from alignment files") # May want to add a command line argument to force reloading from a file
+      feature_dict = data_pipeline.reload_previous_msa(
+        input_fasta_path=fasta_path,
+        msa_output_dir=msa_output_dir)
+
+      timings['features'] = time.time() - t_0
+
+      with open(features_output_path, 'wb') as f:
+        pickle.dump(feature_dict, f, protocol=4) 
+ 
+  if FLAGS.exit_after_msa: # Potential exit point
+    exit()
 
   relaxed_pdbs = {}
   plddts = {}
 
-  # Run the models.
+  # Run a single model 
   for model_name, model_runner in model_runners.items():
     logging.info('Running model %s', model_name)
     t_0 = time.time()
@@ -198,6 +239,10 @@ def predict_structure(
     relaxed_output_path = os.path.join(output_dir, f'relaxed_{model_name}.pdb')
     with open(relaxed_output_path, 'w') as f:
       f.write(relaxed_pdb_str)
+
+# End of model generation
+
+# Reload the datastructure
 
   # Rank by pLDDT and write out relaxed PDBs in rank order.
   ranked_order = []
@@ -272,7 +317,7 @@ def main(argv):
     model_runners[model_name] = model_runner
 
   logging.info('Have %d models: %s', len(model_runners),
-               list(model_runners.keys()))
+               list(model_runners.keys())) 
 
   amber_relaxer = relax.AmberRelaxation(
       max_iterations=RELAX_MAX_ITERATIONS,

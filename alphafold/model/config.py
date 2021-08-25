@@ -33,6 +33,9 @@ def model_config(name: str) -> ml_collections.ConfigDict:
   cfg.update_from_flattened_dict(CONFIG_DIFFS[name])
   return cfg
 
+# def defaults_config():
+    # print("testing")
+
 
 CONFIG_DIFFS = {
     'model_1': {
