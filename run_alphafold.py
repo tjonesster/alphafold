@@ -35,12 +35,10 @@ from alphafold.model import config
 from alphafold.model import model
 from alphafold.relax import relax
 import numpy as np
-import config_runner
 
-
-
+# Moved some of the config options into this directory
 #### 
-
+import config_runner
 
 ####
 
@@ -55,8 +53,8 @@ flags.DEFINE_list('model_names', defvalues['model_names'], 'Names of models to u
 flags.DEFINE_string('data_dir', defvalues['data_dir'], 'Path to directory of supporting data.')
 flags.DEFINE_string('jackhmmer_binary_path', defvalues['jackhmmer_binary_path'] , 'Path to the JackHMMER executable.')
 flags.DEFINE_string('hhblits_binary_path', defvalues['hhblits_binary_path'], 'Path to the HHblits executable.')
-flags.DEFINE_string('hhsearch_binary_path', '/usr/bin/hhsearch', 'Path to the HHsearch executable.')
-flags.DEFINE_string('kalign_binary_path', '/usr/bin/kalign', 'Path to the Kalign executable.')
+flags.DEFINE_string('hhsearch_binary_path', defvalues['hhsearch_binary_path'], 'Path to the HHsearch executable.')
+flags.DEFINE_string('kalign_binary_path', defvalues['kalign_binary_path'], 'Path to the Kalign executable.')
 flags.DEFINE_string('uniref90_database_path', defvalues['uniref90_database_path'], 'Path to the Uniref90 database for use by JackHMMER.')
 flags.DEFINE_string('mgnify_database_path', defvalues['mgnify_database_path'], 'Path to the MGnify database for use by JackHMMER.')
 flags.DEFINE_string('bfd_database_path', defvalues['bfd_database_path'], 'Path to the BFD database for use by HHblits.')
@@ -79,8 +77,10 @@ flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed f
 FLAGS = flags.FLAGS
 
 
+#
+#####
 
-
+#####
 
 MAX_TEMPLATE_HITS = 20
 RELAX_MAX_ITERATIONS = 0
@@ -89,12 +89,10 @@ RELAX_STIFFNESS = 10.0
 RELAX_EXCLUDE_RESIDUES = []
 RELAX_MAX_OUTER_ITERATIONS = 20
 
-
 def _check_flag(flag_name: str, preset: str, should_be_set: bool):
   if should_be_set != bool(FLAGS[flag_name].value):
     verb = 'be' if should_be_set else 'not be'
     raise ValueError(f'{flag_name} must {verb} set for preset "{preset}"')
-
 
 def predict_structure(
     fasta_path: str,
