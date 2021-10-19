@@ -1,0 +1,24 @@
+CONFIG_RUN_ALPHAFOLD = {
+    "fasta_paths": "/home/taylorjones/Documents/alphafold_fastas",
+    "output_dir": "/home/taylorjones/Documents/alphafold_output", 
+    "model_names": ['model_5'], 
+    "data_dir": "/media/taylorjones/8Tb1/alphafold_data", 
+    "jackhmmer_binary_path": "/home/taylorjones/software/taylorsScripts/externalExecutables/linux_x86/jackhmmer", 
+    "hhblits_binary_path": "/usr/local/bin/hhblits",
+    "hhsearch_binary_path": "/usr/local/bin/hhsearch",
+    "kalign_binary_path": "/usr/bin/kalign",
+    "uniref90_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniref90",
+    "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify",
+    "bfd_database_path": "/media/taylorjones/8Tb1/alphafold_data/bfd",
+    "small_bfd_database_path": None,
+    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08",
+    "uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
+    "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
+    "max_template_date": "2020-05-14",
+    "obsolete_pdbs_path": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/obsolete.dat", 
+    "preset": "full_dbs", 
+    "benchmark": False,
+    "random_seed": None
+}
+

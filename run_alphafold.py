@@ -35,7 +35,7 @@ from alphafold.model import config
 from alphafold.model import model
 from alphafold.relax import relax
 import numpy as np
-import config
+import config_runner
 
 
 
@@ -47,7 +47,7 @@ import config
 
 
 # Internal import (7716).
-defvalues = config.CONFIG_RUN_ALPHAFOLD
+defvalues = config_runner.CONFIG_RUN_ALPHAFOLD
 
 flags.DEFINE_list('fasta_paths', defvalues['fasta_paths'], 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
 flags.DEFINE_string('output_dir', defvalues['output_dir'], 'Path to a directory that will store the results.')
