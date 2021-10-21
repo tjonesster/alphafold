@@ -21,7 +21,7 @@ class Linear(hk.Module):
   """Protein folding specific Linear Module.
 
   This differs from the standard Haiku Linear in a few ways:
-    * It supports inputs of arbitrary rank
+    * It supports inputs of arbitrary rank #
     * Initializers are specified by strings
   """
 

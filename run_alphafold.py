@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # Copyright 2021 DeepMind Technologies Limited
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,15 +38,6 @@ from alphafold.relax import relax
 import numpy as np
 import config
 
-
-
-#### 
-
-
-####
-
-
-
 # Internal import (7716).
 defvalues = config.CONFIG_RUN_ALPHAFOLD
 
@@ -76,6 +68,18 @@ flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed f
                      'that even if this is set, Alphafold may still not be '
                      'deterministic, because processes like GPU inference are '
                      'nondeterministic.')
+
+# FLAGS ADDED BY TAYLOR 
+flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.")
+flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models? ")
+flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
+# END FLAGS ADDED BY TAYLOR
+
+# flags.DEFINE_boolean() #reload from pickle 
+# flags.DEFINE_boolean() #reload from msa files
+
+# flags  # -- overwrite flag 
+
 FLAGS = flags.FLAGS
 
 
@@ -89,12 +93,10 @@ RELAX_STIFFNESS = 10.0
 RELAX_EXCLUDE_RESIDUES = []
 RELAX_MAX_OUTER_ITERATIONS = 20
 
-
 def _check_flag(flag_name: str, preset: str, should_be_set: bool):
   if should_be_set != bool(FLAGS[flag_name].value):
     verb = 'be' if should_be_set else 'not be'
     raise ValueError(f'{flag_name} must {verb} set for preset "{preset}"')
-
 
 def predict_structure(
     fasta_path: str,
@@ -106,83 +108,133 @@ def predict_structure(
     benchmark: bool,
     random_seed: int):
   """Predicts structure using AlphaFold for the given sequence."""
-  timings = {}
-  output_dir = os.path.join(output_dir_base, fasta_name)
-  if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-  msa_output_dir = os.path.join(output_dir, 'msas')
-  if not os.path.exists(msa_output_dir):
-    os.makedirs(msa_output_dir)
 
-  # Get features.
-  t_0 = time.time()
-  feature_dict = data_pipeline.process(
-      input_fasta_path=fasta_path,
-      msa_output_dir=msa_output_dir)
-  timings['features'] = time.time() - t_0
+  # if all
+  if FLAGS.only_run_cleanup == False:
+    timings = {}
+    output_dir = os.path.join(output_dir_base, fasta_name)
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+    msa_output_dir = os.path.join(output_dir, 'msas')
+    if not os.path.exists(msa_output_dir):
+      os.makedirs(msa_output_dir)
 
-  # Write out features as a pickled dictionary.
-  features_output_path = os.path.join(output_dir, 'features.pkl')
-  with open(features_output_path, 'wb') as f:
-    pickle.dump(feature_dict, f, protocol=4)
+    features_output_path = os.path.join(output_dir, 'features.pkl')
 
-  relaxed_pdbs = {}
-  plddts = {}
+    # If you want to do read from file instead of reprocessing this then chagne this section
 
-  # Run the models.
-  for model_name, model_runner in model_runners.items():
-    logging.info('Running model %s', model_name)
+    # Get features.
     t_0 = time.time()
-    processed_feature_dict = model_runner.process_features(
-        feature_dict, random_seed=random_seed)
-    timings[f'process_features_{model_name}'] = time.time() - t_0
 
-    t_0 = time.time()
-    prediction_result = model_runner.predict(processed_feature_dict)
-    t_diff = time.time() - t_0
-    timings[f'predict_and_compile_{model_name}'] = t_diff
-    logging.info(
-        'Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?',
-        model_name, t_diff)
+    if FLAGS.process_msa == True: # Process from scratch 
+      feature_dict = data_pipeline.process(
+          input_fasta_path=fasta_path,
+          msa_output_dir=msa_output_dir)
 
-    if benchmark:
+      timings['features'] = time.time() - t_0
+        with open(features_output_path, 'wb') as f:
+          pickle.dump(feature_dict, f, protocol=4)
+      
+    else: 
+      # If reload from pickle ... 
+      # If reload from alignments ... 
+      if os.path.exists(features_output_path): # Reload from pickle 
+        logging.info("Reloading features from pickle file") 
+        with open(features_output_path, 'rb') as f:
+          feature_dict = pickle.load(f)
+
+      else:  #reload from alignments  may add another comp
+        logging.info("Reloading features from alignment files") # May want to add a command line argument to force reloading from a file
+        feature_dict = data_pipeline.reload_previous_msa(
+          input_fasta_path=fasta_path,
+          msa_output_dir=msa_output_dir)
+
+        timings['features'] = time.time() - t_0
+
+        with open(features_output_path, 'wb') as f:
+          pickle.dump(feature_dict, f, protocol=4) 
+  
+    if FLAGS.exit_after_msa: # Potential exit point
+      exit()
+
+    relaxed_pdbs = {}
+    plddts = {}
+
+    # Run a single model 
+    for model_name, model_runner in model_runners.items():
+      logging.info('Running model %s', model_name)
       t_0 = time.time()
-      model_runner.predict(processed_feature_dict)
-      timings[f'predict_benchmark_{model_name}'] = time.time() - t_0
+      processed_feature_dict = model_runner.process_features(
+          feature_dict, random_seed=random_seed)
+      timings[f'process_features_{model_name}'] = time.time() - t_0
 
-    # Get mean pLDDT confidence metric.
-    plddt = prediction_result['plddt']
-    plddts[model_name] = np.mean(plddt)
+      t_0 = time.time()
+      prediction_result = model_runner.predict(processed_feature_dict)
+      t_diff = time.time() - t_0
+      timings[f'predict_and_compile_{model_name}'] = t_diff
+      logging.info(
+          'Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?',
+          model_name, t_diff)
 
-    # Save the model outputs.
-    result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
-    with open(result_output_path, 'wb') as f:
-      pickle.dump(prediction_result, f, protocol=4)
+      if benchmark:
+        t_0 = time.time()
+        model_runner.predict(processed_feature_dict)
+        timings[f'predict_benchmark_{model_name}'] = time.time() - t_0
 
-    # Add the predicted LDDT in the b-factor column.
-    # Note that higher predicted LDDT value means higher model confidence.
-    plddt_b_factors = np.repeat(
-        plddt[:, None], residue_constants.atom_type_num, axis=-1)
-    unrelaxed_protein = protein.from_prediction(
-        features=processed_feature_dict,
-        result=prediction_result,
-        b_factors=plddt_b_factors)
+      # Get mean pLDDT confidence metric.
+      plddt = prediction_result['plddt']
+      plddts[model_name] = np.mean(plddt)
 
-    unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
-    with open(unrelaxed_pdb_path, 'w') as f:
-      f.write(protein.to_pdb(unrelaxed_protein))
+      # Save the model outputs.
+      result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
+      with open(result_output_path, 'wb') as f:
+        pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
 
-    # Relax the prediction.
-    t_0 = time.time()
-    relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
-    timings[f'relax_{model_name}'] = time.time() - t_0
+      # Add the predicted LDDT in the b-factor column.
+      # Note that higher predicted LDDT value means higher model confidence.
+      plddt_b_factors = np.repeat(
+          plddt[:, None], residue_constants.atom_type_num, axis=-1)
+      unrelaxed_protein = protein.from_prediction(
+          features=processed_feature_dict,
+          result=prediction_result,
+          b_factors=plddt_b_factors)
 
-    relaxed_pdbs[model_name] = relaxed_pdb_str
+      unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
+      with open(unrelaxed_pdb_path, 'w') as f:
+        f.write(protein.to_pdb(unrelaxed_protein))
 
-    # Save the relaxed PDB.
-    relaxed_output_path = os.path.join(output_dir, f'relaxed_{model_name}.pdb')
-    with open(relaxed_output_path, 'w') as f:
-      f.write(relaxed_pdb_str)
+      # Relax the prediction.
+      t_0 = time.time()
+      relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
+      timings[f'relax_{model_name}'] = time.time() - t_0
+
+      relaxed_pdbs[model_name] = relaxed_pdb_str
+
+      # Save the relaxed PDB.
+      relaxed_output_path = os.path.join(output_dir, f'relaxed_{model_name}.pdb')
+      with open(relaxed_output_path, 'w') as f:
+        f.write(relaxed_pdb_str)
+
+# End of model generation
+
+  if FLAGS.only_run_cleanup == True: # If the user provides the only run_cleanup it will rank models with the assumption that they were already created by another process
+    # load all of the things 
+    timings = {} #We are just going to leave this empty
+    relaxed_pdbs = {}
+    plddts = {}
+    for model_name, model_runner in model_runners.items():
+
+      result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
+
+      with open(result_output_path, 'wb') as f:
+        prediction_result = pickle.load(f) 
+
+      plddt = prediction_result['plddt']
+      plddts[model_name] = np.mean(plddt)
+
+
+
+# Reload the datastructure
 
   # Rank by pLDDT and write out relaxed PDBs in rank order.
   ranked_order = []
@@ -192,6 +244,7 @@ def predict_structure(
     ranked_output_path = os.path.join(output_dir, f'ranked_{idx}.pdb')
     with open(ranked_output_path, 'w') as f:
       f.write(relaxed_pdbs[model_name])
+
 
   ranking_output_path = os.path.join(output_dir, 'ranking_debug.json')
   with open(ranking_output_path, 'w') as f:
@@ -257,7 +310,7 @@ def main(argv):
     model_runners[model_name] = model_runner
 
   logging.info('Have %d models: %s', len(model_runners),
-               list(model_runners.keys()))
+               list(model_runners.keys())) 
 
   amber_relaxer = relax.AmberRelaxation(
       max_iterations=RELAX_MAX_ITERATIONS,
