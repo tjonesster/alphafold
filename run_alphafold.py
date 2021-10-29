@@ -59,20 +59,19 @@ flags.DEFINE_string('template_mmcif_dir', defvalues['template_mmcif_dir'], 'Path
 flags.DEFINE_string('max_template_date', defvalues['max_template_date'], 'Maximum template release date to consider. Important if folding historical test sets.')
 flags.DEFINE_string('obsolete_pdbs_path', defvalues['obsolete_pdbs_path'], 'Path to file containing a mapping from obsolete PDB IDs to the PDB IDs of their replacements.')
 flags.DEFINE_enum('preset', defvalues['preset'], ['reduced_dbs', 'full_dbs', 'casp14'], 'Choose preset model configuration - no ensembling and smaller genetic database config (reduced_dbs), no ensembling and full genetic database config  (full_dbs) or full genetic database config and 8 model ensemblings (casp14).')
-flags.DEFINE_boolean('benchmark', defvalues['benchmark'], 'Run multiple JAX model evaluations '
-                     'to obtain a timing that excludes the compilation time, '
-                     'which should be more indicative of the time required for '
-                     'inferencing many proteins.')
-flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed for the data '
-                     'pipeline. By default, this is randomly generated. Note '
-                     'that even if this is set, Alphafold may still not be '
-                     'deterministic, because processes like GPU inference are '
-                     'nondeterministic.')
+flags.DEFINE_boolean('benchmark', defvalues['benchmark'], 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.')
+flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.')
 
 # FLAGS ADDED BY TAYLOR 
 flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.")
+#flags.DEFINE_boolean('reload_msa_from_pickle', False, "Whether or not the msa should be computed. If false then loaded from file.") # Not implemented yet 
+#flags.DEFINE_boolean('reload_msa_from_alignments', False, "Whether or not the msa should be computed. If false then loaded from file.") # Not implemented yet
 flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models? ")
 flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
+
+flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations")
+flags.DEFINE_boollean('log_activations', False, "Write out additional logging information?")
+
 # END FLAGS ADDED BY TAYLOR
 
 # flags.DEFINE_boolean() #reload from pickle 
@@ -81,10 +80,6 @@ flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add t
 # flags  # -- overwrite flag 
 
 FLAGS = flags.FLAGS
-
-
-
-
 
 MAX_TEMPLATE_HITS = 20
 RELAX_MAX_ITERATIONS = 0
@@ -132,7 +127,7 @@ def predict_structure(
           msa_output_dir=msa_output_dir)
 
       timings['features'] = time.time() - t_0
-        with open(features_output_path, 'wb') as f:
+      with open(features_output_path, 'wb') as f:
           pickle.dump(feature_dict, f, protocol=4)
       
     else: 

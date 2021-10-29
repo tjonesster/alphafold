@@ -61,24 +61,22 @@ class Linear(hk.Module):
 
     weight_shape = [n_channels, self.num_output]
     if self.initializer == 'linear':
-      weight_init = hk.initializers.VarianceScaling(mode='fan_in', scale=1.)
+      weight_init = hk.initializers.VarianceScaling(mode='fan_in', scale=1.) # fan-in preserves magnitude in forward pass and fan-out preserves magnitude in reverse pass 
     elif self.initializer == 'relu':
       weight_init = hk.initializers.VarianceScaling(mode='fan_in', scale=2.)
     elif self.initializer == 'zeros':
       weight_init = hk.initializers.Constant(0.0)
 
-    weights = hk.get_parameter('weights', weight_shape, inputs.dtype,
-                               weight_init)
+    weights = hk.get_parameter('weights', weight_shape, inputs.dtype, weight_init)
 
     # this is equivalent to einsum('...c,cd->...d', inputs, weights)
     # but turns out to be slightly faster
     inputs = jnp.swapaxes(inputs, -1, -2)
-    output = jnp.einsum('...cb,cd->...db', inputs, weights)
+    output = jnp.einsum('...cb,cd->...db', inputs, weights) # einstein summation 
     output = jnp.swapaxes(output, -1, -2)
 
     if self.use_bias:
-      bias = hk.get_parameter('bias', [self.num_output], inputs.dtype,
-                              hk.initializers.Constant(self.bias_init))
+      bias = hk.get_parameter('bias', [self.num_output], inputs.dtype, hk.initializers.Constant(self.bias_init))
       output += bias
 
     return output

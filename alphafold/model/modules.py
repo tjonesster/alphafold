@@ -49,12 +49,28 @@ def sigmoid_cross_entropy(logits, labels):
 
 def apply_dropout(*, tensor, safe_key, rate, is_training, broadcast_dim=None):
   """Applies dropout to a tensor."""
+  """Only applicable during training """
+  '''
+    * means that all of the non-kwargs
+    tensor 
+    ? safekey is an iterable of all keys 
+    rate = learning rate .. float 
+    is training boolean 
+    broadcast_dim
+  '''
+
   if is_training and rate != 0.0:
     shape = list(tensor.shape)
+
     if broadcast_dim is not None:
       shape[broadcast_dim] = 1
+
     keep_rate = 1.0 - rate
+
+    # 1 if keep, 0 if throw away 
     keep = jax.random.bernoulli(safe_key.get(), keep_rate, shape=shape)
+
+
     return keep * tensor / keep_rate
   else:
     return tensor
@@ -82,8 +98,10 @@ def dropout_wrapper(module,
     else:
       broadcast_dim = 1
   else:
+    # If not shared dim then don't broadcast 
     broadcast_dim = None
 
+  # How does the broadcast mechanism work???
   residual = apply_dropout(tensor=residual,
                            safe_key=safe_key,
                            rate=dropout_rate,
@@ -311,6 +329,8 @@ class AlphaFold(hk.Module):
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
 
+
+    # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
       new_prev = {
           'prev_pos':
@@ -320,6 +340,10 @@ class AlphaFold(hk.Module):
       }
       return jax.tree_map(jax.lax.stop_gradient, new_prev)
 
+
+    # Each iteration should be called using do_call ? 
+    # We can call get_prev each time 
+    # 
     def do_call(prev,
                 recycle_idx,
                 compute_loss=compute_loss):
@@ -425,6 +449,8 @@ class TemplatePairStack(hk.Module):
     if not c.num_block:
       return pair_act
 
+    # safe key 
+    # what is x?
     def block(x):
       """One block of the template pair stack."""
       pair_act, safe_key = x
@@ -435,6 +461,7 @@ class TemplatePairStack(hk.Module):
       safe_key, *sub_keys = safe_key.split(6)
       sub_keys = iter(sub_keys)
 
+      # asldfkj sldkfjs dlfkasjd flsdkjf 
       pair_act = dropout_wrapper_fn(
           TriangleAttention(c.triangle_attention_starting_node, gc,
                             name='triangle_attention_starting_node'),
@@ -468,10 +495,11 @@ class TemplatePairStack(hk.Module):
       return pair_act, safe_key
 
     if gc.use_remat:
-      block = hk.remat(block)
+      block = hk.remat(block) # Remat if false in the default configuration
 
-    res_stack = layer_stack.layer_stack(c.num_block)(block)
+    res_stack = layer_stack.layer_stack(c.num_block)(block) # Here are the things 
     pair_act, safe_key = res_stack((pair_act, safe_key))
+
     return pair_act
 
 
@@ -603,8 +631,7 @@ class Attention(hk.Module):
           shape=(num_head, value_dim),
           init=hk.initializers.Constant(1.0))
 
-      gate_values = jnp.einsum('bqc, chv->bqhv', q_data,
-                               gating_weights) + gating_bias
+      gate_values = jnp.einsum('bqc, chv->bqhv', q_data, gating_weights) + gating_bias
 
       gate_values = jax.nn.sigmoid(gate_values)
 
@@ -613,8 +640,7 @@ class Attention(hk.Module):
     o_weights = hk.get_parameter(
         'output_w', shape=(num_head, value_dim, self.output_dim),
         init=init)
-    o_bias = hk.get_parameter('output_b', shape=(self.output_dim,),
-                              init=hk.initializers.Constant(0.0))
+    o_bias = hk.get_parameter('output_b', shape=(self.output_dim,), init=hk.initializers.Constant(0.0))
 
     output = jnp.einsum('bqhc,hco->bqo', weighted_avg, o_weights) + o_bias
 
@@ -739,6 +765,7 @@ class MSARowAttentionWithPairBias(hk.Module):
     Returns:
       Update to msa_act, shape [N_seq, N_res, c_m].
     """
+
     c = self.config
 
     assert len(msa_act.shape) == 3
@@ -821,6 +848,7 @@ class MSAColumnAttention(hk.Module):
 
     attn_mod = Attention(
         c, self.global_config, msa_act.shape[-1])
+
     msa_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
@@ -938,8 +966,8 @@ class TriangleAttention(hk.Module):
         init=hk.initializers.RandomNormal(stddev=init_factor))
     nonbatched_bias = jnp.einsum('qkc,ch->hqk', pair_act, weights)
 
-    attn_mod = Attention(
-        c, self.global_config, pair_act.shape[-1])
+    attn_mod = Attention(c, self.global_config, pair_act.shape[-1])
+    
     pair_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
