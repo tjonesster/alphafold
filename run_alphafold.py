@@ -36,10 +36,16 @@ from alphafold.model import config
 from alphafold.model import model
 from alphafold.relax import relax
 import numpy as np
-import config
+
+# Moved some of the config options into this directory
+
+import config_runner
+
+
+
 
 # Internal import (7716).
-defvalues = config.CONFIG_RUN_ALPHAFOLD
+defvalues = config_runner.CONFIG_RUN_ALPHAFOLD
 
 flags.DEFINE_list('fasta_paths', defvalues['fasta_paths'], 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
 flags.DEFINE_string('output_dir', defvalues['output_dir'], 'Path to a directory that will store the results.')
@@ -47,8 +53,8 @@ flags.DEFINE_list('model_names', defvalues['model_names'], 'Names of models to u
 flags.DEFINE_string('data_dir', defvalues['data_dir'], 'Path to directory of supporting data.')
 flags.DEFINE_string('jackhmmer_binary_path', defvalues['jackhmmer_binary_path'] , 'Path to the JackHMMER executable.')
 flags.DEFINE_string('hhblits_binary_path', defvalues['hhblits_binary_path'], 'Path to the HHblits executable.')
-flags.DEFINE_string('hhsearch_binary_path', '/usr/bin/hhsearch', 'Path to the HHsearch executable.')
-flags.DEFINE_string('kalign_binary_path', '/usr/bin/kalign', 'Path to the Kalign executable.')
+flags.DEFINE_string('hhsearch_binary_path', defvalues['hhsearch_binary_path'], 'Path to the HHsearch executable.')
+flags.DEFINE_string('kalign_binary_path', defvalues['kalign_binary_path'], 'Path to the Kalign executable.')
 flags.DEFINE_string('uniref90_database_path', defvalues['uniref90_database_path'], 'Path to the Uniref90 database for use by JackHMMER.')
 flags.DEFINE_string('mgnify_database_path', defvalues['mgnify_database_path'], 'Path to the MGnify database for use by JackHMMER.')
 flags.DEFINE_string('bfd_database_path', defvalues['bfd_database_path'], 'Path to the BFD database for use by HHblits.')
@@ -83,8 +89,10 @@ flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add t
 FLAGS = flags.FLAGS
 
 
+#
+#####
 
-
+#####
 
 MAX_TEMPLATE_HITS = 20
 RELAX_MAX_ITERATIONS = 0
