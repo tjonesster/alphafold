@@ -39,7 +39,7 @@ import numpy as np
 
 # Moved some of the config options into this directory
 
-from config_runner import CONFIG_RUN_APLPHAFOLD as defvalues
+from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues
 #import config_runner
 
 #defvalues = config_runner.CONFIG_RUN_ALPHAFOLD
@@ -66,13 +66,13 @@ flags.DEFINE_boolean('benchmark', defvalues['benchmark'], 'Run multiple JAX mode
 flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.')
 
 # FLAGS ADDED BY TAYLOR 
-flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.")
 #flags.DEFINE_boolean('reload_msa_from_pickle', False, "Whether or not the msa should be computed. If false then loaded from file.") # Not implemented yet 
 #flags.DEFINE_boolean('reload_msa_from_alignments', False, "Whether or not the msa should be computed. If false then loaded from file.") # Not implemented yet
-flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models? ")
-flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
 
-flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations")
+flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.")
+flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models?")
+flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
+flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations.")
 flags.DEFINE_boollean('log_activations', False, "Write out additional logging information?")
 
 # END FLAGS ADDED BY TAYLOR

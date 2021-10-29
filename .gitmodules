@@ -1,0 +1,3 @@
+[submodule "vendor/MMseqs2"]
+	path = vendor/MMseqs2
+	url = git@github.com:soedinglab/MMseqs2.git
