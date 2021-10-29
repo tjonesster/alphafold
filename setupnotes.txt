@@ -1,0 +1,54 @@
+Setup instructions on accre
+
+
+hmmer
+kalign
+tzdata
+
+
+Download miniconda:
+'''
+RUN wget -q -P /tmp \
+  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && bash /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda \
+    && rm /tmp/Miniconda3-latest-Linux-x86_64.sh
+
+ENV PATH="/opt/conda/bin:$PATH"
+RUN conda update -qy conda \
+    && conda install -y -c conda-forge \
+      openmm=7.5.1 \
+      cudatoolkit==${CUDA_VERSION} \
+      pdbfixer \
+      pip \
+      python=3.7
+'''
+
+jax download
+https://storage.googleapis.com/jax-releases/jax_releases.html
+
+Openmm patch 
+WORKDIR /opt/conda/lib/python3.7/site-packages
+RUN patch -p0 < /app/alphafold/docker/openmm.patch
+
+&& pip3 install -r /app/alphafold/requirements.txt \
+
+
+
+hmmer 
+/home/jonestl5/hmmer-3.3.1
+kalign
+/home/jonestl5/kalign
+
+
+Set up the conda environment
+module load Anaconda2
+conda init
+conda install -y -c conda-forge
+openmm=7.5.1
+pdbfixer 
+pip
+python=3.7
+
+
+
+conda install requirements.txt

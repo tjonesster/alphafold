@@ -144,12 +144,14 @@ class AlphaFoldIteration(hk.Module):
                ensemble_representations=False,
                return_representations=False):
 
+# This is what is used by sergey's oligomer modeling...? 
     num_ensemble = jnp.asarray(ensembled_batch['seq_length'].shape[0])
 
     if not ensemble_representations:
       assert ensembled_batch['seq_length'].shape[0] == 1
 
-    def slice_batch(i):
+# Slice batch takes a single set of the alignments. from a list of alignments -- this appears to be what is used in sergey's code.
+    def slice_batch(i): 
       b = {k: v[i] for k, v in ensembled_batch.items()}
       b.update(non_ensembled_batch)
       return b
@@ -231,7 +233,7 @@ class AlphaFoldIteration(hk.Module):
     for name, (head_config, module) in heads.items():
       # Skip PredictedLDDTHead and PredictedAlignedErrorHead until
       # StructureModule is executed.
-      if name in ('predicted_lddt', 'predicted_aligned_error'):
+      if name in ('predicted_lddt', 'predicted_aligned_error'): # 
         continue
       else:
         ret[name] = module(representations, batch, is_training)
@@ -1606,23 +1608,31 @@ class EvoformerIteration(hk.Module):
         safe_key=next(sub_keys),
         pair_act=pair_act)
 
+    # MSA COLUMN ATTENTION - section 1.6.2 of the supplmenetal methods.
     if not self.is_extra_msa:
       attn_mod = MSAColumnAttention(
           c.msa_column_attention, gc, name='msa_column_attention')
     else:
       attn_mod = MSAColumnGlobalAttention(
           c.msa_column_attention, gc, name='msa_column_global_attention')
+
+
+  # Attention mode either column or global column
+  # dropoout_wrapper 
     msa_act = dropout_wrapper_fn(
         attn_mod,
         msa_act,
         msa_mask,
         safe_key=next(sub_keys))
 
+
+#I don't know why dropout is chained like like this. MSA transition?
     msa_act = dropout_wrapper_fn(
         Transition(c.msa_transition, gc, name='msa_transition'),
         msa_act,
         msa_mask,
         safe_key=next(sub_keys))
+
 
     pair_act = dropout_wrapper_fn(
         OuterProductMean(
@@ -1635,12 +1645,15 @@ class EvoformerIteration(hk.Module):
         safe_key=next(sub_keys),
         output_act=pair_act)
 
+
     pair_act = dropout_wrapper_fn(
         TriangleMultiplication(c.triangle_multiplication_outgoing, gc,
                                name='triangle_multiplication_outgoing'),
         pair_act,
         pair_mask,
         safe_key=next(sub_keys))
+
+
     pair_act = dropout_wrapper_fn(
         TriangleMultiplication(c.triangle_multiplication_incoming, gc,
                                name='triangle_multiplication_incoming'),
@@ -1682,7 +1695,9 @@ class EmbeddingsAndEvoformer(hk.Module):
     self.config = config
     self.global_config = global_config
 
+# Find what is passed in for batch? 
   def __call__(self, batch, is_training, safe_key=None):
+  
 
     c = self.config
     gc = self.global_config
@@ -1703,13 +1718,17 @@ class EmbeddingsAndEvoformer(hk.Module):
 
     msa_activations = jnp.expand_dims(preprocess_1d, axis=0) + preprocess_msa
 
+ # what is this? 
     left_single = common_modules.Linear(
         c.pair_channel, name='left_single')(
             batch['target_feat'])
+
+#what is this?
     right_single = common_modules.Linear(
         c.pair_channel, name='right_single')(
             batch['target_feat'])
     pair_activations = left_single[:, None] + right_single[None]
+
     mask_2d = batch['seq_mask'][:, None] * batch['seq_mask'][None, :]
 
     # Inject previous outputs for recycling.
@@ -1784,6 +1803,7 @@ class EmbeddingsAndEvoformer(hk.Module):
         'pair': pair_activations,
     }
 
+  #Run the first iteration 
     extra_msa_stack_iteration = EvoformerIteration(
         c.evoformer, gc, is_extra_msa=True, name='extra_msa_stack')
 
