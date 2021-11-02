@@ -22,9 +22,8 @@ CONFIG_RUN_ALPHAFOLD = {
     "obsolete_pdbs_path": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/obsolete.dat", 
     "preset": "full_dbs", 
     "benchmark": False,
-    "activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/"
+    "activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/",
     # flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations")
-
     "random_seed": None
 }
 
