@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""I am no longer following the coding standardard where you add linebreaks after 80 chars"""
+
 """Full AlphaFold protein structure prediction script."""
 import json
 import os
@@ -59,55 +61,53 @@ flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, '
                   'origin is unknown. These values determine the pairing '
                   'method for the MSA.')
 
-flags.DEFINE_list('fasta_paths', defvalues['fasta_paths'], 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
-flags.DEFINE_string('output_dir', defvalues['output_dir'], 'Path to a directory that will store the results.')
-flags.DEFINE_list('model_names', defvalues['model_names'], 'Names of models to use.')
-flags.DEFINE_string('data_dir', defvalues['data_dir'], 'Path to directory of supporting data.')
+# Added by taylor
+flags.DEFINE_list('model_names', defvalues['model_names'], 'Names of models to use.') # I still need to fix this flag # This was broken when the multimer code came out
+
+# BINARY PATHS 
+flags.DEFINE_string('hmmsearch_binary_path', shutil.which('hmmsearch'), 'Path to the hmmsearch executable.')
+flags.DEFINE_string('hmmbuild_binary_path', shutil.which('hmmbuild'), 'Path to the hmmbuild executable.')
 flags.DEFINE_string('jackhmmer_binary_path', defvalues['jackhmmer_binary_path'] , 'Path to the JackHMMER executable.')
 flags.DEFINE_string('hhblits_binary_path', defvalues['hhblits_binary_path'], 'Path to the HHblits executable.')
-flags.DEFINE_string('hhsearch_binary_path', defvalues['hhsearch_binary_path'], 'Path to the HHsearch executable.')
 flags.DEFINE_string('kalign_binary_path', defvalues['kalign_binary_path'], 'Path to the Kalign executable.')
+flags.DEFINE_string('hhsearch_binary_path', defvalues['hhsearch_binary_path'], 'Path to the HHsearch executable.')
+
+# DATABASE PATHS 
 flags.DEFINE_string('uniref90_database_path', defvalues['uniref90_database_path'], 'Path to the Uniref90 database for use by JackHMMER.')
 flags.DEFINE_string('mgnify_database_path', defvalues['mgnify_database_path'], 'Path to the MGnify database for use by JackHMMER.')
-flags.DEFINE_string('bfd_database_path', defvalues['bfd_database_path'], 'Path to the BFD database for use by HHblits.')
-flags.DEFINE_string('small_bfd_database_path', defvalues['small_bfd_database_path'], 'Path to the small version of BFD used with the "reduced_dbs" preset.')
-flags.DEFINE_string('uniclust30_database_path', defvalues['uniclust30_database_path'], 'Path to the Uniclust30 database for use by HHblits.')
-flags.DEFINE_string('pdb70_database_path', defvalues['pdb70_database_path'], 'Path to the PDB70 database for use by HHsearch.')
-flags.DEFINE_string('template_mmcif_dir', defvalues['template_mmcif_dir'], 'Path to a directory with template mmCIF structures, each named <pdb_id>.cif')
-flags.DEFINE_string('max_template_date', defvalues['max_template_date'], 'Maximum template release date to consider. Important if folding historical test sets.')
-flags.DEFINE_string('obsolete_pdbs_path', defvalues['obsolete_pdbs_path'], 'Path to file containing a mapping from obsolete PDB IDs to the PDB IDs of their replacements.')
-flags.DEFINE_enum('preset', defvalues['preset'], ['reduced_dbs', 'full_dbs', 'casp14'], 'Choose preset model configuration - no ensembling and smaller genetic database config (reduced_dbs), no ensembling and full genetic database config  (full_dbs) or full genetic database config and 8 model ensemblings (casp14).')
-flags.DEFINE_boolean('benchmark', defvalues['benchmark'], 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.')
+flags.DEFINE_string('bfd_database_path', defvalues['bfd_database_path'], "Path to the bfd database.")
+flags.DEFINE_string('pdb_seqres_database_path', None, 'Path to the PDB seqres database for use by hmmsearch.')
+flags.DEFINE_string('uniprot_database_path', None, 'Path to the Uniprot database for use by JackHMMer.')
+
+# Input / Output Paths
+flags.DEFINE_list('fasta_paths', defvalues['fasta_paths'], 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
+flags.DEFINE_string('output_dir', defvalues['output_dir'], 'Path to a directory that will store the results.')
+flags.DEFINE_string('data_dir', defvalues['data_dir'], 'Path to directory of supporting data.')
+
+# Preset standards 
+flags.DEFINE_enum('db_preset', 'full_dbs', ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
+flags.DEFINE_enum('model_preset', 'monomer', ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
+                  'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
+
+
+# I think that I would probably cut this out of the pipeline script
+flags.DEFINE_boolean('benchmark', defvalues['benchmark'], 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.') # I think that I would just include this in another script because you are not going really be using this in a standard workflow.
+
+# Lifecycle - early exit / ommitting stages / running follow-up analysis
 flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.')
-
-# FLAGS ADDED BY TAYLOR 
-#flags.DEFINE_boolean('reload_msa_from_pickle', False, "Whether or not the msa should be computed. If false then loaded from file.") # Not implemented yet 
-#flags.DEFINE_boolean('reload_msa_from_alignments', False, "Whether or not the msa should be computed. If false then loaded from file.") # Not implemented yet
-
-flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.")
 flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models?")
 flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
 flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations.")
 flags.DEFINE_boolean('log_activations', False, "Write out additional logging information?")
 
-
-# This does the same thing as setting the process_msas to false
+  # These two flags should do the same thing but process_msa = False may be broken now.
+  # use_precomputed_msas was introduced in alphafold multimer
 flags.DEFINE_boolean('use_precomputed_msas', False, 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
+flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 
-# This was added in alphafold multimer
-flags.DEFINE_enum('model_preset', 'monomer',
-                  ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
-                  'Choose preset model configuration - the monomer model, '
-                  'the monomer model with extra ensembling, monomer model with '
-                  'pTM head, or multimer model')
+# Additional flags that we may add in the future.
+# Overwrite flag that stops you if you are going to trample existing files.
 
-# END FLAGS ADDED BY TAYLOR
-
-# flags.DEFINE_boolean() #reload from pickle 
-# flags.DEFINE_boolean() #reload from msa files
-
-# flags  # -- overwrite flag 
-# Internal import (7716).
 
 FLAGS = flags.FLAGS
 
@@ -135,8 +135,6 @@ def predict_structure(
     random_seed: int,
     is_prokaryote: Optional[bool] = None):
   """Predicts structure using AlphaFold for the given sequence."""
-<<<<<<< HEAD
-=======
   logging.info('Predicting %s', fasta_name)
   timings = {}
   output_dir = os.path.join(output_dir_base, fasta_name)
@@ -165,20 +163,23 @@ def predict_structure(
     pickle.dump(feature_dict, f, protocol=4)
 
   unrelaxed_pdbs = {}
-  relaxed_pdbs = {}
-  ranking_confidences = {}
 
-  # Run the models.
-  num_models = len(model_runners)
-  for model_index, (model_name, model_runner) in enumerate(
-      model_runners.items()):
-    logging.info('Running model %s on %s', model_name, fasta_name)
-    t_0 = time.time()
-    model_random_seed = model_index + random_seed * num_models
-    processed_feature_dict = model_runner.process_features(
-        feature_dict, random_seed=model_random_seed)
-    timings[f'process_features_{model_name}'] = time.time() - t_0
->>>>>>> 0be2b30b98f0da7aecb973bde04758fae67eb913
+  # I think that this was pasted in error 
+#   flags.DEFINE_enum('db_preset', 'full_dbs',
+#                   ['full_dbs', 'reduced_dbs'],
+#                   'Choose preset MSA database configuration - '
+#                   'smaller genetic database config (reduced_dbs) or '
+#                   'full genetic database config  (full_dbs)')
+# flags.DEFINE_enum('model_preset', 'monomer',
+#                   ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
+#                   'Choose preset model configuration - the monomer model, '
+#                   'the monomer model with extra ensembling, monomer model with '
+#                   'pTM head, or multimer model')
+
+
+  processed_feature_dict = model_runner.process_features(
+      feature_dict, random_seed=model_random_seed)
+  timings[f'process_features_{model_name}'] = time.time() - t_0
 
   # if all
   if FLAGS.only_run_cleanup == False:
@@ -196,8 +197,8 @@ def predict_structure(
 
     # Get features.
     t_0 = time.time()
-<<<<<<< HEAD
 
+    # I honestly prefer my way of doing it... I think I am going to keep it in 
     if FLAGS.process_msa == True: # Process from scratch 
       feature_dict = data_pipeline.process(
           input_fasta_path=fasta_path,
@@ -241,7 +242,7 @@ def predict_structure(
       timings[f'process_features_{model_name}'] = time.time() - t_0
 
       t_0 = time.time()
-      prediction_result = model_runner.predict(processed_feature_dict)
+      prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
       t_diff = time.time() - t_0
       timings[f'predict_and_compile_{model_name}'] = t_diff
       logging.info(
@@ -249,13 +250,20 @@ def predict_structure(
           model_name, t_diff)
 
       if benchmark:
+        # t_0 = time.time()
+        # model_runner.predict(processed_feature_dict,random_seed=model_random_seed)
+        # timings[f'predict_benchmark_{model_name}'] = time.time() - t_0
+
         t_0 = time.time()
-        model_runner.predict(processed_feature_dict)
-        timings[f'predict_benchmark_{model_name}'] = time.time() - t_0
+        model_runner.predict(processed_feature_dict,
+                            random_seed=model_random_seed)
+        t_diff = time.time() - t_0
+        timings[f'predict_benchmark_{model_name}'] = t_diff
 
       # Get mean pLDDT confidence metric.
       plddt = prediction_result['plddt']
-      plddts[model_name] = np.mean(plddt)
+      plddts[model_name] = np.mean(plddt) # it looks like this was removed at some point 
+      ranking_confidences[model_name] = prediction_result['ranking_confidence']
 
       # Save the model outputs.
       result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
@@ -269,86 +277,14 @@ def predict_structure(
       unrelaxed_protein = protein.from_prediction(
           features=processed_feature_dict,
           result=prediction_result,
-          b_factors=plddt_b_factors)
+          b_factors=plddt_b_factors,
+          remove_leagind_feature_dimension=not model_runner.multimer_mode)
 
       unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
-      # Relax the prediction.
-      t_0 = time.time()
-      relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
-      timings[f'relax_{model_name}'] = time.time() - t_0
-
-      relaxed_pdbs[model_name] = relaxed_pdb_str
-
-      # Save the relaxed PDB.
-      relaxed_output_path = os.path.join(output_dir, f'relaxed_{model_name}.pdb')
-      with open(relaxed_output_path, 'w') as f:
-        f.write(relaxed_pdb_str)
-
-# End of model generation
-
-  if FLAGS.only_run_cleanup == True: # If the user provides the only run_cleanup it will rank models with the assumption that they were already created by another process
-    # load all of the things 
-    timings = {} #We are just going to leave this empty
-    relaxed_pdbs = {}
-    plddts = {}
-    for model_name, model_runner in model_runners.items():
-
-      result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
-
-      with open(result_output_path, 'wb') as f:
-        prediction_result = pickle.load(f) 
-
-      plddt = prediction_result['plddt']
-      plddts[model_name] = np.mean(plddt)
-
-
-
-# Reload the datastructure
-=======
-    prediction_result = model_runner.predict(processed_feature_dict,
-                                             random_seed=model_random_seed)
-    t_diff = time.time() - t_0
-    timings[f'predict_and_compile_{model_name}'] = t_diff
-    logging.info(
-        'Total JAX model %s on %s predict time (includes compilation time, see --benchmark): %.1fs',
-        model_name, fasta_name, t_diff)
-
-    if benchmark:
-      t_0 = time.time()
-      model_runner.predict(processed_feature_dict,
-                           random_seed=model_random_seed)
-      t_diff = time.time() - t_0
-      timings[f'predict_benchmark_{model_name}'] = t_diff
-      logging.info(
-          'Total JAX model %s on %s predict time (excludes compilation time): %.1fs',
-          model_name, fasta_name, t_diff)
-
-    plddt = prediction_result['plddt']
-    ranking_confidences[model_name] = prediction_result['ranking_confidence']
-
-    # Save the model outputs.
-    result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
-    with open(result_output_path, 'wb') as f:
-      pickle.dump(prediction_result, f, protocol=4)
-
-    # Add the predicted LDDT in the b-factor column.
-    # Note that higher predicted LDDT value means higher model confidence.
-    plddt_b_factors = np.repeat(
-        plddt[:, None], residue_constants.atom_type_num, axis=-1)
-    unrelaxed_protein = protein.from_prediction(
-        features=processed_feature_dict,
-        result=prediction_result,
-        b_factors=plddt_b_factors,
-        remove_leading_feature_dimension=not model_runner.multimer_mode)
-
-    unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
-    unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
-    with open(unrelaxed_pdb_path, 'w') as f:
-      f.write(unrelaxed_pdbs[model_name])
-
+# Relax the prediction.
     if amber_relaxer:
       # Relax the prediction.
       t_0 = time.time()
@@ -362,7 +298,53 @@ def predict_structure(
           output_dir, f'relaxed_{model_name}.pdb')
       with open(relaxed_output_path, 'w') as f:
         f.write(relaxed_pdb_str)
->>>>>>> 0be2b30b98f0da7aecb973bde04758fae67eb913
+
+# End of model generation
+
+  # This is actually fucked now -- damn, they sused to
+  if FLAGS.only_run_cleanup == True: # If the user provides the only run_cleanup it will rank models with the assumption that they were already created by another process
+    # load all of the things 
+    timings = {} #We are just going to leave this empty
+    relaxed_pdbs = {}
+    # plddts = {}
+    for model_name, model_runner in model_runners.items():
+
+      result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
+      # result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
+
+      with open(result_output_path, 'rb') as f:
+        prediction_result = pickle.load(f) #I'm not sure if we are really going to go forwards with using this
+      
+      plddt = prediction_result['plddt']
+      # plddts[model_name] = np.mean(plddt)
+            # Add the predicted LDDT in the b-factor column.
+      # Note that higher predicted LDDT value means higher model confidence.
+    # Save the model outputs.
+
+# FUCK this recent patch fucked all my shit up.
+# God fucking damn it. I really need to do extensive debugging now...
+
+# Testing 
+  # with open(result_output_path, 'wb') as f:
+    # pickle.dump(prediction_result, f, protocol=4)
+
+  # plddt_b_factors = np.repeat(
+      # plddt[:, None], residue_constants.atom_type_num, axis=-1)
+  # unrelaxed_protein = protein.from_prediction(
+      # features=processed_feature_dict,
+      # result=prediction_result,
+      # b_factors=plddt_b_factors,
+      # remove_leading_feature_dimension=not model_runner.multimer_mode)
+
+  # unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
+  # unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
+  # with open(unrelaxed_pdb_path, 'w') as f:
+  #   f.write(unrelaxed_pdbs[model_name])
+
+
+
+
+# Reload the datastructure
 
   # Rank by model confidence and write out relaxed PDBs in rank order.
   ranked_order = []
@@ -489,7 +471,9 @@ def main(argv):
     data_pipeline = monomer_data_pipeline
 
   model_runners = {}
+
   model_names = config.MODEL_PRESETS[FLAGS.model_preset]
+
   for model_name in model_names:
     model_config = config.model_config(model_name)
     if run_multimer_system:

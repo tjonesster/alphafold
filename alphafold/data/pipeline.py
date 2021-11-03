@@ -48,6 +48,7 @@ def make_sequence_features(
   features['sequence'] = np.array([sequence.encode('utf-8')], dtype=np.object_)
   return features
 
+
 def make_msa_features(msas: Sequence[parsers.Msa]) -> FeatureDict:
   """Constructs a feature dict of MSA features."""
   if not msas:
@@ -228,9 +229,6 @@ class DataPipeline:
                  templates_result.features['template_domain_names'].shape[0])
 
     return {**sequence_features, **msa_features, **templates_result.features}
-
-
-
 
 # This is no longer used in the main pipeline
 def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> FeatureDict:
