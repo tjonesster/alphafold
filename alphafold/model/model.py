@@ -14,17 +14,19 @@
 
 """Code for constructing the model."""
 from typing import Any, Mapping, Optional, Union
+import pickle
 
+import tree
+import tensorflow.compat.v1 as tf
+import numpy as np
 from absl import logging
-from alphafold.common import confidence
-from alphafold.model import features
-from alphafold.model import modules
 import haiku as hk
 import jax
 import ml_collections
-import numpy as np
-import tensorflow.compat.v1 as tf
-import tree
+
+from alphafold.common import confidence
+from alphafold.model import features
+from alphafold.model import modules
 
 
 def get_confidence_metrics(
@@ -55,12 +57,20 @@ class RunModel:
     self.params = params
 
     def _forward_fn(batch):
-      model = modules.AlphaFold(self.config.model)
-      return model(
+      model = modules.AlphaFold(self.config.model) # Here ius the things
+
+
+      ret = model(
           batch,
           is_training=False,
           compute_loss=False,
           ensemble_representations=True)
+
+      # Can't pickle local object
+      # with open('junk.pkl', 'wb') as f:
+        # pickle.dump(ret, f)
+
+      return ret
 
     self.apply = jax.jit(hk.transform(_forward_fn).apply)
     self.init = jax.jit(hk.transform(_forward_fn).init)

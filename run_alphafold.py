@@ -73,7 +73,7 @@ flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be comp
 flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models?")
 flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
 flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations.")
-flags.DEFINE_boollean('log_activations', False, "Write out additional logging information?")
+flags.DEFINE_boolean('log_activations', False, "Write out additional logging information?")
 
 # END FLAGS ADDED BY TAYLOR
 
