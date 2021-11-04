@@ -49,12 +49,28 @@ def sigmoid_cross_entropy(logits, labels):
 
 def apply_dropout(*, tensor, safe_key, rate, is_training, broadcast_dim=None):
   """Applies dropout to a tensor."""
+  """Only applicable during training """
+  '''
+    * means that all of the non-kwargs
+    tensor 
+    ? safekey is an iterable of all keys 
+    rate = learning rate .. float 
+    is training boolean 
+    broadcast_dim
+  '''
+
   if is_training and rate != 0.0:
     shape = list(tensor.shape)
+
     if broadcast_dim is not None:
       shape[broadcast_dim] = 1
+
     keep_rate = 1.0 - rate
+
+    # 1 if keep, 0 if throw away 
     keep = jax.random.bernoulli(safe_key.get(), keep_rate, shape=shape)
+
+
     return keep * tensor / keep_rate
   else:
     return tensor
@@ -82,8 +98,10 @@ def dropout_wrapper(module,
     else:
       broadcast_dim = 1
   else:
+    # If not shared dim then don't broadcast 
     broadcast_dim = None
 
+  # How does the broadcast mechanism work???
   residual = apply_dropout(tensor=residual,
                            safe_key=safe_key,
                            rate=dropout_rate,
@@ -144,12 +162,14 @@ class AlphaFoldIteration(hk.Module):
                ensemble_representations=False,
                return_representations=False):
 
+# This is what is used by sergey's oligomer modeling...? 
     num_ensemble = jnp.asarray(ensembled_batch['seq_length'].shape[0])
 
     if not ensemble_representations:
       assert ensembled_batch['seq_length'].shape[0] == 1
 
-    def slice_batch(i):
+# Slice batch takes a single set of the alignments. from a list of alignments -- this appears to be what is used in sergey's code.
+    def slice_batch(i): 
       b = {k: v[i] for k, v in ensembled_batch.items()}
       b.update(non_ensembled_batch)
       return b
@@ -231,7 +251,7 @@ class AlphaFoldIteration(hk.Module):
     for name, (head_config, module) in heads.items():
       # Skip PredictedLDDTHead and PredictedAlignedErrorHead until
       # StructureModule is executed.
-      if name in ('predicted_lddt', 'predicted_aligned_error'):
+      if name in ('predicted_lddt', 'predicted_aligned_error'): # 
         continue
       else:
         ret[name] = module(representations, batch, is_training)
@@ -309,6 +329,8 @@ class AlphaFold(hk.Module):
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
 
+
+    # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
       new_prev = {
           'prev_pos':
@@ -318,6 +340,10 @@ class AlphaFold(hk.Module):
       }
       return jax.tree_map(jax.lax.stop_gradient, new_prev)
 
+
+    # Each iteration should be called using do_call ? 
+    # We can call get_prev each time 
+    # 
     def do_call(prev,
                 recycle_idx,
                 compute_loss=compute_loss):
@@ -423,6 +449,8 @@ class TemplatePairStack(hk.Module):
     if not c.num_block:
       return pair_act
 
+    # safe key 
+    # what is x?
     def block(x):
       """One block of the template pair stack."""
       pair_act, safe_key = x
@@ -433,6 +461,7 @@ class TemplatePairStack(hk.Module):
       safe_key, *sub_keys = safe_key.split(6)
       sub_keys = iter(sub_keys)
 
+      # asldfkj sldkfjs dlfkasjd flsdkjf 
       pair_act = dropout_wrapper_fn(
           TriangleAttention(c.triangle_attention_starting_node, gc,
                             name='triangle_attention_starting_node'),
@@ -466,10 +495,11 @@ class TemplatePairStack(hk.Module):
       return pair_act, safe_key
 
     if gc.use_remat:
-      block = hk.remat(block)
+      block = hk.remat(block) # Remat if false in the default configuration
 
-    res_stack = layer_stack.layer_stack(c.num_block)(block)
+    res_stack = layer_stack.layer_stack(c.num_block)(block) # Here are the things 
     pair_act, safe_key = res_stack((pair_act, safe_key))
+
     return pair_act
 
 
@@ -601,8 +631,7 @@ class Attention(hk.Module):
           shape=(num_head, value_dim),
           init=hk.initializers.Constant(1.0))
 
-      gate_values = jnp.einsum('bqc, chv->bqhv', q_data,
-                               gating_weights) + gating_bias
+      gate_values = jnp.einsum('bqc, chv->bqhv', q_data, gating_weights) + gating_bias
 
       gate_values = jax.nn.sigmoid(gate_values)
 
@@ -611,8 +640,7 @@ class Attention(hk.Module):
     o_weights = hk.get_parameter(
         'output_w', shape=(num_head, value_dim, self.output_dim),
         init=init)
-    o_bias = hk.get_parameter('output_b', shape=(self.output_dim,),
-                              init=hk.initializers.Constant(0.0))
+    o_bias = hk.get_parameter('output_b', shape=(self.output_dim,), init=hk.initializers.Constant(0.0))
 
     output = jnp.einsum('bqhc,hco->bqo', weighted_avg, o_weights) + o_bias
 
@@ -737,6 +765,7 @@ class MSARowAttentionWithPairBias(hk.Module):
     Returns:
       Update to msa_act, shape [N_seq, N_res, c_m].
     """
+
     c = self.config
 
     assert len(msa_act.shape) == 3
@@ -819,6 +848,7 @@ class MSAColumnAttention(hk.Module):
 
     attn_mod = Attention(
         c, self.global_config, msa_act.shape[-1])
+
     msa_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
@@ -936,8 +966,8 @@ class TriangleAttention(hk.Module):
         init=hk.initializers.RandomNormal(stddev=init_factor))
     nonbatched_bias = jnp.einsum('qkc,ch->hqk', pair_act, weights)
 
-    attn_mod = Attention(
-        c, self.global_config, pair_act.shape[-1])
+    attn_mod = Attention(c, self.global_config, pair_act.shape[-1])
+    
     pair_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
@@ -965,6 +995,11 @@ class MaskedMsaHead(hk.Module):
     self.config = config
     self.global_config = global_config
 
+    if global_config.multimer_mode:
+      self.num_output = len(residue_constants.restypes_with_x_and_gap)
+    else:
+      self.num_output = config.num_output
+
   def __call__(self, representations, batch, is_training):
     """Builds MaskedMsaHead module.
 
@@ -981,7 +1016,7 @@ class MaskedMsaHead(hk.Module):
     """
     del batch
     logits = common_modules.Linear(
-        self.config.num_output,
+        self.num_output,
         initializer=utils.final_init(self.global_config),
         name='logits')(
             representations['msa'])
@@ -989,7 +1024,7 @@ class MaskedMsaHead(hk.Module):
 
   def loss(self, value, batch):
     errors = softmax_cross_entropy(
-        labels=jax.nn.one_hot(batch['true_msa'], num_classes=23),
+        labels=jax.nn.one_hot(batch['true_msa'], num_classes=self.num_output),
         logits=value['logits'])
     loss = (jnp.sum(errors * batch['bert_mask'], axis=(-2, -1)) /
             (1e-8 + jnp.sum(batch['bert_mask'], axis=(-2, -1))))
@@ -1009,7 +1044,7 @@ class PredictedLDDTHead(hk.Module):
     self.global_config = global_config
 
   def __call__(self, representations, batch, is_training):
-    """Builds ExperimentallyResolvedHead module.
+    """Builds PredictedLDDTHead module.
 
     Arguments:
       representations: Dictionary of representations, must contain:
@@ -1071,7 +1106,7 @@ class PredictedLDDTHead(hk.Module):
         # Shape (batch_size, num_res, 1)
         true_points_mask=all_atom_mask[None, :, 1:2].astype(jnp.float32),
         cutoff=15.,
-        per_residue=True)[0]
+        per_residue=True)
     lddt_ca = jax.lax.stop_gradient(lddt_ca)
 
     num_bins = self.config.num_bins
@@ -1597,6 +1632,19 @@ class EvoformerIteration(hk.Module):
     safe_key, *sub_keys = safe_key.split(10)
     sub_keys = iter(sub_keys)
 
+    outer_module = OuterProductMean(
+        config=c.outer_product_mean,
+        global_config=self.global_config,
+        num_output_channel=int(pair_act.shape[-1]),
+        name='outer_product_mean')
+    if c.outer_product_mean.first:
+      pair_act = dropout_wrapper_fn(
+          outer_module,
+          msa_act,
+          msa_mask,
+          safe_key=next(sub_keys),
+          output_act=pair_act)
+
     msa_act = dropout_wrapper_fn(
         MSARowAttentionWithPairBias(
             c.msa_row_attention_with_pair_bias, gc,
@@ -1606,34 +1654,39 @@ class EvoformerIteration(hk.Module):
         safe_key=next(sub_keys),
         pair_act=pair_act)
 
+    # MSA COLUMN ATTENTION - section 1.6.2 of the supplmenetal methods.
     if not self.is_extra_msa:
       attn_mod = MSAColumnAttention(
           c.msa_column_attention, gc, name='msa_column_attention')
     else:
       attn_mod = MSAColumnGlobalAttention(
           c.msa_column_attention, gc, name='msa_column_global_attention')
+
+
+  # Attention mode either column or global column
+  # dropoout_wrapper 
     msa_act = dropout_wrapper_fn(
         attn_mod,
         msa_act,
         msa_mask,
         safe_key=next(sub_keys))
 
+
+    #I don't know why dropout is chained like like this. MSA transition?
     msa_act = dropout_wrapper_fn(
         Transition(c.msa_transition, gc, name='msa_transition'),
         msa_act,
         msa_mask,
         safe_key=next(sub_keys))
 
-    pair_act = dropout_wrapper_fn(
-        OuterProductMean(
-            config=c.outer_product_mean,
-            global_config=self.global_config,
-            num_output_channel=int(pair_act.shape[-1]),
-            name='outer_product_mean'),
-        msa_act,
-        msa_mask,
-        safe_key=next(sub_keys),
-        output_act=pair_act)
+    # Testing 
+    if not c.outer_product_mean.first:
+      pair_act = dropout_wrapper_fn(
+          outer_module,
+          msa_act,
+          msa_mask,
+          safe_key=next(sub_keys),
+          output_act=pair_act)
 
     pair_act = dropout_wrapper_fn(
         TriangleMultiplication(c.triangle_multiplication_outgoing, gc,
@@ -1641,6 +1694,8 @@ class EvoformerIteration(hk.Module):
         pair_act,
         pair_mask,
         safe_key=next(sub_keys))
+
+
     pair_act = dropout_wrapper_fn(
         TriangleMultiplication(c.triangle_multiplication_incoming, gc,
                                name='triangle_multiplication_incoming'),
@@ -1682,7 +1737,9 @@ class EmbeddingsAndEvoformer(hk.Module):
     self.config = config
     self.global_config = global_config
 
+# Find what is passed in for batch? 
   def __call__(self, batch, is_training, safe_key=None):
+  
 
     c = self.config
     gc = self.global_config
@@ -1703,13 +1760,17 @@ class EmbeddingsAndEvoformer(hk.Module):
 
     msa_activations = jnp.expand_dims(preprocess_1d, axis=0) + preprocess_msa
 
+ # what is this? 
     left_single = common_modules.Linear(
         c.pair_channel, name='left_single')(
             batch['target_feat'])
+
+#what is this?
     right_single = common_modules.Linear(
         c.pair_channel, name='right_single')(
             batch['target_feat'])
     pair_activations = left_single[:, None] + right_single[None]
+
     mask_2d = batch['seq_mask'][:, None] * batch['seq_mask'][None, :]
 
     # Inject previous outputs for recycling.
@@ -1730,8 +1791,7 @@ class EmbeddingsAndEvoformer(hk.Module):
                                           True,
                                           name='prev_msa_first_row_norm')(
                                               batch['prev_msa_first_row'])
-        msa_activations = jax.ops.index_add(msa_activations, 0,
-                                            prev_msa_first_row)
+        msa_activations = msa_activations.at[0].add(prev_msa_first_row)
 
       if 'prev_pair' in batch:
         pair_activations += hk.LayerNorm([-1],
@@ -1784,6 +1844,7 @@ class EmbeddingsAndEvoformer(hk.Module):
         'pair': pair_activations,
     }
 
+  #Run the first iteration 
     extra_msa_stack_iteration = EvoformerIteration(
         c.evoformer, gc, is_extra_msa=True, name='extra_msa_stack')
 
