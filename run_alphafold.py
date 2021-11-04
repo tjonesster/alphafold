@@ -30,6 +30,8 @@ from typing import Dict, Union, Optional
 from absl import app
 from absl import flags
 from absl import logging
+import numpy as np
+
 from alphafold.common import protein
 from alphafold.common import residue_constants
 from alphafold.data import pipeline
@@ -40,15 +42,9 @@ from alphafold.data.tools import hmmsearch
 from alphafold.model import config
 from alphafold.model import model
 from alphafold.relax import relax
-import numpy as np
 from alphafold.model import data
 
-# Moved some of the config options into this directory
-
 from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues
-#import config_runner
-
-#defvalues = config_runner.CONFIG_RUN_ALPHAFOLD
 
 logging.set_verbosity(logging.INFO)
 
@@ -61,28 +57,39 @@ flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, '
                   'origin is unknown. These values determine the pairing '
                   'method for the MSA.')
 
-# Added by taylor
-flags.DEFINE_list('model_names', defvalues['model_names'], 'Names of models to use.') # I still need to fix this flag # This was broken when the multimer code came out
+# Added by taylor # currently broken by the integration with alphafold multimer
+flags.DEFINE_list('model_names', defvalues.get('model_names',False), 'Names of models to use.') # I still need to fix this flag # This was broken when the multimer code came out
 
 # BINARY PATHS 
-flags.DEFINE_string('hmmsearch_binary_path', shutil.which('hmmsearch'), 'Path to the hmmsearch executable.')
-flags.DEFINE_string('hmmbuild_binary_path', shutil.which('hmmbuild'), 'Path to the hmmbuild executable.')
-flags.DEFINE_string('jackhmmer_binary_path', defvalues['jackhmmer_binary_path'] , 'Path to the JackHMMER executable.')
-flags.DEFINE_string('hhblits_binary_path', defvalues['hhblits_binary_path'], 'Path to the HHblits executable.')
-flags.DEFINE_string('kalign_binary_path', defvalues['kalign_binary_path'], 'Path to the Kalign executable.')
-flags.DEFINE_string('hhsearch_binary_path', defvalues['hhsearch_binary_path'], 'Path to the HHsearch executable.')
+flags.DEFINE_string('hmmsearch_binary_path', defvalues.get('hmmsearch_binary_path', shutil.which('hmmsearch')), 'Path to the hmmsearch executable.')
+flags.DEFINE_string('hmmbuild_binary_path', defvalues.get('hmmbuild',shutil.which('hmmbuild')), 'Path to the hmmbuild executable.')
+flags.DEFINE_string('jackhmmer_binary_path', defvalues.get('jackhmmer_binary_path', shutil.which('jackhmmer')) , 'Path to the JackHMMER executable.')
+flags.DEFINE_string('hhblits_binary_path', defvalues.get('hhblits_binary_path',shutil.which('hhblits')), 'Path to the HHblits executable.')
+flags.DEFINE_string('kalign_binary_path', defvalues.get('kalign_binary_path', shutil.which('kalign')), 'Path to the Kalign executable.')
+flags.DEFINE_string('hhsearch_binary_path', defvalues.get('hhsearch_binary_path', shutil.which('hhsearch')), 'Path to the HHsearch executable.')
 
-# DATABASE PATHS 
-flags.DEFINE_string('uniref90_database_path', defvalues['uniref90_database_path'], 'Path to the Uniref90 database for use by JackHMMER.')
-flags.DEFINE_string('mgnify_database_path', defvalues['mgnify_database_path'], 'Path to the MGnify database for use by JackHMMER.')
-flags.DEFINE_string('bfd_database_path', defvalues['bfd_database_path'], "Path to the bfd database.")
-flags.DEFINE_string('pdb_seqres_database_path', None, 'Path to the PDB seqres database for use by hmmsearch.')
-flags.DEFINE_string('uniprot_database_path', None, 'Path to the Uniprot database for use by JackHMMer.')
+# DATABASE & DATASET PATHS 
+flags.DEFINE_string('uniref90_database_path', defvalues.get('uniref90_database_path', None), 'Path to the Uniref90 database for use by JackHMMER.')
+flags.DEFINE_string('mgnify_database_path', defvalues.get('mgnify_database_path', None), 'Path to the MGnify database for use by JackHMMER.')
+flags.DEFINE_string('bfd_database_path', defvalues.get('bfd_database_path', None), "Path to the bfd database.")
+flags.DEFINE_string('small_bfd_database_path', defvalues.get("small_bfd_database_path", None), "Path to small bfd database")
+flags.DEFINE_string('pdb_seqres_database_path', defvalues.get('pdb_seqres_database_path', None), 'Path to the PDB seqres database for use by hmmsearch.')
+flags.DEFINE_string('uniprot_database_path', defvalues.get('uniprot_database_path', None), 'Path to the Uniprot database for use by JackHMMer.')
+#flags.DEFINE_string("template_mmcif_dir", defvalues.get('template_mmcif_dir', None), 'Path to the mmcif databases')
+flags.DEFINE_string('template_mmcif_dir', defvalues.get('template_mmcif_dir', None), 'Path to a directory with template mmCIF structures, each named <pdb_id>.cif')
+flags.DEFINE_string('uniclust30_database_path', defvalues.get('uniclust30_database_path', None), 'Path to uniclust30.')
+flags.DEFINE_string("pdb70_database_path", defvalues.get("pdb70_database_path", None), "Path to the pdb70 directory")
+
+#There were all kinds of problems getting this to work 
+#pdb70_database_path
+# PDB setings 
+flags.DEFINE_string('max_template_date', defvalues.get('max_template_date', "2020-05-14"), 'Maximum template release date to consider. Important if folding historical test sets.')
+flags.DEFINE_string('obsolete_pdbs_path', defvalues.get('obsolete_pdbs_path',  None), 'Path to file containing a mapping from obsolete PDB IDs to the PDB IDs of their replacements.')
 
 # Input / Output Paths
-flags.DEFINE_list('fasta_paths', defvalues['fasta_paths'], 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
-flags.DEFINE_string('output_dir', defvalues['output_dir'], 'Path to a directory that will store the results.')
-flags.DEFINE_string('data_dir', defvalues['data_dir'], 'Path to directory of supporting data.')
+flags.DEFINE_list('fasta_paths', defvalues.get('fasta_paths', None), 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
+flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a directory that will store the results.')
+flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to directory of supporting data.')
 
 # Preset standards 
 flags.DEFINE_enum('db_preset', 'full_dbs', ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
@@ -91,25 +98,29 @@ flags.DEFINE_enum('model_preset', 'monomer', ['monomer', 'monomer_casp14', 'mono
 
 
 # I think that I would probably cut this out of the pipeline script
-flags.DEFINE_boolean('benchmark', defvalues['benchmark'], 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.') # I think that I would just include this in another script because you are not going really be using this in a standard workflow.
+flags.DEFINE_boolean('benchmark', defvalues.get('benchmark', False), 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.') # I think that I would just include this in another script because you are not going really be using this in a standard workflow.
 
 # Lifecycle - early exit / ommitting stages / running follow-up analysis
-flags.DEFINE_integer('random_seed', defvalues['random_seed'], 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.')
-flags.DEFINE_boolean('exit_after_msa', False, "Should alphafold exit after generating the models?")
-flags.DEFINE_boolean('only_run_cleanup', False, "Should the algorithm only add the outputs of severla smaller models.")
-flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations.")
-flags.DEFINE_boolean('log_activations', False, "Write out additional logging information?")
+flags.DEFINE_integer('random_seed', defvalues.get('random_seed', 0), 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.') # I really should give this a random value
+flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa',False), "Should alphafold exit after generating the models?")
+flags.DEFINE_boolean('only_run_cleanup', defvalues.get('only_run_cleanup', False), "Should the algorithm only add the outputs of severla smaller models.")
+flags.DEFINE_string('activations_output_path', defvalues.get('activations_output_path', None), "Output path to write out all of the activations.")
+flags.DEFINE_boolean('write_activations', defvalues.get('write_activations', False), "Write out additional logging information?")
 
-  # These two flags should do the same thing but process_msa = False may be broken now.
-  # use_precomputed_msas was introduced in alphafold multimer
-flags.DEFINE_boolean('use_precomputed_msas', False, 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
-flags.DEFINE_boolean('process_msa', True, "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
+# These two flags should do the same thing but process_msa = False may be broken now.
+# use_precomputed_msas was introduced in alphafold multimer
+flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', False), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
+flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 
 # Additional flags that we may add in the future.
 # Overwrite flag that stops you if you are going to trample existing files.
 
-
 FLAGS = flags.FLAGS
+
+# This does not appear to work....
+if FLAGS['model_preset'] == 'monomer':
+    del FLAGS['pdb_seqres_database_path']
+    del FLAGS['uniprot_database_path']
 
 MAX_TEMPLATE_HITS = 20
 RELAX_MAX_ITERATIONS = 0
@@ -118,7 +129,9 @@ RELAX_STIFFNESS = 10.0
 RELAX_EXCLUDE_RESIDUES = []
 RELAX_MAX_OUTER_ITERATIONS = 3
 
-def _check_flag(flag_name: str, preset: str, should_be_set: bool):
+# preset chaned to other flag name
+# I don't like this function... Why not allow people to set flags by default that are not used
+def _check_flag(flag_name: str, other_flag_name: str, should_be_set: bool):
   if should_be_set != bool(FLAGS[flag_name].value):
     verb = 'be' if should_be_set else 'not be'
     raise ValueError(f'{flag_name} must {verb} set when running with '
@@ -164,71 +177,65 @@ def predict_structure(
 
   unrelaxed_pdbs = {}
 
-  # I think that this was pasted in error 
-#   flags.DEFINE_enum('db_preset', 'full_dbs',
-#                   ['full_dbs', 'reduced_dbs'],
-#                   'Choose preset MSA database configuration - '
-#                   'smaller genetic database config (reduced_dbs) or '
-#                   'full genetic database config  (full_dbs)')
-# flags.DEFINE_enum('model_preset', 'monomer',
-#                   ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
-#                   'Choose preset model configuration - the monomer model, '
-#                   'the monomer model with extra ensembling, monomer model with '
-#                   'pTM head, or multimer model')
+# This section changed somewhat.... 
 
+  num_models=len(model_runners)
+  for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
+    logging.info('Running model %s on %s', model_name, fasta_name)
 
-  processed_feature_dict = model_runner.process_features(
-      feature_dict, random_seed=model_random_seed)
-  timings[f'process_features_{model_name}'] = time.time() - t_0
+    model_random_seed = model_index + random_seed * num_models
+    processed_feature_dict = model_runner.process_features(feature_dict, random_seed=model_random_seed)
+    timings[f'process_features_{model_name}'] = time.time() - t_0
 
-  # if all
-  if FLAGS.only_run_cleanup == False:
-    timings = {}
-    output_dir = os.path.join(output_dir_base, fasta_name)
-    if not os.path.exists(output_dir):
-      os.makedirs(output_dir)
-    msa_output_dir = os.path.join(output_dir, 'msas')
-    if not os.path.exists(msa_output_dir):
-      os.makedirs(msa_output_dir)
+    # if all
+    if FLAGS.only_run_cleanup == False:
+      timings = {}
+      output_dir = os.path.join(output_dir_base, fasta_name)
+      if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+      msa_output_dir = os.path.join(output_dir, 'msas')
+      if not os.path.exists(msa_output_dir):
+        os.makedirs(msa_output_dir)
 
-    features_output_path = os.path.join(output_dir, 'features.pkl')
+      features_output_path = os.path.join(output_dir, 'features.pkl')
 
-    # If you want to do read from file instead of reprocessing this then chagne this section
+      # If you want to do read from file instead of reprocessing this then chagne this section
 
-    # Get features.
-    t_0 = time.time()
+      # Get features.
+      t_0 = time.time()
 
-    # I honestly prefer my way of doing it... I think I am going to keep it in 
-    if FLAGS.process_msa == True: # Process from scratch 
-      feature_dict = data_pipeline.process(
-          input_fasta_path=fasta_path,
-          msa_output_dir=msa_output_dir)
-
-      timings['features'] = time.time() - t_0
-      with open(features_output_path, 'wb') as f:
-          pickle.dump(feature_dict, f, protocol=4)
-      
-    else: 
-      # If reload from pickle ... 
-      # If reload from alignments ... 
-      if os.path.exists(features_output_path): # Reload from pickle 
-        logging.info("Reloading features from pickle file") 
-        with open(features_output_path, 'rb') as f:
-          feature_dict = pickle.load(f)
-
-      else:  #reload from alignments  may add another comp
-        logging.info("Reloading features from alignment files") # May want to add a command line argument to force reloading from a file
-        feature_dict = data_pipeline.reload_previous_msa(
-          input_fasta_path=fasta_path,
-          msa_output_dir=msa_output_dir)
+      # I honestly prefer my way of doing it... I think I am going to keep it in 
+      if FLAGS.process_msa == True: # Process from scratch 
+        feature_dict = data_pipeline.process(
+            input_fasta_path=fasta_path,
+            msa_output_dir=msa_output_dir)
 
         timings['features'] = time.time() - t_0
-
         with open(features_output_path, 'wb') as f:
-          pickle.dump(feature_dict, f, protocol=4) 
-  
-    if FLAGS.exit_after_msa: # Potential exit point
-      exit()
+            pickle.dump(feature_dict, f, protocol=4)
+        
+      else: 
+        # If reload from pickle ... 
+        # If reload from alignments ... 
+        if os.path.exists(features_output_path): # Reload from pickle 
+          logging.info("Reloading features from pickle file") 
+          with open(features_output_path, 'rb') as f:
+            feature_dict = pickle.load(f)
+
+        else:  
+          #reload from alignments  may add another comp
+          logging.info("Reloading features from alignment files") # May want to add a command line argument to force reloading from a file
+          feature_dict = data_pipeline.reload_previous_msa(
+            input_fasta_path=fasta_path,
+            msa_output_dir=msa_output_dir)
+
+          timings['features'] = time.time() - t_0
+
+          with open(features_output_path, 'wb') as f:
+            pickle.dump(feature_dict, f, protocol=4) 
+    
+      if FLAGS.exit_after_msa: # Potential exit point
+        exit()
 
     relaxed_pdbs = {}
     plddts = {}
@@ -245,9 +252,7 @@ def predict_structure(
       prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
       t_diff = time.time() - t_0
       timings[f'predict_and_compile_{model_name}'] = t_diff
-      logging.info(
-          'Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?',
-          model_name, t_diff)
+      logging.info('Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?', model_name, t_diff)
 
       if benchmark:
         # t_0 = time.time()
@@ -383,20 +388,17 @@ def main(argv):
                        'sure it is installed on your system.')
 
   use_small_bfd = FLAGS.db_preset == 'reduced_dbs'
-  _check_flag('small_bfd_database_path', 'db_preset',
-              should_be_set=use_small_bfd)
-  _check_flag('bfd_database_path', 'db_preset',
-              should_be_set=not use_small_bfd)
-  _check_flag('uniclust30_database_path', 'db_preset',
-              should_be_set=not use_small_bfd)
+  _check_flag('small_bfd_database_path', 'db_preset', should_be_set=use_small_bfd)
+  _check_flag('bfd_database_path', 'db_preset', should_be_set=not use_small_bfd)
+  _check_flag('uniclust30_database_path', 'db_preset', should_be_set=not use_small_bfd)
 
   run_multimer_system = 'multimer' in FLAGS.model_preset
-  _check_flag('pdb70_database_path', 'model_preset',
-              should_be_set=not run_multimer_system)
-  _check_flag('pdb_seqres_database_path', 'model_preset',
-              should_be_set=run_multimer_system)
-  _check_flag('uniprot_database_path', 'model_preset',
-              should_be_set=run_multimer_system)
+  _check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+
+#Only check these flags if the run_multimer system is set ... to avoid the "x should not be defined if monomer"
+  if run_multimer_system:
+    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=run_multimer_system)
+    _check_flag('uniprot_database_path', 'model_preset', should_be_set=run_multimer_system)
 
   if FLAGS.model_preset == 'monomer_casp14':
     num_ensemble = 8

@@ -27,6 +27,9 @@ CONFIG_RUN_ALPHAFOLD = {
     "model_preset": "monomer_casp14",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot.fasta",
+    "use_precomputed_msas": True,
+    "write_activations": True,
     "random_seed": None
+    
 }
 

@@ -14,10 +14,11 @@
 
 """Specialized mapping functions."""
 
+#Python
 import functools
-
 from typing import Any, Callable, Optional, Sequence, Union
 
+# Machine learning
 import haiku as hk
 import jax
 import jax.numpy as jnp

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 """Quaternion geometry modules.
 
 This introduces a representation of coordinate frames that is based around a

@@ -64,8 +64,7 @@ def tf_example_to_features(tf_example: tf.train.Example,
     tensor_dict = proteins_dataset.create_tensor_dict(
         raw_data=tf_example.SerializeToString(),
         features=feature_names)
-    processed_batch = input_pipeline.process_tensors_from_config(
-        tensor_dict, cfg)
+    processed_batch = input_pipeline.process_tensors_from_config(tensor_dict, cfg)
 
   tf_graph.finalize()
 

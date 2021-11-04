@@ -23,6 +23,11 @@ Lower-level modules up to EvoformerIteration are reused from modules.py.
 import functools
 from typing import Sequence
 
+import haiku as hk
+import jax
+import jax.numpy as jnp
+import numpy as np
+
 from alphafold.common import residue_constants
 from alphafold.model import all_atom_multimer
 from alphafold.model import common_modules
@@ -32,12 +37,6 @@ from alphafold.model import layer_stack
 from alphafold.model import modules
 from alphafold.model import prng
 from alphafold.model import utils
-
-import haiku as hk
-import jax
-import jax.numpy as jnp
-import numpy as np
-
 
 def reduce_fn(x, mode):
   if mode == 'none' or mode is None:
@@ -68,7 +67,6 @@ def gumbel_noise(key: jnp.ndarray, shape: Sequence[int]) -> jnp.ndarray:
       key, shape=shape, dtype=jnp.float32, minval=0., maxval=1.)
   gumbel = -jnp.log(-jnp.log(uniform_noise + epsilon) + epsilon)
   return gumbel
-
 
 def gumbel_max_sample(key: jnp.ndarray, logits: jnp.ndarray) -> jnp.ndarray:
   """Samples from a probability distribution given by 'logits'.
