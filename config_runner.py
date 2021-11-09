@@ -1,0 +1,32 @@
+CONFIG_RUN_ALPHAFOLD = {
+    "fasta_paths": "/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z.fasta",
+    "output_dir": "/home/taylorjones/Documents/alphafold_output", 
+    "model_names": ['model_5'], 
+    "data_dir": "/media/taylorjones/8Tb1/alphafold_data", 
+    "jackhmmer_binary_path": "/home/taylorjones/software/taylorsScripts/externalExecutables/linux_x86/jackhmmer", 
+    "hhblits_binary_path": "/usr/local/bin/hhblits",
+    "hhsearch_binary_path": "/usr/local/bin/hhsearch",
+    "kalign_binary_path": "/usr/bin/kalign",
+    #"uniref90_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniref90",
+    "uniref90_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniref90/uniref90.fasta",
+    #"mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify",
+    "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
+    "bfd_database_path": "/media/taylorjones/8Tb1/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
+    #"bfd_database_path": "/media/taylorjones/8Tb1/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt_cs219.ffdata",
+    "small_bfd_database_path": None,
+    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08",
+    "uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
+    "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
+    "max_template_date": "2020-05-14",
+    "obsolete_pdbs_path": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/obsolete.dat", 
+    "db_preset": "full_dbs", 
+    "benchmark": False,
+    "activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/",
+    # flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations")
+    "model_preset": "monomer_casp14",
+    "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
+    "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot.fasta",
+    "random_seed": None
+}
+
