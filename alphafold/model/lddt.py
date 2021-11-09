@@ -57,8 +57,7 @@ def lddt(predicted_points,
   assert len(true_points_mask.shape) == 3
 
   # Compute true and predicted distance matrices.
-  dmat_true = jnp.sqrt(1e-10 + jnp.sum(
-      (true_points[:, :, None] - true_points[:, None, :])**2, axis=-1))
+  dmat_true = jnp.sqrt(1e-10 + jnp.sum((true_points[:, :, None] - true_points[:, None, :])**2, axis=-1))
 
   dmat_predicted = jnp.sqrt(1e-10 + jnp.sum(
       (predicted_points[:, :, None] -
