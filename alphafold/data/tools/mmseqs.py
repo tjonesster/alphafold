@@ -27,8 +27,8 @@ from alphafold.data.tools import utils
 # Internal import (7716).
 
 
-class Jackhmmer:
-  """Python wrapper of the Jackhmmer binary."""
+class mmseqs2:
+  """Python wrapper of the mmseqs2 binary."""
 
   def __init__(self,
                *,
@@ -89,7 +89,7 @@ class Jackhmmer:
   def _query_chunk(self, input_fasta_path: str, database_path: str
                    ) -> Mapping[str, Any]:
     """Queries the database chunk using Jackhmmer."""
-    with utils.tmpdir_manager() as query_tmp_dir:
+    with utils.tmpdir_manager(base_dir='/tmp') as query_tmp_dir:
       sto_path = os.path.join(query_tmp_dir, 'output.sto')
 
       # The F1/F2/F3 are the expected proportion to pass each of the filtering
@@ -192,10 +192,7 @@ class Jackhmmer:
 
         # Remove the local copy of the chunk
         os.remove(db_local_chunk(i))
-        # Do not set next_future for the last chunk so that this works even for
-        # databases with only 1 chunk.
-        if i < self.num_streamed_chunks:
-          future = next_future
+        future = next_future
         if self.streaming_callback:
           self.streaming_callback(i)
     return chunked_output

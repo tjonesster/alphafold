@@ -1,0 +1,66 @@
+The discussion of training takes place here:
+
+1.11 Training and inference are described in section 1.11 of the manuscript details
+
+Initial Training
+Number of templates: 4
+Sequence Crop size: 256
+Number of sequences: 128
+Number of extra sequences: 1024
+Parameters initialized from: Random initialization
+Initial Learning rate: 10^-3
+Learning rate linear warm-up samples: 128000
+Structural violation weight loss: 0.0
+Training samples 10 *10^6
+Training time 7 days
+
+Fine-tuning
+Number of templates: 4
+Sequence Crop size: 384
+Number of sequences: 512
+Number of extra sequences: 5120
+Parameters initialized from: Initial Training...? Damn will have to do both 
+Initial Learning rate: 5*10-4
+Learning rate linear warm-up samples: 0 
+Structural violation weight loss: 1
+Training samples 1.5 *10^6
+Training time 4 days
+
+1.11.2 - "There are several sources of stochastic behaviour in the network. The most important one is MSA pre-
+processing, which includes MSA block deletion (Algorithm 1) and MSA clustering procedure (subsubsec-
+tion 1.2.7). To reduce the stochastic effects of these steps, we perform them multiple times, resulting in a set
+of sampled MSA and extra MSA features"
+Trained on ensemble of 8 most likley
+
+They do not perform template resampling so the same 4 templates are used to produce every model in the training phase
+
+
+
+'''
+Concretely, at each recycling iteration we perform multiple passes of the Evoformer (including all preceding input embedding transformations) for the different
+instances of ”msa_feat” and ”extra_msa_feat”, and we average the output pair and single representations be-
+fore providing them to the structure module or any other heads of the network (see Algorithm 2). We call this
+technique ensembling (although it does not ensemble final predictions) and we employ it during inference, but
+not during training. Finally, since we also use different samples of the MSA and extra MSA features at each
+recycling iteration, the full system processes the total of N cycle × N ensemble samples.
+'''
+
+ensembling increases amount of time to perform predictions 
+
+
+for the optimizations they used Adam with a base learning rate of 10^-3 a b1 of .9 a b2 of .999 an epsilon of 10^-6
+They linearly increased the learning r ate over the first .128 *10^6
+and further decreased the learning rate by a factor of .95 after 6.4 *10^6
+
+The mini-batch size is 128 one example per TPU-core 
+
+1.11.3
+"To stabilize the training we apply gradient clipping by the global norm on teh parameters independantly to every training examp[le in the minin batch with a clipping value .1]"
+
+By default the weights of the linear layers are initialized using the LeCun (fan-in) initialization strategy with a truncated normal distribution
+by default the  biases of the Linear layers are initialized by zero. 
+
+
+For  layers immediately followed by a ReLU activstions we used HE initializer
+
+The queries, key s and value projection layers in self attention layere sare initialized using 'fan-average' glorot uniform scheme 
