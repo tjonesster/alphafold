@@ -17,6 +17,11 @@
 The structure generation code is in 'folding.py'.
 """
 import functools
+
+import haiku as hk
+import jax
+import jax.numpy as jnp
+
 from alphafold.common import residue_constants
 from alphafold.model import all_atom
 from alphafold.model import common_modules
@@ -27,9 +32,6 @@ from alphafold.model import mapping
 from alphafold.model import prng
 from alphafold.model import quat_affine
 from alphafold.model import utils
-import haiku as hk
-import jax
-import jax.numpy as jnp
 
 
 def softmax_cross_entropy(logits, labels):
@@ -175,8 +177,7 @@ class AlphaFoldIteration(hk.Module):
       return b
 
     # Compute representations for each batch element and average.
-    evoformer_module = EmbeddingsAndEvoformer(
-        self.config.embeddings_and_evoformer, self.global_config)
+    evoformer_module = EmbeddingsAndEvoformer(self.config.embeddings_and_evoformer, self.global_config)
     batch0 = slice_batch(0)
     representations = evoformer_module(batch0, is_training)
 
@@ -191,13 +192,11 @@ class AlphaFoldIteration(hk.Module):
         """Add one element to the representations ensemble."""
         i, current_representations = x
         feats = slice_batch(i)
-        representations_update = evoformer_module(
-            feats, is_training)
+        representations_update = evoformer_module(feats, is_training) #Evoformer module update 
 
         new_representations = {}
         for k in current_representations:
-          new_representations[k] = (
-              current_representations[k] + representations_update[k])
+          new_representations[k] = (current_representations[k] + representations_update[k]) 
         return i+1, new_representations
 
       if hk.running_init():
@@ -205,10 +204,7 @@ class AlphaFoldIteration(hk.Module):
         # while_loop to initialize the Haiku modules used in `body`.
         _, representations = body((1, representations))
       else:
-        _, representations = hk.while_loop(
-            lambda x: x[0] < num_ensemble,
-            body,
-            (1, representations))
+        _, representations = hk.while_loop(lambda x: x[0] < num_ensemble,body,(1, representations))
 
       for k in representations:
         if k != 'msa':
@@ -453,6 +449,7 @@ class TemplatePairStack(hk.Module):
     # what is x?
     def block(x):
       """One block of the template pair stack."""
+      # safe key? 
       pair_act, safe_key = x
 
       dropout_wrapper_fn = functools.partial(
