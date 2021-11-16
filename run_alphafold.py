@@ -239,6 +239,7 @@ def predict_structure(
 
     relaxed_pdbs = {}
     plddts = {}
+    ranking_confidences = {}
 
     # Run a single model 
     for model_name, model_runner in model_runners.items():
