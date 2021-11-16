@@ -48,14 +48,18 @@ from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues
 
 logging.set_verbosity(logging.INFO)
 
-#added by alphafold multimer
-flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, '
-                  'not used by the single chain system. '
-                  'This list should contain a boolean for each fasta '
-                  'specifying true where the target complex is from a '
-                  'prokaryote, and false where it is not, or where the '
-                  'origin is unknown. These values determine the pairing '
-                  'method for the MSA.')
+flags.DEFINE_list(
+    'fasta_paths', None, 'Paths to FASTA files, each containing a prediction '
+    'target that will be folded one after another. If a FASTA file contains '
+    'multiple sequences, then it will be folded as a multimer. Paths should be '
+    'separated by commas. All FASTA paths must have a unique basename as the '
+    'basename is used to name the output directories for each prediction.')
+flags.DEFINE_list(
+    'is_prokaryote_list', None, 'Optional for multimer system, not used by the '
+    'single chain system. This list should contain a boolean for each fasta '
+    'specifying true where the target complex is from a prokaryote, and false '
+    'where it is not, or where the origin is unknown. These values determine '
+    'the pairing method for the MSA.')
 
 # Added by taylor # currently broken by the integration with alphafold multimer
 flags.DEFINE_list('model_names', defvalues.get('model_names',False), 'Names of models to use.') # I still need to fix this flag # This was broken when the multimer code came out
