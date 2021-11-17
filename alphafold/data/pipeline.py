@@ -16,7 +16,10 @@
 
 import os
 from typing import Any, Mapping, MutableMapping, Optional, Sequence, Union
+
 from absl import logging
+import numpy as np
+
 from alphafold.common import residue_constants
 from alphafold.data import msa_identifiers
 from alphafold.data import parsers
@@ -25,7 +28,6 @@ from alphafold.data.tools import hhblits
 from alphafold.data.tools import hhsearch
 from alphafold.data.tools import hmmsearch
 from alphafold.data.tools import jackhmmer
-import numpy as np
 
 # Internal import (7716).
 

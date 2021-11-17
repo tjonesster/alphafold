@@ -124,6 +124,8 @@ CONFIG_DIFFS = {
     }
 }
 
+            #'num_recycle': 3,
+            #'num_recycle': 3,
 CONFIG = ml_collections.ConfigDict({
     'data': {
         'common': {
@@ -133,8 +135,8 @@ CONFIG = ml_collections.ConfigDict({
                 'uniform_prob': 0.1
             },
             'max_extra_msa': 1024,
-            'msa_cluster_features': True,
             'num_recycle': 3,
+            'msa_cluster_features': True,
             'reduce_msa_clusters_by_max_templates': False,
             'resample_msa_in_recycling': True,
             'template_features': [

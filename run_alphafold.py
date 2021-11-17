@@ -49,12 +49,6 @@ from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues
 logging.set_verbosity(logging.INFO)
 
 flags.DEFINE_list(
-    'fasta_paths', None, 'Paths to FASTA files, each containing a prediction '
-    'target that will be folded one after another. If a FASTA file contains '
-    'multiple sequences, then it will be folded as a multimer. Paths should be '
-    'separated by commas. All FASTA paths must have a unique basename as the '
-    'basename is used to name the output directories for each prediction.')
-flags.DEFINE_list(
     'is_prokaryote_list', None, 'Optional for multimer system, not used by the '
     'single chain system. This list should contain a boolean for each fasta '
     'specifying true where the target complex is from a prokaryote, and false '
@@ -282,13 +276,12 @@ def predict_structure(
 
       # Add the predicted LDDT in the b-factor column.
       # Note that higher predicted LDDT value means higher model confidence.
-      plddt_b_factors = np.repeat(
-          plddt[:, None], residue_constants.atom_type_num, axis=-1)
+      plddt_b_factors = np.repeat(plddt[:, None], residue_constants.atom_type_num, axis=-1)
       unrelaxed_protein = protein.from_prediction(
           features=processed_feature_dict,
           result=prediction_result,
           b_factors=plddt_b_factors,
-          remove_leagind_feature_dimension=not model_runner.multimer_mode)
+          remove_leading_feature_dimension=not model_runner.multimer_mode)
 
       unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
       with open(unrelaxed_pdb_path, 'w') as f:

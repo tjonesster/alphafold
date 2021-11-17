@@ -33,8 +33,7 @@ def clean_and_validate_sequence(
     input_sequence: str, min_length: int, max_length: int) -> str:
   """Checks that the input sequence is ok and returns a clean version of it."""
   # Remove all whitespaces, tabs and end lines; upper-case.
-  clean_sequence = input_sequence.translate(
-      str.maketrans('', '', ' \n\t')).upper()
+  clean_sequence = input_sequence.translate(str.maketrans('', '', ' \n\t')).upper()
   aatypes = set(residue_constants.restypes)  # 20 standard aatypes.
   if not set(clean_sequence).issubset(aatypes):
     raise ValueError(

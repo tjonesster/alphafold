@@ -1,6 +1,6 @@
 CONFIG_RUN_ALPHAFOLD = {
     #"fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z2.fasta","/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z3.fasta","/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z4.fasta", "/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z5.fasta"],
-    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/kcnq1.fasta"],
+    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/combined.fasta"],
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ["model_1", "model_2", "model_3", "model_4", 'model_5'], 
     "data_dir": "/media/taylorjones/8Tb1/alphafold_data", 
@@ -26,7 +26,8 @@ CONFIG_RUN_ALPHAFOLD = {
     "activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/",
     # flags.DEFINE_string('activations_output_path', defvalues['activations_output_path'], "Output path to write out all of the activations")
     #"model_preset": "monomer",
-    "model_preset": "monomer_casp14",
+    #"model_preset": "monomer_casp14",
+    "model_preset": "multimer",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot.fasta",
     "random_seed": None

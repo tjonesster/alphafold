@@ -14,27 +14,32 @@
 
 """Code for constructing the model."""
 from typing import Any, Mapping, Optional, Union
+import pickle
 
+import tree
+import tensorflow.compat.v1 as tf
+import numpy as np
 from absl import logging
+import haiku as hk
+import jax
+import ml_collections
+
+from alphafold.common import confidence
+from alphafold.model import features
+from alphafold.model import modules
 from alphafold.common import confidence
 from alphafold.model import features
 from alphafold.model import modules
 from alphafold.model import modules_multimer
-import haiku as hk
-import jax
-import ml_collections
-import numpy as np
-import tensorflow.compat.v1 as tf
-import tree
 
 
-def get_confidence_metrics(
-    prediction_result: Mapping[str, Any],
-    multimer_mode: bool) -> Mapping[str, Any]:
+# Testing 
+def get_confidence_metrics(prediction_result: Mapping[str, Any], multimer_mode: bool) -> Mapping[str, Any]:
   """Post processes prediction_result to get confidence metrics."""
+
   confidence_metrics = {}
-  confidence_metrics['plddt'] = confidence.compute_plddt(
-      prediction_result['predicted_lddt']['logits'])
+  confidence_metrics['plddt'] = confidence.compute_plddt(prediction_result['predicted_lddt']['logits'])
+
   if 'predicted_aligned_error' in prediction_result:
     confidence_metrics.update(confidence.compute_predicted_aligned_error(
         logits=prediction_result['predicted_aligned_error']['logits'],
@@ -43,6 +48,7 @@ def get_confidence_metrics(
         logits=prediction_result['predicted_aligned_error']['logits'],
         breaks=prediction_result['predicted_aligned_error']['breaks'],
         asym_id=None)
+
     if multimer_mode:
       # Compute the ipTM only for the multimer model.
       confidence_metrics['iptm'] = confidence.predicted_tm_score(
@@ -80,6 +86,7 @@ class RunModel:
     else:
       def _forward_fn(batch):
         model = modules.AlphaFold(self.config.model)
+
         return model(
             batch,
             is_training=False,
