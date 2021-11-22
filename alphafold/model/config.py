@@ -38,7 +38,7 @@ def model_config(name: str) -> ml_collections.ConfigDict:
 # def defaults_config():
     # print("testing")
 
-
+# I don't like this way of doing it...
 MODEL_PRESETS = {
     'monomer': (
         'model_1',

@@ -13,14 +13,15 @@
 # limitations under the License.
 
 """Functions for getting templates and calculating template features."""
-import abc
+from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
 import dataclasses
 import datetime
 import functools
 import glob
 import os
 import re
-from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
+
+import abc
 
 from absl import logging
 from alphafold.common import residue_constants
@@ -28,6 +29,8 @@ from alphafold.data import mmcif_parsing
 from alphafold.data import parsers
 from alphafold.data.tools import kalign
 import numpy as np
+
+import wget
 
 # Internal import (7716).
 
@@ -678,8 +681,22 @@ class SingleHitResult:
 
 @functools.lru_cache(16, typed=False)
 def _read_file(path):
-  with open(path, 'r') as f:
-    file_data = f.read()
+  try:
+    with open(path, 'r') as f:
+      file_data = f.read()
+  except: # Should grab the exact exception by type 
+    
+    # https://files.rcsb.org/download/7rro.cif
+
+    #Th is may not be the correct way to handle this... It might be better to handle this somewhere else
+    output_directory = "/".join(path.split("/")[:-1])
+    url = "https://files.rcsb.org/download/"+path.split("/")[-1]
+    wget.download(url, out=output_directory)
+    with open(path,'r') as f:
+      file_data = f.read()
+    
+
+
   return file_data
 
 

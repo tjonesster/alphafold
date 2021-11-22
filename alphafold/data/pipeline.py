@@ -89,10 +89,8 @@ def make_msa_features(msas: Sequence[parsers.Msa]) -> FeatureDict:
   features['msa_species_identifiers'] = np.array(species_ids, dtype=np.object_)
   return features
 
-
-def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str,
-                 msa_format: str, use_precomputed_msas: bool,
-                 ) -> Mapping[str, Any]:
+# If these only ran partially this will have problems 
+def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_format: str, use_precomputed_msas: bool,) -> Mapping[str, Any]:
   """Runs an MSA tool, checking if output already exists first."""
   if not use_precomputed_msas or not os.path.exists(msa_out_path):
     result = msa_runner.query(input_fasta_path)[0]
@@ -124,10 +122,14 @@ class DataPipeline:
                use_precomputed_msas: bool = False):
     """Initializes the data pipeline."""
     self._use_small_bfd = use_small_bfd
+
+    # Write an mmseqs2 verison of this same protocol
     self.jackhmmer_uniref90_runner = jackhmmer.Jackhmmer(
         binary_path=jackhmmer_binary_path,
         database_path=uniref90_database_path)
     if use_small_bfd:
+
+    # Write an mmseqs2 verison of this same protocol
       self.jackhmmer_small_bfd_runner = jackhmmer.Jackhmmer(
           binary_path=jackhmmer_binary_path,
           database_path=small_bfd_database_path)
@@ -135,9 +137,12 @@ class DataPipeline:
       self.hhblits_bfd_uniclust_runner = hhblits.HHBlits(
           binary_path=hhblits_binary_path,
           databases=[bfd_database_path, uniclust30_database_path])
+
+    # Write an mmseqs2 verison of this same protocol
     self.jackhmmer_mgnify_runner = jackhmmer.Jackhmmer(
         binary_path=jackhmmer_binary_path,
         database_path=mgnify_database_path)
+
     self.template_searcher = template_searcher
     self.template_featurizer = template_featurizer
     self.mgnify_max_hits = mgnify_max_hits

@@ -1,9 +1,12 @@
 CONFIG_RUN_ALPHAFOLD = {
     #"fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z2.fasta","/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z3.fasta","/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z4.fasta", "/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z5.fasta"],
-    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/combined.fasta"],
+    #"fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican10.fasta","/home/taylorjones/Documents/alphafold_fastas/forAlican11.fasta"],
+    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican11.fasta"],
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
-    "model_names": ["model_1", "model_2", "model_3", "model_4", 'model_5'], 
-    "data_dir": "/media/taylorjones/8Tb1/alphafold_data", 
+    #"model_names": ["model_1", "model_2", "model_3", "model_4", 'model_5'], 
+    "model_names": ['model_5'], 
+    #"data_dir": "/media/taylorjones/8Tb1/alphafold_data", 
+    "data_dir": "/media/taylorjones/bigboi/alphafold_data/params2",
     "jackhmmer_binary_path": "/home/taylorjones/software/taylorsScripts/externalExecutables/linux_x86/jackhmmer", 
     "hhblits_binary_path": "/usr/local/bin/hhblits",
     "hhsearch_binary_path": "/usr/local/bin/hhsearch",
@@ -29,7 +32,8 @@ CONFIG_RUN_ALPHAFOLD = {
     #"model_preset": "monomer_casp14",
     "model_preset": "multimer",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
-    "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot.fasta",
+    #"uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot.fasta",
+    "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
     "random_seed": None
 }
 

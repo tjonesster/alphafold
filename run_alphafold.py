@@ -91,7 +91,9 @@ flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to direct
 
 # Preset standards 
 flags.DEFINE_enum('db_preset', 'full_dbs', ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
-flags.DEFINE_enum('model_preset', 'monomer', ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
+
+# Need to change this flag's default value
+flags.DEFINE_enum('model_preset', 'multimer', ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
                   'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
 
 
@@ -391,7 +393,10 @@ def main(argv):
   _check_flag('uniclust30_database_path', 'db_preset', should_be_set=not use_small_bfd)
 
   run_multimer_system = 'multimer' in FLAGS.model_preset
-  _check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+  #_check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+  if not  run_multimer_system: 
+    _check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+
 
 #Only check these flags if the run_multimer system is set ... to avoid the "x should not be defined if monomer"
   if run_multimer_system:
@@ -472,7 +477,16 @@ def main(argv):
 
   model_runners = {}
 
-  model_names = config.MODEL_PRESETS[FLAGS.model_preset]
+
+  # This fixes the flag so that you are able to run a subset of the models again
+  if FLAGS.model_names == False:
+    model_names = config.MODEL_PRESETS[FLAGS.model_preset]
+  else:
+    model_names = FLAGS.model_names 
+
+    for i, ele in enumerate(model_names):
+      if FLAGS.model_preset.split("_")[-1] in ["ptm", "multimer"]:
+        model_names[i] = ele + "_" + FLAGS.model_preset.split("_")[-1]
 
   for model_name in model_names:
     model_config = config.model_config(model_name)
