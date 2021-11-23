@@ -1,7 +1,7 @@
 CONFIG_RUN_ALPHAFOLD = {
     #"fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z2.fasta","/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z3.fasta","/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z4.fasta", "/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z5.fasta"],
     #"fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican10.fasta","/home/taylorjones/Documents/alphafold_fastas/forAlican11.fasta"],
-    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican11.fasta"],
+    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican11_8_recycles.fasta"],
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     #"model_names": ["model_1", "model_2", "model_3", "model_4", 'model_5'], 
     "model_names": ['model_5'], 
