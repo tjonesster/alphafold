@@ -16,10 +16,11 @@
 
 from typing import Iterable, MutableMapping, List
 
+import numpy as np
+
 from alphafold.common import residue_constants
 from alphafold.data import msa_pairing
 from alphafold.data import pipeline
-import numpy as np
 
 REQUIRED_FEATURES = frozenset({
     'aatype', 'all_atom_mask', 'all_atom_positions', 'all_chains_entity_ids',

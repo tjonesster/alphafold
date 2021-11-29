@@ -112,7 +112,7 @@ flags.DEFINE_boolean('write_activations', defvalues.get('write_activations', Fal
 flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', False), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
 flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 
-flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', -1), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
+flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', 3), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
 # num_recycle
 
 # Additional flags that we may add in the future.

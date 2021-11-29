@@ -16,11 +16,7 @@
 import jax.numpy as jnp
 
 
-def lddt(predicted_points,
-         true_points,
-         true_points_mask,
-         cutoff=15.,
-         per_residue=False):
+def lddt(predicted_points, true_points,true_points_mask,cutoff=15.,per_residue=False):
   """Measure (approximate) lDDT for a batch of coordinates.
 
   lDDT reference:
@@ -53,6 +49,10 @@ def lddt(predicted_points,
 
   assert len(predicted_points.shape) == 3
   assert predicted_points.shape[-1] == 3
+
+  assert len(true_points.shape) == 3
+  assert true_points.shape[-1] == 3
+  
   assert true_points_mask.shape[-1] == 1
   assert len(true_points_mask.shape) == 3
 

@@ -15,15 +15,16 @@
 """Tests for layer_stack."""
 
 import functools
-from absl.testing import absltest
-from absl.testing import parameterized
-from alphafold.model import layer_stack
+
+import numpy as np
+import scipy
 import haiku as hk
 import jax
 import jax.numpy as jnp
-import numpy as np
-import scipy
+from absl.testing import absltest
+from absl.testing import parameterized
 
+from alphafold.model import layer_stack
 
 # Suffixes applied by Haiku for repeated module names.
 suffixes = [''] + [f'_{i}' for i in range(1, 100)]
