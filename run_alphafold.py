@@ -90,10 +90,10 @@ flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a 
 flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to directory of supporting data.')
 
 # Preset standards 
-flags.DEFINE_enum('db_preset', 'full_dbs', ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
+flags.DEFINE_enum('db_preset', defvalues.get('db_preset',None), ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
 
 # Need to change this flag's default value
-flags.DEFINE_enum('model_preset', 'multimer', ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
+flags.DEFINE_enum('model_preset', defvalues.get('model_preset',None), ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
                   'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
 
 
