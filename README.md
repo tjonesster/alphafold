@@ -1,4 +1,4 @@
-![header](imgs/header.jpg)
+
 Alright, I got a second to throw together installation instructions. One of the big things that complicated installation was that the version of pdbfixer available in the conda package manager did not work with versions of python newer than 3.7. & versions of other packages for 3.7 were not available throught he manager. If you install a newer version of pdbfixer through github you are able to use the latest version of python which simplifies everything else.
 I installed the cpu versions of tensorflow - this is going to be considerably slower than the gpu version but if you will not have to compete with the astronomy department for scheduling so I think it is the right call. Just generate each of your 5 models separately.
 I think that these instructions should work in this order but if you get any errors along the way ping me and we'll get them sorted. I assume that you already have used conda but if not I can mention some instructions for that also.
@@ -71,8 +71,6 @@ for a detailed description of the method.
 [this Colab
 notebook](https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb)**
 or community-supported versions (see below).
-
-![CASP14 predictions](imgs/casp14_predictions.gif)
 
 ## First time setup
 
