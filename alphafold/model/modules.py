@@ -749,11 +749,7 @@ class MSARowAttentionWithPairBias(hk.Module):
     self.config = config
     self.global_config = global_config
 
-  def __call__(self,
-               msa_act,
-               msa_mask,
-               pair_act,
-               is_training=False):
+  def __call__(self, msa_act, msa_mask, pair_act, is_training=False):
     """Builds MSARowAttentionWithPairBias module.
 
     Arguments:
@@ -1395,13 +1391,13 @@ class DistogramHead(hk.Module):
     return dict(logits=logits, bin_edges=breaks)
 
   def loss(self, value, batch):
-    return _distogram_log_loss(value['logits'], value['bin_edges'],
-                               batch, self.config.num_bins)
+    return _distogram_log_loss(value['logits'], value['bin_edges'], batch, self.config.num_bins)
 
 
 def _distogram_log_loss(logits, bin_edges, batch, num_bins):
   """Log loss of a distogram."""
 
+  # Let's try this
   assert len(logits.shape) == 3
   positions = batch['pseudo_beta']
   mask = batch['pseudo_beta_mask']
@@ -1947,8 +1943,7 @@ class SingleTemplateEmbedding(hk.Module):
     assert mask_2d.dtype == query_embedding.dtype
     dtype = query_embedding.dtype
     num_res = batch['template_aatype'].shape[0]
-    num_channels = (self.config.template_pair_stack
-                    .triangle_attention_ending_node.value_dim)
+    num_channels = (self.config.template_pair_stack.triangle_attention_ending_node.value_dim)
     template_mask = batch['template_pseudo_beta_mask']
     template_mask_2d = template_mask[:, None] * template_mask[None, :]
     template_mask_2d = template_mask_2d.astype(dtype)

@@ -237,7 +237,7 @@ class DataPipeline:
 
     return {**sequence_features, **msa_features, **templates_result.features}
 
-# This is no longer used in the main pipeline
+# This is no longer used in the main pipeline # Alphafold cintroduced something new called use_preprocessed_msas
 def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> FeatureDict:
   
   # Read in the files in each of these paths. 

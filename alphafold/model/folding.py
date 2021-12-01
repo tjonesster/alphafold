@@ -424,8 +424,7 @@ def generate_affines(representations, batch, config, global_config,
 
   affine = generate_new_affine(sequence_mask)
 
-  fold_iteration = FoldIteration(
-      c, global_config, name='fold_iteration')
+  fold_iteration = FoldIteration(c, global_config, name='fold_iteration')
 
   assert len(batch['seq_mask'].shape) == 1
 
@@ -474,8 +473,7 @@ class StructureModule(hk.Module):
     self.global_config = global_config
     self.compute_loss = compute_loss
 
-  def __call__(self, representations, batch, is_training,
-               safe_key=None):
+  def __call__(self, representations, batch, is_training, safe_key=None):
     c = self.config
     ret = {}
 
