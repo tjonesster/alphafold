@@ -40,6 +40,7 @@ setup(
         'numpy',
         'pandas',
         'scipy',
+        'wget',
         'tensorflow-cpu',
     ],
     tests_require=['mock'],
