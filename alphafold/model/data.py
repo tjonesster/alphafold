@@ -17,11 +17,11 @@
 import io
 import os
 from typing import List
-from alphafold.model import utils
+
 import haiku as hk
 import numpy as np
-# Internal import (7716).
 
+from alphafold.model import utils
 
 def casp_model_names(data_dir: str) -> List[str]:
   params = os.listdir(os.path.join(data_dir, 'params'))

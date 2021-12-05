@@ -25,13 +25,9 @@ import jax
 import ml_collections
 
 from alphafold.common import confidence
-from alphafold.model import features
+from alphafold.model import features, modules, modules_multimer
 from alphafold.model import modules
 from alphafold.common import confidence
-from alphafold.model import features
-from alphafold.model import modules
-from alphafold.model import modules_multimer
-
 
 # Testing 
 def get_confidence_metrics(prediction_result: Mapping[str, Any], multimer_mode: bool) -> Mapping[str, Any]:

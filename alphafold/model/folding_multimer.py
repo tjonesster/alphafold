@@ -18,6 +18,12 @@ import functools
 import numbers
 from typing import Any, Dict, Iterable, Mapping, Optional, Tuple, Union
 
+import haiku as hk
+import jax
+import jax.numpy as jnp
+import ml_collections
+import numpy as np
+
 from alphafold.common import residue_constants
 from alphafold.model import all_atom_multimer
 from alphafold.model import common_modules
@@ -26,12 +32,6 @@ from alphafold.model import modules
 from alphafold.model import prng
 from alphafold.model import utils
 from alphafold.model.geometry import utils as geometry_utils
-import haiku as hk
-import jax
-import jax.numpy as jnp
-import ml_collections
-import numpy as np
-
 
 EPSILON = 1e-8
 Float = Union[float, jnp.ndarray]
@@ -42,11 +42,7 @@ def squared_difference(x: jnp.ndarray, y: jnp.ndarray) -> jnp.ndarray:
   return jnp.square(x - y)
 
 
-def make_backbone_affine(
-    positions: geometry.Vec3Array,
-    mask: jnp.ndarray,
-    aatype: jnp.ndarray,
-    ) -> Tuple[geometry.Rigid3Array, jnp.ndarray]:
+def make_backbone_affine(positions: geometry.Vec3Array, mask: jnp.ndarray, aatype: jnp.ndarray,) -> Tuple[geometry.Rigid3Array, jnp.ndarray]:
   """Make backbone Rigid3Array and mask."""
   del aatype
   a = residue_constants.atom_order['N']
@@ -885,13 +881,11 @@ def structural_violation_loss(mask: jnp.ndarray,
            ))
 
 
-def find_structural_violations(
-    aatype: jnp.ndarray,
-    residue_index: jnp.ndarray,
-    mask: jnp.ndarray,
-    pred_positions: geometry.Vec3Array,  # (N, 14)
+def find_structural_violations( aatype: jnp.ndarray, residue_index: jnp.ndarray, mask: jnp.ndarray,
+    pred_positions: geometry.Vec3Array,  
     config: ml_collections.ConfigDict
     ) -> Dict[str, Any]:
+    # (N, 14)
   """Computes several checks for structural Violations."""
 
   # Compute between residue backbone violations of bonds and angles.
@@ -928,10 +922,10 @@ def find_structural_violations(
   restype_atom14_bounds = residue_constants.make_atom14_dists_bounds(
       overlap_tolerance=config.clash_overlap_tolerance,
       bond_length_tolerance_factor=config.violation_tolerance_factor)
-  dists_lower_bound = utils.batched_gather(restype_atom14_bounds['lower_bound'],
-                                           aatype)
-  dists_upper_bound = utils.batched_gather(restype_atom14_bounds['upper_bound'],
-                                           aatype)
+
+  dists_lower_bound = utils.batched_gather(restype_atom14_bounds['lower_bound'], aatype)
+  dists_upper_bound = utils.batched_gather(restype_atom14_bounds['upper_bound'], aatype)
+
   within_residue_violations = all_atom_multimer.within_residue_violations(
       pred_positions=pred_positions,
       atom_exists=mask,
@@ -943,8 +937,7 @@ def find_structural_violations(
   per_residue_violations_mask = jnp.max(jnp.stack([
       connection_violations['per_residue_violation_mask'],
       jnp.max(between_residue_clashes['per_atom_clash_mask'], axis=-1),
-      jnp.max(within_residue_violations['per_atom_violations'],
-              axis=-1)]), axis=0)
+      jnp.max(within_residue_violations['per_atom_violations'], axis=-1)]), axis=0)
 
   return {
       'between_residues': {
@@ -976,13 +969,8 @@ def find_structural_violations(
   }
 
 
-def compute_violation_metrics(
-    residue_index: jnp.ndarray,
-    mask: jnp.ndarray,
-    seq_mask: jnp.ndarray,
-    pred_positions: geometry.Vec3Array,  # (N, 14)
-    violations: Mapping[str, jnp.ndarray],
-) -> Dict[str, jnp.ndarray]:
+# (N, 14)
+def compute_violation_metrics( residue_index: jnp.ndarray, mask: jnp.ndarray, seq_mask: jnp.ndarray, pred_positions: geometry.Vec3Array,  violations: Mapping[str, jnp.ndarray],) -> Dict[str, jnp.ndarray]: 
   """Compute several metrics to assess the structural violations."""
   ret = {}
   between_residues = violations['between_residues']
@@ -1006,24 +994,15 @@ def compute_violation_metrics(
   return ret
 
 
-def supervised_chi_loss(
-    sequence_mask: jnp.ndarray,
-    target_chi_mask: jnp.ndarray,
-    aatype: jnp.ndarray,
-    target_chi_angles: jnp.ndarray,
-    pred_angles: jnp.ndarray,
-    unnormed_angles: jnp.ndarray,
-    config: ml_collections.ConfigDict) -> Tuple[Float, Float, Float]:
+def supervised_chi_loss( sequence_mask: jnp.ndarray, target_chi_mask: jnp.ndarray, aatype: jnp.ndarray, target_chi_angles: jnp.ndarray, pred_angles: jnp.ndarray, unnormed_angles: jnp.ndarray, config: ml_collections.ConfigDict) -> Tuple[Float, Float, Float]:
   """Computes loss for direct chi angle supervision."""
   eps = 1e-6
   chi_mask = target_chi_mask.astype(jnp.float32)
 
   pred_angles = pred_angles[:, :, 3:]
 
-  residue_type_one_hot = jax.nn.one_hot(
-      aatype, residue_constants.restype_num + 1, dtype=jnp.float32)[None]
-  chi_pi_periodic = jnp.einsum('ijk, kl->ijl', residue_type_one_hot,
-                               jnp.asarray(residue_constants.chi_pi_periodic))
+  residue_type_one_hot = jax.nn.one_hot(aatype, residue_constants.restype_num + 1, dtype=jnp.float32)[None]
+  chi_pi_periodic = jnp.einsum('ijk, kl->ijl', residue_type_one_hot, jnp.asarray(residue_constants.chi_pi_periodic))
 
   true_chi = target_chi_angles[None]
   sin_true_chi = jnp.sin(true_chi)
@@ -1034,41 +1013,29 @@ def supervised_chi_loss(
   shifted_mask = (1 - 2 * chi_pi_periodic)[..., None]
   sin_cos_true_chi_shifted = shifted_mask * sin_cos_true_chi
 
-  sq_chi_error = jnp.sum(
-      squared_difference(sin_cos_true_chi, pred_angles), -1)
-  sq_chi_error_shifted = jnp.sum(
-      squared_difference(sin_cos_true_chi_shifted, pred_angles), -1)
+  sq_chi_error = jnp.sum(squared_difference(sin_cos_true_chi, pred_angles), -1)
+  sq_chi_error_shifted = jnp.sum(squared_difference(sin_cos_true_chi_shifted, pred_angles), -1)
   sq_chi_error = jnp.minimum(sq_chi_error, sq_chi_error_shifted)
 
   sq_chi_loss = utils.mask_mean(mask=chi_mask[None], value=sq_chi_error)
   angle_norm = jnp.sqrt(jnp.sum(jnp.square(unnormed_angles), axis=-1) + eps)
   norm_error = jnp.abs(angle_norm - 1.)
-  angle_norm_loss = utils.mask_mean(mask=sequence_mask[None, :, None],
-                                    value=norm_error)
-  loss = (config.chi_weight * sq_chi_loss
-          + config.angle_norm_weight * angle_norm_loss)
+  angle_norm_loss = utils.mask_mean(mask=sequence_mask[None, :, None], value=norm_error)
+  loss = (config.chi_weight * sq_chi_loss + config.angle_norm_weight * angle_norm_loss)
+
   return loss, sq_chi_loss, angle_norm_loss
 
 
-def l2_normalize(x: jnp.ndarray,
-                 axis: int = -1,
-                 epsilon: float = 1e-12
-                 ) -> jnp.ndarray:
-  return x / jnp.sqrt(
-      jnp.maximum(jnp.sum(x**2, axis=axis, keepdims=True), epsilon))
+def l2_normalize(x: jnp.ndarray, axis: int = -1, epsilon: float = 1e-12) -> jnp.ndarray:
+  return x / jnp.sqrt(jnp.maximum(jnp.sum(x**2, axis=axis, keepdims=True), epsilon))
 
 
-def get_renamed_chi_angles(aatype: jnp.ndarray,
-                           chi_angles: jnp.ndarray,
-                           alt_is_better: jnp.ndarray
-                           ) -> jnp.ndarray:
+def get_renamed_chi_angles(aatype: jnp.ndarray, chi_angles: jnp.ndarray, alt_is_better: jnp.ndarray) -> jnp.ndarray:
   """Return renamed chi angles."""
-  chi_angle_is_ambiguous = utils.batched_gather(
-      jnp.array(residue_constants.chi_pi_periodic, dtype=jnp.float32), aatype)
+  chi_angle_is_ambiguous = utils.batched_gather(jnp.array(residue_constants.chi_pi_periodic, dtype=jnp.float32), aatype)
   alt_chi_angles = chi_angles + np.pi * chi_angle_is_ambiguous
   # Map back to [-pi, pi].
-  alt_chi_angles = alt_chi_angles - 2 * np.pi * (alt_chi_angles > np.pi).astype(
-      jnp.float32)
+  alt_chi_angles = alt_chi_angles - 2 * np.pi * (alt_chi_angles > np.pi).astype( jnp.float32)
   alt_is_better = alt_is_better[:, None]
   return (1. - alt_is_better) * chi_angles + alt_is_better * alt_chi_angles
 
@@ -1076,19 +1043,12 @@ def get_renamed_chi_angles(aatype: jnp.ndarray,
 class MultiRigidSidechain(hk.Module):
   """Class to make side chain atoms."""
 
-  def __init__(self,
-               config: ml_collections.ConfigDict,
-               global_config: ml_collections.ConfigDict,
-               name: str = 'rigid_sidechain'):
+  def __init__(self, config: ml_collections.ConfigDict, global_config: ml_collections.ConfigDict, name: str = 'rigid_sidechain'):
     super().__init__(name=name)
     self.config = config
     self.global_config = global_config
 
-  def __call__(self,
-               rigid: geometry.Rigid3Array,
-               representations_list: Iterable[jnp.ndarray],
-               aatype: jnp.ndarray
-               ) -> Dict[str, Any]:
+  def __call__(self, rigid: geometry.Rigid3Array, representations_list: Iterable[jnp.ndarray], aatype: jnp.ndarray) -> Dict[str, Any]:
     """Predict sidechains using multi-rigid representations.
 
     Args:
@@ -1127,11 +1087,8 @@ class MultiRigidSidechain(hk.Module):
     # Map activations to torsion angles.
     # [batch_size, num_res, 14]
     num_res = act.shape[0]
-    unnormalized_angles = common_modules.Linear(
-        14, name='unnormalized_angles')(
-            jax.nn.relu(act))
-    unnormalized_angles = jnp.reshape(
-        unnormalized_angles, [num_res, 7, 2])
+    unnormalized_angles = common_modules.Linear( 14, name='unnormalized_angles')( jax.nn.relu(act))
+    unnormalized_angles = jnp.reshape(unnormalized_angles, [num_res, 7, 2])
     angles = l2_normalize(unnormalized_angles, axis=-1)
 
     outputs = {
@@ -1142,15 +1099,11 @@ class MultiRigidSidechain(hk.Module):
 
     # Map torsion angles to frames.
     # geometry.Rigid3Array with shape (N, 8)
-    all_frames_to_global = all_atom_multimer.torsion_angles_to_frames(
-        aatype,
-        rigid,
-        angles)
+    all_frames_to_global = all_atom_multimer.torsion_angles_to_frames(aatype, rigid, angles)
 
     # Use frames and literature positions to create the final atom coordinates.
     # geometry.Vec3Array with shape (N, 14)
-    pred_positions = all_atom_multimer.frames_and_literature_positions_to_atom14_pos(
-        aatype, all_frames_to_global)
+    pred_positions = all_atom_multimer.frames_and_literature_positions_to_atom14_pos(aatype, all_frames_to_global)
 
     outputs.update({
         'atom_pos': pred_positions,  # geometry.Vec3Array (N, 14)

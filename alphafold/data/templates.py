@@ -13,24 +13,22 @@
 # limitations under the License.
 
 """Functions for getting templates and calculating template features."""
-from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
+import abc
 import dataclasses
 import datetime
 import functools
 import glob
 import os
 import re
-
-import abc
+from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
 
 from absl import logging
-from alphafold.common import residue_constants
-from alphafold.data import mmcif_parsing
-from alphafold.data import parsers
-from alphafold.data.tools import kalign
 import numpy as np
-
 import wget
+
+from alphafold.common import residue_constants
+from alphafold.data import mmcif_parsing, parsers
+from alphafold.data.tools import kalign
 
 # Internal import (7716).
 

@@ -30,12 +30,13 @@ problematic for coordinate geometry. Also these cores are typically optimized
 for larger matrices than 3 dimensional, this code is written to avoid any
 unintended use of these cores on both GPUs and TPUs.
 """
-
 import collections
 from typing import List
-from alphafold.model import quat_affine
+
 import jax.numpy as jnp
 import tree
+
+from alphafold.model import quat_affine
 
 # Array of 3-component vectors, stored as individual array for
 # each component.

@@ -16,11 +16,10 @@
 from __future__ import annotations
 from typing import Union
 
-from alphafold.model.geometry import rotation_matrix
-from alphafold.model.geometry import struct_of_array
-from alphafold.model.geometry import vector
 import jax
 import jax.numpy as jnp
+
+from alphafold.model.geometry import rotation_matrix, struct_of_array, vector
 
 Float = Union[float, jnp.ndarray]
 

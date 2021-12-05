@@ -27,33 +27,20 @@ import sys
 import time
 from typing import Dict, Union, Optional
 
-from absl import app
-from absl import flags
-from absl import logging
+from absl import app, flags, logging
 import numpy as np
 
-from alphafold.common import protein
-from alphafold.common import residue_constants
-from alphafold.data import pipeline
-from alphafold.data import pipeline_multimer
-from alphafold.data import templates
-from alphafold.data.tools import hhsearch
-from alphafold.data.tools import hmmsearch
-from alphafold.model import config
-from alphafold.model import model
+from alphafold.common import protein, residue_constants
+from alphafold.data import pipeline, pipeline_multimer, templates
+from alphafold.data.tools import hhsearch, hmmsearch
+from alphafold.model import config, model, data
 from alphafold.relax import relax
-from alphafold.model import data
 
 from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues
 
 logging.set_verbosity(logging.INFO)
 
-flags.DEFINE_list(
-    'is_prokaryote_list', None, 'Optional for multimer system, not used by the '
-    'single chain system. This list should contain a boolean for each fasta '
-    'specifying true where the target complex is from a prokaryote, and false '
-    'where it is not, or where the origin is unknown. These values determine '
-    'the pairing method for the MSA.')
+flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, not used by the single chain system. This list should contain a boolean for each fasta false if unknown. These values determine the pairing method for the MSA.')
 
 # Added by taylor # currently broken by the integration with alphafold multimer
 flags.DEFINE_list('model_names', defvalues.get('model_names',False), 'Names of models to use.') # I still need to fix this flag # This was broken when the multimer code came out
@@ -73,13 +60,10 @@ flags.DEFINE_string('bfd_database_path', defvalues.get('bfd_database_path', None
 flags.DEFINE_string('small_bfd_database_path', defvalues.get("small_bfd_database_path", None), "Path to small bfd database")
 flags.DEFINE_string('pdb_seqres_database_path', defvalues.get('pdb_seqres_database_path', None), 'Path to the PDB seqres database for use by hmmsearch.')
 flags.DEFINE_string('uniprot_database_path', defvalues.get('uniprot_database_path', None), 'Path to the Uniprot database for use by JackHMMer.')
-#flags.DEFINE_string("template_mmcif_dir", defvalues.get('template_mmcif_dir', None), 'Path to the mmcif databases')
 flags.DEFINE_string('template_mmcif_dir', defvalues.get('template_mmcif_dir', None), 'Path to a directory with template mmCIF structures, each named <pdb_id>.cif')
 flags.DEFINE_string('uniclust30_database_path', defvalues.get('uniclust30_database_path', None), 'Path to uniclust30.')
 flags.DEFINE_string("pdb70_database_path", defvalues.get("pdb70_database_path", None), "Path to the pdb70 directory")
 
-#There were all kinds of problems getting this to work 
-#pdb70_database_path
 # PDB setings 
 flags.DEFINE_string('max_template_date', defvalues.get('max_template_date', "2020-05-14"), 'Maximum template release date to consider. Important if folding historical test sets.')
 flags.DEFINE_string('obsolete_pdbs_path', defvalues.get('obsolete_pdbs_path',  None), 'Path to file containing a mapping from obsolete PDB IDs to the PDB IDs of their replacements.')
@@ -93,9 +77,7 @@ flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to direct
 flags.DEFINE_enum('db_preset', defvalues.get('db_preset',None), ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
 
 # Need to change this flag's default value
-flags.DEFINE_enum('model_preset', defvalues.get('model_preset',None), ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
-                  'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
-
+flags.DEFINE_enum('model_preset', defvalues.get('model_preset',None), ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'], 'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
 
 # I think that I would probably cut this out of the pipeline script
 flags.DEFINE_boolean('benchmark', defvalues.get('benchmark', False), 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.') # I think that I would just include this in another script because you are not going really be using this in a standard workflow.
@@ -110,13 +92,11 @@ flags.DEFINE_boolean('write_activations', defvalues.get('write_activations', Fal
 # These two flags should do the same thing but process_msa = False may be broken now.
 # use_precomputed_msas was introduced in alphafold multimer
 flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', False), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
-flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 
+# We have decided to remove this option
+# flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', 3), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
-# num_recycle
-
-# Additional flags that we may add in the future.
-# Overwrite flag that stops you if you are going to trample existing files.
+flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa', False ), "If true, the program will exit after computing the sequence input features. This can be useful if you are doing a block of runs on a cluster and ohly want to compute your alignments a single time.")
 
 FLAGS = flags.FLAGS
 
@@ -150,6 +130,7 @@ def predict_structure(
     benchmark: bool,
     random_seed: int,
     is_prokaryote: Optional[bool] = None):
+
   """Predicts structure using AlphaFold for the given sequence."""
   logging.info('Predicting %s', fasta_name)
   timings = {}
@@ -180,8 +161,6 @@ def predict_structure(
 
   unrelaxed_pdbs = {}
 
-# This section changed somewhat.... 
-
   num_models=len(model_runners)
   for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
     logging.info('Running model %s on %s', model_name, fasta_name)
@@ -202,13 +181,10 @@ def predict_structure(
 
       features_output_path = os.path.join(output_dir, 'features.pkl')
 
-      # If you want to do read from file instead of reprocessing this then chagne this section
-
       # Get features.
       t_0 = time.time()
 
-      # I honestly prefer my way of doing it... I think I am going to keep it in 
-      if FLAGS.process_msa == True: # Process from scratch 
+      if FLAGS.process_msa == True: 
         feature_dict = data_pipeline.process(
             input_fasta_path=fasta_path,
             msa_output_dir=msa_output_dir)
@@ -218,8 +194,6 @@ def predict_structure(
             pickle.dump(feature_dict, f, protocol=4)
         
       else: 
-        # If reload from pickle ... 
-        # If reload from alignments ... 
         if os.path.exists(features_output_path): # Reload from pickle 
           logging.info("Reloading features from pickle file") 
           with open(features_output_path, 'rb') as f:
@@ -248,26 +222,19 @@ def predict_structure(
     for model_name, model_runner in model_runners.items():
       logging.info('Running model %s', model_name)
       t_0 = time.time()
-      processed_feature_dict = model_runner.process_features(
-          feature_dict, random_seed=random_seed)
+      processed_feature_dict = model_runner.process_features(feature_dict, random_seed=random_seed)
       timings[f'process_features_{model_name}'] = time.time() - t_0
 
       t_0 = time.time()
       prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
-      t_diff = time.time() - t_0
-      timings[f'predict_and_compile_{model_name}'] = t_diff
+      timings[f'predict_and_compile_{model_name}'] = time.time() - t_0
       logging.info('Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?', model_name, t_diff)
 
       if benchmark:
-        # t_0 = time.time()
-        # model_runner.predict(processed_feature_dict,random_seed=model_random_seed)
-        # timings[f'predict_benchmark_{model_name}'] = time.time() - t_0
 
         t_0 = time.time()
-        model_runner.predict(processed_feature_dict,
-                            random_seed=model_random_seed)
-        t_diff = time.time() - t_0
-        timings[f'predict_benchmark_{model_name}'] = t_diff
+        model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
+        timings[f'predict_benchmark_{model_name}'] = time.time() -t_0
 
       # Get mean pLDDT confidence metric.
       plddt = prediction_result['plddt']
@@ -292,9 +259,8 @@ def predict_structure(
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
-# Relax the prediction.
+    # Relax the prediction.
     if amber_relaxer:
-      # Relax the prediction.
       t_0 = time.time()
       relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
       timings[f'relax_{model_name}'] = time.time() - t_0
@@ -309,52 +275,20 @@ def predict_structure(
 
 # End of model generation
 
-  # This is actually fucked now -- damn, they sused to
-  if FLAGS.only_run_cleanup == True: # If the user provides the only run_cleanup it will rank models with the assumption that they were already created by another process
-    # load all of the things 
-    timings = {} #We are just going to leave this empty
+  if FLAGS.only_run_cleanup == True: 
+    timings = {} 
     relaxed_pdbs = {}
-    # plddts = {}
     for model_name, model_runner in model_runners.items():
 
       result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
-      # result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
 
       with open(result_output_path, 'rb') as f:
-        prediction_result = pickle.load(f) #I'm not sure if we are really going to go forwards with using this
+        prediction_result = pickle.load(f) 
       
       plddt = prediction_result['plddt']
-      # plddts[model_name] = np.mean(plddt)
-            # Add the predicted LDDT in the b-factor column.
-      # Note that higher predicted LDDT value means higher model confidence.
-    # Save the model outputs.
-
-# FUCK this recent patch fucked all my shit up.
-# God fucking damn it. I really need to do extensive debugging now...
-
-# Testing 
-  # with open(result_output_path, 'wb') as f:
-    # pickle.dump(prediction_result, f, protocol=4)
-
-  # plddt_b_factors = np.repeat(
-      # plddt[:, None], residue_constants.atom_type_num, axis=-1)
-  # unrelaxed_protein = protein.from_prediction(
-      # features=processed_feature_dict,
-      # result=prediction_result,
-      # b_factors=plddt_b_factors,
-      # remove_leading_feature_dimension=not model_runner.multimer_mode)
-
-  # unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
-  # unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
-  # with open(unrelaxed_pdb_path, 'w') as f:
-  #   f.write(unrelaxed_pdbs[model_name])
-
-
-
-
-# Reload the datastructure
-
-  # Rank by model confidence and write out relaxed PDBs in rank order.
+      plddts[model_name] = np.mean(plddt) # it looks like this was removed at some point 
+      ranking_confidences[model_name] = prediction_result['ranking_confidence']
+  
   ranked_order = []
   for idx, (model_name, _) in enumerate(
       sorted(ranking_confidences.items(), key=lambda x: x[1], reverse=True)):
@@ -365,7 +299,6 @@ def predict_structure(
         f.write(relaxed_pdbs[model_name])
       else:
         f.write(unrelaxed_pdbs[model_name])
-
 
   ranking_output_path = os.path.join(output_dir, 'ranking_debug.json')
   with open(ranking_output_path, 'w') as f:
@@ -384,16 +317,19 @@ def main(argv):
   if len(argv) > 1:
     raise app.UsageError('Too many command-line arguments.')
 
-  for tool_name in (
-      'jackhmmer', 'hhblits', 'hhsearch', 'hmmsearch', 'hmmbuild', 'kalign'):
+  for tool_name in ('jackhmmer', 'hhblits', 'hhsearch', 'hmmsearch', 'hmmbuild', 'kalign'):
     if not FLAGS[f'{tool_name}_binary_path'].value:
-      raise ValueError(f'Could not find path to the "{tool_name}" binary. Make '
-                       'sure it is installed on your system.')
+      raise ValueError(f'Could not find path to the "{tool_name}" binary. Make sure it is installed on your system.')
 
   use_small_bfd = FLAGS.db_preset == 'reduced_dbs'
-  _check_flag('small_bfd_database_path', 'db_preset', should_be_set=use_small_bfd)
-  _check_flag('bfd_database_path', 'db_preset', should_be_set=not use_small_bfd)
-  _check_flag('uniclust30_database_path', 'db_preset', should_be_set=not use_small_bfd)
+
+  # Check flags checks postive or negative values when we really only care about checking that it is set when we need it. We add this little if checks in order to get around changing the default behavior of this
+  if use_small_bfd:
+    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=use_small_bfd)
+
+  if not use_small_bfd: 
+    _check_flag('uniclust30_database_path', 'db_preset', should_be_set=not use_small_bfd)
+    _check_flag('bfd_database_path', 'db_preset', should_be_set=not use_small_bfd)
 
   run_multimer_system = 'multimer' in FLAGS.model_preset
   #_check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
@@ -420,23 +356,18 @@ def main(argv):
   # and convert to bool.
   if FLAGS.is_prokaryote_list:
     if len(FLAGS.is_prokaryote_list) != len(FLAGS.fasta_paths):
-      raise ValueError('--is_prokaryote_list must either be omitted or match '
-                       'length of --fasta_paths.')
+      raise ValueError('--is_prokaryote_list must either be omitted or match length of --fasta_paths.')
     is_prokaryote_list = []
     for s in FLAGS.is_prokaryote_list:
       if s in ('true', 'false'):
         is_prokaryote_list.append(s == 'true')
       else:
-        raise ValueError('--is_prokaryote_list must contain comma separated '
-                         'true or false values.')
+        raise ValueError('--is_prokaryote_list must contain comma separated true or false values.')
   else:  # Default is_prokaryote to False.
     is_prokaryote_list = [False] * len(fasta_names)
 
   if run_multimer_system:
-    template_searcher = hmmsearch.Hmmsearch(
-        binary_path=FLAGS.hmmsearch_binary_path,
-        hmmbuild_binary_path=FLAGS.hmmbuild_binary_path,
-        database_path=FLAGS.pdb_seqres_database_path)
+    template_searcher = hmmsearch.Hmmsearch(binary_path=FLAGS.hmmsearch_binary_path, hmmbuild_binary_path=FLAGS.hmmbuild_binary_path, database_path=FLAGS.pdb_seqres_database_path)
     template_featurizer = templates.HmmsearchHitFeaturizer(
         mmcif_dir=FLAGS.template_mmcif_dir,
         max_template_date=FLAGS.max_template_date,
@@ -445,9 +376,7 @@ def main(argv):
         release_dates_path=None,
         obsolete_pdbs_path=FLAGS.obsolete_pdbs_path)
   else:
-    template_searcher = hhsearch.HHSearch(
-        binary_path=FLAGS.hhsearch_binary_path,
-        databases=[FLAGS.pdb70_database_path])
+    template_searcher = hhsearch.HHSearch( binary_path=FLAGS.hhsearch_binary_path, databases=[FLAGS.pdb70_database_path])
     template_featurizer = templates.HhsearchHitFeaturizer(
         mmcif_dir=FLAGS.template_mmcif_dir,
         max_template_date=FLAGS.max_template_date,
@@ -480,7 +409,6 @@ def main(argv):
 
   model_runners = {}
 
-
   # This fixes the flag so that you are able to run a subset of the models again
   if FLAGS.model_names == False:
     model_names = config.MODEL_PRESETS[FLAGS.model_preset]
@@ -499,31 +427,15 @@ def main(argv):
     else:
       model_config.data.eval.num_ensemble = num_ensemble
 
-    # print(model_config)
-
-    # print(config)
-    # exit()
-    # print(model_config.model.num_recycle) # Here are a couple of small changes
-    # print(config.model.num_recycle)
-    # exit()
     if FLAGS.num_recycle != -1:
-      #model_config.data.common.num_recycle = FLAGS.num_recycle
-      # print(model_config.data)
-   #   config.data.common.num_recycle = FLAGS.num_recycle
-      # config.num_recycle = FLAGS.num_recycle
-      #config.num_recycle = FLAGS.num_recycle
-      # print(config)
-      # exit()
       model_config.model.num_recycle
 
-    model_params = data.get_model_haiku_params(
-        model_name=model_name, data_dir=FLAGS.data_dir)
+    model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
 
     model_runner = model.RunModel(model_config, model_params)
     model_runners[model_name] = model_runner
 
-  logging.info('Have %d models: %s', len(model_runners),
-               list(model_runners.keys())) 
+  logging.info('Have %d models: %s', len(model_runners), list(model_runners.keys())) 
 
   amber_relaxer = relax.AmberRelaxation(
       max_iterations=RELAX_MAX_ITERATIONS,
@@ -532,15 +444,26 @@ def main(argv):
       exclude_residues=RELAX_EXCLUDE_RESIDUES,
       max_outer_iterations=RELAX_MAX_OUTER_ITERATIONS)
 
-  random_seed = FLAGS.random_seed
-  if random_seed is None:
-    random_seed = random.randrange(sys.maxsize // len(model_names))
-  logging.info('Using random seed %d for the data pipeline', random_seed)
+  # random_seed = FLAGS.random_seed
+  # if random_seed is None:
+    # random_seed = random.randrange(sys.maxsize // len(model_names))
+  # logging.info('Using random seed %d for the data pipeline', random_seed)
+
+  # random_seed = FLAGS.random_seed
+  # if FLAGS.random_seed is None:
+    # random_seed = 
+
 
   # Predict structure for each of the sequences.
   for i, fasta_path in enumerate(FLAGS.fasta_paths):
+
+    random_seed = FLAGS.random_seed if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))
+    logging.info('Using random seed %d for the data pipeline', random_seed)
+
     is_prokaryote = is_prokaryote_list[i] if run_multimer_system else None
+
     fasta_name = fasta_names[i]
+
     predict_structure(
         fasta_path=fasta_path,
         fasta_name=fasta_name,

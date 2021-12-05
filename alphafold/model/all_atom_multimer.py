@@ -15,13 +15,13 @@
 
 from typing import Dict, Text
 
-from alphafold.common import residue_constants
-from alphafold.model import geometry
-from alphafold.model import utils
 import jax
 import jax.numpy as jnp
 import numpy as np
 
+from alphafold.common import residue_constants
+from alphafold.model import geometry
+from alphafold.model import utils
 
 def squared_difference(x, y):
   return jnp.square(x - y)

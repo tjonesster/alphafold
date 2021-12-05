@@ -1,4 +1,5 @@
 CONFIG_RUN_ALPHAFOLD = {
+    "fasta_names":  None,
     "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican11_8_recycles.fasta"],
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
@@ -23,4 +24,18 @@ CONFIG_RUN_ALPHAFOLD = {
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
     "random_seed": None
 }
+
+'''
+#    'output_dir'
+
+output_dir 
+
+fasta_path = output>dir 
+
+
+fasta_files = [...]
+
+# copy input file into
+
+'''
 

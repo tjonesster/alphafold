@@ -35,7 +35,6 @@ from alphafold.model import quat_affine
 from alphafold.model import utils
 
 
-
 def softmax_cross_entropy(logits, labels):
   """Computes softmax cross entropy given logits and one-hot class labels."""
   loss = -jnp.sum(labels * jax.nn.log_softmax(logits), axis=-1)
@@ -1415,8 +1414,7 @@ def _distogram_log_loss(logits, bin_edges, batch, num_bins):
 
   true_bins = jnp.sum(dist2 > sq_breaks, axis=-1)
 
-  errors = softmax_cross_entropy(
-      labels=jax.nn.one_hot(true_bins, num_bins), logits=logits)
+  errors = softmax_cross_entropy(labels=jax.nn.one_hot(true_bins, num_bins), logits=logits)
 
   square_mask = jnp.expand_dims(mask, axis=-2) * jnp.expand_dims(mask, axis=-1)
 
