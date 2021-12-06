@@ -47,11 +47,7 @@ class InvariantPointAttention(hk.Module):
   Jumper et al. (2021) Suppl. Alg. 22 "InvariantPointAttention"
   """
 
-  def __init__(self,
-               config,
-               global_config,
-               dist_epsilon=1e-8,
-               name='invariant_point_attention'):
+  def __init__(self, config, global_config, dist_epsilon=1e-8, name='invariant_point_attention'):
     """Initialize.
 
     Args:
@@ -289,21 +285,12 @@ class FoldIteration(hk.Module):
   affine of each residue.
   """
 
-  def __init__(self, config, global_config,
-               name='fold_iteration'):
+  def __init__(self, config, global_config, name='fold_iteration'):
     super().__init__(name=name)
     self.config = config
     self.global_config = global_config
 
-  def __call__(self,
-               activations,
-               sequence_mask,
-               update_affine,
-               is_training,
-               initial_act,
-               safe_key=None,
-               static_feat_2d=None,
-               aatype=None):
+  def __call__(self, activations, sequence_mask, update_affine, is_training, initial_act, safe_key=None, static_feat_2d=None, aatype=None):
     c = self.config
 
     if safe_key is None:
@@ -387,8 +374,7 @@ class FoldIteration(hk.Module):
     return new_activations, outputs
 
 
-def generate_affines(representations, batch, config, global_config,
-                     is_training, safe_key):
+def generate_affines(representations, batch, config, global_config, is_training, safe_key):
   """Generate predicted affines for a single chain.
 
   Jumper et al. (2021) Suppl. Alg. 20 "StructureModule"
@@ -424,8 +410,7 @@ def generate_affines(representations, batch, config, global_config,
 
   affine = generate_new_affine(sequence_mask)
 
-  fold_iteration = FoldIteration(
-      c, global_config, name='fold_iteration')
+  fold_iteration = FoldIteration(c, global_config, name='fold_iteration')
 
   assert len(batch['seq_mask'].shape) == 1
 
@@ -467,15 +452,13 @@ class StructureModule(hk.Module):
   Jumper et al. (2021) Suppl. Alg. 20 "StructureModule"
   """
 
-  def __init__(self, config, global_config, compute_loss=True,
-               name='structure_module'):
+  def __init__(self, config, global_config, compute_loss=True, name='structure_module'):
     super().__init__(name=name)
     self.config = config
     self.global_config = global_config
     self.compute_loss = compute_loss
 
-  def __call__(self, representations, batch, is_training,
-               safe_key=None):
+  def __call__(self, representations, batch, is_training, safe_key=None):
     c = self.config
     ret = {}
 
@@ -558,10 +541,7 @@ class StructureModule(hk.Module):
     return ret
 
 
-def compute_renamed_ground_truth(
-    batch: Dict[str, jnp.ndarray],
-    atom14_pred_positions: jnp.ndarray,
-    ) -> Dict[str, jnp.ndarray]:
+def compute_renamed_ground_truth( batch: Dict[str, jnp.ndarray], atom14_pred_positions: jnp.ndarray,) -> Dict[str, jnp.ndarray]:
   """Find optimal renaming of ground truth based on the predicted positions.
 
   Jumper et al. (2021) Suppl. Alg. 26 "renameSymmetricGroundTruthAtoms"
