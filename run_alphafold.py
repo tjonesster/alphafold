@@ -144,14 +144,9 @@ def predict_structure(
   # Get features.
   t_0 = time.time()
   if is_prokaryote is None:
-    feature_dict = data_pipeline.process(
-        input_fasta_path=fasta_path,
-        msa_output_dir=msa_output_dir)
+    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
   else:
-    feature_dict = data_pipeline.process(
-        input_fasta_path=fasta_path,
-        msa_output_dir=msa_output_dir,
-        is_prokaryote=is_prokaryote)
+    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir, is_prokaryote=is_prokaryote)
   timings['features'] = time.time() - t_0
 
   # Write out features as a pickled dictionary.
@@ -185,9 +180,7 @@ def predict_structure(
       t_0 = time.time()
 
       if FLAGS.process_msa == True: 
-        feature_dict = data_pipeline.process(
-            input_fasta_path=fasta_path,
-            msa_output_dir=msa_output_dir)
+        feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
 
         timings['features'] = time.time() - t_0
         with open(features_output_path, 'wb') as f:
@@ -202,9 +195,7 @@ def predict_structure(
         else:  
           #reload from alignments  may add another comp
           logging.info("Reloading features from alignment files") # May want to add a command line argument to force reloading from a file
-          feature_dict = data_pipeline.reload_previous_msa(
-            input_fasta_path=fasta_path,
-            msa_output_dir=msa_output_dir)
+          feature_dict = data_pipeline.reload_previous_msa(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
 
           timings['features'] = time.time() - t_0
 
@@ -268,8 +259,7 @@ def predict_structure(
       relaxed_pdbs[model_name] = relaxed_pdb_str
 
       # Save the relaxed PDB.
-      relaxed_output_path = os.path.join(
-          output_dir, f'relaxed_{model_name}.pdb')
+      relaxed_output_path = os.path.join( output_dir, f'relaxed_{model_name}.pdb')
       with open(relaxed_output_path, 'w') as f:
         f.write(relaxed_pdb_str)
 
@@ -303,15 +293,13 @@ def predict_structure(
   ranking_output_path = os.path.join(output_dir, 'ranking_debug.json')
   with open(ranking_output_path, 'w') as f:
     label = 'iptm+ptm' if 'iptm' in prediction_result else 'plddts'
-    f.write(json.dumps(
-        {label: ranking_confidences, 'order': ranked_order}, indent=4))
+    f.write(json.dumps({label: ranking_confidences, 'order': ranked_order}, indent=4))
 
   logging.info('Final timings for %s: %s', fasta_name, timings)
 
   timings_output_path = os.path.join(output_dir, 'timings.json')
   with open(timings_output_path, 'w') as f:
     f.write(json.dumps(timings, indent=4))
-
 
 def main(argv):
   if len(argv) > 1:
@@ -332,12 +320,10 @@ def main(argv):
     _check_flag('bfd_database_path', 'db_preset', should_be_set=not use_small_bfd)
 
   run_multimer_system = 'multimer' in FLAGS.model_preset
-  #_check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+
   if not  run_multimer_system: 
     _check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
 
-
-#Only check these flags if the run_multimer system is set ... to avoid the "x should not be defined if monomer"
   if run_multimer_system:
     _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=run_multimer_system)
     _check_flag('uniprot_database_path', 'model_preset', should_be_set=run_multimer_system)
@@ -443,16 +429,6 @@ def main(argv):
       stiffness=RELAX_STIFFNESS,
       exclude_residues=RELAX_EXCLUDE_RESIDUES,
       max_outer_iterations=RELAX_MAX_OUTER_ITERATIONS)
-
-  # random_seed = FLAGS.random_seed
-  # if random_seed is None:
-    # random_seed = random.randrange(sys.maxsize // len(model_names))
-  # logging.info('Using random seed %d for the data pipeline', random_seed)
-
-  # random_seed = FLAGS.random_seed
-  # if FLAGS.random_seed is None:
-    # random_seed = 
-
 
   # Predict structure for each of the sequences.
   for i, fasta_path in enumerate(FLAGS.fasta_paths):

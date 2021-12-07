@@ -20,11 +20,8 @@ import haiku as hk
 import jax.numpy as jnp
 import numpy as np
 
-
 # Constant from scipy.stats.truncnorm.std(a=-2, b=2, loc=0., scale=1.)
-TRUNCATED_NORMAL_STDDEV_FACTOR = np.asarray(.87962566103423978,
-                                            dtype=np.float32)
-
+TRUNCATED_NORMAL_STDDEV_FACTOR = np.asarray(.87962566103423978, dtype=np.float32)
 
 def get_initializer_scale(initializer_name, input_shape):
   """Get Initializer for weights and scale to multiply activations by."""

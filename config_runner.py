@@ -10,8 +10,10 @@ CONFIG_RUN_ALPHAFOLD = {
     "kalign_binary_path": "/usr/bin/kalign",
     "uniref90_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniref90/uniref90.fasta",
     "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
+    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta"
     "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
-    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd",
+    "uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
     "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
     "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
     "max_template_date": "2020-05-14",
@@ -38,4 +40,5 @@ fasta_files = [...]
 # copy input file into
 
 '''
+
 

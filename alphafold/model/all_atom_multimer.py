@@ -221,10 +221,9 @@ def get_atom14_to_atom37_map(aatype):
 def get_atom37_to_atom14_map(aatype):
   return utils.batched_gather(jnp.asarray(RESTYPE_ATOM37_TO_ATOM14), aatype)
 
-
-def atom14_to_atom37(atom14_data: jnp.ndarray,  # (N, 14, ...)
-                     aatype: jnp.ndarray
-                    ) -> jnp.ndarray:  # (N, 37, ...)
+# (N, 14, ...) 
+# (N, 37, ...)
+def atom14_to_atom37(atom14_data: jnp.ndarray, aatype: jnp.ndarray) -> jnp.ndarray:  
   """Convert atom14 to atom37 representation."""
   assert len(atom14_data.shape) in [2, 3]
   idx_atom37_to_atom14 = get_atom37_to_atom14_map(aatype)
@@ -577,10 +576,7 @@ def between_residue_bond_loss(
                                 jnp.pad(per_residue_loss_sum, [[1, 0]]))
 
   # Compute hard violations.
-  violation_mask = jnp.max(
-      jnp.stack([c_n_violation_mask,
-                 ca_c_n_violation_mask,
-                 c_n_ca_violation_mask]), axis=0)
+  violation_mask = jnp.max( jnp.stack([c_n_violation_mask, ca_c_n_violation_mask, c_n_ca_violation_mask]), axis=0)
   violation_mask = jnp.maximum(
       jnp.pad(violation_mask, [[0, 1]]),
       jnp.pad(violation_mask, [[1, 0]]))
@@ -608,8 +604,7 @@ def between_residue_clash_loss(
 
   # Create the distance matrix.
   # (N, N, 14, 14)
-  dists = geometry.euclidean_distance(pred_positions[:, None, :, None],
-                                      pred_positions[None, :, None, :], 1e-10)
+  dists = geometry.euclidean_distance(pred_positions[:, None, :, None], pred_positions[None, :, None, :], 1e-10)
 
   # Create the mask for valid distances.
   # shape (N, N, 14, 14)
@@ -618,49 +613,40 @@ def between_residue_clash_loss(
   # Mask out all the duplicate entries in the lower triangular matrix.
   # Also mask out the diagonal (atom-pairs from the same residue) -- these atoms
   # are handled separately.
-  dists_mask *= (
-      residue_index[:, None, None, None] < residue_index[None, :, None, None])
+  dists_mask *= ( residue_index[:, None, None, None] < residue_index[None, :, None, None])
 
   # Backbone C--N bond between subsequent residues is no clash.
   c_one_hot = jax.nn.one_hot(2, num_classes=14)
   n_one_hot = jax.nn.one_hot(0, num_classes=14)
-  neighbour_mask = ((residue_index[:, None, None, None] +
-                     1) == residue_index[None, :, None, None])
-  c_n_bonds = neighbour_mask * c_one_hot[None, None, :,
-                                         None] * n_one_hot[None, None, None, :]
+  neighbour_mask = ((residue_index[:, None, None, None] + 1) == residue_index[None, :, None, None])
+  c_n_bonds = neighbour_mask * c_one_hot[None, None, :, None] * n_one_hot[None, None, None, :]
   dists_mask *= (1. - c_n_bonds)
 
   # Disulfide bridge between two cysteines is no clash.
   cys_sg_idx = residue_constants.restype_name_to_atom14_names['CYS'].index('SG')
   cys_sg_one_hot = jax.nn.one_hot(cys_sg_idx, num_classes=14)
-  disulfide_bonds = (cys_sg_one_hot[None, None, :, None] *
-                     cys_sg_one_hot[None, None, None, :])
+  disulfide_bonds = (cys_sg_one_hot[None, None, :, None] * cys_sg_one_hot[None, None, None, :])
   dists_mask *= (1. - disulfide_bonds)
 
   # Compute the lower bound for the allowed distances.
   # shape (N, N, 14, 14)
-  dists_lower_bound = dists_mask * (
-      atom_radius[:, None, :, None] + atom_radius[None, :, None, :])
+  dists_lower_bound = dists_mask * (atom_radius[:, None, :, None] + atom_radius[None, :, None, :])
 
   # Compute the error.
   # shape (N, N, 14, 14)
-  dists_to_low_error = dists_mask * jax.nn.relu(
-      dists_lower_bound - overlap_tolerance_soft - dists)
+  dists_to_low_error = dists_mask * jax.nn.relu(dists_lower_bound - overlap_tolerance_soft - dists)
 
   # Compute the mean loss.
   # shape ()
-  mean_loss = (jnp.sum(dists_to_low_error)
-               / (1e-6 + jnp.sum(dists_mask)))
+  mean_loss = (jnp.sum(dists_to_low_error) / (1e-6 + jnp.sum(dists_mask)))
 
   # Compute the per atom loss sum.
   # shape (N, 14)
-  per_atom_loss_sum = (jnp.sum(dists_to_low_error, axis=[0, 2]) +
-                       jnp.sum(dists_to_low_error, axis=[1, 3]))
+  per_atom_loss_sum = (jnp.sum(dists_to_low_error, axis=[0, 2]) + jnp.sum(dists_to_low_error, axis=[1, 3]))
 
   # Compute the hard clash mask.
   # shape (N, N, 14, 14)
-  clash_mask = dists_mask * (
-      dists < (dists_lower_bound - overlap_tolerance_hard))
+  clash_mask = dists_mask * ( dists < (dists_lower_bound - overlap_tolerance_hard))
 
   # Compute the per atom clash.
   # shape (N, 14)
@@ -694,31 +680,25 @@ def within_residue_violations(
 
   # Distance matrix
   # shape (N, 14, 14)
-  dists = geometry.euclidean_distance(pred_positions[:, :, None],
-                                      pred_positions[:, None, :], 1e-10)
+  dists = geometry.euclidean_distance(pred_positions[:, :, None], pred_positions[:, None, :], 1e-10)
 
   # Compute the loss.
   # shape (N, 14, 14)
-  dists_to_low_error = jax.nn.relu(
-      dists_lower_bound + tighten_bounds_for_loss - dists)
-  dists_to_high_error = jax.nn.relu(
-      dists + tighten_bounds_for_loss - dists_upper_bound)
+  dists_to_low_error = jax.nn.relu( dists_lower_bound + tighten_bounds_for_loss - dists)
+  dists_to_high_error = jax.nn.relu( dists + tighten_bounds_for_loss - dists_upper_bound)
   loss = dists_masks * (dists_to_low_error + dists_to_high_error)
 
   # Compute the per atom loss sum.
   # shape (N, 14)
-  per_atom_loss_sum = (jnp.sum(loss, axis=1) +
-                       jnp.sum(loss, axis=2))
+  per_atom_loss_sum = (jnp.sum(loss, axis=1) + jnp.sum(loss, axis=2))
 
   # Compute the violations mask.
   # shape (N, 14, 14)
-  violations = dists_masks * ((dists < dists_lower_bound) |
-                              (dists > dists_upper_bound))
+  violations = dists_masks * ((dists < dists_lower_bound) | (dists > dists_upper_bound))
 
   # Compute the per atom violations.
   # shape (N, 14)
-  per_atom_violations = jnp.maximum(
-      jnp.max(violations, axis=1), jnp.max(violations, axis=2))
+  per_atom_violations = jnp.maximum(jnp.max(violations, axis=1), jnp.max(violations, axis=2))
 
   return {'per_atom_loss_sum': per_atom_loss_sum,  # shape (N, 14)
           'per_atom_violations': per_atom_violations  # shape (N, 14)
@@ -741,18 +721,13 @@ def find_optimal_renaming(
 
   # Create the pred distance matrix.
   # shape (N, N, 14, 14)
-  pred_dists = geometry.euclidean_distance(pred_positions[:, None, :, None],
-                                           pred_positions[None, :, None, :],
-                                           1e-10)
+  pred_dists = geometry.euclidean_distance(pred_positions[:, None, :, None], pred_positions[None, :, None, :], 1e-10)
 
   # Compute distances for ground truth with original and alternative names.
   # shape (N, N, 14, 14)
-  gt_dists = geometry.euclidean_distance(gt_positions[:, None, :, None],
-                                         gt_positions[None, :, None, :], 1e-10)
+  gt_dists = geometry.euclidean_distance(gt_positions[:, None, :, None], gt_positions[None, :, None, :], 1e-10)
 
-  alt_gt_dists = geometry.euclidean_distance(alt_gt_positions[:, None, :, None],
-                                             alt_gt_positions[None, :, None, :],
-                                             1e-10)
+  alt_gt_dists = geometry.euclidean_distance(alt_gt_positions[:, None, :, None], alt_gt_positions[None, :, None, :], 1e-10)
 
   # Compute LDDT's.
   # shape (N, N, 14, 14)
@@ -821,18 +796,15 @@ def frame_aligned_point_error(
 
   # Compute array of predicted positions in the predicted frames.
   # geometry.Vec3Array (num_frames, num_positions)
-  local_pred_pos = pred_frames[:, None].inverse().apply_to_point(
-      pred_positions[None, :])
+  local_pred_pos = pred_frames[:, None].inverse().apply_to_point(pred_positions[None, :])
 
   # Compute array of target positions in the target frames.
   # geometry.Vec3Array (num_frames, num_positions)
-  local_target_pos = target_frames[:, None].inverse().apply_to_point(
-      target_positions[None, :])
+  local_target_pos = target_frames[:, None].inverse().apply_to_point(target_positions[None, :])
 
   # Compute errors between the structures.
   # jnp.ndarray (num_frames, num_positions)
-  error_dist = geometry.euclidean_distance(local_pred_pos, local_target_pos,
-                                           epsilon)
+  error_dist = geometry.euclidean_distance(local_pred_pos, local_target_pos, epsilon)
 
   clipped_error_dist = jnp.clip(error_dist, 0, l1_clamp_distance)
 
@@ -842,13 +814,11 @@ def frame_aligned_point_error(
   if pair_mask is not None:
     normed_error *= pair_mask
 
-  mask = (jnp.expand_dims(frames_mask, axis=-1) *
-          jnp.expand_dims(positions_mask, axis=-2))
+  mask = (jnp.expand_dims(frames_mask, axis=-1) * jnp.expand_dims(positions_mask, axis=-2))
   if pair_mask is not None:
     mask *= pair_mask
   normalization_factor = jnp.sum(mask, axis=(-1, -2))
-  return (jnp.sum(normed_error, axis=(-2, -1)) /
-          (epsilon + normalization_factor))
+  return (jnp.sum(normed_error, axis=(-2, -1)) / (epsilon + normalization_factor))
 
 
 def get_chi_atom_indices():
@@ -877,9 +847,7 @@ def get_chi_atom_indices():
   return jnp.asarray(chi_atom_indices)
 
 
-def compute_chi_angles(positions: geometry.Vec3Array,
-                       mask: geometry.Vec3Array,
-                       aatype: geometry.Vec3Array):
+def compute_chi_angles(positions: geometry.Vec3Array, mask: geometry.Vec3Array, aatype: geometry.Vec3Array):
   """Computes the chi angles given all atom positions and the amino acid type.
 
   Args:
@@ -926,13 +894,11 @@ def compute_chi_angles(positions: geometry.Vec3Array,
   chi_angles_mask.append([0.0, 0.0, 0.0, 0.0])
   chi_angles_mask = jnp.asarray(chi_angles_mask)
   # Compute the chi angle mask. Shape [num_res, chis=4].
-  chi_mask = utils.batched_gather(params=chi_angles_mask, indices=aatype,
-                                  axis=0)
+  chi_mask = utils.batched_gather(params=chi_angles_mask, indices=aatype, axis=0)
 
   # The chi_mask is set to 1 only when all necessary chi angle atoms were set.
   # Gather the chi angle atoms mask. Shape: [num_res, chis=4, atoms=4].
-  chi_angle_atoms_mask = utils.batched_gather(
-      params=mask, indices=atom_indices, axis=-1, batch_dims=1)
+  chi_angle_atoms_mask = utils.batched_gather( params=mask, indices=atom_indices, axis=-1, batch_dims=1)
   # Check if all 4 chi angle atoms were set. Shape: [num_res, chis=4].
   chi_angle_atoms_mask = jnp.prod(chi_angle_atoms_mask, axis=[-1])
   chi_mask = chi_mask * chi_angle_atoms_mask.astype(jnp.float32)
@@ -940,10 +906,7 @@ def compute_chi_angles(positions: geometry.Vec3Array,
   return chi_angles, chi_mask
 
 
-def make_transform_from_reference(
-    a_xyz: geometry.Vec3Array,
-    b_xyz: geometry.Vec3Array,
-    c_xyz: geometry.Vec3Array) -> geometry.Rigid3Array:
+def make_transform_from_reference( a_xyz: geometry.Vec3Array, b_xyz: geometry.Vec3Array, c_xyz: geometry.Vec3Array) -> geometry.Rigid3Array:
   """Returns rotation and translation matrices to convert from reference.
 
   Note that this method does not take care of symmetries. If you provide the

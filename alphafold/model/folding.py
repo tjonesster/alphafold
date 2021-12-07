@@ -16,6 +16,7 @@
 
 import functools
 from typing import Dict
+
 import haiku as hk
 import jax
 import jax.numpy as jnp
@@ -41,11 +42,7 @@ class InvariantPointAttention(hk.Module):
   Jumper et al. (2021) Suppl. Alg. 22 "InvariantPointAttention"
   """
 
-  def __init__(self,
-               config,
-               global_config,
-               dist_epsilon=1e-8,
-               name='invariant_point_attention'):
+  def __init__(self, config, global_config, dist_epsilon=1e-8, name='invariant_point_attention'):
     """Initialize.
 
     Args:
@@ -106,20 +103,15 @@ class InvariantPointAttention(hk.Module):
 
     # Construct scalar queries of shape:
     # [num_query_residues, num_head, num_points]
-    q_scalar = common_modules.Linear(
-        num_head * num_scalar_qk, name='q_scalar')(
-            inputs_1d)
-    q_scalar = jnp.reshape(
-        q_scalar, [num_residues, num_head, num_scalar_qk])
+    q_scalar = common_modules.Linear( num_head * num_scalar_qk, name='q_scalar')(inputs_1d)
+    q_scalar = jnp.reshape(q_scalar, [num_residues, num_head, num_scalar_qk])
 
     # Construct scalar keys/values of shape:
     # [num_target_residues, num_head, num_points]
     kv_scalar = common_modules.Linear(
         num_head * (num_scalar_v + num_scalar_qk), name='kv_scalar')(
             inputs_1d)
-    kv_scalar = jnp.reshape(kv_scalar,
-                            [num_residues, num_head,
-                             num_scalar_v + num_scalar_qk])
+    kv_scalar = jnp.reshape(kv_scalar, [num_residues, num_head, num_scalar_v + num_scalar_qk])
     k_scalar, v_scalar = jnp.split(kv_scalar, [num_scalar_qk], axis=-1)
 
     # Construct query points of shape:
@@ -133,18 +125,14 @@ class InvariantPointAttention(hk.Module):
     # Project query points into global frame.
     q_point_global = affine.apply_to_point(q_point_local, extra_dims=1)
     # Reshape query point for later use.
-    q_point = [
-        jnp.reshape(x, [num_residues, num_head, num_point_qk])
-        for x in q_point_global]
+    q_point = [ jnp.reshape(x, [num_residues, num_head, num_point_qk]) for x in q_point_global]
 
     # Construct key and value points.
     # Key points have shape [num_residues, num_head, num_point_qk]
     # Value points have shape [num_residues, num_head, num_point_v]
 
     # Construct key and value points in local frame.
-    kv_point_local = common_modules.Linear(
-        num_head * 3 * (num_point_qk + num_point_v), name='kv_point_local')(
-            inputs_1d)
+    kv_point_local = common_modules.Linear( num_head * 3 * (num_point_qk + num_point_v), name='kv_point_local')( inputs_1d)
     kv_point_local = jnp.split(kv_point_local, 3, axis=-1)
     # Project key and value points into global frame.
     kv_point_global = affine.apply_to_point(kv_point_local, extra_dims=1)
@@ -381,8 +369,7 @@ class FoldIteration(hk.Module):
     return new_activations, outputs
 
 
-def generate_affines(representations, batch, config, global_config,
-                     is_training, safe_key):
+def generate_affines(representations, batch, config, global_config, is_training, safe_key):
   """Generate predicted affines for a single chain.
 
   Jumper et al. (2021) Suppl. Alg. 20 "StructureModule"
@@ -460,8 +447,7 @@ class StructureModule(hk.Module):
   Jumper et al. (2021) Suppl. Alg. 20 "StructureModule"
   """
 
-  def __init__(self, config, global_config, compute_loss=True,
-               name='structure_module'):
+  def __init__(self, config, global_config, compute_loss=True, name='structure_module'):
     super().__init__(name=name)
     self.config = config
     self.global_config = global_config
