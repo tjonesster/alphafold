@@ -1,6 +1,17 @@
 CONFIG_RUN_ALPHAFOLD = {
     "fasta_names":  None,
-    "fasta_paths": ["/home/taylorjones/Documents/alphafold_fastas/forAlican11_8_recycles.fasta"],
+    "fasta_paths": [
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z1_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z2_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z3_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z4_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z5_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z6_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z7_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z8_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z9_small.fasta",
+"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z10_small.fasta"
+],
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
     "data_dir": "/media/taylorjones/bigboi/alphafold_data/params2",
@@ -19,12 +30,14 @@ CONFIG_RUN_ALPHAFOLD = {
     "max_template_date": "2020-05-14",
     "obsolete_pdbs_path": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/obsolete.dat", 
     "db_preset": "reduced_dbs", 
+    #"db_preset": "full_dbs", 
     "benchmark": False,
     "activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/",
-    "model_preset": "multimer",
+    #"model_preset": "multimer",
+    "model_preset": "monomer",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
-    "random_seed": None
+#    "random_seed": None
 }
 
 '''

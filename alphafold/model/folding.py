@@ -271,21 +271,12 @@ class FoldIteration(hk.Module):
   affine of each residue.
   """
 
-  def __init__(self, config, global_config,
-               name='fold_iteration'):
+  def __init__(self, config, global_config, name='fold_iteration'):
     super().__init__(name=name)
     self.config = config
     self.global_config = global_config
 
-  def __call__(self,
-               activations,
-               sequence_mask,
-               update_affine,
-               is_training,
-               initial_act,
-               safe_key=None,
-               static_feat_2d=None,
-               aatype=None):
+  def __call__(self, activations, sequence_mask, update_affine, is_training, initial_act, safe_key=None, static_feat_2d=None, aatype=None):
     c = self.config
 
     if safe_key is None:
@@ -536,10 +527,7 @@ class StructureModule(hk.Module):
     return ret
 
 
-def compute_renamed_ground_truth(
-    batch: Dict[str, jnp.ndarray],
-    atom14_pred_positions: jnp.ndarray,
-    ) -> Dict[str, jnp.ndarray]:
+def compute_renamed_ground_truth( batch: Dict[str, jnp.ndarray], atom14_pred_positions: jnp.ndarray,) -> Dict[str, jnp.ndarray]:
   """Find optimal renaming of ground truth based on the predicted positions.
 
   Jumper et al. (2021) Suppl. Alg. 26 "renameSymmetricGroundTruthAtoms"
