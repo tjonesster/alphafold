@@ -69,7 +69,9 @@ flags.DEFINE_string('max_template_date', defvalues.get('max_template_date', "202
 flags.DEFINE_string('obsolete_pdbs_path', defvalues.get('obsolete_pdbs_path',  None), 'Path to file containing a mapping from obsolete PDB IDs to the PDB IDs of their replacements.')
 
 # Input / Output Paths
-flags.DEFINE_list('fasta_paths', defvalues.get('fasta_paths', None), 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
+#flags.DEFINE_list('fasta_paths', defvalues.get('fasta_paths', None), 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
+flags.DEFINE_list('fasta_names', defvalues.get('fasta_path', None), 'The names of the fasta files. They should be located in your output path.')
+flags.DEFINE_string('fasta_path', defvalues.get('fasta_path', None), 'Path to the directory that contains the fastas.')
 flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a directory that will store the results.')
 flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to directory of supporting data.')
 
@@ -97,6 +99,7 @@ flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas
 # flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', 3), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
 flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa', False ), "If true, the program will exit after computing the sequence input features. This can be useful if you are doing a block of runs on a cluster and ohly want to compute your alignments a single time.")
+flags.DEFINE_boolean('num_structures', defvalues.get('num_structures', 1 ), "Number of structures to generate.")
 
 FLAGS = flags.FLAGS
 
@@ -334,14 +337,14 @@ def main(argv):
     num_ensemble = 1
 
   # Check for duplicate FASTA file names.
-  fasta_names = [pathlib.Path(p).stem for p in FLAGS.fasta_paths]
+  # fasta_names = [pathlib.Path(p).stem for p in FLAGS.fasta_paths]
   if len(fasta_names) != len(set(fasta_names)):
     raise ValueError('All FASTA paths must have a unique basename.')
 
   # Check that is_prokaryote_list has same number of elements as fasta_paths,
   # and convert to bool.
   if FLAGS.is_prokaryote_list:
-    if len(FLAGS.is_prokaryote_list) != len(FLAGS.fasta_paths):
+    if len(FLAGS.is_prokaryote_list) != len(FLAGS.fasta_files):
       raise ValueError('--is_prokaryote_list must either be omitted or match length of --fasta_paths.')
     is_prokaryote_list = []
     for s in FLAGS.is_prokaryote_list:
@@ -413,7 +416,8 @@ def main(argv):
     else:
       model_config.data.eval.num_ensemble = num_ensemble
 
-    if FLAGS.num_recycle != -1:
+    #This path might be different for the multimer system
+    if FLAGS.num_recycle != None:
       model_config.model.num_recycle
 
     model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
@@ -431,26 +435,26 @@ def main(argv):
       max_outer_iterations=RELAX_MAX_OUTER_ITERATIONS)
 
   # Predict structure for each of the sequences.
-  for i, fasta_path in enumerate(FLAGS.fasta_paths):
+  # for i, fasta_name in enumerate(FLAGS.fasta_paths):
+  for i, fasta_name in enumerate(FLAGS.fasta_files):
 
-    random_seed = FLAGS.random_seed if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))
-    logging.info('Using random seed %d for the data pipeline', random_seed)
-
+    fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
     is_prokaryote = is_prokaryote_list[i] if run_multimer_system else None
 
-    fasta_name = fasta_names[i]
+    for structure_index in range(FLAGS.num_structures):
+      random_seed = FLAGS.random_seed + structure_index if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))+structure_index
+      logging.info('Using random seed %d for the data pipeline', random_seed)
 
-    predict_structure(
-        fasta_path=fasta_path,
-        fasta_name=fasta_name,
-        output_dir_base=FLAGS.output_dir,
-        data_pipeline=data_pipeline,
-        model_runners=model_runners,
-        amber_relaxer=amber_relaxer,
-        benchmark=FLAGS.benchmark,
-        random_seed=random_seed,
-        is_prokaryote=is_prokaryote)
-
+      predict_structure(
+          fasta_path=fasta_path,
+          fasta_name=fasta_name,
+          output_dir_base=FLAGS.output_dir,
+          data_pipeline=data_pipeline,
+          model_runners=model_runners,
+          amber_relaxer=amber_relaxer,
+          benchmark=FLAGS.benchmark,
+          random_seed=random_seed,
+          is_prokaryote=is_prokaryote)
 
 if __name__ == '__main__':
   flags.mark_flags_as_required([

@@ -1,5 +1,7 @@
 # AlphaFold
 
+I have currently broken the docker setup by messing up some paths.
+
 This package provides an implementation of the inference pipeline of AlphaFold
 v2.0. This is a completely new model that was entered in CASP14 and published in
 Nature. For simplicity, we refer to this model as AlphaFold throughout the rest

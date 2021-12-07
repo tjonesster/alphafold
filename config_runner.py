@@ -1,17 +1,6 @@
 CONFIG_RUN_ALPHAFOLD = {
-    "fasta_names":  None,
-    "fasta_paths": [
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z1_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z2_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z3_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z4_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z5_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z6_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z7_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z8_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z9_small.fasta",
-"/home/taylorjones/Documents/alphafold_fastas/rcsb_pdb_6T1Z10_small.fasta"
-],
+    "fasta_names":  ["rcsb_pdb_6T1Z1_small.fasta"],
+    "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
     "data_dir": "/media/taylorjones/bigboi/alphafold_data/params2",
@@ -37,6 +26,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "model_preset": "monomer",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
+    "num_structures": 20,
 #    "random_seed": None
 }
 
