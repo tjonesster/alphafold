@@ -70,7 +70,7 @@ flags.DEFINE_string('obsolete_pdbs_path', defvalues.get('obsolete_pdbs_path',  N
 
 # Input / Output Paths
 #flags.DEFINE_list('fasta_paths', defvalues.get('fasta_paths', None), 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
-flags.DEFINE_list('fasta_names', defvalues.get('fasta_path', None), 'The names of the fasta files. They should be located in your output path.')
+flags.DEFINE_list('fasta_names', defvalues.get('fasta_names', None), 'The names of the fasta files. They should be located in your output path.')
 flags.DEFINE_string('fasta_path', defvalues.get('fasta_path', None), 'Path to the directory that contains the fastas.')
 flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a directory that will store the results.')
 flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to directory of supporting data.')
@@ -85,8 +85,7 @@ flags.DEFINE_enum('model_preset', defvalues.get('model_preset',None), ['monomer'
 flags.DEFINE_boolean('benchmark', defvalues.get('benchmark', False), 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.') # I think that I would just include this in another script because you are not going really be using this in a standard workflow.
 
 # Lifecycle - early exit / ommitting stages / running follow-up analysis
-flags.DEFINE_integer('random_seed', defvalues.get('random_seed', 0), 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.') # I really should give this a random value
-flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa',False), "Should alphafold exit after generating the models?")
+flags.DEFINE_integer('random_seed', defvalues.get('random_seed', None), 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.') # I really should give this a random value
 flags.DEFINE_boolean('only_run_cleanup', defvalues.get('only_run_cleanup', False), "Should the algorithm only add the outputs of severla smaller models.")
 flags.DEFINE_string('activations_output_path', defvalues.get('activations_output_path', None), "Output path to write out all of the activations.")
 flags.DEFINE_boolean('write_activations', defvalues.get('write_activations', False), "Write out additional logging information?")
@@ -99,14 +98,15 @@ flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas
 # flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
 flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', 3), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
 flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa', False ), "If true, the program will exit after computing the sequence input features. This can be useful if you are doing a block of runs on a cluster and ohly want to compute your alignments a single time.")
-flags.DEFINE_boolean('num_structures', defvalues.get('num_structures', 1 ), "Number of structures to generate.")
+flags.DEFINE_integer('num_structures', defvalues.get('num_structures', 1 ), "Number of structures to generate.")
 
 FLAGS = flags.FLAGS
 
-# This does not appear to work....
-if FLAGS['model_preset'] == 'monomer':
-    del FLAGS['pdb_seqres_database_path']
-    del FLAGS['uniprot_database_path']
+# This does not appear to work.... I think that delattr should work instead
+# Instead I just went in so that you do not enforce the not set side of the check_flags function
+# if FLAGS['model_preset'] == 'monomer':
+    # del FLAGS['pdb_seqres_database_path']
+    # del FLAGS['uniprot_database_path']
 
 MAX_TEMPLATE_HITS = 20
 RELAX_MAX_ITERATIONS = 0
@@ -120,8 +120,7 @@ RELAX_MAX_OUTER_ITERATIONS = 3
 def _check_flag(flag_name: str, other_flag_name: str, should_be_set: bool):
   if should_be_set != bool(FLAGS[flag_name].value):
     verb = 'be' if should_be_set else 'not be'
-    raise ValueError(f'{flag_name} must {verb} set when running with '
-                     f'"--{other_flag_name}={FLAGS[other_flag_name].value}".')
+    raise ValueError(f'{flag_name} must {verb} set when running with "--{other_flag_name}={FLAGS[other_flag_name].value}".')
 
 def predict_structure(
     fasta_path: str,
@@ -132,7 +131,9 @@ def predict_structure(
     amber_relaxer: relax.AmberRelaxation,
     benchmark: bool,
     random_seed: int,
-    is_prokaryote: Optional[bool] = None):
+    structure_dir: str,
+    is_prokaryote: Optional[bool] = None,
+    ):
 
   """Predicts structure using AlphaFold for the given sequence."""
   logging.info('Predicting %s', fasta_name)
@@ -140,9 +141,27 @@ def predict_structure(
   output_dir = os.path.join(output_dir_base, fasta_name)
   if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+
   msa_output_dir = os.path.join(output_dir, 'msas')
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir)
+
+  # path_to_structure_dir =
+  structure_output_dir = os.path.join(output_dir,structure_dir)  
+  if not os.path.exists(structure_output_dir):
+    os.makedirs(structure_output_dir)
+
+  arguments_to_output = {
+    'fasta_path': fasta_path,
+    'fasta_name': fasta_name,
+    'output_dir_base': output_dir_base,
+    'msa_output_dir': msa_output_dir,
+    'structure_output_dir': structure_output_dir,
+    'random_seed': random_seed,
+  } 
+
+  with open(os.path.join(structure_output_dir,"arguments.txt"),"w") as f:
+    f.write(json.dumps(arguments_to_output))
 
   # Get features.
   t_0 = time.time()
@@ -157,6 +176,9 @@ def predict_structure(
   with open(features_output_path, 'wb') as f:
     pickle.dump(feature_dict, f, protocol=4)
 
+  if FLAGS.exit_after_msa: 
+    exit()
+
   unrelaxed_pdbs = {}
 
   num_models=len(model_runners)
@@ -166,48 +188,7 @@ def predict_structure(
     model_random_seed = model_index + random_seed * num_models
     processed_feature_dict = model_runner.process_features(feature_dict, random_seed=model_random_seed)
     timings[f'process_features_{model_name}'] = time.time() - t_0
-
-    # if all
-    if FLAGS.only_run_cleanup == False:
-      timings = {}
-      output_dir = os.path.join(output_dir_base, fasta_name)
-      if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-      msa_output_dir = os.path.join(output_dir, 'msas')
-      if not os.path.exists(msa_output_dir):
-        os.makedirs(msa_output_dir)
-
-      features_output_path = os.path.join(output_dir, 'features.pkl')
-
-      # Get features.
-      t_0 = time.time()
-
-      if FLAGS.process_msa == True: 
-        feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
-
-        timings['features'] = time.time() - t_0
-        with open(features_output_path, 'wb') as f:
-            pickle.dump(feature_dict, f, protocol=4)
-        
-      else: 
-        if os.path.exists(features_output_path): # Reload from pickle 
-          logging.info("Reloading features from pickle file") 
-          with open(features_output_path, 'rb') as f:
-            feature_dict = pickle.load(f)
-
-        else:  
-          #reload from alignments  may add another comp
-          logging.info("Reloading features from alignment files") # May want to add a command line argument to force reloading from a file
-          feature_dict = data_pipeline.reload_previous_msa(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
-
-          timings['features'] = time.time() - t_0
-
-          with open(features_output_path, 'wb') as f:
-            pickle.dump(feature_dict, f, protocol=4) 
     
-      if FLAGS.exit_after_msa: # Potential exit point
-        exit()
-
     relaxed_pdbs = {}
     plddts = {}
     ranking_confidences = {}
@@ -236,7 +217,7 @@ def predict_structure(
       ranking_confidences[model_name] = prediction_result['ranking_confidence']
 
       # Save the model outputs.
-      result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
+      result_output_path = os.path.join(structure_output_dir, f'result_{model_name}.pkl')
       with open(result_output_path, 'wb') as f:
         pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
 
@@ -249,7 +230,7 @@ def predict_structure(
           b_factors=plddt_b_factors,
           remove_leading_feature_dimension=not model_runner.multimer_mode)
 
-      unrelaxed_pdb_path = os.path.join(output_dir, f'unrelaxed_{model_name}.pdb')
+      unrelaxed_pdb_path = os.path.join(structure_output_dir, f'unrelaxed_{model_name}.pdb')
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
@@ -262,7 +243,7 @@ def predict_structure(
       relaxed_pdbs[model_name] = relaxed_pdb_str
 
       # Save the relaxed PDB.
-      relaxed_output_path = os.path.join( output_dir, f'relaxed_{model_name}.pdb')
+      relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{model_name}.pdb')
       with open(relaxed_output_path, 'w') as f:
         f.write(relaxed_pdb_str)
 
@@ -338,13 +319,13 @@ def main(argv):
 
   # Check for duplicate FASTA file names.
   # fasta_names = [pathlib.Path(p).stem for p in FLAGS.fasta_paths]
-  if len(fasta_names) != len(set(fasta_names)):
+  if len(FLAGS.fasta_names) != len(set(FLAGS.fasta_names)):
     raise ValueError('All FASTA paths must have a unique basename.')
 
   # Check that is_prokaryote_list has same number of elements as fasta_paths,
   # and convert to bool.
   if FLAGS.is_prokaryote_list:
-    if len(FLAGS.is_prokaryote_list) != len(FLAGS.fasta_files):
+    if len(FLAGS.is_prokaryote_list) != len(FLAGS.fasta_names):
       raise ValueError('--is_prokaryote_list must either be omitted or match length of --fasta_paths.')
     is_prokaryote_list = []
     for s in FLAGS.is_prokaryote_list:
@@ -353,7 +334,7 @@ def main(argv):
       else:
         raise ValueError('--is_prokaryote_list must contain comma separated true or false values.')
   else:  # Default is_prokaryote to False.
-    is_prokaryote_list = [False] * len(fasta_names)
+    is_prokaryote_list = [False] * len(FLAGS.fasta_names)
 
   if run_multimer_system:
     template_searcher = hmmsearch.Hmmsearch(binary_path=FLAGS.hmmsearch_binary_path, hmmbuild_binary_path=FLAGS.hmmbuild_binary_path, database_path=FLAGS.pdb_seqres_database_path)
@@ -436,7 +417,7 @@ def main(argv):
 
   # Predict structure for each of the sequences.
   # for i, fasta_name in enumerate(FLAGS.fasta_paths):
-  for i, fasta_name in enumerate(FLAGS.fasta_files):
+  for i, fasta_name in enumerate(FLAGS.fasta_names):
 
     fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
     is_prokaryote = is_prokaryote_list[i] if run_multimer_system else None
@@ -444,6 +425,10 @@ def main(argv):
     for structure_index in range(FLAGS.num_structures):
       random_seed = FLAGS.random_seed + structure_index if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))+structure_index
       logging.info('Using random seed %d for the data pipeline', random_seed)
+
+      # check what structure directories exist...
+
+      structure_dir=f'structure_{structure_index}'
 
       predict_structure(
           fasta_path=fasta_path,
@@ -454,11 +439,14 @@ def main(argv):
           amber_relaxer=amber_relaxer,
           benchmark=FLAGS.benchmark,
           random_seed=random_seed,
-          is_prokaryote=is_prokaryote)
+          structure_dir=structure_dir,
+          is_prokaryote=is_prokaryote
+          )
 
 if __name__ == '__main__':
   flags.mark_flags_as_required([
-      'fasta_paths',
+      'fasta_path',
+      'fasta_names',
       'output_dir',
       'data_dir',
       'uniref90_database_path',

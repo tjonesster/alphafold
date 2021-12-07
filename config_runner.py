@@ -10,7 +10,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "kalign_binary_path": "/usr/bin/kalign",
     "uniref90_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniref90/uniref90.fasta",
     "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
-    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta"
+    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
     "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
     "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd",
     "uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
