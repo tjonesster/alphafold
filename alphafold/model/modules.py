@@ -17,6 +17,7 @@
 The structure generation code is in 'folding.py'.
 """
 import functools
+import pickle
 # import pickle  # This does not end up being used since I can't dump pickles from the modules # I probably want to delete this at some point
 
 import haiku as hk
@@ -203,7 +204,8 @@ class AlphaFoldIteration(hk.Module):
 
       head_factory = {
           'masked_msa': MaskedMsaHead,
-          'distogram': DistogramHead,
+          'distogram': DistogramHeadSpoofer, # Temporary 
+          # 'distogram': DistogramHead, # Temporary 
           'structure_module': functools.partial(folding.StructureModule, compute_loss=compute_loss),
           'predicted_lddt': PredictedLDDTHead,
           'predicted_aligned_error': PredictedAlignedErrorHead,
@@ -296,6 +298,8 @@ class AlphaFold(hk.Module):
       The output of AlphaFoldIteration is a nested dictionary containing
       predictions from the various heads.
     """
+
+      
 
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
@@ -1289,6 +1293,24 @@ class TriangleMultiplication(hk.Module):
 
     return act
 
+class DistogramHeadSpoofer(hk.Module):
+  def __init__(self, config, global_config, name='distogram_head'):
+    super().__init__(name=name)
+    self.config = config
+    self.global_config = global_config
+
+  def __call__(self, representations, batch, is_training):
+    # return self.config.distogram_pickle['distogram']
+    #return self.config.distogram_pickle['distogram']
+    # return self.config.keys()
+    #.distogram_pickle['distogram']
+    # # print("config",self.config)
+    # print("global_config", self.global_config) 
+    # This is going to need to change
+    # return self.global_config['distogram_pickle']
+        # f.write(json.dumps(arguments_to_output))
+    with open("result_model_5.pkl", 'rb') as f:
+      return pickle.load(f)['distogram']
 
 class DistogramHead(hk.Module):
   """Head to predict a distogram.

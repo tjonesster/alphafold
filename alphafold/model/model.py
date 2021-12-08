@@ -66,9 +66,7 @@ def get_confidence_metrics(prediction_result: Mapping[str, Any], multimer_mode: 
 class RunModel:
   """Container for JAX model."""
 
-  def __init__(self,
-               config: ml_collections.ConfigDict,
-               params: Optional[Mapping[str, Mapping[str, np.ndarray]]] = None):
+  def __init__(self, config: ml_collections.ConfigDict, params: Optional[Mapping[str, Mapping[str, np.ndarray]]] = None):
     self.config = config
     self.params = params
     self.multimer_mode = config.model.global_config.multimer_mode
@@ -111,10 +109,7 @@ class RunModel:
           self.init(rng, feat))
       logging.warning('Initialized parameters randomly')
 
-  def process_features(
-      self,
-      raw_features: Union[tf.train.Example, features.FeatureDict],
-      random_seed: int) -> features.FeatureDict:
+  def process_features(self, raw_features: Union[tf.train.Example, features.FeatureDict], random_seed: int) -> features.FeatureDict:
     """Processes features to prepare for feeding them into the model.
 
     Args:
@@ -149,10 +144,7 @@ class RunModel:
     logging.info('Output shape was %s', shape)
     return shape
 
-  def predict(self,
-              feat: features.FeatureDict,
-              random_seed: int,
-              ) -> Mapping[str, Any]:
+  def predict(self, feat: features.FeatureDict, random_seed: int,) -> Mapping[str, Any]:
     """Makes a prediction by inferencing the model on the provided features.
 
     Args:
@@ -165,16 +157,13 @@ class RunModel:
       A dictionary of model outputs.
     """
     self.init_params(feat)
-    logging.info('Running predict with shape(feat) = %s',
-                 tree.map_structure(lambda x: x.shape, feat))
+    logging.info('Running predict with shape(feat) = %s', tree.map_structure(lambda x: x.shape, feat))
     result = self.apply(self.params, jax.random.PRNGKey(random_seed), feat)
 
     # This block is to ensure benchmark timings are accurate. Some blocking is
     # already happening when computing get_confidence_metrics, and this ensures
     # all outputs are blocked on.
     jax.tree_map(lambda x: x.block_until_ready(), result)
-    result.update(
-        get_confidence_metrics(result, multimer_mode=self.multimer_mode))
-    logging.info('Output shape was %s',
-                 tree.map_structure(lambda x: x.shape, result))
+    result.update( get_confidence_metrics(result, multimer_mode=self.multimer_mode))
+    logging.info('Output shape was %s', tree.map_structure(lambda x: x.shape, result))
     return result

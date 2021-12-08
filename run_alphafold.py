@@ -108,6 +108,8 @@ flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
 flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
 
+#flags.DEFINE_string("distogram_pickle", defvalues.get("distogram_pickle", None),"What picklefile should be used in order to load the distogram.")
+flags.DEFINE_string("distogram_pickle", defvalues.get("distogram_pickle", "result_model_5.pkl"),"What picklefile should be used in order to load the distogram.")
 
 FLAGS = flags.FLAGS
 
@@ -143,6 +145,7 @@ def predict_structure(
     structure_dir: str,
     job_name: str, 
     overwrite: bool, 
+    # distogram_pickle: object = None,
     is_prokaryote: Optional[bool] = None,
     ):
 
@@ -218,7 +221,9 @@ def predict_structure(
       logging.info('Running model %s', model_name)
 
       t_0 = time.time()
-      prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
+      
+      prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed) # Model runner
+
       t_diff =  time.time() - t_0
       timings[f'predict_and_compile_{model_name}'] = t_diff
       logging.info('Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?', model_name, t_diff)
@@ -390,10 +395,6 @@ def main(argv):
       use_precomputed_msas=FLAGS.use_precomputed_msas,
       )
 
-# flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
-# flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
-
-
 # This is one place to set this 
   if run_multimer_system: 
     data_pipeline = pipeline_multimer.DataPipeline(
@@ -405,7 +406,7 @@ def main(argv):
   else:
     data_pipeline = monomer_data_pipeline
 
-  model_runners = {}
+  model_runners = {} 
 
   # This fixes the flag so that you are able to run a subset of the models again
   if FLAGS.model_names == False:
@@ -417,8 +418,18 @@ def main(argv):
       if FLAGS.model_preset.split("_")[-1] in ["ptm", "multimer"]:
         model_names[i] = ele + "_" + FLAGS.model_preset.split("_")[-1]
 
+  # distogram_pickle = None 
+  # with open(FLAGS.distogram_pickle, 'rb') as f:
+    # distogram_pickle = pickle.load(f)
+    # config.distogram_pickle = distogram_pickle
+    # with open("output.txt","w") as fout:
+      # fout.write(json.dumps(distogram_pickle['distogram']))
+#      f.write(json.dumps(arguments_to_output))
+
+
   for model_name in model_names:
     model_config = config.model_config(model_name)
+    # model_config.distogram_pickle = distogram_pickle
 
     if run_multimer_system:
       model_config.model.num_ensemble_eval = num_ensemble
@@ -470,6 +481,7 @@ def main(argv):
           job_name=FLAGS.job_name,
           overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
+          # distogram_pickle=distogram_pickle,
           is_prokaryote=is_prokaryote
       )
 
