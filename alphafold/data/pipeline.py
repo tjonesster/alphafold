@@ -124,24 +124,16 @@ class DataPipeline:
     self._use_small_bfd = use_small_bfd
 
     # Write an mmseqs2 verison of this same protocol
-    self.jackhmmer_uniref90_runner = jackhmmer.Jackhmmer(
-        binary_path=jackhmmer_binary_path,
-        database_path=uniref90_database_path)
+    self.jackhmmer_uniref90_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=uniref90_database_path)
     if use_small_bfd:
 
     # Write an mmseqs2 verison of this same protocol
-      self.jackhmmer_small_bfd_runner = jackhmmer.Jackhmmer(
-          binary_path=jackhmmer_binary_path,
-          database_path=small_bfd_database_path)
+      self.jackhmmer_small_bfd_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=small_bfd_database_path)
     else:
-      self.hhblits_bfd_uniclust_runner = hhblits.HHBlits(
-          binary_path=hhblits_binary_path,
-          databases=[bfd_database_path, uniclust30_database_path])
+      self.hhblits_bfd_uniclust_runner = hhblits.HHBlits(binary_path=hhblits_binary_path, databases=[bfd_database_path, uniclust30_database_path])
 
     # Write an mmseqs2 verison of this same protocol
-    self.jackhmmer_mgnify_runner = jackhmmer.Jackhmmer(
-        binary_path=jackhmmer_binary_path,
-        database_path=mgnify_database_path)
+    self.jackhmmer_mgnify_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=mgnify_database_path)
 
     self.template_searcher = template_searcher
     self.template_featurizer = template_featurizer
@@ -168,9 +160,7 @@ class DataPipeline:
         self.jackhmmer_uniref90_runner, input_fasta_path, uniref90_out_path,
         'sto', self.use_precomputed_msas)
     mgnify_out_path = os.path.join(msa_output_dir, 'mgnify_hits.sto')
-    jackhmmer_mgnify_result = run_msa_tool(
-        self.jackhmmer_mgnify_runner, input_fasta_path, mgnify_out_path, 'sto',
-        self.use_precomputed_msas)
+    jackhmmer_mgnify_result = run_msa_tool(self.jackhmmer_mgnify_runner, input_fasta_path, mgnify_out_path, 'sto', self.use_precomputed_msas)
 
     msa_for_templates = jackhmmer_uniref90_result['sto']
     msa_for_templates = parsers.truncate_stockholm_msa(
@@ -197,7 +187,7 @@ class DataPipeline:
     uniref90_msa = parsers.parse_stockholm(jackhmmer_uniref90_result['sto'])
     uniref90_msa = uniref90_msa.truncate(max_seqs=self.uniref_max_hits)
     mgnify_msa = parsers.parse_stockholm(jackhmmer_mgnify_result['sto'])
-    mgnify_msa = mgnify_msa.truncate(max_seqs=self.mgnify_max_hits)
+    mgnify_msa = mgnify_msa.truncate(max_seqs=self.mgnify_max_hits)                               # THIS LINE HERE 
 
     pdb_template_hits = self.template_searcher.get_template_hits(
         output_string=pdb_templates_result, input_sequence=input_sequence)

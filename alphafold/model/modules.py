@@ -258,10 +258,6 @@ class AlphaFoldIteration(hk.Module):
       if compute_loss:
         total_loss += loss(module, head_config, ret, name, filter_ret=False)
 
-    # Testing this 
-    # with open("dump.pkl", 'wb') as f:
-      # pickle.dump(ret,f)
-
     if compute_loss:
       return ret, total_loss
     else:
@@ -435,26 +431,22 @@ class TemplatePairStack(hk.Module):
 
       # asldfkj sldkfjs dlfkasjd flsdkjf 
       pair_act = dropout_wrapper_fn(
-          TriangleAttention(c.triangle_attention_starting_node, gc,
-                            name='triangle_attention_starting_node'),
+          TriangleAttention(c.triangle_attention_starting_node, gc, name='triangle_attention_starting_node'),
           pair_act,
           pair_mask,
           next(sub_keys))
       pair_act = dropout_wrapper_fn(
-          TriangleAttention(c.triangle_attention_ending_node, gc,
-                            name='triangle_attention_ending_node'),
+          TriangleAttention(c.triangle_attention_ending_node, gc, name='triangle_attention_ending_node'),
           pair_act,
           pair_mask,
           next(sub_keys))
       pair_act = dropout_wrapper_fn(
-          TriangleMultiplication(c.triangle_multiplication_outgoing, gc,
-                                 name='triangle_multiplication_outgoing'),
+          TriangleMultiplication(c.triangle_multiplication_outgoing, gc, name='triangle_multiplication_outgoing'),
           pair_act,
           pair_mask,
           next(sub_keys))
       pair_act = dropout_wrapper_fn(
-          TriangleMultiplication(c.triangle_multiplication_incoming, gc,
-                                 name='triangle_multiplication_incoming'),
+          TriangleMultiplication(c.triangle_multiplication_incoming, gc, name='triangle_multiplication_incoming'),
           pair_act,
           pair_mask,
           next(sub_keys))
@@ -606,9 +598,7 @@ class Attention(hk.Module):
 
       weighted_avg *= gate_values
 
-    o_weights = hk.get_parameter(
-        'output_w', shape=(num_head, value_dim, self.output_dim),
-        init=init)
+    o_weights = hk.get_parameter( 'output_w', shape=(num_head, value_dim, self.output_dim), init=init)
     o_bias = hk.get_parameter('output_b', shape=(self.output_dim,), init=hk.initializers.Constant(0.0))
 
     output = jnp.einsum('bqhc,hco->bqo', weighted_avg, o_weights) + o_bias

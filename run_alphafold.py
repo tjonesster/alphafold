@@ -36,7 +36,8 @@ from alphafold.data.tools import hhsearch, hmmsearch
 from alphafold.model import config, model, data
 from alphafold.relax import relax
 
-from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues
+# move this into the alphafold directory so that it can be imported by all of the apps
+from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues 
 
 logging.set_verbosity(logging.INFO)
 
@@ -99,6 +100,14 @@ flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas
 flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', 3), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
 flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa', False ), "If true, the program will exit after computing the sequence input features. This can be useful if you are doing a block of runs on a cluster and ohly want to compute your alignments a single time.")
 flags.DEFINE_integer('num_structures', defvalues.get('num_structures', 1 ), "Number of structures to generate.")
+flags.DEFINE_string('job_name', defvalues.get('job_name', None), "Number of structures to generate.")
+
+flags.DEFINE_boolean('overwrite', defvalues.get('overwrite', False), "If a directory exists should it be overwritten? Default False. Set to true to ignore a directory existing.")
+
+flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
+flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
+flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
+
 
 FLAGS = flags.FLAGS
 
@@ -132,15 +141,26 @@ def predict_structure(
     benchmark: bool,
     random_seed: int,
     structure_dir: str,
+    job_name: str, 
+    overwrite: bool, 
     is_prokaryote: Optional[bool] = None,
     ):
 
   """Predicts structure using AlphaFold for the given sequence."""
   logging.info('Predicting %s', fasta_name)
   timings = {}
-  output_dir = os.path.join(output_dir_base, fasta_name)
+
+  if job_name is not None: 
+    output_dir = os.path.join(output_dir_base, job_name)
+  else:
+    output_dir = os.path.join(output_dir_base, fasta_name)
+
   if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+  else:
+    if not overwrite:
+      logging.error("Overwrite is set to False and the output directory exists ")
+      exit()
 
   msa_output_dir = os.path.join(output_dir, 'msas')
   if not os.path.exists(msa_output_dir):
@@ -196,17 +216,14 @@ def predict_structure(
     # Run a single model 
     for model_name, model_runner in model_runners.items():
       logging.info('Running model %s', model_name)
-      t_0 = time.time()
-      processed_feature_dict = model_runner.process_features(feature_dict, random_seed=random_seed)
-      timings[f'process_features_{model_name}'] = time.time() - t_0
 
       t_0 = time.time()
       prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
-      timings[f'predict_and_compile_{model_name}'] = time.time() - t_0
+      t_diff =  time.time() - t_0
+      timings[f'predict_and_compile_{model_name}'] = t_diff
       logging.info('Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?', model_name, t_diff)
 
       if benchmark:
-
         t_0 = time.time()
         model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
         timings[f'predict_benchmark_{model_name}'] = time.time() -t_0
@@ -355,6 +372,8 @@ def main(argv):
         release_dates_path=None,
         obsolete_pdbs_path=FLAGS.obsolete_pdbs_path)
 
+
+#This is one place where I need to set this 
   monomer_data_pipeline = pipeline.DataPipeline(
       jackhmmer_binary_path=FLAGS.jackhmmer_binary_path,
       hhblits_binary_path=FLAGS.hhblits_binary_path,
@@ -366,13 +385,22 @@ def main(argv):
       template_searcher=template_searcher,
       template_featurizer=template_featurizer,
       use_small_bfd=use_small_bfd,
-      use_precomputed_msas=FLAGS.use_precomputed_msas)
+      mgnify_max_hits=FLAGS.mgnify_max_hits,
+      uniref_max_hits=FLAGS.uniref_max_hits,
+      use_precomputed_msas=FLAGS.use_precomputed_msas,
+      )
 
-  if run_multimer_system:
+# flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
+# flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
+
+
+# This is one place to set this 
+  if run_multimer_system: 
     data_pipeline = pipeline_multimer.DataPipeline(
         monomer_data_pipeline=monomer_data_pipeline,
         jackhmmer_binary_path=FLAGS.jackhmmer_binary_path,
         uniprot_database_path=FLAGS.uniprot_database_path,
+        max_uniprot_hits=FLAGS.max_uniprot_hits,
         use_precomputed_msas=FLAGS.use_precomputed_msas)
   else:
     data_pipeline = monomer_data_pipeline
@@ -439,9 +467,11 @@ def main(argv):
           amber_relaxer=amber_relaxer,
           benchmark=FLAGS.benchmark,
           random_seed=random_seed,
+          job_name=FLAGS.job_name,
+          overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
           is_prokaryote=is_prokaryote
-          )
+      )
 
 if __name__ == '__main__':
   flags.mark_flags_as_required([

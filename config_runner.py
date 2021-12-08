@@ -2,7 +2,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "fasta_names":  ["rcsb_pdb_6T1Z1_small.fasta"],
     "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
-    "model_names": ['model_5'], 
+#    "model_names": ['model_5'], 
     "data_dir": "/media/taylorjones/bigboi/alphafold_data/params2",
     "jackhmmer_binary_path": "/home/taylorjones/software/taylorsScripts/externalExecutables/linux_x86/jackhmmer", 
     "hhblits_binary_path": "/usr/local/bin/hhblits",
@@ -26,7 +26,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "model_preset": "monomer",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
-    "num_structures": 20,
+    "num_structures": 10,
 #    "random_seed": None
 }
 

@@ -76,13 +76,13 @@ class InvariantPointAttention(hk.Module):
     local frames.
 
     Args:
-      inputs_1d: (N, C) 1D input embedding that is the basis for the
-        scalar queries.
+      inputs_1d: (N, C) 1D input embedding that is the basis for the scalar queries.
+
       inputs_2d: (N, M, C') 2D input embedding, used for biases and values.
-      mask: (N, 1) mask to indicate which elements of inputs_1d participate
-        in the attention.
-      affine: QuatAffine object describing the position and orientation of
-        every element in inputs_1d.
+
+      mask: (N, 1) mask to indicate which elements of inputs_1d participate in the attention.
+
+      affine: QuatAffine object describing the position and orientation of every element in inputs_1d.
 
     Returns:
       Transformation of the input embedding.
@@ -90,7 +90,7 @@ class InvariantPointAttention(hk.Module):
     num_residues, _ = inputs_1d.shape
 
     # Improve readability by removing a large number of 'self's.
-    num_head = self.config.num_head
+    num_head = self.config.num_head # numhead
     num_scalar_qk = self.config.num_scalar_qk
     num_point_qk = self.config.num_point_qk
     num_scalar_v = self.config.num_scalar_v
@@ -111,6 +111,7 @@ class InvariantPointAttention(hk.Module):
     kv_scalar = common_modules.Linear(
         num_head * (num_scalar_v + num_scalar_qk), name='kv_scalar')(
             inputs_1d)
+
     kv_scalar = jnp.reshape(kv_scalar, [num_residues, num_head, num_scalar_v + num_scalar_qk])
     k_scalar, v_scalar = jnp.split(kv_scalar, [num_scalar_qk], axis=-1)
 
@@ -118,9 +119,7 @@ class InvariantPointAttention(hk.Module):
     # [num_residues, num_head, num_point_qk]
 
     # First construct query points in local frame.
-    q_point_local = common_modules.Linear(
-        num_head * 3 * num_point_qk, name='q_point_local')(
-            inputs_1d)
+    q_point_local = common_modules.Linear(num_head * 3 * num_point_qk, name='q_point_local')(inputs_1d)
     q_point_local = jnp.split(q_point_local, 3, axis=-1)
     # Project query points into global frame.
     q_point_global = affine.apply_to_point(q_point_local, extra_dims=1)
@@ -240,7 +239,7 @@ class InvariantPointAttention(hk.Module):
                                     jnp.square(result_point_local[1]) +
                                     jnp.square(result_point_local[2])))
 
-    # Dimensions: h = heads, i and j = residues,
+    # Dimensions: h = , i and j = residues,
     # c = inputs_2d channels
     # Contraction happens over the second residue dimension, similarly to how
     # the usual attention is performed.
