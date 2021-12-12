@@ -202,6 +202,7 @@ def predict_structure(
   unrelaxed_pdbs = {}
 
   num_models=len(model_runners)
+
   for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
     logging.info('Running model %s on %s', model_name, fasta_name)
 
@@ -271,7 +272,7 @@ def predict_structure(
     relaxed_pdbs = {}
     for model_name, model_runner in model_runners.items():
 
-      result_output_path = os.path.join(output_dir, f'result_{model_name}.pkl')
+      result_output_path = os.path.join(structure_output_dir, f'result_{model_name}.pkl')
 
       with open(result_output_path, 'rb') as f:
         prediction_result = pickle.load(f) 
@@ -284,21 +285,21 @@ def predict_structure(
   for idx, (model_name, _) in enumerate(
       sorted(ranking_confidences.items(), key=lambda x: x[1], reverse=True)):
     ranked_order.append(model_name)
-    ranked_output_path = os.path.join(output_dir, f'ranked_{idx}.pdb')
+    ranked_output_path = os.path.join(structure_output_dir, f'ranked_{idx}.pdb')
     with open(ranked_output_path, 'w') as f:
       if amber_relaxer:
         f.write(relaxed_pdbs[model_name])
       else:
         f.write(unrelaxed_pdbs[model_name])
 
-  ranking_output_path = os.path.join(output_dir, 'ranking_debug.json')
+  ranking_output_path = os.path.join(structure_output_dir, 'ranking_debug.json')
   with open(ranking_output_path, 'w') as f:
     label = 'iptm+ptm' if 'iptm' in prediction_result else 'plddts'
     f.write(json.dumps({label: ranking_confidences, 'order': ranked_order}, indent=4))
 
   logging.info('Final timings for %s: %s', fasta_name, timings)
 
-  timings_output_path = os.path.join(output_dir, 'timings.json')
+  timings_output_path = os.path.join(structure_output_dir, 'timings.json')
   with open(timings_output_path, 'w') as f:
     f.write(json.dumps(timings, indent=4))
 

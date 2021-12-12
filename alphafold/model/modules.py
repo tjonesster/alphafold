@@ -1655,10 +1655,8 @@ class EmbeddingsAndEvoformer(hk.Module):
 
     msa_activations = jnp.expand_dims(preprocess_1d, axis=0) + preprocess_msa
 
-    # what is this? 
     left_single = common_modules.Linear(c.pair_channel, name='left_single')(batch['target_feat'])
 
-    #what is this?
     right_single = common_modules.Linear(c.pair_channel, name='right_single')(batch['target_feat'])
     pair_activations = left_single[:, None] + right_single[None]
 
