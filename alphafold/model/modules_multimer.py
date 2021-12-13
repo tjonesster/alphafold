@@ -424,6 +424,8 @@ class AlphaFold(hk.Module):
 
     c = self.config
     impl = AlphaFoldIteration(c, self.global_config)
+    logged_output = {}
+    
 
     if safe_key is None:
       safe_key = prng.SafeKey(hk.next_rng_key())
@@ -488,7 +490,7 @@ class AlphaFold(hk.Module):
 
     if not return_representations:
       del ret['representations']
-    return ret
+    return ret, logged_output
 
 
 class EmbeddingsAndEvoformer(hk.Module):

@@ -477,6 +477,7 @@ def main(argv):
 if __name__ == '__main__':
   flags.mark_flags_as_required([
       'fasta_path',
+      'model_names',
       'fasta_names',
       'output_dir',
       'data_dir',

@@ -26,8 +26,6 @@ import ml_collections
 
 from alphafold.common import confidence
 from alphafold.model import features, modules, modules_multimer
-from alphafold.model import modules
-from alphafold.common import confidence
 
 # Testing 
 def get_confidence_metrics(prediction_result: Mapping[str, Any], multimer_mode: bool) -> Mapping[str, Any]:
@@ -66,22 +64,18 @@ def get_confidence_metrics(prediction_result: Mapping[str, Any], multimer_mode: 
 class RunModel:
   """Container for JAX model."""
 
-  def __init__(self,
-               config: ml_collections.ConfigDict,
-               params: Optional[Mapping[str, Mapping[str, np.ndarray]]] = None):
+  def __init__(self, config: ml_collections.ConfigDict, params: Optional[Mapping[str, Mapping[str, np.ndarray]]] = None):
     self.config = config
     self.params = params
     self.multimer_mode = config.model.global_config.multimer_mode
 
     if self.multimer_mode:
       def _forward_fn(batch):
-        model = modules_multimer.AlphaFold(self.config.model)
-        return model(
-            batch,
-            is_training=False)
+        model, additional_output = modules_multimer.AlphaFold(self.config.model)
+        return model(batch, is_training=False)
     else:
       def _forward_fn(batch):
-        model = modules.AlphaFold(self.config.model)
+        model, additional_output = modules.AlphaFold(self.config.model)
 
         return model(
             batch,
@@ -149,10 +143,7 @@ class RunModel:
     logging.info('Output shape was %s', shape)
     return shape
 
-  def predict(self,
-              feat: features.FeatureDict,
-              random_seed: int,
-              ) -> Mapping[str, Any]:
+  def predict(self, feat: features.FeatureDict, random_seed: int,) -> Mapping[str, Any]:
     """Makes a prediction by inferencing the model on the provided features.
 
     Args:
@@ -173,8 +164,6 @@ class RunModel:
     # already happening when computing get_confidence_metrics, and this ensures
     # all outputs are blocked on.
     jax.tree_map(lambda x: x.block_until_ready(), result)
-    result.update(
-        get_confidence_metrics(result, multimer_mode=self.multimer_mode))
-    logging.info('Output shape was %s',
-                 tree.map_structure(lambda x: x.shape, result))
+    result.update( get_confidence_metrics(result, multimer_mode=self.multimer_mode))
+    logging.info('Output shape was %s', tree.map_structure(lambda x: x.shape, result))
     return result

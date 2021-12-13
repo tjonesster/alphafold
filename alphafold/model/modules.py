@@ -258,6 +258,7 @@ class AlphaFoldIteration(hk.Module):
       if compute_loss:
         total_loss += loss(module, head_config, ret, name, filter_ret=False)
 
+    # I would like to have total loss 
     if compute_loss:
       return ret, total_loss
     else:
@@ -275,7 +276,8 @@ class AlphaFold(hk.Module):
     self.config = config
     self.global_config = config.global_config
 
-  def __call__(self, batch, is_training, compute_loss=False, ensemble_representations=False, return_representations=True):
+  #def __call__(self, batch, is_training, compute_loss=False, ensemble_representations=False, return_representations=True):
+  def __call__(self, batch, is_training, compute_loss=True, ensemble_representations=False, return_representations=True):
     """Run the AlphaFold model.
 
     Arguments:
@@ -299,15 +301,21 @@ class AlphaFold(hk.Module):
 
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
+    logged_output = []
+
+    print("batch:", batch)
+
+
 
     # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
       new_prev = {
-          'prev_pos':
-              ret['structure_module']['final_atom_positions'],
+          'prev_pos': ret['structure_module']['final_atom_positions'],
           'prev_msa_first_row': ret['representations']['msa_first_row'],
           'prev_pair': ret['representations']['pair'],
+           
       }
+      logged_output.append(new_prev) # Not sure if we want to do this. The speed implications could be significant...
       return jax.tree_map(jax.lax.stop_gradient, new_prev)
 
     # Each iteration should be called using do_call ? 
@@ -337,12 +345,9 @@ class AlphaFold(hk.Module):
     if self.config.num_recycle:
       emb_config = self.config.embeddings_and_evoformer
       prev = {
-          'prev_pos': jnp.zeros(
-              [num_residues, residue_constants.atom_type_num, 3]),
-          'prev_msa_first_row': jnp.zeros(
-              [num_residues, emb_config.msa_channel]),
-          'prev_pair': jnp.zeros(
-              [num_residues, num_residues, emb_config.pair_channel]),
+          'prev_pos': jnp.zeros( [num_residues, residue_constants.atom_type_num, 3]),
+          'prev_msa_first_row': jnp.zeros( [num_residues, emb_config.msa_channel]),
+          'prev_pair': jnp.zeros( [num_residues, num_residues, emb_config.pair_channel]),
       }
 
       if 'num_iter_recycling' in batch:
@@ -359,7 +364,7 @@ class AlphaFold(hk.Module):
         num_iter = self.config.num_recycle
 
       # pylint: disable=g-long-lambda
-      body = lambda x: (x[0] + 1, get_prev(do_call(x[1], recycle_idx=x[0], compute_loss=False)))
+      body = lambda x: (x[0] + 1, get_prev(do_call(x[1], recycle_idx=x[0], compute_loss=False)) # We could also compute loss with this 
 
       if hk.running_init():
         # When initializing the Haiku module, run one iteration of the
@@ -380,7 +385,7 @@ class AlphaFold(hk.Module):
 
     if not return_representations:
       del (ret[0] if compute_loss else ret)['representations']  # pytype: disable=unsupported-operands
-    return ret
+    return ret, logged_output
 
 
 class TemplatePairStack(hk.Module):
@@ -1820,6 +1825,9 @@ class EmbeddingsAndEvoformer(hk.Module):
         # Crop away template rows such that they are not used in MaskedMsaHead.
         'msa': msa_activations[:num_sequences, :, :],
         'msa_first_row': msa_activations[0],
+        
+        # We are going to want to change this so that it is only included occationally
+        'template_embedding': template_pair_representation, # This has been added and may have unintended consequences going forwards
     }
 
     return output
