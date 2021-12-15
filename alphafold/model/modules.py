@@ -305,8 +305,6 @@ class AlphaFold(hk.Module):
 
     print("batch:", batch)
 
-
-
     # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
       new_prev = {

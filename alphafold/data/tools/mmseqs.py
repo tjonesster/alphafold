@@ -112,8 +112,8 @@ class mmseqs2:
           #'--cpu', str(self.n_cpu),
           '--max-seqs', str(999999999999),
           '--threads', str(self.n_cpu),
-          "--num-iterations", str(self.n_iter),
-          # '-N', str(self.n_iter)
+          
+          '-N', str(self.n_iter)
       ]
       if self.get_tblout:
         tblout_path = os.path.join(query_tmp_dir, 'tblout.txt')

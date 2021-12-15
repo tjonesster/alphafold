@@ -108,7 +108,6 @@ flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
 flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
 
-
 FLAGS = flags.FLAGS
 
 # This does not appear to work.... I think that delattr should work instead
