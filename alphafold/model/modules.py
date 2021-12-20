@@ -1298,6 +1298,7 @@ class DistogramHeadSpoofer(hk.Module):
     super().__init__(name=name)
     self.config = config
     self.global_config = global_config
+    self.DistogramHead = DistogramHead(config,global_config,name="distogram_head")
 
   def __call__(self, representations, batch, is_training):
     # return self.config.distogram_pickle['distogram']
@@ -1309,8 +1310,25 @@ class DistogramHeadSpoofer(hk.Module):
     # This is going to need to change
     # return self.global_config['distogram_pickle']
         # f.write(json.dumps(arguments_to_output))
-    with open("result_model_5.pkl", 'rb') as f:
-      return pickle.load(f)['distogram']
+
+    dist_head_ret = self.DistogramHead(representations,batch,is_training)
+    logits = dist_head_ret['logits']
+    bin_edges = dit_head_ret['bin_edges']
+
+    with open("prediction_results_edited_512_1024.pkl", 'rb') as f:
+      tmp_distogram = pickle.load(f)
+    return tmp_distogram['distogram'] # Here it is unaltered
+    
+    for key, value in tmp_distogram['distogram']['logits'].items():
+      for key2, value2 in value2:
+        print(key, key2, value, value2)
+
+        # logits[key][key2] += tmp_distogram['distogram']['logits'] 
+        # logits[key][key2] = logits[key][key2] / 2
+
+        logits[key][key2] = tmp_distogram['distogram']['logits'] 
+
+    return dict(logits=logits, bin_edges=bin_edges)
 
 class DistogramHead(hk.Module):
   """Head to predict a distogram.
