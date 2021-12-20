@@ -397,8 +397,7 @@ class TemplatePairStack(hk.Module):
       # safe key? 
       pair_act, safe_key = x
 
-      dropout_wrapper_fn = functools.partial(
-          dropout_wrapper, is_training=is_training, global_config=gc)
+      dropout_wrapper_fn = functools.partial(dropout_wrapper, is_training=is_training, global_config=gc)
 
       safe_key, *sub_keys = safe_key.split(6)
       sub_keys = iter(sub_keys)
@@ -406,29 +405,19 @@ class TemplatePairStack(hk.Module):
       # asldfkj sldkfjs dlfkasjd flsdkjf 
       pair_act = dropout_wrapper_fn(
           TriangleAttention(c.triangle_attention_starting_node, gc, name='triangle_attention_starting_node'),
-          pair_act,
-          pair_mask,
-          next(sub_keys))
+          pair_act, pair_mask, next(sub_keys))
       pair_act = dropout_wrapper_fn(
           TriangleAttention(c.triangle_attention_ending_node, gc, name='triangle_attention_ending_node'),
-          pair_act,
-          pair_mask,
-          next(sub_keys))
+          pair_act, pair_mask, next(sub_keys))
       pair_act = dropout_wrapper_fn(
           TriangleMultiplication(c.triangle_multiplication_outgoing, gc, name='triangle_multiplication_outgoing'),
-          pair_act,
-          pair_mask,
-          next(sub_keys))
+          pair_act, pair_mask, next(sub_keys))
       pair_act = dropout_wrapper_fn(
           TriangleMultiplication(c.triangle_multiplication_incoming, gc, name='triangle_multiplication_incoming'),
-          pair_act,
-          pair_mask,
-          next(sub_keys))
+          pair_act, pair_mask, next(sub_keys))
       pair_act = dropout_wrapper_fn(
           Transition(c.pair_transition, gc, name='pair_transition'),
-          pair_act,
-          pair_mask,
-          next(sub_keys))
+          pair_act, pair_mask, next(sub_keys))
 
       return pair_act, safe_key
 
@@ -575,13 +564,9 @@ class GlobalAttention(hk.Module):
     """Builds GlobalAttention module.
 
     Arguments:
-      q_data: A tensor of queries with size [batch_size, N_queries,
-        q_channels]
-      m_data: A tensor of memories from which the keys and values
-        projected. Size [batch_size, N_keys, m_channels]
-      q_mask: A binary mask for q_data with zeros in the padded sequence
-        elements and ones otherwise. Size [batch_size, N_queries, q_channels]
-        (or broadcastable to this shape).
+      q_data: A tensor of queries with size [batch_size, N_queries, q_channels]
+      m_data: A tensor of memories from which the keys and values projected. Size [batch_size, N_keys, m_channels]
+      q_mask: A binary mask for q_data with zeros in the padded sequence elements and ones otherwise. Size [batch_size, N_queries, q_channels] (or broadcastable to this shape).
       bias: A bias for the attention.
 
     Returns:
@@ -674,8 +659,7 @@ class MSARowAttentionWithPairBias(hk.Module):
     weights = hk.get_parameter('feat_2d_weights', shape=(pair_act.shape[-1], c.num_head), init=hk.initializers.RandomNormal(stddev=init_factor))
     nonbatched_bias = jnp.einsum('qkc,ch->hqk', pair_act, weights)
 
-    attn_mod = Attention(
-        c, self.global_config, msa_act.shape[-1])
+    attn_mod = Attention( c, self.global_config, msa_act.shape[-1])
     msa_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
@@ -770,13 +754,9 @@ class MSAColumnGlobalAttention(hk.Module):
     bias = (1e9 * (msa_mask - 1.))[:, None, None, :]
     assert len(bias.shape) == 4
 
-    msa_act = hk.LayerNorm(
-        axis=[-1], create_scale=True, create_offset=True, name='query_norm')(
-            msa_act)
+    msa_act = hk.LayerNorm(axis=[-1], create_scale=True, create_offset=True, name='query_norm')(msa_act)
 
-    attn_mod = GlobalAttention(
-        c, self.global_config, msa_act.shape[-1],
-        name='attention')
+    attn_mod = GlobalAttention(c, self.global_config, msa_act.shape[-1], name='attention')
     msa_mask = jnp.expand_dims(msa_mask, axis=-1) # [N_seq, N_res, 1]
     msa_act = mapping.inference_subbatch(
         attn_mod,
