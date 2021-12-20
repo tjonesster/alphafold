@@ -323,16 +323,13 @@ class AlphaFold(hk.Module):
 
       if 'num_iter_recycling' in batch:
         # Training time: num_iter_recycling is in batch.
-        # The value for each ensemble batch is the same, so arbitrarily taking
-        # 0-th.
+        # The value for each ensemble batch is the same, so arbitrarily taking 0-th.
         num_iter = batch['num_iter_recycling'][0]
 
-        # Add insurance that we will not run more
-        # recyclings than the model is configured to run.
+        # Add insurance that we will not run more recyclings than the model is configured to run.
         num_iter = jnp.minimum(num_iter, self.config.num_recycle)
       else:
-        # Eval mode or tests: use the maximum number of iterations.
-        num_iter = self.config.num_recycle
+        num_iter = self.config.num_recycle # Eval mode or tests: use the maximum number of iterations.
 
       # pylint: disable=g-long-lambda
       body = lambda x: (x[0] + 1, get_prev(do_call(x[1], recycle_idx=x[0], compute_loss=False))) # We could also compute loss with this 
@@ -342,7 +339,7 @@ class AlphaFold(hk.Module):
         # while_loop to initialize the Haiku modules used in `body`.
         _, prev = body((0, prev))
       else:
-        _, prev = hk.while_loop(lambda x: x[0] < num_iter, body, (0, prev))
+        _, prev = hk.while_loop(lambda x: x[0] < num_iter, body, (0, prev)) # We need to replace this so that we have a means of logging this data out 
     else:
       prev = {}
       num_iter = 0
