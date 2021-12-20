@@ -89,7 +89,7 @@ flags.DEFINE_boolean('benchmark', defvalues.get('benchmark', False), 'Run multip
 flags.DEFINE_integer('random_seed', defvalues.get('random_seed', None), 'The random seed for the data pipeline. By default, this is randomly generated. Note that even if this is set, Alphafold may still not be deterministic, because processes like GPU inference are nondeterministic.') # I really should give this a random value
 flags.DEFINE_boolean('only_run_cleanup', defvalues.get('only_run_cleanup', False), "Should the algorithm only add the outputs of severla smaller models.")
 flags.DEFINE_string('activations_output_path', defvalues.get('activations_output_path', None), "Output path to write out all of the activations.")
-flags.DEFINE_boolean('write_activations', defvalues.get('write_activations', False), "Write out additional logging information?")
+#flags.DEFINE_boolean('write_activations', defvalues.get('write_activations', False), "Write out additional logging information?")
 
 # These two flags should do the same thing but process_msa = False may be broken now.
 # use_precomputed_msas was introduced in alphafold multimer
@@ -97,12 +97,14 @@ flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas
 
 # We have decided to remove this option
 # flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
+# I don't think that this is working currently
 flags.DEFINE_integer('num_recycle', defvalues.get('num_recycle', 3), 'Number of times that you want to recycle the params. Can\'t be set to less than 3 until we make some updates.') # I really should give this a random value
 flags.DEFINE_boolean('exit_after_msa', defvalues.get('exit_after_msa', False ), "If true, the program will exit after computing the sequence input features. This can be useful if you are doing a block of runs on a cluster and ohly want to compute your alignments a single time.")
 flags.DEFINE_integer('num_structures', defvalues.get('num_structures', 1 ), "Number of structures to generate.")
 flags.DEFINE_string('job_name', defvalues.get('job_name', None), "Number of structures to generate.")
 
 flags.DEFINE_boolean('overwrite', defvalues.get('overwrite', False), "If a directory exists should it be overwritten? Default False. Set to true to ignore a directory existing.")
+flags.DEFINE_boolean('run_relax', defvalues.get('run_relax', True), "Do you want to run the relax or not?")
 
 flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
@@ -165,7 +167,6 @@ def predict_structure(
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir)
 
-  # path_to_structure_dir =
   structure_output_dir = os.path.join(output_dir,structure_dir)  
   if not os.path.exists(structure_output_dir):
     os.makedirs(structure_output_dir)
@@ -179,7 +180,7 @@ def predict_structure(
     'random_seed': random_seed,
   } 
 
-  with open(os.path.join(structure_output_dir,"arguments.txt"),"w") as f:
+  with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output))
 
   # Get features.
@@ -191,7 +192,7 @@ def predict_structure(
   timings['features'] = time.time() - t_0
 
   # Write out features as a pickled dictionary.
-  features_output_path = os.path.join(output_dir, 'features.pkl')
+  features_output_path = os.path.join(structure_output_dir, 'features.pkl')
   with open(features_output_path, 'wb') as f:
     pickle.dump(feature_dict, f, protocol=4)
 
@@ -234,7 +235,9 @@ def predict_structure(
       ranking_confidences[model_name] = prediction_result['ranking_confidence']
 
       # Save the model outputs.
-      result_output_path = os.path.join(structure_output_dir, f'result_{model_name}.pkl')
+
+      structure_id =  os.path.basename(structure_dir)
+      result_output_path = os.path.join(structure_output_dir, f'result_{structure_id}_{model_name}.pkl') # Add structure number to this also 
       with open(result_output_path, 'wb') as f:
         pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
 
@@ -247,12 +250,15 @@ def predict_structure(
           b_factors=plddt_b_factors,
           remove_leading_feature_dimension=not model_runner.multimer_mode)
 
-      unrelaxed_pdb_path = os.path.join(structure_output_dir, f'unrelaxed_{model_name}.pdb')
+
+      unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
+      unrelaxed_pdb_path = os.path.join(structure_output_dir, f'unrelaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
     # Relax the prediction.
-    if amber_relaxer:
+    # if :
+    if amber_relaxer and FLAGS.run_relax:
       t_0 = time.time()
       relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
       timings[f'relax_{model_name}'] = time.time() - t_0
@@ -260,7 +266,7 @@ def predict_structure(
       relaxed_pdbs[model_name] = relaxed_pdb_str
 
       # Save the relaxed PDB.
-      relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{model_name}.pdb')
+      relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
       with open(relaxed_output_path, 'w') as f:
         f.write(relaxed_pdb_str)
 
@@ -271,7 +277,7 @@ def predict_structure(
     relaxed_pdbs = {}
     for model_name, model_runner in model_runners.items():
 
-      result_output_path = os.path.join(structure_output_dir, f'result_{model_name}.pkl')
+      result_output_path = os.path.join(structure_output_dir, f'result_{structure_id}_{model_name}.pkl') # Add structure number to this also.
 
       with open(result_output_path, 'rb') as f:
         prediction_result = pickle.load(f) 
@@ -284,9 +290,9 @@ def predict_structure(
   for idx, (model_name, _) in enumerate(
       sorted(ranking_confidences.items(), key=lambda x: x[1], reverse=True)):
     ranked_order.append(model_name)
-    ranked_output_path = os.path.join(structure_output_dir, f'ranked_{idx}.pdb')
+    ranked_output_path = os.path.join(structure_output_dir, f'ranked_{idx}.pdb') # Add structure number to this also 
     with open(ranked_output_path, 'w') as f:
-      if amber_relaxer:
+      if amber_relaxer and FLAGS.run_relax:
         f.write(relaxed_pdbs[model_name])
       else:
         f.write(unrelaxed_pdbs[model_name])
@@ -427,10 +433,18 @@ def main(argv):
 
     #This path might be different for the multimer system
     if FLAGS.num_recycle != None:
-      model_config.model.num_recycle
+      try:
+        model_config.model.num_recycle = FLAGS.num_recycle
+      except: 
+        pass
+      try:
+        model_config.data.common.num_recycle  = FLAGS.num_recycle
+      except: 
+        pass
 
     model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
 
+    #model_runner, reps  = model.RunModel(model_config, model_params)
     model_runner = model.RunModel(model_config, model_params)
     model_runners[model_name] = model_runner
 

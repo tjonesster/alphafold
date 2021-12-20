@@ -17,6 +17,7 @@
 The structure generation code is in 'folding.py'.
 """
 import functools
+import pickle
 # import pickle  # This does not end up being used since I can't dump pickles from the modules # I probably want to delete this at some point
 
 import haiku as hk
@@ -25,14 +26,6 @@ import jax.numpy as jnp
 
 from alphafold.common import residue_constants
 from alphafold.model import all_atom, common_modules, folding, layer_stack, lddt, mapping, prng, quat_affine, utils
-# from alphafold.model import common_modules
-# from alphafold.model import folding
-# from alphafold.model import layer_stack
-# from alphafold.model import lddt
-# from alphafold.model import mapping
-# from alphafold.model import prng
-# from alphafold.model import quat_affine
-# from alphafold.model import utils
 
 
 def softmax_cross_entropy(logits, labels):
@@ -299,11 +292,17 @@ class AlphaFold(hk.Module):
       predictions from the various heads.
     """
 
+    # pickle.dump()
+    test = [1,2,3]
+    with open("output.pkl","wb") as f:
+      pickle.dump(test, f)
+
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
     logged_output = []
 
     print("batch:", batch)
+    
 
     # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
@@ -362,7 +361,7 @@ class AlphaFold(hk.Module):
         num_iter = self.config.num_recycle
 
       # pylint: disable=g-long-lambda
-      body = lambda x: (x[0] + 1, get_prev(do_call(x[1], recycle_idx=x[0], compute_loss=False)) # We could also compute loss with this 
+      body = lambda x: (x[0] + 1, get_prev(do_call(x[1], recycle_idx=x[0], compute_loss=False))) # We could also compute loss with this 
 
       if hk.running_init():
         # When initializing the Haiku module, run one iteration of the
@@ -383,7 +382,8 @@ class AlphaFold(hk.Module):
 
     if not return_representations:
       del (ret[0] if compute_loss else ret)['representations']  # pytype: disable=unsupported-operands
-    return ret, logged_output
+    #return ret, logged_output
+    return ret
 
 
 class TemplatePairStack(hk.Module):
@@ -852,8 +852,7 @@ class MSAColumnGlobalAttention(hk.Module):
     attn_mod = GlobalAttention(
         c, self.global_config, msa_act.shape[-1],
         name='attention')
-    # [N_seq, N_res, 1]
-    msa_mask = jnp.expand_dims(msa_mask, axis=-1)
+    msa_mask = jnp.expand_dims(msa_mask, axis=-1) # [N_seq, N_res, 1]
     msa_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
@@ -1028,12 +1027,9 @@ class PredictedLDDTHead(hk.Module):
     return dict(logits=logits)
 
   def loss(self, value, batch):
-    # Shape (num_res, 37, 3)
-    pred_all_atom_pos = value['structure_module']['final_atom_positions']
-    # Shape (num_res, 37, 3)
-    true_all_atom_pos = batch['all_atom_positions']
-    # Shape (num_res, 37)
-    all_atom_mask = batch['all_atom_mask']
+    pred_all_atom_pos = value['structure_module']['final_atom_positions'] # Shape (num_res, 37, 3)
+    true_all_atom_pos = batch['all_atom_positions'] # Shape (num_res, 37, 3)
+    all_atom_mask = batch['all_atom_mask'] # Shape (num_res, 37)
 
     # Shape (num_res,)
     lddt_ca = lddt.lddt(
@@ -1103,26 +1099,18 @@ class PredictedAlignedErrorHead(hk.Module):
     act = representations['pair']
     # print(act)
 
-    # Shape (num_res, num_res, num_bins)
-    logits = common_modules.Linear(self.config.num_bins,initializer=utils.final_init(self.global_config),name='logits')(act)
-    # Shape (num_bins,)
-    breaks = jnp.linspace( 0., self.config.max_error_bin, self.config.num_bins - 1)
+    logits = common_modules.Linear(self.config.num_bins,initializer=utils.final_init(self.global_config),name='logits')(act) # Shape (num_res, num_res, num_bins)
+    breaks = jnp.linspace( 0., self.config.max_error_bin, self.config.num_bins - 1) # Shape (num_bins,)
     return dict(logits=logits, breaks=breaks)
 
   def loss(self, value, batch):
-    # Shape (num_res, 7)
-    predicted_affine = quat_affine.QuatAffine.from_tensor(value['structure_module']['final_affines'])
-    # Shape (num_res, 7)
-    true_affine = quat_affine.QuatAffine.from_tensor(batch['backbone_affine_tensor'])
-    # Shape (num_res)
-    mask = batch['backbone_affine_mask']
-    # Shape (num_res, num_res)
-    square_mask = mask[:, None] * mask[None, :]
+    predicted_affine = quat_affine.QuatAffine.from_tensor(value['structure_module']['final_affines']) # Shape (num_res, 7)
+    true_affine = quat_affine.QuatAffine.from_tensor(batch['backbone_affine_tensor']) # Shape (num_res, 7)
+    mask = batch['backbone_affine_mask'] # Shape (num_res)
+    square_mask = mask[:, None] * mask[None, :] # Shape (num_res, num_res)
     num_bins = self.config.num_bins
-    # (1, num_bins - 1)
-    breaks = value['predicted_aligned_error']['breaks']
-    # (1, num_bins)
-    logits = value['predicted_aligned_error']['logits']
+    breaks = value['predicted_aligned_error']['breaks'] # (1, num_bins - 1)
+    logits = value['predicted_aligned_error']['logits'] # (1, num_bins)
 
     # Compute the squared error for each alignment.
     def _local_frame_points(affine):
@@ -1825,7 +1813,8 @@ class EmbeddingsAndEvoformer(hk.Module):
         'msa_first_row': msa_activations[0],
         
         # We are going to want to change this so that it is only included occationally
-        'template_embedding': template_pair_representation, # This has been added and may have unintended consequences going forwards
+        # 'template_embedding': template_pair_representation,  #This does not exist at this point... figure out what is happening here...
+        # This has been added and may have unintended consequences going forwards
     }
 
     return output

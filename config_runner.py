@@ -10,9 +10,10 @@ CONFIG_RUN_ALPHAFOLD = {
     "kalign_binary_path": "/usr/bin/kalign",
     "uniref90_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniref90/uniref90.fasta",
     "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
-    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
+    #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
+    #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/",
     "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
-    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd",
+    "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
     "uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
     "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
     "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
@@ -26,6 +27,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "model_preset": "monomer",
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
+    # ""
     "num_structures": 10,
 #    "random_seed": None
 }

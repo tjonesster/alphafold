@@ -44,9 +44,7 @@ class Msa:
     return len(self.sequences)
 
   def truncate(self, max_seqs: int):
-    return Msa(sequences=self.sequences[:max_seqs],
-               deletion_matrix=self.deletion_matrix[:max_seqs],
-               descriptions=self.descriptions[:max_seqs])
+    return Msa(sequences=self.sequences[:max_seqs], deletion_matrix=self.deletion_matrix[:max_seqs], descriptions=self.descriptions[:max_seqs])
 
 
 @dataclasses.dataclass(frozen=True)
@@ -197,9 +195,7 @@ def _convert_sto_seq_to_a3m(
       yield sequence_res.lower()
 
 
-def convert_stockholm_to_a3m(stockholm_format: str,
-                             max_sequences: Optional[int] = None,
-                             remove_first_row_gaps: bool = True) -> str:
+def convert_stockholm_to_a3m(stockholm_format: str, max_sequences: Optional[int] = None, remove_first_row_gaps: bool = True) -> str:
   """Converts MSA in Stockholm format to the A3M format."""
   descriptions = {}
   sequences = {}
@@ -366,16 +362,14 @@ def deduplicate_stockholm_msa(stockholm_msa: str) -> str:
   return '\n'.join(filtered_lines) + '\n'
 
 
-def _get_hhr_line_regex_groups(
-    regex_pattern: str, line: str) -> Sequence[Optional[str]]:
+def _get_hhr_line_regex_groups(regex_pattern: str, line: str) -> Sequence[Optional[str]]:
   match = re.match(regex_pattern, line)
   if match is None:
     raise RuntimeError(f'Could not parse query line {line}')
   return match.groups()
 
 
-def _update_hhr_residue_indices_list(
-    sequence: str, start_index: int, indices_list: List[int]):
+def _update_hhr_residue_indices_list(sequence: str, start_index: int, indices_list: List[int]):
   """Computes the relative indices for each residue with respect to the original sequence."""
   counter = start_index
   for symbol in sequence:
