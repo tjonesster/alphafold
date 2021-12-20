@@ -26,8 +26,6 @@ import ml_collections
 
 from alphafold.common import confidence
 from alphafold.model import features, modules, modules_multimer
-from alphafold.model import modules
-from alphafold.common import confidence
 
 # Testing 
 def get_confidence_metrics(prediction_result: Mapping[str, Any], multimer_mode: bool) -> Mapping[str, Any]:
@@ -73,13 +71,11 @@ class RunModel:
 
     if self.multimer_mode:
       def _forward_fn(batch):
-        model = modules_multimer.AlphaFold(self.config.model)
-        return model(
-            batch,
-            is_training=False)
+        model, additional_output = modules_multimer.AlphaFold(self.config.model)
+        return model(batch, is_training=False)
     else:
       def _forward_fn(batch):
-        model = modules.AlphaFold(self.config.model)
+        model = modules.AlphaFold(self.config.model) # model, additional_output = modules.AlphaFold(self.config.model)
 
         return model(
             batch,
@@ -105,16 +101,14 @@ class RunModel:
     if not self.params:
       # Init params randomly.
       rng = jax.random.PRNGKey(random_seed)
-      self.params = hk.data_structures.to_mutable_dict(
-          self.init(rng, feat))
+      self.params = hk.data_structures.to_mutable_dict(self.init(rng, feat))
       logging.warning('Initialized parameters randomly')
 
   def process_features(self, raw_features: Union[tf.train.Example, features.FeatureDict], random_seed: int) -> features.FeatureDict:
     """Processes features to prepare for feeding them into the model.
 
     Args:
-      raw_features: The output of the data pipeline either as a dict of NumPy
-        arrays or as a tf.train.Example.
+      raw_features: The output of the data pipeline either as a dict of NumPy arrays or as a tf.train.Example.
       random_seed: The random seed to use when processing the features.
 
     Returns:
@@ -148,10 +142,8 @@ class RunModel:
     """Makes a prediction by inferencing the model on the provided features.
 
     Args:
-      feat: A dictionary of NumPy feature arrays as output by
-        RunModel.process_features.
-      random_seed: The random seed to use when running the model. In the
-        multimer model this controls the MSA sampling.
+      feat: A dictionary of NumPy feature arrays as output by RunModel.process_features.
+      random_seed: The random seed to use when running the model. In the multimer model this controls the MSA sampling.
 
     Returns:
       A dictionary of model outputs.

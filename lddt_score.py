@@ -4,6 +4,7 @@
 
 # from re import L
 import numpy
+import pickle
 
 from absl import flags, logging, app
 from Bio.PDB import PDBParser
@@ -32,6 +33,10 @@ FLAGS = flags.FLAGS
 
 def main(argv):
 
+    with open("result_model_5.pkl", 'rb') as f:
+        ground = pickle.load(f)
+    #ground = 
+
     structures = []
 
     for structure in FLAGS.structure_names:
@@ -39,10 +44,10 @@ def main(argv):
             structures.append(protein.from_pdb_string(f.read()))
     
     # structures[0]
-    for structure in structures[1:]:
+    for structure in structures:
         #print(numpy.shape(structure))
         # print(numpy.size(structure.atom_positions))
-        print(lddt.lddt(structures[0], structure, protein.ideal_atom_mask(structures[0])))
+        print(lddt.lddt(ground, structure, protein.ideal_atom_mask(ground)))
         continue
 
 

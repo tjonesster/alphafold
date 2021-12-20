@@ -102,13 +102,17 @@ class mmseqs2:
           '-o', '/dev/null',
           '-A', sto_path,
           '--noali',
-          '--F1', str(self.filter_f1),
-          '--F2', str(self.filter_f2),
-          '--F3', str(self.filter_f3),
-          '--incE', str(self.e_value),
+          # '--F1', str(self.filter_f1),
+          # '--F2', str(self.filter_f2),
+          # '--F3', str(self.filter_f3),
+          # '--incE', str(self.e_value),
+          '-e', str(self.e_value * 10), # I this this thread https://github.com/soedinglab/MMseqs2/issues/107  it sounds like a jackhmmer evalue is multipled by 10 for mmseqs2  -- not sure about this...
           # Report only sequences with E-values <= x in per-sequence output.
-          '-E', str(self.e_value),
-          '--cpu', str(self.n_cpu),
+          #'-E', str(self.e_value),
+          #'--cpu', str(self.n_cpu),
+          '--max-seqs', str(999999999999),
+          '--threads', str(self.n_cpu),
+          
           '-N', str(self.n_iter)
       ]
       if self.get_tblout:
