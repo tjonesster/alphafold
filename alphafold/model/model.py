@@ -71,17 +71,13 @@ class RunModel:
 
     if self.multimer_mode:
       def _forward_fn(batch):
-        model, additional_output = modules_multimer.AlphaFold(self.config.model)
+        model = modules_multimer.AlphaFold(self.config.model)
         return model(batch, is_training=False)
     else:
       def _forward_fn(batch):
         model = modules.AlphaFold(self.config.model) # model, additional_output = modules.AlphaFold(self.config.model)
 
-        return model(
-            batch,
-            is_training=False,
-            compute_loss=False,
-            ensemble_representations=True)
+        return model(batch, is_training=False, compute_loss=False, ensemble_representations=True)
 
     self.apply = jax.jit(hk.transform(_forward_fn).apply)
     self.init = jax.jit(hk.transform(_forward_fn).init)
@@ -120,15 +116,9 @@ class RunModel:
 
     # Single-chain mode.
     if isinstance(raw_features, dict):
-      return features.np_example_to_features(
-          np_example=raw_features,
-          config=self.config,
-          random_seed=random_seed)
+      return features.np_example_to_features(np_example=raw_features, config=self.config, random_seed=random_seed)
     else:
-      return features.tf_example_to_features(
-          tf_example=raw_features,
-          config=self.config,
-          random_seed=random_seed)
+      return features.tf_example_to_features(tf_example=raw_features, config=self.config, random_seed=random_seed)
 
   def eval_shape(self, feat: features.FeatureDict) -> jax.ShapeDtypeStruct:
     self.init_params(feat)
@@ -156,6 +146,6 @@ class RunModel:
     # already happening when computing get_confidence_metrics, and this ensures
     # all outputs are blocked on.
     jax.tree_map(lambda x: x.block_until_ready(), result)
-    result.update( get_confidence_metrics(result, multimer_mode=self.multimer_mode))
+    result.update(get_confidence_metrics(result, multimer_mode=self.multimer_mode))
     logging.info('Output shape was %s', tree.map_structure(lambda x: x.shape, result))
     return result
