@@ -5,13 +5,12 @@ import os
 import shutil
 
 from alphafold.data import pipeline, pipeline_multimer, templates
-from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues 
-
 from alphafold.data.tools import hhblits, hhsearch, hmmsearch, jackhmmer
-
 from alphafold.data import msa_identifiers
 from alphafold.data import parsers
 from alphafold.data import templates
+
+from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 
 #Cache Directory 
 flags.DEFINE_string('msa_cache_directory', defvalues.get('msa_cache_directory', None), 'Path to the hmmsearch executable.')

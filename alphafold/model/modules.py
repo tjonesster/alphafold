@@ -1231,7 +1231,7 @@ class TriangleMultiplication(hk.Module):
     left_projection = common_modules.Linear(c.num_intermediate_channel, name='left_projection')
     left_proj_act = mask * left_projection(act)
 
-    right_projection = common_modules.Linear( c.num_intermediate_channel, name='right_projection')
+    right_projection = common_modules.Linear(c.num_intermediate_channel, name='right_projection')
     right_proj_act = mask * right_projection(act)
 
     left_gate_values = jax.nn.sigmoid(common_modules.Linear(
@@ -1557,15 +1557,9 @@ class EvoformerIteration(hk.Module):
       attn_mod = MSAColumnGlobalAttention(
           c.msa_column_attention, gc, name='msa_column_global_attention')
 
-
   # Attention mode either column or global column
   # dropoout_wrapper 
-    msa_act = dropout_wrapper_fn(
-        attn_mod,
-        msa_act,
-        msa_mask,
-        safe_key=next(sub_keys))
-
+    msa_act = dropout_wrapper_fn( attn_mod, msa_act, msa_mask, safe_key=next(sub_keys))
 
     #I don't know why dropout is chained like like this. MSA transition?
     msa_act = dropout_wrapper_fn(
@@ -1588,7 +1582,6 @@ class EvoformerIteration(hk.Module):
         pair_act,
         pair_mask,
         safe_key=next(sub_keys))
-
 
     pair_act = dropout_wrapper_fn(
         TriangleMultiplication(c.triangle_multiplication_incoming, gc, name='triangle_multiplication_incoming'),
@@ -1657,8 +1650,7 @@ class EmbeddingsAndEvoformer(hk.Module):
     # Jumper et al. (2021) Suppl. Alg. 2 "Inference" line 6
     # Jumper et al. (2021) Suppl. Alg. 32 "RecyclingEmbedder"
     if c.recycle_pos and 'prev_pos' in batch:
-      prev_pseudo_beta = pseudo_beta_fn(
-          batch['aatype'], batch['prev_pos'], None)
+      prev_pseudo_beta = pseudo_beta_fn(batch['aatype'], batch['prev_pos'], None)
       dgram = dgram_from_positions(prev_pseudo_beta, **self.config.prev_pos)
       pair_activations += common_modules.Linear(c.pair_channel, name='prev_pos_linear')(dgram)
 
@@ -1699,10 +1691,7 @@ class EmbeddingsAndEvoformer(hk.Module):
     # Embed extra MSA features.
     # Jumper et al. (2021) Suppl. Alg. 2 "Inference" lines 14-16
     extra_msa_feat = create_extra_msa_feature(batch)
-    extra_msa_activations = common_modules.Linear(
-        c.extra_msa_channel,
-        name='extra_msa_activations')(
-            extra_msa_feat)
+    extra_msa_activations = common_modules.Linear(c.extra_msa_channel, name='extra_msa_activations')(extra_msa_feat)
 
     # Extra MSA Stack.
     # Jumper et al. (2021) Suppl. Alg. 18 "ExtraMsaStack"
@@ -1731,8 +1720,7 @@ class EmbeddingsAndEvoformer(hk.Module):
       extra_msa_stack_fn = hk.remat(extra_msa_stack_fn)
 
     extra_msa_stack = layer_stack.layer_stack(c.extra_msa_stack_num_block)(extra_msa_stack_fn)
-    extra_msa_output, safe_key = extra_msa_stack(
-        (extra_msa_stack_input, safe_key))
+    extra_msa_output, safe_key = extra_msa_stack((extra_msa_stack_input, safe_key))
 
     pair_activations = extra_msa_output['pair']
 
@@ -1964,9 +1952,7 @@ class TemplateEmbedding(hk.Module):
     # Jumper et al. (2021) Suppl. Alg. 17 "TemplatePointwiseAttention"
     flat_query = jnp.reshape(query_embedding, [num_res * num_res, 1, query_num_channels])
 
-    flat_templates = jnp.reshape(
-        jnp.transpose(template_pair_representation, [1, 2, 0, 3]),
-        [num_res * num_res, num_templates, num_channels])
+    flat_templates = jnp.reshape(jnp.transpose(template_pair_representation, [1, 2, 0, 3]), [num_res * num_res, num_templates, num_channels])
 
     bias = (1e9 * (template_mask[None, None, None, :] - 1.))
 

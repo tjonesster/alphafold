@@ -36,8 +36,7 @@ from alphafold.data.tools import hhsearch, hmmsearch
 from alphafold.model import config, model, data
 from alphafold.relax import relax
 
-# move this into the alphafold directory so that it can be imported by all of the apps
-from config_runner import CONFIG_RUN_ALPHAFOLD as defvalues 
+from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 
 logging.set_verbosity(logging.INFO)
 
@@ -70,7 +69,6 @@ flags.DEFINE_string('max_template_date', defvalues.get('max_template_date', "202
 flags.DEFINE_string('obsolete_pdbs_path', defvalues.get('obsolete_pdbs_path',  None), 'Path to file containing a mapping from obsolete PDB IDs to the PDB IDs of their replacements.')
 
 # Input / Output Paths
-#flags.DEFINE_list('fasta_paths', defvalues.get('fasta_paths', None), 'Paths to FASTA files, each containing one sequence. Paths should be separated by commas. All FASTA paths must have a unique basename as the basename is used to name the output directories for each prediction.')
 flags.DEFINE_list('fasta_names', defvalues.get('fasta_names', None), 'The names of the fasta files. They should be located in your output path.')
 flags.DEFINE_string('fasta_path', defvalues.get('fasta_path', None), 'Path to the directory that contains the fastas.')
 flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a directory that will store the results.')
@@ -165,12 +163,13 @@ def predict_structure(
 
   msa_output_dir = os.path.join(output_dir, 'msas')
   if not os.path.exists(msa_output_dir):
-    os.makedirs(msa_output_dir)
+    os.makedirs(msa_output_dir) # create the directory for the msa to be saved 
 
   structure_output_dir = os.path.join(output_dir,structure_dir)  
   if not os.path.exists(structure_output_dir):
-    os.makedirs(structure_output_dir)
+    os.makedirs(structure_output_dir) # create the directroy for the msa to be saved
 
+  # format the output file that is going to be written for each 
   arguments_to_output = {
     'fasta_path': fasta_path,
     'fasta_name': fasta_name,
@@ -181,7 +180,9 @@ def predict_structure(
   } 
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
-    f.write(json.dumps(arguments_to_output))
+    f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
+
+  shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
   # Get features.
   t_0 = time.time()
@@ -197,10 +198,9 @@ def predict_structure(
     pickle.dump(feature_dict, f, protocol=4)
 
   if FLAGS.exit_after_msa: 
-    exit()
+    exit() 
 
   unrelaxed_pdbs = {}
-
   num_models=len(model_runners)
 
   for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
