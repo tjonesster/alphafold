@@ -15,18 +15,17 @@ import fcntl #  Should only work on linux and mac
 
 import argparse
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
+from alphafold.user_config import alignment_methods 
 
 # path= "/media/taylorjones/bigboi/alphafold_data/alignment_cache"
 
-# add more enumerated types
-# not implemented yet
-
 # Options that are specific to this module
 class operation_types(Enum):
-
     add = 1
     copy = 2
     lookup = 3
+    test = 4
+
 
 '''
 Example:
@@ -65,10 +64,12 @@ class alignment_retriever:
     def create_new_directory(self):
         new_dir = str(uuid.uuid4())
 
-        while not os.path.exists(new_dir):
-            new_dir = str(uuid.uuid4())
+        while not os.path.exists(os.path.join(self.root_path, new_dir)):
+            new_dir = str(uuid.uuid4()) 
 
-        return new_dir
+        os.makedirs(os.path.join(self.root_path, new_dir))
+    
+        return os.path.join(self.root_path, new_dir)
         
     def lookup_sequence(self):
         result =  self.manifest.get(sequence, False)
@@ -88,23 +89,25 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--root_path', help='root path of the alignment cache', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='sequence to lookup')    
 
-    add_parser.add_argument("-dest_path", "--destination_path", help="output file")
-    subparsers = parser.add_subparsers(help='sub-command help')
+    parser.add_argument("-dest_path", "--destination_path", help="output file")
+
+    # subparsers = parser.add_subparsers(help='sub-command help')
     
-    add_parser = subparsers.add_parser('add', help='add help')  
+    # add_parser = subparsers.add_parser('add', help='add a sequence to the cache')    
+    
     # add_parser.add_argument("-s", "--sequence", help="input file")
 
     
-    lookup_parser = subparsers.add_parser('lookup', help='lookup help') 
+    # lookup_parser = subparsers.add_parser('lookup', help='lookup help') 
     # lookup_parser.add_argument("-s", "--sequence", help="input file")   
     # lookup_parser.set_defaults(func=lookup_sequence)    
 
-    copy_parser = subparsers.add_parser('copy', help='copy help')   
+    # copy_parser = subparsers.add_parser('copy', help='copy help')   
     # copy_parser.add_argument("-s", "--sequence", help="input file") 
     
 
     args = parser.parse_args()
-    print(args)
+    # print(args)
     ar = alignment_retriever(args.root_path)
 
     if args.operation == operation_types.add:   # add a new sequence
@@ -113,6 +116,10 @@ if __name__ == "__main__":
         print("not implemented yet")    
     elif args.operation == operation_types.lookup: # lookup a sequence
         print("not implemented yet")
+    elif args.operation == operation_types.test:
+        print("test")
+
+    ar = alignment_retriever(args.root_path)
 
     # if args.operation == operation_types.add:  
 
