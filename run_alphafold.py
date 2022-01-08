@@ -165,6 +165,21 @@ def predict_structure(
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir) # create the directory for the msa to be saved 
 
+ 
+  shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
+
+  # Get features.
+  t_0 = time.time()
+  if is_prokaryote is None:
+    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
+  else:
+    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir, is_prokaryote=is_prokaryote)
+  timings['features'] = time.time() - t_0
+
+  # Write out features as a pickled dictionary.  
+  if FLAGS.exit_after_msa: 
+    exit() 
+
   structure_output_dir = os.path.join(output_dir,structure_dir)  
   if not os.path.exists(structure_output_dir):
     os.makedirs(structure_output_dir) # create the directroy for the msa to be saved
@@ -179,26 +194,13 @@ def predict_structure(
     'random_seed': random_seed,
   } 
 
-  with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
-    f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
-
-  shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
-
-  # Get features.
-  t_0 = time.time()
-  if is_prokaryote is None:
-    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
-  else:
-    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir, is_prokaryote=is_prokaryote)
-  timings['features'] = time.time() - t_0
-
-  # Write out features as a pickled dictionary.
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
   with open(features_output_path, 'wb') as f:
     pickle.dump(feature_dict, f, protocol=4)
 
-  if FLAGS.exit_after_msa: 
-    exit() 
+  with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
+    f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
+
 
   unrelaxed_pdbs = {}
   num_models=len(model_runners)
