@@ -23,10 +23,8 @@ from absl import logging
 from alphafold.data.tools import utils
 # Internal import (7716).
 
-
 _HHBLITS_DEFAULT_P = 20
 _HHBLITS_DEFAULT_Z = 500
-
 
 class HHBlits:
   """Python wrapper of the HHblits binary."""
@@ -50,26 +48,18 @@ class HHBlits:
 
     Args:
       binary_path: The path to the HHblits executable.
-      databases: A sequence of HHblits database paths. This should be the
-        common prefix for the database files (i.e. up to but not including
-        _hhm.ffindex etc.)
+      databases: A sequence of HHblits database paths. Common prefix not includding _hhm.ffindex ... etc
       n_cpu: The number of CPUs to give HHblits.
       n_iter: The number of HHblits iterations.
       e_value: The E-value, see HHblits docs for more details.
-      maxseq: The maximum number of rows in an input alignment. Note that this
-        parameter is only supported in HHBlits version 3.1 and higher.
+      maxseq: The maximum number of rows in an input alignment. This is only supported in HHBLITS 3.1 and later.
       realign_max: Max number of HMM-HMM hits to realign. HHblits default: 500.
-      maxfilt: Max number of hits allowed to pass the 2nd prefilter.
-        HHblits default: 20000.
-      min_prefilter_hits: Min number of hits to pass prefilter.
-        HHblits default: 100.
-      all_seqs: Return all sequences in the MSA / Do not filter the result MSA.
-        HHblits default: False.
+      maxfilt: Max number of hits allowed to pass the 2nd prefilter. HHblits default: 20000.
+      min_prefilter_hits: Min number of hits to pass prefilter. HHblits default: 100.
+      all_seqs: Return all sequences in the MSA / Do not filter the result MSA. HHblits default: False.
       alt: Show up to this many alternative alignments.
-      p: Minimum Prob for a hit to be included in the output hhr file.
-        HHblits default: 20.
-      z: Hard cap on number of hits reported in the hhr file.
-        HHblits default: 500. NB: The relevant HHblits flag is -Z not -z.
+      p: Minimum Prob for a hit to be included in the output hhr file. HHblits default: 20.
+      z: Hard cap on number of hits reported in the hhr file. HHblits default: 500. NB: The relevant HHblits flag is -Z not -z.
 
     Raises:
       RuntimeError: If HHblits binary not found within the path.
@@ -140,16 +130,10 @@ class HHBlits:
           if error_line.strip():
             logging.error(error_line.strip())
         logging.error('HHblits stderr end')
-        raise RuntimeError('HHblits failed\nstdout:\n%s\n\nstderr:\n%s\n' % (
-            stdout.decode('utf-8'), stderr[:500_000].decode('utf-8')))
+        raise RuntimeError('HHblits failed\nstdout:\n%s\n\nstderr:\n%s\n' % (stdout.decode('utf-8'), stderr[:500_000].decode('utf-8')))
 
       with open(a3m_path) as f:
         a3m = f.read()
 
-    raw_output = dict(
-        a3m=a3m,
-        output=stdout,
-        stderr=stderr,
-        n_iter=self.n_iter,
-        e_value=self.e_value)
+    raw_output = dict( a3m=a3m, output=stdout, stderr=stderr, n_iter=self.n_iter, e_value=self.e_value)
     return [raw_output]

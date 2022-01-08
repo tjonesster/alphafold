@@ -66,6 +66,8 @@ class mmseqs2:
       streaming_callback: Callback function run after each chunk iteration with
         the iteration number as argument.
     """
+
+    assert (False), 'mmseqs2 thing is not implemented yet'
     self.binary_path = binary_path
     self.database_path = database_path
     self.num_streamed_chunks = num_streamed_chunks

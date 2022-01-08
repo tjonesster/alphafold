@@ -69,8 +69,7 @@ def parse_fasta(fasta_string: str) -> Tuple[Sequence[str], Sequence[str]]:
   Returns:
     A tuple of two lists:
     * A list of sequences.
-    * A list of sequence descriptions taken from the comment lines. In the
-      same order as the sequences.
+    * A list of sequence descriptions taken from the comment lines. In the same order as the sequences.
   """
   sequences = []
   descriptions = []
@@ -93,18 +92,13 @@ def parse_stockholm(stockholm_string: str) -> Msa:
   """Parses sequences and deletion matrix from stockholm format alignment.
 
   Args:
-    stockholm_string: The string contents of a stockholm file. The first
-      sequence in the file should be the query sequence.
+    stockholm_string: The string contents of a stockholm file. The first sequence in the file should be the query sequence.
 
   Returns:
     A tuple of:
-      * A list of sequences that have been aligned to the query. These
-        might contain duplicates.
-      * The deletion matrix for the alignment as a list of lists. The element
-        at `deletion_matrix[i][j]` is the number of residues deleted from
-        the aligned sequence i at residue position j.
-      * The names of the targets matched, including the jackhmmer subsequence
-        suffix.
+      * A list of sequences that have been aligned to the query. These might contain duplicates.
+      * The deletion matrix for the alignment as a list of lists. The element at `deletion_matrix[i][j]` is the number of residues deleted from the aligned sequence i at residue position j.
+      * The names of the targets matched, including the jackhmmer subsequence suffix.
   """
   name_to_sequence = collections.OrderedDict()
   for line in stockholm_string.splitlines():
@@ -153,16 +147,12 @@ def parse_a3m(a3m_string: str) -> Msa:
   """Parses sequences and deletion matrix from a3m format alignment.
 
   Args:
-    a3m_string: The string contents of a a3m file. The first sequence in the
-      file should be the query sequence.
+    a3m_string: The string contents of a a3m file. The first sequence in the file should be the query sequence.
 
   Returns:
     A tuple of:
-      * A list of sequences that have been aligned to the query. These
-        might contain duplicates.
-      * The deletion matrix for the alignment as a list of lists. The element
-        at `deletion_matrix[i][j]` is the number of residues deleted from
-        the aligned sequence i at residue position j.
+      * A list of sequences that have been aligned to the query. These might contain duplicates.
+      * The deletion matrix for the alignment as a list of lists. The element at `deletion_matrix[i][j]` is the number of residues deleted from the aligned sequence i at residue position j.
       * A list of descriptions, one per sequence, from the a3m file.
   """
   sequences, descriptions = parse_fasta(a3m_string)
@@ -386,8 +376,7 @@ def _parse_hhr_hit(detailed_lines: Sequence[str]) -> TemplateHit:
   This works on .hhr files generated from both HHBlits and HHSearch.
 
   Args:
-    detailed_lines: A list of lines from a single comparison section between 2
-      sequences (which each have their own HMM's)
+    detailed_lines: A list of lines from a single comparison section between 2 sequences (which each have their own HMM's)
 
   Returns:
     A dictionary with the information from that detailed comparison section
@@ -480,9 +469,7 @@ def parse_hhr(hhr_string: str) -> Sequence[TemplateHit]:
   """Parses the content of an entire HHR file."""
   lines = hhr_string.splitlines()
 
-  # Each .hhr file starts with a results table, then has a sequence of hit
-  # "paragraphs", each paragraph starting with a line 'No <hit number>'. We
-  # iterate through each paragraph to parse each hit.
+  # Each .hhr file starts with a results table, then has a sequence of hit  "paragraphs", each paragraph starting with a line 'No <hit number>'. We iterate through each paragraph to parse each hit.
 
   block_starts = [i for i, line in enumerate(lines) if line.startswith('No ')]
 

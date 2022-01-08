@@ -29,11 +29,7 @@ from alphafold.data.tools import utils
 class HHSearch:
   """Python wrapper of the HHsearch binary."""
 
-  def __init__(self,
-               *,
-               binary_path: str,
-               databases: Sequence[str],
-               maxseq: int = 1_000_000):
+  def __init__(self, *, binary_path: str, databases: Sequence[str], maxseq: int = 1_000_000):
     """Initializes the Python HHsearch wrapper.
 
     Args:
@@ -83,25 +79,20 @@ class HHSearch:
              ] + db_cmd
 
       logging.info('Launching subprocess "%s"', ' '.join(cmd))
-      process = subprocess.Popen(
-          cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
       with utils.timing('HHsearch query'):
         stdout, stderr = process.communicate()
         retcode = process.wait()
 
       if retcode:
         # Stderr is truncated to prevent proto size errors in Beam.
-        raise RuntimeError(
-            'HHSearch failed:\nstdout:\n%s\n\nstderr:\n%s\n' % (
-                stdout.decode('utf-8'), stderr[:100_000].decode('utf-8')))
+        raise RuntimeError('HHSearch failed:\nstdout:\n%s\n\nstderr:\n%s\n' % ( stdout.decode('utf-8'), stderr[:100_000].decode('utf-8')))
 
       with open(hhr_path) as f:
         hhr = f.read()
     return hhr
 
-  def get_template_hits(self,
-                        output_string: str,
-                        input_sequence: str) -> Sequence[parsers.TemplateHit]:
+  def get_template_hits(self, output_string: str, input_sequence: str) -> Sequence[parsers.TemplateHit]:
     """Gets parsed template hits from the raw string output by the tool."""
     del input_sequence  # Used by hmmseach but not needed for hhsearch.
     return parsers.parse_hhr(output_string)

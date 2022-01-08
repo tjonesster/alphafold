@@ -198,9 +198,7 @@ class DataPipeline:
     logging.info('BFD MSA size: %d sequences.', len(bfd_msa))
     logging.info('MGnify MSA size: %d sequences.', len(mgnify_msa))
     logging.info('Final (deduplicated) MSA size: %d sequences.', msa_features['num_alignments'][0])
-    logging.info('Total number of templates (NB: this can include bad '
-                 'templates and is later filtered to top 4): %d.',
-                 templates_result.features['template_domain_names'].shape[0])
+    logging.info('Total number of templates (NB: this can include bad templates and is later filtered to top 4): %d.', templates_result.features['template_domain_names'].shape[0])
 
     return {**sequence_features, **msa_features, **templates_result.features}
 
@@ -249,10 +247,7 @@ def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> Fea
       query_release_date=None,
       hits=hhsearch_hits)
 
-  sequence_features = make_sequence_features(
-      sequence=input_sequence,
-      description=input_description,
-      num_res=num_res)
+  sequence_features = make_sequence_features(sequence=input_sequence, description=input_description, num_res=num_res)
 
   msa_features = make_msa_features(
       msas=(uniref90_msa, bfd_msa, mgnify_msa), 

@@ -133,7 +133,7 @@ class alignment_retriever:
 
         labels = list(map(lambda x :str(x), range(len(thing.keys()))))
 
-        sequences = dict(zip(labels, elements)))
+        sequences = dict(zip(labels, elements))
 
         with open(destination_path) as f:
             for label, sequence in sequences.items():
@@ -197,7 +197,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
     parser.add_argument('-m', '--method', help='Alignment method to use', choices=list(alignment_methods))
-    parser.add_argument("-d", "--database_set", type=database_sets, choices=list(database_sets), help="The database set to use", default=defvalues['database_set']) 
+    parser.add_argument("-d", "--database_set", type=database_sets, choices=list(database_sets), help="The database set to use", default=defvalues.get('database_set', None)) 
     parser.add_argument("-dest_path", "--destination_path", help="Where do you want to place the output or copy from the alignment.")
     parser.add_argument('--date', help='Date to use newer than date')
 
