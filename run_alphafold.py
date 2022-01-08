@@ -110,12 +110,6 @@ flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000)
 
 FLAGS = flags.FLAGS
 
-# This does not appear to work.... I think that delattr should work instead
-# Instead I just went in so that you do not enforce the not set side of the check_flags function
-# if FLAGS['model_preset'] == 'monomer':
-    # del FLAGS['pdb_seqres_database_path']
-    # del FLAGS['uniprot_database_path']
-
 MAX_TEMPLATE_HITS = 20
 RELAX_MAX_ITERATIONS = 0
 RELAX_ENERGY_TOLERANCE = 2.39

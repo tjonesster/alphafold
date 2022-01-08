@@ -34,8 +34,7 @@ from alphafold.data.tools import jackhmmer
 FeatureDict = MutableMapping[str, np.ndarray]
 TemplateSearcher = Union[hhsearch.HHSearch, hmmsearch.Hmmsearch]
 
-def make_sequence_features(
-    sequence: str, description: str, num_res: int) -> FeatureDict:
+def make_sequence_features(sequence: str, description: str, num_res: int) -> FeatureDict:
   """Constructs a feature dict of sequence features."""
   features = {}
   features['aatype'] = residue_constants.sequence_to_onehot(
@@ -256,9 +255,7 @@ def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> Fea
       num_res=num_res)
 
   msa_features = make_msa_features(
-      msas=(uniref90_msa, bfd_msa, mgnify_msa), #+ #+ #+
-      deletion_matrices=(uniref90_deletion_matrix, #+
-                          bfd_deletion_matrix, #+
-                          mgnify_deletion_matrix))#+
+      msas=(uniref90_msa, bfd_msa, mgnify_msa), 
+      deletion_matrices=(uniref90_deletion_matrix, bfd_deletion_matrix, mgnify_deletion_matrix))
 
   return {**sequence_features, **msa_features, **templates_result.features}

@@ -8,14 +8,19 @@ import shutil
 from enum import Enum
 import fcntl 
 import unittest
+import tempfile
 # from typing import List 
-
 import argparse
+from pathlib import Path
+
+from absl import logging
+
+from alphafold.data.tools import jackhmmer
+
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 from alphafold.user_config import alignment_methods 
 from alphafold.user_config import database_sets
 
-# float_list = list[float]
 
 # path= "/media/taylorjones/bigboi/alphafold_data/alignment_cache"
 
@@ -45,7 +50,7 @@ class alignment_retriever:
 
     '''
     def __init__(self, root_path):
-        self.root_path = root_path
+        self.root_path = Path(root_path)
         self.manifest_path = os.path.join(self.root_path, "manifest.pkl")
         self.read_manifest()
         self.manifest_updates = {}
@@ -58,7 +63,7 @@ class alignment_retriever:
                 self.manifest = pickle.load(f) # if it bombs here I don't know if it will be able to unlock
                 fcntl.flock(f, fcntl.LOCK_UN)
         except:
-            print("The manifest.pkl file did not exist. Creating it",sys.stderr)
+            logging.info("The manifest.pkl file did not exist. Creating it now.")
             self.manifest = {}
 
     def save_manifest(self):
@@ -75,7 +80,7 @@ class alignment_retriever:
             self.manifest = pickle.load(f)
 
             # apply updates to the manifest
-            print("not implemeneted: apply updates to the manifest")
+            logging.info("not implemeneted: apply updates to the manifest")
 
             pickle.dump(self.manifest, f)   
             fcntl.flock(f, fcntl.LOCK_UN)     
@@ -136,7 +141,7 @@ class alignment_retriever:
 
         return True
 
-    def fetch_alignments(self, sequence, dest_output_path,method = None, database_set = None):
+    def fetch_alignments(self, sequence:str, dest_output_path,method = None, database_set = None):
         '''
             fetch a set of alignments
         '''
@@ -150,10 +155,10 @@ class alignment_retriever:
         assert (database_set != None), "You must specify a database set to stash alignments"
 
         if not lookup_sequence(sequence):
-            print("not implemented:insert into database")
+            logging.info("not implemented:insert into database")
 
         dir = create_new_directory()
-        print("not implemented: copy the file to the new directory")
+        logging.info("not implemented: copy the file to the new directory")
         shutil.copy2(output_path, dir)
 
         return False 
@@ -163,6 +168,10 @@ class alignment_retriever:
 class TestAlignmentRetriever(unittest.TestCase):
     def setUp(self):
         self.retriever = alignment_retriever(path)
+        # create a temporary directory 
+        self.temp_dir = tempfile.mkdtemp()
+        self.retriever = alignment_retriever(self.temp_dir)
+        # 
 
     def test_lookup_sequence(self):
         # self.assertEqual(self.retriever.lookup_sequence("sequence_1"), False)
@@ -181,7 +190,7 @@ class TestAlignmentRetriever(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    print("not implemented yet")
+    logging.info("not implemented yet")
 
     parser = argparse.ArgumentParser(description="call_cache_lookup_util.py")
     parser.add_argument("operation", type=operation_types, choices=list(operation_types), help="The operation to perform")
@@ -196,7 +205,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if args.operation == operation_types.test:
-        print("testing")
+        logging.info("testing")
         unittest.main()
     else:
 
@@ -206,7 +215,7 @@ if __name__ == "__main__":
         ar = alignment_retriever(args.root_path)
 
         if args.operation == operation_types.stash:   # add a new sequence
-            print('stashing')
+            logging.info('stashing')
             msg = "stash operation requires: --sequence --method --database_set --destination_path."
 
             assert(args.sequence != "" and args.sequence != None), msg + " Sequence not provided."
@@ -218,20 +227,21 @@ if __name__ == "__main__":
             ar.stash_alignments(args.sequence, args.destination_path, args.method, args.database_set)
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
-            print('fetching')
+            logging.info('fetching')
 
             assert(args.sequence != "" and args.sequence != None), "sequence not provided"
             assert(args.destination_path != "" and args.destination_path != None), "destination_path not provided"
 
-
             ar.fetch_alignments(args.sequence, args.destination_path, args.method, args.database_set)
 
         elif args.operation == operation_types.lookup: # lookup a sequence
-            print('looking up')
+            logging.info('looking up')
+
             ar.lookup_sequence(args.sequence, args.method, args.database_set)
 
         elif args.operation == operation_types.create_fasta:
-            print("create_fasta not implemented yet ")
+            logging.info("create_fasta not implemented yet ")
+
             ar.create_fasta_from_manifest(args.destination_path)
 
 
