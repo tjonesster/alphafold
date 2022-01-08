@@ -8,11 +8,14 @@ import shutil
 from enum import Enum
 import fcntl 
 import unittest
+# from typing import List 
 
 import argparse
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 from alphafold.user_config import alignment_methods 
 from alphafold.user_config import database_sets
+
+# float_list = list[float]
 
 # path= "/media/taylorjones/bigboi/alphafold_data/alignment_cache"
 
@@ -80,7 +83,6 @@ class alignment_retriever:
     def create_new_directory(self):
         '''
             Creates a unique directory name and returns the full path to it.
-
         '''
 
         new_dir = str(uuid.uuid4())
@@ -94,7 +96,7 @@ class alignment_retriever:
         
     def lookup_sequence(self, method =None, database_set = None):
         '''
-            Find out what directories may contain the given query
+            Find out what directories may contain the given query.
         '''
 
         result =  self.manifest.get(sequence, False)
@@ -105,14 +107,34 @@ class alignment_retriever:
         results = [] 
 
         for key_pair, value in result.items():
-            if method == None or method == key_pair[1]:
-                if database_set == None or database_set == key_pair[0]:
-                    results.append(value)   
-            
-        # I have not finished implementing this
-        # return os.path.join(self.root_path, result)
+            if database_set == None or database_set == key_pair[0]:
+                if method == None or method == key_pair[1]:
+                    results.append(value)    
 
         return results 
+
+    def create_fasta_from_manifest(self, destination_path) -> bool:
+        '''
+        Creates a fasta file from the manifest
+        '''
+        assert not os.path.exists(destination_path),'The destination path already exists'
+        assert os.path.exists('/'.join(destination_path.split('/')[:-1])), 'The parent folder does not exist'
+
+        elements = [] 
+        os.path.basename(destination_path)
+
+        for element in self.manifest.keys():
+            elements.append(element)
+
+        labels = list(map(lambda x :str(x), range(len(thing.keys()))))
+
+        sequences = dict(zip(labels, elements)))
+
+        with open(destination_path) as f:
+            for label, sequence in sequences.items():
+                f.write(">{}\n{}\n".format(label, sequence))
+
+        return True
 
     def fetch_alignments(self, sequence, dest_output_path,method = None, database_set = None):
         '''
@@ -210,8 +232,6 @@ if __name__ == "__main__":
 
         elif args.operation == operation_types.create_fasta:
             print("create_fasta not implemented yet ")
-            ar.
-
-    # if args.operation == operation_types.add:  
+            ar.create_fasta_from_manifest(args.destination_path)
 
 

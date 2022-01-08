@@ -48,3 +48,4 @@ class database_sets(Enum):
     full = "full"
     reduced_dbs = "reduced"
     reduced = "reduced"
+
