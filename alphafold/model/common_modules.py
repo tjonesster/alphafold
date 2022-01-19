@@ -54,14 +54,7 @@ class Linear(hk.Module):
     * Initializers are specified by strings
   """
 
-  def __init__(self,
-               num_output: Union[int, Sequence[int]],
-               initializer: str = 'linear',
-               num_input_dims: int = 1,
-               use_bias: bool = True,
-               bias_init: float = 0.,
-               precision = None,
-               name: str = 'linear'):
+  def __init__(self, num_output: Union[int, Sequence[int]], initializer: str = 'linear', num_input_dims: int = 1, use_bias: bool = True, bias_init: float = 0., precision = None, name: str = 'linear'):
     """Constructs Linear Module.
 
     Args:
@@ -120,7 +113,7 @@ class Linear(hk.Module):
     # if self.use_bias:
     #   bias = hk.get_parameter('bias', [self.num_output], inputs.dtype, hk.initializers.Constant(self.bias_init))
 
-    num_input_dims = self.num_input_dims
+    # num_input_dims = self.num_input_dims
 
     if self.num_input_dims > 0:
       in_shape = inputs.shape[-self.num_input_dims:]
@@ -133,16 +126,14 @@ class Linear(hk.Module):
     out_letters = 'hijkl'[:self.num_output_dims]
 
     weight_shape = in_shape + self.output_shape
-    weights = hk.get_parameter('weights', weight_shape, inputs.dtype,
-                               weight_init)
+    weights = hk.get_parameter('weights', weight_shape, inputs.dtype, weight_init)
 
     equation = f'...{in_letters}, {in_letters}{out_letters}->...{out_letters}'
 
     output = jnp.einsum(equation, inputs, weights, precision=self.precision)
 
     if self.use_bias:
-      bias = hk.get_parameter('bias', self.output_shape, inputs.dtype,
-                              hk.initializers.Constant(self.bias_init))
+      bias = hk.get_parameter('bias', self.output_shape, inputs.dtype, hk.initializers.Constant(self.bias_init))
       output += bias
 
     return output
