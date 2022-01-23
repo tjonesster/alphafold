@@ -149,8 +149,7 @@ class RunModel:
       A dictionary of model outputs.
     """
     self.init_params(feat)
-    logging.info('Running predict with shape(feat) = %s',
-                 tree.map_structure(lambda x: x.shape, feat))
+    logging.info('Running predict with shape(feat) = %s', tree.map_structure(lambda x: x.shape, feat))
     result = self.apply(self.params, jax.random.PRNGKey(random_seed), feat)
 
     # This block is to ensure benchmark timings are accurate. Some blocking is
