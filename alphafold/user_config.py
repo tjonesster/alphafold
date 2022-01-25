@@ -8,6 +8,8 @@ CONFIG_RUN_ALPHAFOLD = {
     #"db_preset": "full_dbs", 
     #"model_preset": "multimer",
     #"random_seed": None,
+    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    #"alignment_cache_path": "/media/taylorjones/bigboi/alphafold_data/alignment_cache",
     "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
@@ -20,7 +22,6 @@ CONFIG_RUN_ALPHAFOLD = {
     "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
     "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
     "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
-    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
     "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
     "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
     "max_template_date": "2020-05-14",
@@ -32,7 +33,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
     "num_structures": 10,
-    "alignment_cache_path": "/media/taylorjones/bigboi/alphafold_data/alignment_cache",
+    "alignment_cache_path": "/Users/taylorjones/alignment_cache",
     "job_record_path": "/media/taylorjones/bigboi/alphafold_data/job_record.txt", 
 }
 
@@ -49,3 +50,6 @@ class database_sets(Enum):
     reduced_dbs = "reduced"
     reduced = "reduced"
 
+class model_preset(Enum):
+    monomer = "monomer"
+    multimer = "multimer"

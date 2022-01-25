@@ -29,6 +29,20 @@ from alphafold.data.tools import hhsearch
 from alphafold.data.tools import hmmsearch
 from alphafold.data.tools import jackhmmer
 
+
+# For the junk that I added
+try:
+  from alphafold.apps.af_cache_lookup import alignment_retriever
+except:
+  logging.error("tried to import the af_cache_lookup.py")
+
+try: 
+  from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues
+except:
+  logging.error("Could not import the CONFIG_RUN_ALPHAFOLD settings")
+
+import unittest
+
 # Internal import (7716).
 
 FeatureDict = MutableMapping[str, np.ndarray]
@@ -83,8 +97,12 @@ def make_msa_features(msas: Sequence[parsers.Msa]) -> FeatureDict:
   return features
 
 # If these only ran partially this will have problems 
-def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_format: str, use_precomputed_msas: bool,) -> Mapping[str, Any]:
+# , use_cached_msas: bool = true, cache_msas_afterwards
+# May choose not to implmement alignment cache here. may lookup before and handle afterwards...
+def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_format: str, use_precomputed_msas: bool) -> Mapping[str, Any]:
+
   """Runs an MSA tool, checking if output already exists first."""
+
   if not use_precomputed_msas or not os.path.exists(msa_out_path):
     result = msa_runner.query(input_fasta_path)[0]
     with open(msa_out_path, 'w') as f:
@@ -99,6 +117,11 @@ def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_forma
 class DataPipeline:
   """Runs the alignment tools and assembles the input features."""
 
+
+  # Setting cache_msas_afterwards to false so that it will not automatically store the output of the run.
+  # It would be risky to edit this if we were going to be manutally altering our msas as is the case with Rich's approach.
+  #
+
   def __init__(self,
                jackhmmer_binary_path: str,
                hhblits_binary_path: str,
@@ -112,7 +135,11 @@ class DataPipeline:
                use_small_bfd: bool,
                mgnify_max_hits: int = 501,
                uniref_max_hits: int = 10000,
-               use_precomputed_msas: bool = False):
+               use_precomputed_msas: bool = False,
+               use_cached_msas: bool = True, 
+               cache_msas_afterwards: bool = False, 
+               
+               ):
     """Initializes the data pipeline."""
     self._use_small_bfd = use_small_bfd
 
@@ -133,6 +160,8 @@ class DataPipeline:
     self.mgnify_max_hits = mgnify_max_hits
     self.uniref_max_hits = uniref_max_hits
     self.use_precomputed_msas = use_precomputed_msas
+    self.use_cached_msas = use_cached_msas
+    self.cache_msas_afterwards = cache_msas_afterwards
 
   def process(self, input_fasta_path: str, msa_output_dir: str) -> FeatureDict:
     """Runs alignment tools on the input sequence and creates features."""
@@ -146,6 +175,20 @@ class DataPipeline:
     num_res = len(input_sequence)
 
     uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto')
+
+    # STILL NEED TO FINISH THIS UP .....
+    # Check if an alignment is already computed
+    # Still implementing this
+    # Still need to handle this to some degree
+
+    try:
+      if self.use_cached_msas:
+        ar = alignment_retriever()
+        ar.lookup_sequence()
+
+      # If you get a hit copy it over
+    except NameError:
+      logging.error("caching class can't be located")
 
 #We should just remove this -- their change is better 
     jackhmmer_uniref90_result = run_msa_tool(self.jackhmmer_uniref90_runner, input_fasta_path, uniref90_out_path, 'sto', self.use_precomputed_msas)
@@ -188,6 +231,18 @@ class DataPipeline:
       hhblits_bfd_uniclust_result = run_msa_tool( self.hhblits_bfd_uniclust_runner, input_fasta_path, bfd_out_path, 'a3m', self.use_precomputed_msas)
       bfd_msa = parsers.parse_a3m(hhblits_bfd_uniclust_result['a3m'])
 
+
+
+    # SECOND PART SHOULD BE IMPLEMENTED DOWN HERE
+    try:
+      ar = alignment_retriever()
+
+      if self.cache_msas_afterwards:
+        #ar.stash_alignments()#
+    
+    except NameError:
+      logging.error("Could could not create an alignment_retriever object in order to store the msas")
+
     templates_result = self.template_featurizer.get_templates(query_sequence=input_sequence, hits=pdb_template_hits)
 
     sequence_features = make_sequence_features(sequence=input_sequence, description=input_description, num_res=num_res)
@@ -202,6 +257,7 @@ class DataPipeline:
 
     return {**sequence_features, **msa_features, **templates_result.features}
 
+# THIS IS NOW DEFUNCT
 # This is no longer used in the main pipeline # Alphafold cintroduced something new called use_preprocessed_msas
 def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> FeatureDict:
   
@@ -254,3 +310,19 @@ def reload_previous_msa(self, input_fasta_path: str, msa_output_dir: str) -> Fea
       deletion_matrices=(uniref90_deletion_matrix, bfd_deletion_matrix, mgnify_deletion_matrix))
 
   return {**sequence_features, **msa_features, **templates_result.features}
+
+
+# Really need to add unit tests here...
+
+
+class TestPipeline(unittest.TestCase):
+    def setUp(self):
+      self.pipeline = DataPipeline()
+    def test_process():
+      pass
+
+
+if __name__ == "__main__":
+  logging.info("we need to add test cases for our data pipeline.")
+
+  

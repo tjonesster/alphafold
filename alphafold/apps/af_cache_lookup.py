@@ -20,9 +20,20 @@ from alphafold.data.tools import jackhmmer
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 from alphafold.user_config import alignment_methods 
 from alphafold.user_config import database_sets
+from alphafold.user_config import model_preset
 
 
-# path= "/media/taylorjones/bigboi/alphafold_data/alignment_cache"
+'''
+CURRENTLY ONLY SUPPORTS EXACT MATCHES
+
+Future thing to support 
+    Dumping things to a fasta file to search using hmm or blast
+
+
+
+
+
+'''
 
 # Options that are specific to this module
 class operation_types(Enum):
@@ -36,7 +47,7 @@ class operation_types(Enum):
 Example of the manifest scheme:
     {
         "sequence_1": {
-            (database_set, alignment_method): {"path", "date", "database_version"}
+            (database_set, alignment_method, preset): {"path", "date", "database_version"}
         }     
     }
 '''
@@ -99,10 +110,12 @@ class alignment_retriever:
     
         return os.path.join(self.root_path, new_dir)
         
-    def lookup_sequence(self, method =None, database_set = None):
+    def lookup_sequence(self, sequence,  method = None, database_set = None, model_preset = None):
         '''
             Find out what directories may contain the given query.
         '''
+
+        assert sequence, "Must specify a sequence for the lookup operation"
 
         result =  self.manifest.get(sequence, False)
 
@@ -122,7 +135,7 @@ class alignment_retriever:
         '''
         Creates a fasta file from the manifest
         '''
-        assert not os.path.exists(destination_path),'The destination path already exists'
+        assert not os.path.exists(destination_path), 'The destination path already exists'
         assert os.path.exists('/'.join(destination_path.split('/')[:-1])), 'The parent folder does not exist'
 
         elements = [] 
@@ -149,10 +162,11 @@ class alignment_retriever:
         source_dir_path = lookup_sequence(sequence)
         shutil.copy2(source_dir_path, dest_output_path)
     
-    def stash_alignments(self, sequence, output_path, method = None, database_set = None):
+    def stash_alignments(self, sequence, output_path, method = None, database_set = None, preset = None):
 
         assert (method != None), "You must specify an alignment method to stash alignments"
         assert (database_set != None), "You must specify a database set to stash alignments"
+        assert (preset != None), "You must specify a preset in order to store alignments"
 
         if not lookup_sequence(sequence):
             logging.info("not implemented:insert into database")
@@ -168,10 +182,8 @@ class alignment_retriever:
 class TestAlignmentRetriever(unittest.TestCase):
     def setUp(self):
         self.retriever = alignment_retriever(path)
-        # create a temporary directory 
         self.temp_dir = tempfile.mkdtemp()
         self.retriever = alignment_retriever(self.temp_dir)
-        # 
 
     def test_lookup_sequence(self):
         # self.assertEqual(self.retriever.lookup_sequence("sequence_1"), False)
@@ -197,6 +209,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
     parser.add_argument('-m', '--method', help='Alignment method to use', choices=list(alignment_methods))
+    parser.add_argument('-p', '--preset', help='Monomer or Multimer?', choices=list(model_preset))
     parser.add_argument("-d", "--database_set", type=database_sets, choices=list(database_sets), help="The database set to use", default=defvalues.get('database_set', None)) 
     parser.add_argument("-dest_path", "--destination_path", help="Where do you want to place the output or copy from the alignment.")
     parser.add_argument('--date', help='Date to use newer than date')
