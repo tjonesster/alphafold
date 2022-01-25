@@ -29,6 +29,8 @@ from alphafold.data.tools import hhsearch
 from alphafold.data.tools import hmmsearch
 from alphafold.data.tools import jackhmmer
 
+from alphafold.user_config import alignment_methods,database_sets,model_preset
+
 
 # For the junk that I added
 try:
@@ -138,7 +140,6 @@ class DataPipeline:
                use_precomputed_msas: bool = False,
                use_cached_msas: bool = True, 
                cache_msas_afterwards: bool = False, 
-               
                ):
     """Initializes the data pipeline."""
     self._use_small_bfd = use_small_bfd
@@ -184,7 +185,7 @@ class DataPipeline:
     try:
       if self.use_cached_msas:
         ar = alignment_retriever()
-        ar.lookup_sequence()
+        ar.lookup_sequence(sequence = input_sequence)
 
       # If you get a hit copy it over
     except NameError:

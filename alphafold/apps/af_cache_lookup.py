@@ -20,7 +20,9 @@ from alphafold.data.tools import jackhmmer
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 from alphafold.user_config import alignment_methods 
 from alphafold.user_config import database_sets
-from alphafold.user_config import model_preset
+from alphafold.user_config import model_presets
+
+
 
 
 '''
@@ -74,7 +76,8 @@ class alignment_retriever:
                 self.manifest = pickle.load(f) # if it bombs here I don't know if it will be able to unlock
                 fcntl.flock(f, fcntl.LOCK_UN)
         except:
-            logging.info("The manifest.pkl file did not exist. Creating it now.")
+            #logging.info("The manifest.pkl file did not exist. Creating it now.")
+            print("The manifest.pkl file did not exist. Creating it now.")
             self.manifest = {}
 
     def save_manifest(self):
@@ -103,14 +106,14 @@ class alignment_retriever:
 
         new_dir = str(uuid.uuid4())
 
-        while not os.path.exists(os.path.join(self.root_path, new_dir)):
+        while os.path.exists(os.path.join(self.root_path, new_dir)):
             new_dir = str(uuid.uuid4()) 
 
         os.makedirs(os.path.join(self.root_path, new_dir))
     
         return os.path.join(self.root_path, new_dir)
         
-    def lookup_sequence(self, sequence,  method = None, database_set = None, model_preset = None):
+    def lookup_sequence(self, sequence,  method = None, database_set = None, preset = None):
         '''
             Find out what directories may contain the given query.
         '''
@@ -127,7 +130,8 @@ class alignment_retriever:
         for key_pair, value in result.items():
             if database_set == None or database_set == key_pair[0]:
                 if method == None or method == key_pair[1]:
-                    results.append(value)    
+                    if model_preset == None or model_preset == key_pair[2]:
+                        results.append(value)    
 
         return results 
 
@@ -159,21 +163,33 @@ class alignment_retriever:
             fetch a set of alignments
         '''
 
-        source_dir_path = lookup_sequence(sequence)
-        shutil.copy2(source_dir_path, dest_output_path)
+        source_dir_path = self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset)
+        
+        #shutil.copy2(source_dir_path, dest_output_path) # The documentation seems to suggest that this should work... but does not...
+        shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
+
     
-    def stash_alignments(self, sequence, output_path, method = None, database_set = None, preset = None):
+    def stash_alignments(self, sequence, dest_path= None, method = None, database_set = None, preset = None):
 
         assert (method != None), "You must specify an alignment method to stash alignments"
         assert (database_set != None), "You must specify a database set to stash alignments"
         assert (preset != None), "You must specify a preset in order to store alignments"
+        assert(dest_path != None), "You need to specify a destination path to stash alignments"
 
-        if not lookup_sequence(sequence):
-            logging.info("not implemented:insert into database")
 
-        dir = create_new_directory()
-        logging.info("not implemented: copy the file to the new directory")
-        shutil.copy2(output_path, dir)
+        # if not self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset):
+        #     #logging.info("not implemented:insert into database")
+        #     print("not implemented:insert into database")
+
+        dir = self.create_new_directory()
+        # print("not implemented: copy the file to the new directory")
+        #logging.info("not implemented: copy the file to the new directory")
+        #print(dir.__str__)
+        #shutil.copy2(dest_path, dir.__str__)
+        print("dir: ",dir)
+        # print("")
+        #shutil.copy2("/Users/taylorjones/Documents/alphafold/alphafold/apps/1SSP_E.fasta/msas/mgnify_hits.sto", dir)
+        shutil.copytree("/Users/taylorjones/Documents/alphafold/alphafold/apps/1SSP_E.fasta/msas/", os.path.join(dir,"msas"))
 
         return False 
 
@@ -202,14 +218,15 @@ class TestAlignmentRetriever(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    logging.info("not implemented yet")
+    #logging.info("not implemented yet")
+    print("not implemented yet")
 
     parser = argparse.ArgumentParser(description="call_cache_lookup_util.py")
     parser.add_argument("operation", type=operation_types, choices=list(operation_types), help="The operation to perform")
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
-    parser.add_argument('-m', '--method', help='Alignment method to use', choices=list(alignment_methods))
-    parser.add_argument('-p', '--preset', help='Monomer or Multimer?', choices=list(model_preset))
+    parser.add_argument('-m', '--method', help='Alignment method to use',type=alignment_methods, choices=list(alignment_methods))
+    parser.add_argument('-p', '--preset', help='Monomer or Multimer?', type=model_presets, choices=list(model_presets))
     parser.add_argument("-d", "--database_set", type=database_sets, choices=list(database_sets), help="The database set to use", default=defvalues.get('database_set', None)) 
     parser.add_argument("-dest_path", "--destination_path", help="Where do you want to place the output or copy from the alignment.")
     parser.add_argument('--date', help='Date to use newer than date')
@@ -218,7 +235,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if args.operation == operation_types.test:
-        logging.info("testing")
+        #logging.info("testing")
+        print("testing")
         unittest.main()
     else:
 
@@ -228,7 +246,8 @@ if __name__ == "__main__":
         ar = alignment_retriever(args.root_path)
 
         if args.operation == operation_types.stash:   # add a new sequence
-            logging.info('stashing')
+            #logging.info('stashing')
+            print('stashing')
             msg = "stash operation requires: --sequence --method --database_set --destination_path."
 
             assert(args.sequence != "" and args.sequence != None), msg + " Sequence not provided."
@@ -237,10 +256,11 @@ if __name__ == "__main__":
             assert(args.method != "" and args.method != None), msg+ " Alignment method not provided."
             assert(args.database_set != "" and args.database_set != None), "database_set should not bee an empty string or None"
 
-            ar.stash_alignments(args.sequence, args.destination_path, args.method, args.database_set)
+            ar.stash_alignments(args.sequence,  dest_path = args.destination_path, method= args.method, database_set =  args.database_set, preset=args.preset)
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
-            logging.info('fetching')
+            #logging.info('fetching')
+            print('fetching')
 
             assert(args.sequence != "" and args.sequence != None), "sequence not provided"
             assert(args.destination_path != "" and args.destination_path != None), "destination_path not provided"
@@ -248,12 +268,14 @@ if __name__ == "__main__":
             ar.fetch_alignments(args.sequence, args.destination_path, args.method, args.database_set)
 
         elif args.operation == operation_types.lookup: # lookup a sequence
-            logging.info('looking up')
+            #logging.info('looking up')
+            print('looking up')
 
             ar.lookup_sequence(args.sequence, args.method, args.database_set)
 
         elif args.operation == operation_types.create_fasta:
-            logging.info("create_fasta not implemented yet ")
+            #logging.info("create_fasta not implemented yet ")
+            print("create_fasta not implemented yet ")
 
             ar.create_fasta_from_manifest(args.destination_path)
 

@@ -38,11 +38,14 @@ CONFIG_RUN_ALPHAFOLD = {
 }
 
 
+#BULLSHIT ENUMERATED TYPES THAT I HAVE INTRODUCED
+
 # additional enumerated types
 # We are going to support mmseqs2 for alignments also
 class alignment_methods(Enum):
-    jackhmmer = "jackhmmer"
+    # jackhmmer = "jackhmmer"
     mmseqs2 = "mmseqs2"
+    default = "default"
 
 class database_sets(Enum):
     full_dbs = "full"
@@ -50,6 +53,6 @@ class database_sets(Enum):
     reduced_dbs = "reduced"
     reduced = "reduced"
 
-class model_preset(Enum):
+class model_presets(Enum):
     monomer = "monomer"
     multimer = "multimer"
