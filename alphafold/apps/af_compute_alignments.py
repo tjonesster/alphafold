@@ -43,6 +43,7 @@ flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a 
 FLAGS = flags.FLAGS
 
 
+# We really should not store this in both locations but I think that this is the fastest way to do this at the current point in time    
 def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_format: str, use_precomputed_msas: bool, run_once: bool = False ) -> Mapping[str, Any]:
   """Runs an MSA tool, checking if output already exists first."""
   if not (use_precomputed_msas or run_once) or not os.path.exists(msa_out_path):
@@ -54,6 +55,18 @@ def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_forma
     with open(msa_out_path, 'r') as f:
       result = {msa_format: f.read()}
   return result
+
+# We really should not store this in both locations but I think that this is the fastest way to do this at the current point in time
+def _make_chain_id_map(*, sequences: Sequence[str], descriptions: Sequence[str],) -> Mapping[str, _FastaChain]:
+  """Makes a mapping from PDB-format chain ID to sequence and description."""
+  if len(sequences) != len(descriptions):
+    raise ValueError(f'sequences and descriptions must have equal length. Got {len(sequences)} != {len(descriptions)}.')
+  if len(sequences) > protein.PDB_MAX_CHAINS:
+    raise ValueError(f'Cannot process more chains than the PDB format supports. Got {len(sequences)} chains.')
+  chain_id_map = {}
+  for chain_id, sequence, description in zip(protein.PDB_CHAIN_IDS, sequences, descriptions):
+    chain_id_map[chain_id] = _FastaChain(sequence=sequence, description=description)
+  return chain_id_map
 
 
 class run_alignment_tools():
@@ -81,6 +94,7 @@ class run_alignment_tools():
 
 
     def process(mgnify: bool = True, uniref90: bool = True, small_bfd: bool = True, bfd: bool = True, uniprot: bool = True):
+        # We don't need any of these retrun values 
 
         if uniref90:
             uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto')
@@ -100,7 +114,8 @@ class run_alignment_tools():
 
         if uniprot:
             out_path = os.path.join(msa_output_dir, 'uniprot_hits.sto')
-            result = pipeline.run_msa_tool(self._uniprot_msa_runner, input_fasta_path, out_path, 'sto', self.use_precomputed_msas)
+            junk = pipeline.run_msa_tool(self._uniprot_msa_runner, input_fasta_path, out_path, 'sto', self.use_precomputed_msas)
+
 
 
         return 1 
@@ -125,6 +140,7 @@ def main(argv):
 
 if __name__ == "__main__":
     print("testing")
+
     # flags.mark_flags_as_required([
     #   'fasta_path',
     #   'model_names',
