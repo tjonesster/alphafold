@@ -132,8 +132,7 @@ class RunModel:
 
   def eval_shape(self, feat: features.FeatureDict) -> jax.ShapeDtypeStruct:
     self.init_params(feat)
-    logging.info('Running eval_shape with shape(feat) = %s',
-                 tree.map_structure(lambda x: x.shape, feat))
+    logging.info('Running eval_shape with shape(feat) = %s', tree.map_structure(lambda x: x.shape, feat))
     shape = jax.eval_shape(self.apply, self.params, jax.random.PRNGKey(0), feat)
     logging.info('Output shape was %s', shape)
     return shape

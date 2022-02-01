@@ -106,6 +106,7 @@ flags.DEFINE_boolean('run_relax', defvalues.get('run_relax', True), "Do you want
 
 flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
+
 flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
 
 FLAGS = flags.FLAGS
@@ -159,7 +160,6 @@ def predict_structure(
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir) # create the directory for the msa to be saved 
 
- 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
   # Get features.
@@ -194,7 +194,6 @@ def predict_structure(
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
-
 
   unrelaxed_pdbs = {}
   num_models=len(model_runners)
