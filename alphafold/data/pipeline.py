@@ -229,9 +229,7 @@ class DataPipeline:
       hhblits_bfd_uniclust_result = run_msa_tool( self.hhblits_bfd_uniclust_runner, input_fasta_path, bfd_out_path, 'a3m', self.use_precomputed_msas, run_once = self.run_once)
       bfd_msa = parsers.parse_a3m(hhblits_bfd_uniclust_result['a3m'])
 
-<<<<<<< HEAD
     self.run_once = True
-=======
 
 
     # SECOND PART SHOULD BE IMPLEMENTED DOWN HERE
@@ -243,7 +241,6 @@ class DataPipeline:
     
     except NameError:
       logging.error("Could could not create an alignment_retriever object in order to store the msas")
->>>>>>> 45510bd2a6390271e6206a1242c1dab10fd51b3d
 
     templates_result = self.template_featurizer.get_templates(query_sequence=input_sequence, hits=pdb_template_hits)
 
