@@ -181,7 +181,7 @@ class DataPipeline:
     pdb_template_hits = self.template_searcher.get_template_hits(
         output_string=pdb_templates_result, input_sequence=input_sequence)
 
-    if self._use_small_bfd: # Why sto instead of am3?
+    if self._use_small_bfd:
       bfd_out_path = os.path.join(msa_output_dir, 'small_bfd_hits.sto')
       jackhmmer_small_bfd_result = run_msa_tool(self.jackhmmer_small_bfd_runner, input_fasta_path, bfd_out_path, 'sto', self.use_precomputed_msas, run_once = self.run_once)
       bfd_msa = parsers.parse_stockholm(jackhmmer_small_bfd_result['sto'])

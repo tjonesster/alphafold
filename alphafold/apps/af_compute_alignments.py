@@ -1,5 +1,14 @@
 #!/usr/bin/env python
 
+
+
+'''
+
+Note we could also implement this by directly importing the pipeline and multimer pipeline but I think that this gives us more flexibility to 
+
+
+'''
+
 #import absl 
 import os 
 
@@ -10,8 +19,13 @@ from alphafold.data.tools import hhblits
 from alphafold.data.tools import hhsearch
 from alphafold.data.tools import hmmsearch
 from alphafold.data.tools import jackhmmer
+from alphafold.data.parsers import parse_fasta
 
-from alphafold import user_config
+from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues
+
+from alphafold.common import protein
+
+# from alphafold.data import pipeline, pipeline_multimer, templates
 
 
 flags.DEFINE_string('hmmsearch_binary_path', defvalues.get('hmmsearch_binary_path', shutil.which('hmmsearch')), 'Path to the hmmsearch executable.')
@@ -38,9 +52,15 @@ flags.DEFINE_string('obsolete_pdbs_path', defvalues.get('obsolete_pdbs_path',  N
 
 
 flags.DEFINE_string('output_dir', defvalues.get('output_dir', None), 'Path to a directory that will store the results.')
+flags.DEFINE_string('fasta', defvalues.get('output_dir', None), 'Path to a directory that will store the results.')
 
+
+# multimer or monomer?
 
 FLAGS = flags.FLAGS
+
+
+# PDB_CHAIN_IDS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789' # It's kinda bad form to do it this way... but it helps ths
 
 
 # We really should not store this in both locations but I think that this is the fastest way to do this at the current point in time    
@@ -68,7 +88,6 @@ def _make_chain_id_map(*, sequences: Sequence[str], descriptions: Sequence[str],
     chain_id_map[chain_id] = _FastaChain(sequence=sequence, description=description)
   return chain_id_map
 
-
 class run_alignment_tools():
 
     def __init__(jackhmmer_binary_path = None, 
@@ -93,8 +112,9 @@ class run_alignment_tools():
         self._uniprot_msa_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=uniprot_database_path)
 
 
-    def process(mgnify: bool = True, uniref90: bool = True, small_bfd: bool = True, bfd: bool = True, uniprot: bool = True):
+    def run_single_alignment(msa_out_dir = None, mgnify: bool = True, uniref90: bool = True, small_bfd: bool = True, bfd: bool = True, uniprot: bool = True):
         # We don't need any of these retrun values 
+        all_processed_alignments = {} 
 
         if uniref90:
             uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto')
@@ -117,16 +137,47 @@ class run_alignment_tools():
             junk = pipeline.run_msa_tool(self._uniprot_msa_runner, input_fasta_path, out_path, 'sto', self.use_precomputed_msas)
 
 
+        all_processed_alignments['sequence'] = (uniref90, mgnify, small_bfd, bfd, uniprot)
+
 
         return 1 
+        
+
+
 
 
 def main(argv):
     if len(argv) > 1:
         raise app.UsageError('Too many command-line arguments.')
 
+    # for chain_id, sequence, description in zip(protein.PDB_CHAIN_IDS, sequences, descriptions):
+
     #create output directory
     os.path.join(FLAGS.output_dir, 'msas')
+
+    seqs,desc = parse_fasta(FLAGS.input_fasta_path)
+
+    #Read in fasta
+    sequences = dict(zip(desc,seqs))
+    
+
+    # Monomer or multimer?
+    # if multimer loop over and generate each folder
+
+    for description, sequence in sequences.items():
+        #make directory 
+
+
+        if alignment_retriever.lookup_sequence(sequence ...):
+            continue
+            #retrieve
+            
+        else:
+            # create new directory
+            run_single_alignment(sequence ... ) #write to temp 
+            # stash directory
+
+
 
     # check if the sequences are already processed
 

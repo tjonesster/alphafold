@@ -44,6 +44,25 @@ CONFIG_RUN_ALPHAFOLD = {
 }
 
 
+
+# This will contain the username for sbatch to get additional info
+#This is not currently implemented in any of our scripts.
+SLURM_CONFIG = {
+
+}
+
+
+# This is where we we are going to store records of database updates
+# DATABASE_UPDATE_LOG = [
+#     small_bfd  = {}
+#     bfd = {}
+#     uniprot = {}
+#     uniref90 = {}
+
+# ]
+
+
+
 # additional enumerated types
 # We are going to support mmseqs2 for alignments also
 class alignment_methods(Enum):
