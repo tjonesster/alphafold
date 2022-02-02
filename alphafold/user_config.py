@@ -8,6 +8,8 @@ CONFIG_RUN_ALPHAFOLD = {
     #"db_preset": "full_dbs", 
     #"model_preset": "multimer",
     #"random_seed": None,
+    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    #"alignment_cache_path": "/media/taylorjones/bigboi/alphafold_data/alignment_cache",
     "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
@@ -24,10 +26,14 @@ CONFIG_RUN_ALPHAFOLD = {
     # "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
     # "bfd_database_path": "/media/taylorjones/nvme_databases/bfd_small",
     "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
+<<<<<<< HEAD
     # /media/taylorjones/nvme_databases/bfd_small
     #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
     #"pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
     "pdb70_database_path": "/media/taylorjones/nvme_databases/pdb70/pdb70",
+=======
+    "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
+>>>>>>> 45510bd2a6390271e6206a1242c1dab10fd51b3d
     "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
     "max_template_date": "2020-05-14",
     "obsolete_pdbs_path": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/obsolete.dat", 
@@ -39,11 +45,12 @@ CONFIG_RUN_ALPHAFOLD = {
     #"uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
     "uniprot_database_path": "/media/taylorjones/nvme_databases/uniprot/uniprot.fasta",
     "num_structures": 10,
-    "alignment_cache_path": "/media/taylorjones/bigboi/alphafold_data/alignment_cache",
+    "alignment_cache_path": "/Users/taylorjones/alignment_cache",
     "job_record_path": "/media/taylorjones/bigboi/alphafold_data/job_record.txt", 
 }
 
 
+<<<<<<< HEAD
 
 # This will contain the username for sbatch to get additional info
 #This is not currently implemented in any of our scripts.
@@ -62,12 +69,16 @@ SLURM_CONFIG = {
 # ]
 
 
+=======
+#BULLSHIT ENUMERATED TYPES THAT I HAVE INTRODUCED
+>>>>>>> 45510bd2a6390271e6206a1242c1dab10fd51b3d
 
 # additional enumerated types
 # We are going to support mmseqs2 for alignments also
 class alignment_methods(Enum):
-    jackhmmer = "jackhmmer"
+    # jackhmmer = "jackhmmer"
     mmseqs2 = "mmseqs2"
+    default = "default"
 
 class database_sets(Enum):
     full_dbs = "full"
@@ -75,3 +86,6 @@ class database_sets(Enum):
     reduced_dbs = "reduced"
     reduced = "reduced"
 
+class model_presets(Enum):
+    monomer = "monomer"
+    multimer = "multimer"

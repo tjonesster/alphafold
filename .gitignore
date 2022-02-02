@@ -4,3 +4,5 @@ __pycache__
 build/
 *.pdb
 *.pkl
+*.sto
+*.a3m
