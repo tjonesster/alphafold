@@ -13,6 +13,8 @@ Current issues:
     Does not handle multiple chains
     Assumes that all atoms are present within the model
 
+    This should really be a single function which checks the file extensions but I have to move on to the next thing
+
 '''
 
 flags.DEFINE_string('true_points', None, 'Path to true points')
@@ -23,79 +25,64 @@ FLAGS = flags.FLAGS
 
 
 def lddt_from_pdb(true_points, predicted_poitns, features):
+
+    '''
+        
+    '''
     
-    protein.load_pdb(true_points)
-    protein.load_pdb(predicted_points)
+    with open(true_points, 'rb') as f:
+        true_points = pickle.load(f)
+    predicted_points = protein.load_pdb(true_points)
+    true_points = protein.load_pdb(predicted_points)
+ 
+
+    # Should add code where 
+
+    a,b,_ = predicted_points.atom_positions.shape
+
+
+    t = lddt.lddt(predicted_points.atom_positions, true_points.atom_positions, np.ones((a,b,1)))
+    jax.lax.stop_gradient(t)
+
+    return t 
+    
 
 
 
 
-def lddt_from_pkls(true_points, predicted_points, features):
+def lddt_from_pkls(true_file, predicted_file, features_file):
     '''
     This function takes in the true and predicted points and the features.
     It then calculates the lddt score.
     '''
-    with open("features.pkl", 'rb') as f:
+    with open(features_file, 'rb') as f:
         features = pickle.load(f)
 
-    #print(features['aatype'])
-
-
-    with open("result_structure_0_model_5.pkl", "rb") as f:
+    with open(predicted_file, "rb") as f:
         prediction_pkl = pickle.load(f)
 
-    with open("result_structure_0_model_5.pkl", "rb") as f:
+    with open(true_file, "rb") as f:
         experimental_pkl = pickle.load(f)
 
-
-    for key in features.keys():
-        try:
-            #print("Key: ", key)
-            #print(prediction_pkl[key].keys())
-            pass
-        except:
-            pass
-
-    predicted_points = protein.from_prediction(features, experimental_pkl)
+    predicted_points = protein.from_prediction(features, prediction_pkl)
     true_points = protein.from_prediction(features, experimental_pkl)
-
-    for key in prediction_pkl.keys():
-        try:
-            #print("Key: ", key)
-            #print(prediction_pkl[key].keys())
-            pass
-        except:
-            pass
-
-    #print(prediction_pkl.keys())
-
-
-    #print(prediction_pkl['structure_module']['final_atom_positions'])
-    #print("prediction:", prediction_pkl['structure_module']['final_atom_positions'].shape)
-
-    #print(predicted_points.atom_mask)
-    #atom_mask = jax.numpy.logical_and(predicted_points.atom_mask, true_points.atom_mask)
-    # predicted_points.
 
     a,b,_ = predicted_points.atom_positions.shape
 
     t = lddt.lddt(predicted_points.atom_positions, true_points.atom_positions, np.ones((a,b,1)))
-        # prediction_pkl['structure_module']['final_atom_positions'],
-        # )
-    # )
-
     jax.lax.stop_gradient(t)
 
-
-    print(t)
-    #print(len(t))
+    return t 
 
     
 
 # For loading from pickle files
 def main(argv):
 
-    return lddt_from_pkls(FLAGS.true_points, FLAGS.predicted_points, FLAGS.features)
+    ret = lddt_from_pkls(FLAGS.true_points, FLAGS.predicted_points, FLAGS.features)
+    print(ret)
+    return ret  
+    
 
 
 if __name__ == "__main__":
