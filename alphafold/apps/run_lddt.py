@@ -77,16 +77,13 @@ def lddt_from_pkls(true_points, predicted_points, features):
     #atom_mask = jax.numpy.logical_and(predicted_points.atom_mask, true_points.atom_mask)
     # predicted_points.
 
-    a,b,c = predicted_points.atom_positions.shape
-    #a,b,c = prediction_pkl['structure_module']['final_atom_positions'].shape
-    #print("a,b,c", a,b,c)
+    a,b,_ = predicted_points.atom_positions.shape
 
-    t = lddt.lddt(prediction_pkl['structure_module']['final_atom_positions'],
-        prediction_pkl['structure_module']['final_atom_positions'],
-        np.ones((a,b,1))
-    )
+    t = lddt.lddt(predicted_points.atom_positions, true_points.atom_positions, np.ones((a,b,1)))
+        # prediction_pkl['structure_module']['final_atom_positions'],
+        # )
+    # )
 
-    #print(predicted_points.atom_mask.shape)
     jax.lax.stop_gradient(t)
 
 
