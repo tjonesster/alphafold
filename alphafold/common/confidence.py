@@ -53,8 +53,8 @@ def _calculate_bin_centers(breaks: np.ndarray):
   # Add half-step to get the center
   bin_centers = breaks + step / 2
   # Add a catch-all bin at the end.
-  bin_centers = np.concatenate([bin_centers, [bin_centers[-1] + step]],
-                               axis=0)
+  bin_centers = np.concatenate([bin_centers, [bin_centers[-1] + step]], axis=0)
+
   return bin_centers
 
 
@@ -97,9 +97,7 @@ def compute_predicted_aligned_error(
       error for each pair of residues.
     max_predicted_aligned_error: The maximum predicted error possible.
   """
-  aligned_confidence_probs = scipy.special.softmax(
-      logits,
-      axis=-1)
+  aligned_confidence_probs = scipy.special.softmax(logits, axis=-1)
   predicted_aligned_error, max_predicted_aligned_error = (
       _calculate_expected_aligned_error(
           alignment_confidence_breaks=breaks,

@@ -108,6 +108,8 @@ flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
 flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
 
+flags.DEFINE_boolean("write_pickle", defvalues.get("write_pickle", True), "Do you want to store the pkl file of the output?")
+
 FLAGS = flags.FLAGS
 
 MAX_TEMPLATE_HITS = 20
@@ -137,6 +139,10 @@ def predict_structure(
     job_name: str, 
     overwrite: bool, 
     is_prokaryote: Optional[bool] = None,
+    write_pickle: bool = True,
+    exit_after_msa: bool = False,
+    only_run_cleanup: bool = False,
+    run_relax: bool = True
     ):
 
   """Predicts structure using AlphaFold for the given sequence."""
@@ -159,7 +165,6 @@ def predict_structure(
   if not os.path.exists(msa_output_dir):
     os.makedirs(msa_output_dir) # create the directory for the msa to be saved 
 
- 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
   # Get features.
@@ -171,7 +176,7 @@ def predict_structure(
   timings['features'] = time.time() - t_0
 
   # Write out features as a pickled dictionary.  
-  if FLAGS.exit_after_msa: 
+  if exit_after_msa: 
     exit() 
 
   structure_output_dir = os.path.join(output_dir,structure_dir)  
@@ -189,8 +194,10 @@ def predict_structure(
   } 
 
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
-  with open(features_output_path, 'wb') as f:
-    pickle.dump(feature_dict, f, protocol=4)
+
+  if write_pickle:
+  	with open(features_output_path, 'wb') as f:
+    	pickle.dump(feature_dict, f, protocol=4)
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
@@ -254,7 +261,7 @@ def predict_structure(
 
     # Relax the prediction.
     # if :
-    if amber_relaxer and FLAGS.run_relax:
+    if amber_relaxer and run_relax:
       t_0 = time.time()
       relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
       timings[f'relax_{model_name}'] = time.time() - t_0
@@ -268,7 +275,7 @@ def predict_structure(
 
 # End of model generation
 
-  if FLAGS.only_run_cleanup == True: 
+  if only_run_cleanup == True: 
     timings = {} 
     relaxed_pdbs = {}
     for model_name, model_runner in model_runners.items():
@@ -390,6 +397,7 @@ def main(argv):
       mgnify_max_hits=FLAGS.mgnify_max_hits,
       uniref_max_hits=FLAGS.uniref_max_hits,
       use_precomputed_msas=FLAGS.use_precomputed_msas,
+      run_relax=FLAGS.run_relax,
       )
 
 # flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
@@ -480,7 +488,10 @@ def main(argv):
           job_name=FLAGS.job_name,
           overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
-          is_prokaryote=is_prokaryote
+          is_prokaryote=is_prokaryote,
+          write_pickle=FLAGS.write_pickle,
+          exit_after_msa=FLAGS.exit_after_msa,
+          only_run_cleanup=FLAGS.only_run_cleanup,
       )
 
 if __name__ == '__main__':
