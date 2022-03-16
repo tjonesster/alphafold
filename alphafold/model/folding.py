@@ -364,7 +364,7 @@ def generate_affines(representations, batch, config, global_config, is_training,
           representations['single'])
 
   initial_act = act
-  act = common_modules.Linear( c.num_channel, name='initial_projection')(act)
+  act = common_modules.Linear( c.num_channel, name='initial_projection')(act) # What? Doesn't this take the distogram.. ?
 
   affine = generate_new_affine(sequence_mask)
 
@@ -476,8 +476,7 @@ class StructureModule(hk.Module):
           batch, value['final_atom14_positions']))
     sc_loss = sidechain_loss(batch, value, self.config)
 
-    ret['loss'] = ((1 - self.config.sidechain.weight_frac) * ret['loss'] +
-                   self.config.sidechain.weight_frac * sc_loss['loss'])
+    ret['loss'] = ((1 - self.config.sidechain.weight_frac) * ret['loss'] + self.config.sidechain.weight_frac * sc_loss['loss'])
     ret['sidechain_fape'] = sc_loss['fape']
 
     supervised_chi_loss(ret, batch, value, self.config)

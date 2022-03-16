@@ -38,6 +38,8 @@ from alphafold.relax import relax
 
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 
+import subprocess
+
 logging.set_verbosity(logging.INFO)
 
 flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, not used by the single chain system. This list should contain a boolean for each fasta false if unknown. These values determine the pairing method for the MSA.')
@@ -202,6 +204,10 @@ def predict_structure(
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
 
+
+  # I should also write out the git hash for the version of alphafold that is being run.
+  # Something like ... : 
+  # submodule.run(["git", "rev-parse", "HEAD"])
 
   unrelaxed_pdbs = {}
   num_models=len(model_runners)

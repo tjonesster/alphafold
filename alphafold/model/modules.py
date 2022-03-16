@@ -292,19 +292,12 @@ class AlphaFold(hk.Module):
       predictions from the various heads.
     """
 
-    # pickle.dump()
-    test = [1,2,3]
-    with open("output.pkl","wb") as f:
-      pickle.dump(test, f)
-
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
     logged_output = []
 
     print("batch:", batch)
     
-
-    # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
       new_prev = {
           'prev_pos': ret['structure_module']['final_atom_positions'],
@@ -1097,7 +1090,6 @@ class PredictedAlignedErrorHead(hk.Module):
     """
 
     act = representations['pair']
-    # print(act)
 
     logits = common_modules.Linear(self.config.num_bins,initializer=utils.final_init(self.global_config),name='logits')(act) # Shape (num_res, num_res, num_bins)
     breaks = jnp.linspace( 0., self.config.max_error_bin, self.config.num_bins - 1) # Shape (num_bins,)
@@ -1557,18 +1549,17 @@ class EvoformerIteration(hk.Module):
       attn_mod = MSAColumnGlobalAttention(
           c.msa_column_attention, gc, name='msa_column_global_attention')
 
-  # Attention mode either column or global column
-  # dropoout_wrapper 
+    # Attention mode either column or global column
+    # dropoout_wrapper 
     msa_act = dropout_wrapper_fn( attn_mod, msa_act, msa_mask, safe_key=next(sub_keys))
 
-    #I don't know why dropout is chained like like this. MSA transition?
+    # I don't know why dropout is chained like like this. MSA transition?
     msa_act = dropout_wrapper_fn(
         Transition(c.msa_transition, gc, name='msa_transition'),
         msa_act,
         msa_mask,
         safe_key=next(sub_keys))
 
-    # Testing 
     if not c.outer_product_mean.first:
       pair_act = dropout_wrapper_fn(
           outer_module,

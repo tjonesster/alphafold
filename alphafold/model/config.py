@@ -129,6 +129,15 @@ CONFIG_DIFFS = {
             #'num_recycle': 3,
 CONFIG = ml_collections.ConfigDict({
     'data': {
+
+        # This dictionary contains items which are optional for the user.. it is used to pass files back to the modules
+        'additional_options':{
+            'distogram_loss_file': None,
+            'prev_pdb': None, 
+            
+
+
+        }.
         'common': {
             'masked_msa': {
                 'profile_prob': 0.1,
