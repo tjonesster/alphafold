@@ -134,9 +134,6 @@ CONFIG = ml_collections.ConfigDict({
         'additional_options':{
             'distogram_loss_file': None,
             'prev_pdb': None, 
-            
-
-
         }.
         'common': {
             'masked_msa': {

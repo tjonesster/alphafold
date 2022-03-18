@@ -844,9 +844,7 @@ class MSAColumnGlobalAttention(hk.Module):
         axis=[-1], create_scale=True, create_offset=True, name='query_norm')(
             msa_act)
 
-    attn_mod = GlobalAttention(
-        c, self.global_config, msa_act.shape[-1],
-        name='attention')
+    attn_mod = GlobalAttention( c, self.global_config, msa_act.shape[-1], name='attention')
     msa_mask = jnp.expand_dims(msa_mask, axis=-1) # [N_seq, N_res, 1]
     msa_act = mapping.inference_subbatch(
         attn_mod,
@@ -1291,8 +1289,7 @@ class DistogramHead(hk.Module):
 
     Arguments:
       representations: Dictionary of representations, must contain:
-        * 'pair': pair representation, shape [N_res, N_res, c_z].
-      batch: Batch, unused.
+        * 'pair': pair representation, shape [N_res, N_res, c_z].  batch: Batch, unused.
       is_training: Whether the module is in training mode.
 
     Returns:
@@ -1300,19 +1297,38 @@ class DistogramHead(hk.Module):
         * logits: logits for distogram, shape [N_res, N_res, N_bins].
         * bin_breaks: array containing bin breaks, shape [N_bins - 1,].
     """
-    half_logits = common_modules.Linear(
-        self.config.num_bins,
-        initializer=utils.final_init(self.global_config),
-        name='half_logits')(
-            representations['pair'])
+    half_logits = common_modules.Linear( self.config.num_bins, initializer=utils.final_init(self.global_config), name='half_logits')( representations['pair'])
+    # We need to reverse this... 
 
     logits = half_logits + jnp.swapaxes(half_logits, -2, -3)
     breaks = jnp.linspace(self.config.first_break, self.config.last_break, self.config.num_bins - 1)
+
 
     return dict(logits=logits, bin_edges=breaks)
 
   def loss(self, value, batch):
     return _distogram_log_loss(value['logits'], value['bin_edges'], batch, self.config.num_bins)
+
+class RevDistogramHead(hk.Module):
+
+    """
+
+      Transform the distogram back into the pair representation
+
+    """
+
+  def __init__(self, config, global_config, name="rev_distogram_head"):
+    super().__init__(name=name)
+    self.config = config
+    self.global_config = global_config
+
+  def __call__(self, representaiton,batch, is_training):
+    half_logits = common_modules.Linear( self.config.num_bins, initializer=utils.final_init(self.global_config), name='half_logits')( representations['pair'])
+
+    logits = half_logits + jnp.swapaxes(half_logits, -2, -3)
+    breaks = jnp.linspace(self.config.first_break, self.config.last_break, self.config.num_bins - 1)
+
+    return dict(logits=logits, bin_edges=breaks)
 
 
 def _distogram_log_loss(logits, bin_edges, batch, num_bins):
@@ -1792,7 +1808,7 @@ class EmbeddingsAndEvoformer(hk.Module):
     msa_activations = evoformer_output['msa']
     pair_activations = evoformer_output['pair']
 
-    single_activations = common_modules.Linear(c.seq_channel, name='single_activations')(msa_activations[0])
+    single_activations = common_modules.Linear(c.seq_channel, name='single_activations')(msa_activations[0]) # This is produced this early in the pipeline?
 
     num_sequences = batch['msa_feat'].shape[0]
     output = {
