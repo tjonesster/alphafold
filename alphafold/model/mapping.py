@@ -16,6 +16,8 @@
 
 #Python
 import functools
+import inspect
+
 from typing import Any, Callable, Optional, Sequence, Union
 
 # Machine learning
@@ -76,7 +78,11 @@ def sharded_map(
   Returns:
     function with smap applied.
   """
-  vmapped_fun = hk.vmap(fun, in_axes, out_axes)
+  if 'split_rng' in inspect.signature(hk.vmap).parameters:
+    vmapped_fun = hk.vmap(fun, in_axes, out_axes, split_rng=False)
+  else:
+    # TODO(tomhennigan): Remove this when older versions of Haiku aren't used.
+    vmapped_fun = hk.vmap(fun, in_axes, out_axes)
   return sharded_apply(vmapped_fun, shard_size, in_axes, out_axes)
 
 
