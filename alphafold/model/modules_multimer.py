@@ -490,8 +490,9 @@ class AlphaFold(hk.Module):
 
     if not return_representations:
       del ret['representations']
-    return ret, logged_output
-
+    return ret
+    #, logged_output
+  
 
 class EmbeddingsAndEvoformer(hk.Module):
   """Embeds the input data and runs Evoformer.
