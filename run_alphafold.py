@@ -27,7 +27,6 @@ import sys
 import time
 from typing import Dict, Union, Optional
 
-<<<<<<< HEAD
 from absl import app, flags, logging
 import numpy as np
 
@@ -118,7 +117,7 @@ flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many '
                      'generated per model. E.g. if this is 2 and there are 5 '
                      'models then there will be 10 predictions per input. '
                      'Note: this FLAG only applies if model_preset=multimer')
-flags.DEFINE_boolean('use_gpu_relax', None, 'Whether to relax on GPU. '
+flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. '
                      'Relax on GPU can be much faster than CPU, so it is '
                      'recommended to enable if possible. GPUs must be available'
                      ' if this setting is enabled.')
@@ -151,7 +150,6 @@ def predict_structure(
     structure_dir: str,
     job_name: str, 
     overwrite: bool, 
-    is_prokaryote: Optional[bool] = None,
     write_pickle: bool = True,
     exit_after_msa: bool = False,
     only_run_cleanup: bool = False,
@@ -207,8 +205,8 @@ def predict_structure(
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
 
   if write_pickle:
-  	with open(features_output_path, 'wb') as f:
-    	pickle.dump(feature_dict, f, protocol=4)
+    with open(features_output_path, 'wb') as f:
+      pickle.dump(feature_dict, f, protocol=4)
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
@@ -398,7 +396,7 @@ def main(argv):
       mgnify_max_hits=FLAGS.mgnify_max_hits,
       uniref_max_hits=FLAGS.uniref_max_hits,
       use_precomputed_msas=FLAGS.use_precomputed_msas,
-      run_relax=FLAGS.run_relax,
+      # run_relax=FLAGS.run_relax,
       )
 
 # This is one place to set this 
@@ -473,7 +471,7 @@ def main(argv):
   # Predict structure for each of the sequences.
   #for i, fasta_path in enumerate(FLAGS.fasta_paths):
   for i, fasta_name in enumerate(FLAGS.fasta_names):
-    fasta_name = fasta_names[i]
+    #fasta_name = fasta_names[i]
     fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
     # predict_structure(
         # fasta_path=fasta_path,
@@ -506,10 +504,11 @@ def main(argv):
           job_name=FLAGS.job_name,
           overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
-          is_prokaryote=is_prokaryote,
+          # is_prokaryote=is_prokaryote,
           write_pickle=FLAGS.write_pickle,
           exit_after_msa=FLAGS.exit_after_msa,
           only_run_cleanup=FLAGS.only_run_cleanup,
+          run_relax=FLAGS.run_relax,
       )
 
 if __name__ == '__main__':

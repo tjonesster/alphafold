@@ -1309,7 +1309,7 @@ class DistogramHead(hk.Module):
   def loss(self, value, batch):
     return _distogram_log_loss(value['logits'], value['bin_edges'], batch, self.config.num_bins)
 
-class RevDistogramHead(hk.Module):
+# class RevDistogramHead(hk.Module):
 
     """
 
@@ -1317,18 +1317,18 @@ class RevDistogramHead(hk.Module):
 
     """
 
-  def __init__(self, config, global_config, name="rev_distogram_head"):
-    super().__init__(name=name)
-    self.config = config
-    self.global_config = global_config
+  # def __init__(self, config, global_config, name="rev_distogram_head"):
+    # super().__init__(name=name)
+    # self.config = config
+    # self.global_config = global_config
 
-  def __call__(self, representaiton,batch, is_training):
-    half_logits = common_modules.Linear( self.config.num_bins, initializer=utils.final_init(self.global_config), name='half_logits')( representations['pair'])
+  # def __call__(self, representaiton,batch, is_training):
+    # half_logits = common_modules.Linear( self.config.num_bins, initializer=utils.final_init(self.global_config), name='half_logits')( representations['pair'])
+# 
+    # logits = half_logits + jnp.swapaxes(half_logits, -2, -3)
+    # breaks = jnp.linspace(self.config.first_break, self.config.last_break, self.config.num_bins - 1)
 
-    logits = half_logits + jnp.swapaxes(half_logits, -2, -3)
-    breaks = jnp.linspace(self.config.first_break, self.config.last_break, self.config.num_bins - 1)
-
-    return dict(logits=logits, bin_edges=breaks)
+    # return dict(logits=logits, bin_edges=breaks)
 
 
 def _distogram_log_loss(logits, bin_edges, batch, num_bins):
