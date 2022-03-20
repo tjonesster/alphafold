@@ -196,8 +196,8 @@ def predict_structure(
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
 
   if write_pickle:
-  	with open(features_output_path, 'wb') as f:
-    	pickle.dump(feature_dict, f, protocol=4)
+    with open(features_output_path, 'wb') as f:
+      pickle.dump(feature_dict, f, protocol=4)
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
@@ -241,8 +241,11 @@ def predict_structure(
 
       structure_id =  os.path.basename(structure_dir)
       result_output_path = os.path.join(structure_output_dir, f'result_{structure_id}_{model_name}.pkl') # Add structure number to this also 
-      with open(result_output_path, 'wb') as f:
-        pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
+
+    
+      if write_pickle:
+        with open(result_output_path, 'wb') as f:
+          pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
 
       # Add the predicted LDDT in the b-factor column.
       # Note that higher predicted LDDT value means higher model confidence.
@@ -295,7 +298,7 @@ def predict_structure(
     ranked_order.append(model_name)
     ranked_output_path = os.path.join(structure_output_dir, f'ranked_{idx}.pdb') # Add structure number to this also 
     with open(ranked_output_path, 'w') as f:
-      if amber_relaxer and FLAGS.run_relax:
+      if amber_relaxer and run_relax:
         f.write(relaxed_pdbs[model_name])
       else:
         f.write(unrelaxed_pdbs[model_name])
@@ -397,7 +400,6 @@ def main(argv):
       mgnify_max_hits=FLAGS.mgnify_max_hits,
       uniref_max_hits=FLAGS.uniref_max_hits,
       use_precomputed_msas=FLAGS.use_precomputed_msas,
-      run_relax=FLAGS.run_relax,
       )
 
 # flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
@@ -492,6 +494,7 @@ def main(argv):
           write_pickle=FLAGS.write_pickle,
           exit_after_msa=FLAGS.exit_after_msa,
           only_run_cleanup=FLAGS.only_run_cleanup,
+          run_relax=FLAGS.run_relax,
       )
 
 if __name__ == '__main__':

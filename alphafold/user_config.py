@@ -1,13 +1,55 @@
 from enum import Enum
 
 
+
+
+
+#AF2_DATADIR=/csbtmp/alphafold-data
+
+# find out if they have the reduced databases on accre
+#CONFIG_RUN_ALPHAFOLD_HOME = {
 CONFIG_RUN_ALPHAFOLD = {
-    #"fasta_names":  ["rcsb_pdb_6T1Z1_small.fasta"],
-    #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
-    #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/",
+    "jackhmmer_binary_path": "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer",
+    "kalign_binary_path": "/home/jonestl5/miniconda3/envs/af2_7/bin/kalign",
+    "hhsearch_binary_path": "/home/jonestl5/miniconda3/envs/af2_7/bin/hhsearch",
+    "hhblits_binary_path": "/home/jonestl5/miniconda3/envs/af2_7/bin/hhblits", 
+    "uniref90_database_path":"/csbtmp/alphafold-data/uniref90/uniref90.fasta",
+    "mgnify_database_path": "/csbtmp/alphafold-data/mgnify/mgy_clusters.fa",
+    "uniclust30_database_path": "/csbtmp/alphafold-data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    "bfd_database_path": "/csbtmp/alphafold-data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
+    "pdb70_database_path": "/csbtmp/alphafold-data/pdb70/pdb70", 
+    "template_mmcif_dir": "/csbtmp/alphafold-data/pdb_mmcif/mmcif_files",
+    "obsolete_pdbs_path": "/csbtmp/alphafold-data/pdb_mmcif/obsolete.dat",
+    #"fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
+    "fasta_path": "/home/jonestl5/dorsdir/alphafold_fastas",
+    #"output_dir": "/home/taylorjones/Documents/alphafold_output", 
+    "output_dir": "/home/jonestl5/dorsdir/alphafold_output",
+    "model_names": ['model_5'], 
+    "data_dir": "/csbtmp/alphafold-data",
+    "max_template_date": "2020-05-14",
+    "db_preset": "reduced_dbs", 
     #"db_preset": "full_dbs", 
-    #"model_preset": "multimer",
-    #"random_seed": None,
+    "benchmark": False,
+    "model_preset": "monomer",
+    #"pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
+    #"uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
+    "num_structures": 10,
+    "small_bfd_database_path": "/csbtmp/alphafold-data/small_bfd/bfd-first_non_consensus_sequences.fasta",
+#bfd-first_non_consensus_sequences.fasta
+}
+   #"activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/",
+    #"alignment_cache_path": "/media/taylorjones/bigboi/alphafold_data/alignment_cache",
+    #"job_record_path": "/media/taylorjones/bigboi/alphafold_data/job_record.txt", 
+
+# small_bfd
+
+
+# additional enumerated types
+# We are going to support mmseqs2 for alignments also
+
+#}
+
+CONFIG_RUN_ALPHAFOLD_HOME = {
     "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
@@ -20,7 +62,6 @@ CONFIG_RUN_ALPHAFOLD = {
     "mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
     "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
     "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
-    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
     "pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
     "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
     "max_template_date": "2020-05-14",

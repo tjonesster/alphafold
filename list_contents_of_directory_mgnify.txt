@@ -1,0 +1,5 @@
+head: filelist.txt: invalid number of lines
+total 64G
+drwxr-xr-x  2 jsmith csb 4.0K Oct 28 13:38 .
+drwxr-xr-x 12 jsmith csb 4.0K Dec  9 13:06 ..
+-rw-r--r--  1 jsmith csb  64G Oct 28 13:21 mgy_clusters.fa
