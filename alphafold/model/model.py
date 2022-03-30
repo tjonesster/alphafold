@@ -71,7 +71,8 @@ class RunModel:
 
     if self.multimer_mode:
       def _forward_fn(batch):
-        model, additional_output = modules_multimer.AlphaFold(self.config.model)
+       # model, 
+        model = modules_multimer.AlphaFold(self.config.model)
         return model(batch, is_training=False)
     else:
       def _forward_fn(batch):

@@ -292,19 +292,12 @@ class AlphaFold(hk.Module):
       predictions from the various heads.
     """
 
-    # pickle.dump()
-    test = [1,2,3]
-    with open("output.pkl","wb") as f:
-      pickle.dump(test, f)
-
     impl = AlphaFoldIteration(self.config, self.global_config)
     batch_size, num_residues = batch['aatype'].shape
     logged_output = []
 
     print("batch:", batch)
     
-
-    # One way to implement the writing of intermediate representations is to bulk data would be to store the final atom positions whenever you look it up
     def get_prev(ret):
       new_prev = {
           'prev_pos': ret['structure_module']['final_atom_positions'],
@@ -339,14 +332,18 @@ class AlphaFold(hk.Module):
           compute_loss=compute_loss,
           ensemble_representations=ensemble_representations)
 
-    if self.config.num_recycle:
-      emb_config = self.config.embeddings_and_evoformer
-      prev = {
-          'prev_pos': jnp.zeros( [num_residues, residue_constants.atom_type_num, 3]),
-          'prev_msa_first_row': jnp.zeros( [num_residues, emb_config.msa_channel]),
-          'prev_pair': jnp.zeros( [num_residues, num_residues, emb_config.pair_channel]),
-      }
+    prev = {}
+    emb_config = self.config.embeddings_and_evoformer
+    if emb_config.recycle_pos:
+      prev['prev_pos'] = jnp.zeros(
+          [num_residues, residue_constants.atom_type_num, 3])
+    if emb_config.recycle_features:
+      prev['prev_msa_first_row'] = jnp.zeros(
+          [num_residues, emb_config.msa_channel])
+      prev['prev_pair'] = jnp.zeros(
+          [num_residues, num_residues, emb_config.pair_channel])
 
+    if self.config.num_recycle:
       if 'num_iter_recycling' in batch:
         # Training time: num_iter_recycling is in batch.
         # The value for each ensemble batch is the same, so arbitrarily taking
@@ -373,7 +370,6 @@ class AlphaFold(hk.Module):
             body,
             (0, prev))
     else:
-      prev = {}
       num_iter = 0
 
     ret = do_call(prev=prev, recycle_idx=num_iter)
@@ -622,7 +618,7 @@ class GlobalAttention(hk.Module):
     self.global_config = global_config
     self.output_dim = output_dim
 
-  def __call__(self, q_data, m_data, q_mask, bias):
+  def __call__(self, q_data, m_data, q_mask):
     """Builds GlobalAttention module.
 
     Arguments:
@@ -633,7 +629,6 @@ class GlobalAttention(hk.Module):
       q_mask: A binary mask for q_data with zeros in the padded sequence
         elements and ones otherwise. Size [batch_size, N_queries, q_channels]
         (or broadcastable to this shape).
-      bias: A bias for the attention.
 
     Returns:
       A float32 tensor of size [batch_size, N_queries, output_dim].
@@ -849,14 +844,12 @@ class MSAColumnGlobalAttention(hk.Module):
         axis=[-1], create_scale=True, create_offset=True, name='query_norm')(
             msa_act)
 
-    attn_mod = GlobalAttention(
-        c, self.global_config, msa_act.shape[-1],
-        name='attention')
+    attn_mod = GlobalAttention( c, self.global_config, msa_act.shape[-1], name='attention')
     msa_mask = jnp.expand_dims(msa_mask, axis=-1) # [N_seq, N_res, 1]
     msa_act = mapping.inference_subbatch(
         attn_mod,
         self.global_config.subbatch_size,
-        batched_args=[msa_act, msa_act, msa_mask, bias],
+        batched_args=[msa_act, msa_act, msa_mask],
         nonbatched_args=[],
         low_memory=not is_training)
 
@@ -1097,7 +1090,6 @@ class PredictedAlignedErrorHead(hk.Module):
     """
 
     act = representations['pair']
-    # print(act)
 
     logits = common_modules.Linear(self.config.num_bins,initializer=utils.final_init(self.global_config),name='logits')(act) # Shape (num_res, num_res, num_bins)
     breaks = jnp.linspace( 0., self.config.max_error_bin, self.config.num_bins - 1) # Shape (num_bins,)
@@ -1297,8 +1289,7 @@ class DistogramHead(hk.Module):
 
     Arguments:
       representations: Dictionary of representations, must contain:
-        * 'pair': pair representation, shape [N_res, N_res, c_z].
-      batch: Batch, unused.
+        * 'pair': pair representation, shape [N_res, N_res, c_z].  batch: Batch, unused.
       is_training: Whether the module is in training mode.
 
     Returns:
@@ -1306,19 +1297,38 @@ class DistogramHead(hk.Module):
         * logits: logits for distogram, shape [N_res, N_res, N_bins].
         * bin_breaks: array containing bin breaks, shape [N_bins - 1,].
     """
-    half_logits = common_modules.Linear(
-        self.config.num_bins,
-        initializer=utils.final_init(self.global_config),
-        name='half_logits')(
-            representations['pair'])
+    half_logits = common_modules.Linear( self.config.num_bins, initializer=utils.final_init(self.global_config), name='half_logits')( representations['pair'])
+    # We need to reverse this... 
 
     logits = half_logits + jnp.swapaxes(half_logits, -2, -3)
     breaks = jnp.linspace(self.config.first_break, self.config.last_break, self.config.num_bins - 1)
+
 
     return dict(logits=logits, bin_edges=breaks)
 
   def loss(self, value, batch):
     return _distogram_log_loss(value['logits'], value['bin_edges'], batch, self.config.num_bins)
+
+# class RevDistogramHead(hk.Module):
+
+    """
+
+      Transform the distogram back into the pair representation
+
+    """
+
+  # def __init__(self, config, global_config, name="rev_distogram_head"):
+    # super().__init__(name=name)
+    # self.config = config
+    # self.global_config = global_config
+
+  # def __call__(self, representaiton,batch, is_training):
+    # half_logits = common_modules.Linear( self.config.num_bins, initializer=utils.final_init(self.global_config), name='half_logits')( representations['pair'])
+# 
+    # logits = half_logits + jnp.swapaxes(half_logits, -2, -3)
+    # breaks = jnp.linspace(self.config.first_break, self.config.last_break, self.config.num_bins - 1)
+
+    # return dict(logits=logits, bin_edges=breaks)
 
 
 def _distogram_log_loss(logits, bin_edges, batch, num_bins):
@@ -1557,18 +1567,17 @@ class EvoformerIteration(hk.Module):
       attn_mod = MSAColumnGlobalAttention(
           c.msa_column_attention, gc, name='msa_column_global_attention')
 
-  # Attention mode either column or global column
-  # dropoout_wrapper 
+    # Attention mode either column or global column
+    # dropoout_wrapper 
     msa_act = dropout_wrapper_fn( attn_mod, msa_act, msa_mask, safe_key=next(sub_keys))
 
-    #I don't know why dropout is chained like like this. MSA transition?
+    # I don't know why dropout is chained like like this. MSA transition?
     msa_act = dropout_wrapper_fn(
         Transition(c.msa_transition, gc, name='msa_transition'),
         msa_act,
         msa_mask,
         safe_key=next(sub_keys))
 
-    # Testing 
     if not c.outer_product_mean.first:
       pair_act = dropout_wrapper_fn(
           outer_module,
@@ -1649,18 +1658,27 @@ class EmbeddingsAndEvoformer(hk.Module):
     # Inject previous outputs for recycling.
     # Jumper et al. (2021) Suppl. Alg. 2 "Inference" line 6
     # Jumper et al. (2021) Suppl. Alg. 32 "RecyclingEmbedder"
-    if c.recycle_pos and 'prev_pos' in batch:
-      prev_pseudo_beta = pseudo_beta_fn(batch['aatype'], batch['prev_pos'], None)
+    if c.recycle_pos:
+      prev_pseudo_beta = pseudo_beta_fn(
+          batch['aatype'], batch['prev_pos'], None)
       dgram = dgram_from_positions(prev_pseudo_beta, **self.config.prev_pos)
       pair_activations += common_modules.Linear(c.pair_channel, name='prev_pos_linear')(dgram)
 
     if c.recycle_features:
-      if 'prev_msa_first_row' in batch:
-        prev_msa_first_row = hk.LayerNorm([-1], True, True, name='prev_msa_first_row_norm')(batch['prev_msa_first_row'])
-        msa_activations = msa_activations.at[0].add(prev_msa_first_row)
+      prev_msa_first_row = hk.LayerNorm(
+          axis=[-1],
+          create_scale=True,
+          create_offset=True,
+          name='prev_msa_first_row_norm')(
+              batch['prev_msa_first_row'])
+      msa_activations = msa_activations.at[0].add(prev_msa_first_row)
 
-      if 'prev_pair' in batch:
-        pair_activations += hk.LayerNorm([-1], True, True, name='prev_pair_norm')(batch['prev_pair'])
+      pair_activations += hk.LayerNorm(
+          axis=[-1],
+          create_scale=True,
+          create_offset=True,
+          name='prev_pair_norm')(
+              batch['prev_pair'])
 
     # Relative position encoding.
     # Jumper et al. (2021) Suppl. Alg. 4 "relpos"
@@ -1790,7 +1808,7 @@ class EmbeddingsAndEvoformer(hk.Module):
     msa_activations = evoformer_output['msa']
     pair_activations = evoformer_output['pair']
 
-    single_activations = common_modules.Linear(c.seq_channel, name='single_activations')(msa_activations[0])
+    single_activations = common_modules.Linear(c.seq_channel, name='single_activations')(msa_activations[0]) # This is produced this early in the pipeline?
 
     num_sequences = batch['msa_feat'].shape[0]
     output = {

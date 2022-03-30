@@ -56,11 +56,11 @@ MODEL_PRESETS = {
         'model_5_ptm',
     ),
     'multimer': (
-        'model_1_multimer',
-        'model_2_multimer',
-        'model_3_multimer',
-        'model_4_multimer',
-        'model_5_multimer',
+        'model_1_multimer_v2',
+        'model_2_multimer_v2',
+        'model_3_multimer_v2',
+        'model_4_multimer_v2',
+        'model_5_multimer_v2',
     ),
 }
 MODEL_PRESETS['monomer_casp14'] = MODEL_PRESETS['monomer']
@@ -129,6 +129,12 @@ CONFIG_DIFFS = {
             #'num_recycle': 3,
 CONFIG = ml_collections.ConfigDict({
     'data': {
+
+        # This dictionary contains items which are optional for the user.. it is used to pass files back to the modules
+        'additional_options':{
+            'distogram_loss_file': None,
+            'prev_pdb': None, 
+        },
         'common': {
             'masked_msa': {
                 'profile_prob': 0.1,

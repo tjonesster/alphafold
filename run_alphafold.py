@@ -38,9 +38,11 @@ from alphafold.relax import relax
 
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 
+import subprocess
+
 logging.set_verbosity(logging.INFO)
 
-flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, not used by the single chain system. This list should contain a boolean for each fasta false if unknown. These values determine the pairing method for the MSA.')
+#flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, not used by the single chain system. This list should contain a boolean for each fasta false if unknown. These values determine the pairing method for the MSA.')
 
 # Added by taylor # currently broken by the integration with alphafold multimer
 flags.DEFINE_list('model_names', defvalues.get('model_names',False), 'Names of models to use.') # I still need to fix this flag # This was broken when the multimer code came out
@@ -110,6 +112,22 @@ flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000)
 
 flags.DEFINE_boolean("write_pickle", defvalues.get("write_pickle", True), "Do you want to store the pkl file of the output?")
 
+flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many '
+                     'predictions (each with a different random seed) will be '
+                     'generated per model. E.g. if this is 2 and there are 5 '
+                     'models then there will be 10 predictions per input. '
+                     'Note: this FLAG only applies if model_preset=multimer')
+flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. '
+                     'Relax on GPU can be much faster than CPU, so it is '
+                     'recommended to enable if possible. GPUs must be available'
+                     ' if this setting is enabled.')
+
+
+# This really has not been performing the way I expected
+flags.DEFINE_integer("max_extra_msa", defvalues.get("max_extra_msa", None), "What should the new number of max sequences be?")
+flags.DEFINE_integer("max_msa_clusters", defvalues.get("max_msa_clusters", None), "What should the new number of max sequences be?")
+#max_msa_clusters
+
 FLAGS = flags.FLAGS
 
 MAX_TEMPLATE_HITS = 20
@@ -138,7 +156,6 @@ def predict_structure(
     structure_dir: str,
     job_name: str, 
     overwrite: bool, 
-    is_prokaryote: Optional[bool] = None,
     write_pickle: bool = True,
     exit_after_msa: bool = False,
     only_run_cleanup: bool = False,
@@ -169,10 +186,8 @@ def predict_structure(
 
   # Get features.
   t_0 = time.time()
-  if is_prokaryote is None:
-    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
-  else:
-    feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir, is_prokaryote=is_prokaryote)
+
+  feature_dict = data_pipeline.process( input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
   timings['features'] = time.time() - t_0
 
   # Write out features as a pickled dictionary.  
@@ -202,6 +217,10 @@ def predict_structure(
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
 
+
+  # I should also write out the git hash for the version of alphafold that is being run.
+  # Something like ... : 
+  # submodule.run(["git", "rev-parse", "HEAD"])
 
   unrelaxed_pdbs = {}
   num_models=len(model_runners)
@@ -351,20 +370,6 @@ def main(argv):
   if len(FLAGS.fasta_names) != len(set(FLAGS.fasta_names)):
     raise ValueError('All FASTA paths must have a unique basename.')
 
-  # Check that is_prokaryote_list has same number of elements as fasta_paths,
-  # and convert to bool.
-  if FLAGS.is_prokaryote_list:
-    if len(FLAGS.is_prokaryote_list) != len(FLAGS.fasta_names):
-      raise ValueError('--is_prokaryote_list must either be omitted or match length of --fasta_paths.')
-    is_prokaryote_list = []
-    for s in FLAGS.is_prokaryote_list:
-      if s in ('true', 'false'):
-        is_prokaryote_list.append(s == 'true')
-      else:
-        raise ValueError('--is_prokaryote_list must contain comma separated true or false values.')
-  else:  # Default is_prokaryote to False.
-    is_prokaryote_list = [False] * len(FLAGS.fasta_names)
-
   if run_multimer_system:
     template_searcher = hmmsearch.Hmmsearch(binary_path=FLAGS.hmmsearch_binary_path, hmmbuild_binary_path=FLAGS.hmmbuild_binary_path, database_path=FLAGS.pdb_seqres_database_path)
     template_featurizer = templates.HmmsearchHitFeaturizer(
@@ -400,14 +405,12 @@ def main(argv):
       mgnify_max_hits=FLAGS.mgnify_max_hits,
       uniref_max_hits=FLAGS.uniref_max_hits,
       use_precomputed_msas=FLAGS.use_precomputed_msas,
+      # run_relax=FLAGS.run_relax,
       )
 
-# flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
-# flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
-
-
 # This is one place to set this 
-  if run_multimer_system: 
+  if run_multimer_system:
+    num_predictions_per_model = FLAGS.num_multimer_predictions_per_model
     data_pipeline = pipeline_multimer.DataPipeline(
         monomer_data_pipeline=monomer_data_pipeline,
         jackhmmer_binary_path=FLAGS.jackhmmer_binary_path,
@@ -415,6 +418,7 @@ def main(argv):
         max_uniprot_hits=FLAGS.max_uniprot_hits,
         use_precomputed_msas=FLAGS.use_precomputed_msas)
   else:
+    num_predictions_per_model = 1
     data_pipeline = monomer_data_pipeline
 
   model_runners = {}
@@ -438,37 +442,71 @@ def main(argv):
       model_config.data.eval.num_ensemble = num_ensemble
 
     #This path might be different for the multimer system
+    # One of these works for the multimer and one of these works for the monomer 
     if FLAGS.num_recycle != None:
       try:
         model_config.model.num_recycle = FLAGS.num_recycle
+        print("changed the number of recycles to ", FLAGS.num_recycle)
       except: 
         pass
       try:
         model_config.data.common.num_recycle  = FLAGS.num_recycle
+        print("changed the number of recycles to ", FLAGS.num_recycle)
       except: 
         pass
+
+    if FLAGS.max_extra_msa != None:
+      #try:
+      model_config.data.common.max_extra_msa = FLAGS.max_extra_msa
+      #  print("managed to change the max msa")
+      #except: 
+      #  print("failed to change the max_msa value")
+      #  pass
+
+    if FLAGS.max_msa_clusters != None:
+      model_config.data.eval.max_msa_clusters = FLAGS.max_msa_clusters
+
 
     model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
 
     #model_runner, reps  = model.RunModel(model_config, model_params)
     model_runner = model.RunModel(model_config, model_params)
-    model_runners[model_name] = model_runner
+    for i in range(num_predictions_per_model):
+      model_runners[f'{model_name}_pred_{i}'] = model_runner
 
   logging.info('Have %d models: %s', len(model_runners), list(model_runners.keys())) 
 
-  amber_relaxer = relax.AmberRelaxation(
-      max_iterations=RELAX_MAX_ITERATIONS,
-      tolerance=RELAX_ENERGY_TOLERANCE,
-      stiffness=RELAX_STIFFNESS,
-      exclude_residues=RELAX_EXCLUDE_RESIDUES,
-      max_outer_iterations=RELAX_MAX_OUTER_ITERATIONS)
+  if FLAGS.run_relax:
+    amber_relaxer = relax.AmberRelaxation(
+        max_iterations=RELAX_MAX_ITERATIONS,
+        tolerance=RELAX_ENERGY_TOLERANCE,
+        stiffness=RELAX_STIFFNESS,
+        exclude_residues=RELAX_EXCLUDE_RESIDUES,
+        max_outer_iterations=RELAX_MAX_OUTER_ITERATIONS,
+        use_gpu=FLAGS.use_gpu_relax)
+  else:
+    amber_relaxer = None
+
+  random_seed = FLAGS.random_seed
+  if random_seed is None:
+    random_seed = random.randrange(sys.maxsize // len(model_runners))
+  logging.info('Using random seed %d for the data pipeline', random_seed)
 
   # Predict structure for each of the sequences.
-  # for i, fasta_name in enumerate(FLAGS.fasta_paths):
+  #for i, fasta_path in enumerate(FLAGS.fasta_paths):
   for i, fasta_name in enumerate(FLAGS.fasta_names):
-
+    #fasta_name = fasta_names[i]
     fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
-    is_prokaryote = is_prokaryote_list[i] if run_multimer_system else None
+    # predict_structure(
+        # fasta_path=fasta_path,
+        # fasta_name=fasta_name,
+        # output_dir_base=FLAGS.output_dir,
+        # data_pipeline=data_pipeline,
+        # model_runners=model_runners,
+        # amber_relaxer=amber_relaxer,
+        # benchmark=FLAGS.benchmark,
+        # random_seed=random_seed)
+
 
     for structure_index in range(FLAGS.num_structures):
       random_seed = FLAGS.random_seed + structure_index if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))+structure_index
@@ -490,7 +528,7 @@ def main(argv):
           job_name=FLAGS.job_name,
           overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
-          is_prokaryote=is_prokaryote,
+          # is_prokaryote=is_prokaryote,
           write_pickle=FLAGS.write_pickle,
           exit_after_msa=FLAGS.exit_after_msa,
           only_run_cleanup=FLAGS.only_run_cleanup,
@@ -509,6 +547,7 @@ if __name__ == '__main__':
       'template_mmcif_dir',
       'max_template_date',
       'obsolete_pdbs_path',
+      'use_gpu_relax',
   ])
 
   app.run(main)

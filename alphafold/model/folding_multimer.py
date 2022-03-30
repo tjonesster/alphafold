@@ -182,7 +182,7 @@ class PointProjection(hk.Module):
 
 
 class InvariantPointAttention(hk.Module):
-  """Covariant attention module.
+  """Invariant point attention module.
 
   The high-level idea is that this attention module works over a set of points
   and associated orientations in 3D space (e.g. protein residues).
@@ -660,7 +660,8 @@ class StructureModule(hk.Module):
         residue_index=residue_index,
         mask=pred_mask,
         pred_positions=pred_positions,
-        config=self.config)
+        config=self.config,
+        asym_id=batch['asym_id'])
 
     sidechains = value['sidechains']
 
@@ -881,9 +882,13 @@ def structural_violation_loss(mask: jnp.ndarray,
            ))
 
 
-def find_structural_violations( aatype: jnp.ndarray, residue_index: jnp.ndarray, mask: jnp.ndarray,
-    pred_positions: geometry.Vec3Array,  
-    config: ml_collections.ConfigDict
+def find_structural_violations(
+    aatype: jnp.ndarray,
+    residue_index: jnp.ndarray,
+    mask: jnp.ndarray,
+    pred_positions: geometry.Vec3Array,  # (N, 14)
+    config: ml_collections.ConfigDict,
+    asym_id: jnp.ndarray,
     ) -> Dict[str, Any]:
     # (N, 14)
   """Computes several checks for structural Violations."""
@@ -915,7 +920,8 @@ def find_structural_violations( aatype: jnp.ndarray, residue_index: jnp.ndarray,
       atom_radius=atom_radius,
       residue_index=residue_index,
       overlap_tolerance_soft=config.clash_overlap_tolerance,
-      overlap_tolerance_hard=config.clash_overlap_tolerance)
+      overlap_tolerance_hard=config.clash_overlap_tolerance,
+      asym_id=asym_id)
 
   # Compute all within-residue violations (clashes,
   # bond length and angle violations).
