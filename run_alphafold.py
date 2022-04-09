@@ -122,6 +122,12 @@ flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. '
                      'recommended to enable if possible. GPUs must be available'
                      ' if this setting is enabled.')
 
+
+# This really has not been performing the way I expected
+flags.DEFINE_integer("max_extra_msa", defvalues.get("max_extra_msa", None), "What should the new number of max sequences be?")
+flags.DEFINE_integer("max_msa_clusters", defvalues.get("max_msa_clusters", None), "What should the new number of max sequences be?")
+#max_msa_clusters
+
 FLAGS = flags.FLAGS
 
 MAX_TEMPLATE_HITS = 20
@@ -433,15 +439,30 @@ def main(argv):
       model_config.data.eval.num_ensemble = num_ensemble
 
     #This path might be different for the multimer system
+    # One of these works for the multimer and one of these works for the monomer 
     if FLAGS.num_recycle != None:
       try:
         model_config.model.num_recycle = FLAGS.num_recycle
+        print("changed the number of recycles to ", FLAGS.num_recycle)
       except: 
         pass
       try:
         model_config.data.common.num_recycle  = FLAGS.num_recycle
+        print("changed the number of recycles to ", FLAGS.num_recycle)
       except: 
         pass
+
+    if FLAGS.max_extra_msa != None:
+      #try:
+      model_config.data.common.max_extra_msa = FLAGS.max_extra_msa
+      #  print("managed to change the max msa")
+      #except: 
+      #  print("failed to change the max_msa value")
+      #  pass
+
+    if FLAGS.max_msa_clusters != None:
+      model_config.data.eval.max_msa_clusters = FLAGS.max_msa_clusters
+
 
     model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
 
