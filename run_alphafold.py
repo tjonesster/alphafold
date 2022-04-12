@@ -80,7 +80,7 @@ flags.DEFINE_string('data_dir', defvalues.get('data_dir', None), 'Path to direct
 flags.DEFINE_enum('db_preset', defvalues.get('db_preset',None), ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
 
 # Need to change this flag's default value
-flags.DEFINE_enum('model_preset', defvalues.get('model_preset',None), ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'], 'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
+flags.DEFINE_enum('model_preset', defvalues.get('model_preset',None), ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer', 'multimer_v2'], 'Choose preset model configuration - the monomer model, the monomer model with extra ensembling, monomer model with pTM head, or multimer model')
 
 # I think that I would probably cut this out of the pipeline script
 flags.DEFINE_boolean('benchmark', defvalues.get('benchmark', False), 'Run multiple JAX model evaluations to obtain a timing that excludes the compilation time, which should be more indicative of the time required for inferencing many proteins.') # I think that I would just include this in another script because you are not going really be using this in a standard workflow.
@@ -426,9 +426,17 @@ def main(argv):
   else:
     model_names = FLAGS.model_names 
 
-    for i, ele in enumerate(model_names):
-      if FLAGS.model_preset.split("_")[-1] in ["ptm", "multimer"]:
-        model_names[i] = ele + "_" + FLAGS.model_preset.split("_")[-1]
+
+    # This is kinda sloppy
+    # Need to add an assertion that states that the model must end in _multimer or _multimer_v2 if they are running the multimer preset
+    if 'multimer' in  FLAGS.model_preset:
+        for mod_name in model_names:
+            assert "multimer" in  mod_name.split("_"), "One of the models selected in your multimer run did not include multimer in the model params number"
+    
+
+    #for i, ele in enumerate(model_names):
+    #  if FLAGS.model_preset.split("_")[-1] in ["ptm", "multimer"]:
+    #model_names[i] = ele + "_" + FLAGS.model_preset.split("_")[-1]
 
   for model_name in model_names:
     model_config = config.model_config(model_name)
@@ -507,6 +515,7 @@ def main(argv):
 
     for structure_index in range(FLAGS.num_structures):
       random_seed = FLAGS.random_seed + structure_index if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))+structure_index
+      random_seed = random_seed % 2147483648
       logging.info('Using random seed %d for the data pipeline', random_seed)
 
       # check what structure directories exist...
