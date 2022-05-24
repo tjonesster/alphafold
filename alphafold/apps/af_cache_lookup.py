@@ -74,10 +74,9 @@ class alignment_retriever:
         self.manifest_path = os.path.join(self.root_path, "manifest.pkl")
         self.read_manifest()
         self.manifest_updates = {}
-#        self.dirty = False # if structs have been written since last read
 
     def seq_upper(self, sequence):
-        # Should also check that only valid chars are used in the sequence
+        # Check if the input is good
         return sequence.upper()
         
 
@@ -95,7 +94,18 @@ class alignment_retriever:
 
             with open(self.manifest_path,'wb+') as out_file:
                 pickle.dump(self.manifest, out_file)   
-            # self.dirty = True
+
+
+    def link_msa_dir(self, sequence, destination_dir):
+
+        dir = self.lookup_sequence(sequence)
+
+        if dir == False: 
+            dir = self.create_new_directory()
+
+        os.symlink(dir, destination_dir)
+
+
 
     def save_manifest(self):
         '''
@@ -250,7 +260,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
     parser.add_argument("-dest_path", "--destination_path", help="Where do you want to place the output or copy from the alignment.")
-    parser.add_argument('--date', help='Date to use newer than date')
+    # parser.add_argument('--date', help='Date to use newer than date')
 
 
     args = parser.parse_args()
@@ -287,7 +297,12 @@ if __name__ == "__main__":
 
         elif args.operation == operation_types.link:
 
-            pass
+            # ar
+            assert args.destination_path is not None, "Link operation requires destination path"
+            assert args.sequence is not None, "Link operation request a sequence"
+
+            ar.link_msa_dir(args.sequence, args.destination_path)
+
 
         elif args.operation == operation_types.lookup: # lookup a sequence
 
