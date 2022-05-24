@@ -6,7 +6,7 @@
 
 import pickle
 import os
-import sys
+# import sys
 import uuid
 import shutil
 from enum import Enum
@@ -18,11 +18,9 @@ from pathlib import Path
 
 from absl import logging
 
-from alphafold.data.tools import jackhmmer
-
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
-from alphafold.user_config import alignment_methods 
-from alphafold.user_config import database_sets
+# from alphafold.user_config import alignment_methods  # we removed this now 
+# from alphafold.user_config import database_sets # we removed this
 from alphafold.user_config import model_presets
 
 '''
@@ -62,13 +60,6 @@ Example of the manifest scheme:
 '''
 
 class alignment_retriever:
-    '''
-    Fetches a set of alignments from a cache
-    
-    commands: 
-        fetch copies a set of alignments to a destination
-
-    '''
     def __init__(self, root_path):
         self.root_path = Path(root_path)
         self.manifest_path = os.path.join(self.root_path, "manifest.pkl")
@@ -88,7 +79,6 @@ class alignment_retriever:
                 self.manifest = pickle.load(f) # if it bombs here I don't know if it will be able to unlock
                 fcntl.flock(f, fcntl.LOCK_UN)
         except:
-            #logging.info("The manifest.pkl file did not exist. Creating it now.")
             print("The manifest.pkl file did not exist.")
             self.manifest = {}
 
@@ -98,14 +88,15 @@ class alignment_retriever:
 
     def link_msa_dir(self, sequence, destination_dir):
 
+        assert sequence is not None, "Link operation request a sequence"
+        assert destination_dir is not None, "Link operation requires destination path"
+
         dir = self.lookup_sequence(sequence)
 
         if dir == False: 
             dir = self.create_new_directory()
 
         os.symlink(dir, destination_dir)
-
-
 
     def save_manifest(self):
         '''
@@ -115,12 +106,6 @@ class alignment_retriever:
         Saves manifest
         '''
         print("saving")
-
-        print(self.manifest_path)
-
-        # # if not self.dirty: # if the file has not been updated don't bother saving
-        #     return 
-
 
         in_file = open(self.manifest_path,'rb+')
         fcntl.flock(in_file, fcntl.LOCK_EX)
@@ -139,6 +124,10 @@ class alignment_retriever:
         in_file.close()
 
     def create_new_directory(self) -> str:
+        '''
+        Creates a directory with a unique identifier. Uniqueness is confirmed 
+        Returns string which is a path to the directory 
+        '''
 
         new_dir = str(uuid.uuid4())
 
@@ -157,22 +146,8 @@ class alignment_retriever:
         assert sequence, "Must specify a sequence for the lookup operation"
 
         sequence = self.seq_upper(sequence)
-        # sequence.upper()
 
         result =  self.manifest.get(sequence, False)
-
-        # if not result:
-            # return False
-
-        # results = [] 
-
-        # for key_pair, value in result.items():
-            # if database_set == None or database_set == key_pair[0]:
-                # if method == None or method == key_pair[1]:
-                    # if model_preset == None or model_preset == key_pair[2]:
-            # results.append(value)    
-
-        # return results 
 
         return result
 
@@ -204,6 +179,9 @@ class alignment_retriever:
         '''
             fetch a set of alignments
         '''
+
+        assert sequence != "", "af_cache_lookup: Fetch operation requires sequence argument"
+        assert dest_output_path != "", "af_cache_lookup: Fetch operation requires directory argument argument"
         
         sequence = self.seq_upper(sequence)
 
@@ -213,8 +191,13 @@ class alignment_retriever:
 
     
     def stash_alignments(self, sequence, dest_path= None, method = None, database_set = None, preset = None):
+        '''
+        Takes a directory and copies it to a places. Records the sequence in the manifest.pkl file.
+        '''
 
-        assert(dest_path != None), "You need to specify a destination path to stash alignments"
+        assert dest_path != None, "You need to specify a destination path to stash alignments"
+        assert sequence != None, "Stash operations request a sequence argument" 
+
         sequence= self.seq_upper(sequence)
         
         result = self.lookup_sequence(sequence)
@@ -253,19 +236,17 @@ class TestAlignmentRetriever(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    #logging.info("not implemented yet")
+
+    logging.set_verbosity(logging.INFO)
 
     parser = argparse.ArgumentParser(description="af_cache_lookup.py")
     parser.add_argument("operation", type=operation_types, choices=list(operation_types), help="The operation to perform")
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
-    parser.add_argument("-dest_path", "--destination_path", help="Where do you want to place the output or copy from the alignment.")
-    # parser.add_argument('--date', help='Date to use newer than date')
-
+    parser.add_argument("-d", "--dir", help="Where do you want to place the output or copy from the alignment.")
 
     args = parser.parse_args()
     print(args)
-
     
     if args.operation == operation_types.test:
         unittest.main()
@@ -278,31 +259,19 @@ if __name__ == "__main__":
 
         if args.operation == operation_types.stash:   # add a new sequence
             print('stashing')
-            msg = "stash operation requires: --sequence --method  --destination_path."
 
-            assert(args.sequence != "" and args.sequence != None), msg + " Sequence not provided."
-            assert(args.destination_path != "" and args.destination_path != None), msg + " destination_path not provided."
-
-            ar.stash_alignments(args.sequence,  dest_path = args.destination_path)
+            ar.stash_alignments(args.sequence,  dest_path = args.dir )
 
             ar.save_manifest()
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
             print('fetching')
 
-            assert(args.sequence != "" and args.sequence != None), "sequence not provided"
-            assert(args.destination_path != "" and args.destination_path != None), "destination_path not provided"
-
-            ar.fetch_alignments(args.sequence, args.destination_path)
+            ar.fetch_alignments(args.sequence, args.dir )
 
         elif args.operation == operation_types.link:
 
-            # ar
-            assert args.destination_path is not None, "Link operation requires destination path"
-            assert args.sequence is not None, "Link operation request a sequence"
-
-            ar.link_msa_dir(args.sequence, args.destination_path)
-
+            ar.link_msa_dir(args.sequence, args.dir)
 
         elif args.operation == operation_types.lookup: # lookup a sequence
 
@@ -312,6 +281,4 @@ if __name__ == "__main__":
         elif args.operation == operation_types.create_fasta:
             print("create_fasta not implemented yet ")
 
-            ar.create_fasta_from_manifest(args.destination_path)
-
-
+            ar.create_fasta_from_manifest(args.dir)
