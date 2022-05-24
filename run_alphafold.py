@@ -353,7 +353,7 @@ def main(argv):
 
   # Check flags checks postive or negative values when we really only care about checking that it is set when we need it. We add this little if checks in order to get around changing the default behavior of this
   if use_small_bfd:
-    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=use_small_bfd)
+    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=True)
 
   if not use_small_bfd: 
     _check_flag('uniclust30_database_path', 'db_preset', should_be_set=True)
@@ -365,8 +365,8 @@ def main(argv):
     _check_flag('pdb70_database_path', 'model_preset', should_be_set=True)
 
   if run_multimer_system:
-    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=run_multimer_system)
-    _check_flag('uniprot_database_path', 'model_preset', should_be_set=run_multimer_system)
+    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=True)
+    _check_flag('uniprot_database_path', 'model_preset', should_be_set=True)
 
   if FLAGS.model_preset == 'monomer_casp14':
     num_ensemble = 8

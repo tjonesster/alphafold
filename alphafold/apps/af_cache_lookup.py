@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+# We are only going to worry about making this work for monomers.
+# It would not be too much work to make it work for multimers but it should be easier to store a single version of each file
 
 import pickle
 import os
@@ -9,7 +12,6 @@ from enum import Enum
 import fcntl 
 import unittest
 import tempfile
-# from typing import List 
 import argparse
 from pathlib import Path
 
@@ -35,8 +37,9 @@ class operation_types(Enum):
     fetch = "fetch"
     stash = "stash"
     lookup = "lookup"
-    fasta = "fasta"
+    fasta = "create_fasta"
     test = "test"
+    link = "link"
 
 '''
 Example of the manifest scheme:
@@ -175,11 +178,13 @@ class alignment_retriever:
         #     print("not implemented:insert into database")
 
         dir = self.create_new_directory()
+
         # print("not implemented: copy the file to the new directory")
         #logging.info("not implemented: copy the file to the new directory")
         #print(dir.__str__)
         #shutil.copy2(dest_path, dir.__str__)
-        print("dir: ",dir)
+
+        #print("dir: ",dir)
         # print("")
         #shutil.copy2("/Users/taylorjones/Documents/alphafold/alphafold/apps/1SSP_E.fasta/msas/mgnify_hits.sto", dir)
         shutil.copytree("/Users/taylorjones/Documents/alphafold/alphafold/apps/1SSP_E.fasta/msas/", os.path.join(dir,"msas"))
@@ -226,10 +231,9 @@ if __name__ == "__main__":
 
 
     args = parser.parse_args()
+
     
     if args.operation == operation_types.test:
-        #logging.info("testing")
-        print("testing")
         unittest.main()
     else:
 
@@ -271,4 +275,7 @@ if __name__ == "__main__":
             print("create_fasta not implemented yet ")
 
             ar.create_fasta_from_manifest(args.destination_path)
+
+        elif args.opertion == operation_types.link:
+
 
