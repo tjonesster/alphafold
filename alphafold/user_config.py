@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 CONFIG_RUN_ALPHAFOLD = {
     #"fasta_names":  ["rcsb_pdb_6T1Z1_small.fasta"],
     #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
