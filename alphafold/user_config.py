@@ -1,22 +1,6 @@
 from enum import Enum
 
-
 CONFIG_RUN_ALPHAFOLD = {
-    #"fasta_names":  ["rcsb_pdb_6T1Z1_small.fasta"],
-    #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
-    #"bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/",
-    #"db_preset": "full_dbs", 
-    #"model_preset": "multimer",
-    #"random_seed": None,
-    #"uniclust30_database_path": "/media/taylorjones/8Tb1/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
-    #"alignment_cache_path": "/media/taylorjones/bigboi/alphafold_data/alignment_cache",
-    #"mgnify_database_path": "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
-    # "/media/taylorjones/8Tb1/alphafold_data/mgnify/mgy_clusters_2018_12.fa",
-    # "small_bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd_small/bfd-first_non_consensus_sequences.fasta",
-    # "bfd_database_path": "/media/taylorjones/nvme_databases/bfd_small",
-    # /media/taylorjones/nvme_databases/bfd_small
-    #"pdb70_database_path": "/media/taylorjones/8Tb1/alphafold_data/pdb70/pdb70",
-    #"uniprot_database_path": "/media/taylorjones/bigboi/alphafold_data/uniprot/uniprot/uniprot.fasta",
     "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
     "model_names": ['model_5'], 
@@ -42,7 +26,6 @@ CONFIG_RUN_ALPHAFOLD = {
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/nvme_databases/uniprot/uniprot.fasta",
     "num_structures": 10,
-    #"alignment_cache_path": "/Users/taylorjones/alignment_cache",
     "alignment_cache_path": "/Users/taylorjones/alignment_cache",
     "job_record_path": "/media/taylorjones/bigboi/alphafold_data/job_record.txt", 
 }
