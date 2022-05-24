@@ -40,16 +40,7 @@ class operation_types(Enum):
     test = "test" # run test cases 
     link = "link" # symlink the directory into its proper location 
 
-# OLD style 
-'''
-Example of the manifest scheme:
-    {
-        "sequence_1": {
-            (database_set, alignment_method, preset): {"path", "date", "database_version"}
-        }     
-    }
-'''
-# New Style
+# New Style much simpler. May need to expand it later in order to support all use cases.
 '''
     Example of the manifest scheme:
     {
