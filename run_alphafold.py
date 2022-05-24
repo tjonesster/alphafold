@@ -126,6 +126,16 @@ flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. '
 # This really has not been performing the way I expected
 flags.DEFINE_integer("max_extra_msa", defvalues.get("max_extra_msa", None), "What should the new number of max sequences be?")
 flags.DEFINE_integer("max_msa_clusters", defvalues.get("max_msa_clusters", None), "What should the new number of max sequences be?")
+
+#evoformer_num_block - default is 48 None is assumed 
+#flags.DEFINE_integer("evoformer_num_block", None)
+
+#structure_module - num_layer
+#flags.DEFINE_integer('structure_module_layers', None)
+
+# num_layer in transintion ? I don't really know what this does...?
+
+
 #max_msa_clusters
 
 FLAGS = flags.FLAGS
@@ -159,6 +169,7 @@ def predict_structure(
     write_pickle: bool = True,
     exit_after_msa: bool = False,
     only_run_cleanup: bool = False,
+    num_recycle: int = 3,
     run_relax: bool = True
     ):
 
@@ -206,6 +217,7 @@ def predict_structure(
     'msa_output_dir': msa_output_dir,
     'structure_output_dir': structure_output_dir,
     'random_seed': random_seed,
+    'num_recycle': num_recycle
   } 
 
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
@@ -266,6 +278,7 @@ def predict_structure(
       # Add the predicted LDDT in the b-factor column.
       # Note that higher predicted LDDT value means higher model confidence.
       plddt_b_factors = np.repeat(plddt[:, None], residue_constants.atom_type_num, axis=-1)
+
       unrelaxed_protein = protein.from_prediction(
           features=processed_feature_dict,
           result=prediction_result,
@@ -278,8 +291,6 @@ def predict_structure(
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
-    # Relax the prediction.
-    # if :
     if amber_relaxer and run_relax:
       t_0 = time.time()
       relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
@@ -448,25 +459,21 @@ def main(argv):
 
     #This path might be different for the multimer system
     # One of these works for the multimer and one of these works for the monomer 
+    # IN the current implementation this can't be None. It not defaults to 3... so we might want to change the way we implement this.
     if FLAGS.num_recycle != None:
       try:
-        model_config.model.num_recycle = FLAGS.num_recycle
-        print("changed the number of recycles to ", FLAGS.num_recycle)
+        model_config.model.num_recycle = num_recycle
+        print("changed the number of recycles to ", num_recycle)
       except: 
         pass
       try:
-        model_config.data.common.num_recycle  = FLAGS.num_recycle
-        print("changed the number of recycles to ", FLAGS.num_recycle)
+        model_config.data.common.num_recycle  = num_recycle
+        print("changed the number of recycles to ", num_recycle)
       except: 
         pass
 
     if FLAGS.max_extra_msa != None:
-      #try:
       model_config.data.common.max_extra_msa = FLAGS.max_extra_msa
-      #  print("managed to change the max msa")
-      #except: 
-      #  print("failed to change the max_msa value")
-      #  pass
 
     if FLAGS.max_msa_clusters != None:
       model_config.data.eval.max_msa_clusters = FLAGS.max_msa_clusters
@@ -534,10 +541,10 @@ def main(argv):
           job_name=FLAGS.job_name,
           overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
-          # is_prokaryote=is_prokaryote,
           write_pickle=FLAGS.write_pickle,
           exit_after_msa=FLAGS.exit_after_msa,
           only_run_cleanup=FLAGS.only_run_cleanup,
+          num_recycle=FLAGS.num_recycle,
           run_relax=FLAGS.run_relax,
       )
 

@@ -31,7 +31,8 @@ flags.DEFINE_string('small_bfd_database_path', defvalues.get("small_bfd_database
 flags.DEFINE_string('pdb_seqres_database_path', defvalues.get('pdb_seqres_database_path', None), 'Path to the PDB seqres database for use by hmmsearch.')
 flags.DEFINE_string('uniprot_database_path', defvalues.get('uniprot_database_path', None), 'Path to the Uniprot database for use by JackHMMer.')
 flags.DEFINE_string('template_mmcif_dir', defvalues.get('template_mmcif_dir', None), 'Path to a directory with template mmCIF structures, each named <pdb_id>.cif')
-flags.DEFINE_string('uniclust30_database_path', defvalues.get('uniclust30_database_path', None), 'Path to uniclust30.') flags.DEFINE_string("pdb70_database_path", defvalues.get("pdb70_database_path", None), "Path to the pdb70 directory")
+flags.DEFINE_string('uniclust30_database_path', defvalues.get('uniclust30_database_path', None), 'Path to uniclust30.') 
+flags.DEFINE_string("pdb70_database_path", defvalues.get("pdb70_database_path", None), "Path to the pdb70 directory")
 
 # fasta
 flags.DEFINE_list('fasta_names', defvalues.get('fasta_names', None), 'The names of the fasta files. They should be located in your output path.')
@@ -40,8 +41,13 @@ flags.DEFINE_string('fasta_path', defvalues.get('fasta_path', None), 'Path to th
 #reduced ? 
 flags.DEFINE_enum('db_preset', defvalues.get('db_preset',None), ['full_dbs', 'reduced_dbs'], 'Choose preset MSA database configuration - smaller genetic database config (reduced_dbs) or full genetic database config  (full_dbs)')
 
+
+FLAGS = flags.FLAGS
+
+
 def run_msa_tool(msa_runner, input_fasta_path: str, msa_out_path: str, msa_format: str, use_precomputed_msas: bool,) -> Mapping[str, Any]:
   """Runs an MSA tool, checking if output already exists first."""
+
   if not use_precomputed_msas or not os.path.exists(msa_out_path):
     result = msa_runner.query(input_fasta_path)[0]
     with open(msa_out_path, 'w') as f:
@@ -56,14 +62,13 @@ def main(argv):
     if len(argv)>1:
         raise app.UsageError('Too many command-line arguments.')
 
-    # argv...
-    # FLAGS = flags.FLAGS
+    print(FLAGS)
 
     use_small_bfd = FLAGS.db_preset == 'reduced_dbs'
 
     uniref90_out_path = os.path.join(msa_output_dir, 'uniref90_hits.sto')
     mgnify_out_path = os.path.join(msa_output_dir, 'mgnify_hits.sto') 
-    pdb_templates_result = template_searcher.query(msa_for_templates) # I don't htink we need to handle this in the pipeline
+    pdb_templates_result = template_searcher.query(msa_for_templates) # I don't think we need to handle this in the pipeline
 
     jackhmmer_uniref90_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=uniref90_database_path)
     jackhmmer_small_bfd_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=small_bfd_database_path)
