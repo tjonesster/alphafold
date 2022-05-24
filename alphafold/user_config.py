@@ -41,6 +41,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "pdb_seqres_database_path":"/media/taylorjones/bigboi/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/nvme_databases/uniprot/uniprot.fasta",
     "num_structures": 10,
+    #"alignment_cache_path": "/Users/taylorjones/alignment_cache",
     "alignment_cache_path": "/Users/taylorjones/alignment_cache",
     "job_record_path": "/media/taylorjones/bigboi/alphafold_data/job_record.txt", 
 }
@@ -51,12 +52,6 @@ class alignment_methods(Enum):
     jackhmmer = "jackhmmer"
     default = "default"
     mmseqs2 = "mmseqs2"
-
-class database_sets(Enum):
-    full_dbs = "full"
-    full = "full"
-    reduced_dbs = "reduced"
-    reduced = "reduced"
 
 class database_sets(Enum):
     full_dbs = "full"
