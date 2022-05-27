@@ -23,7 +23,6 @@ NUM_MSA_SEQ = shape_placeholders.NUM_MSA_SEQ
 NUM_EXTRA_SEQ = shape_placeholders.NUM_EXTRA_SEQ
 NUM_TEMPLATES = shape_placeholders.NUM_TEMPLATES
 
-
 def model_config(name: str) -> ml_collections.ConfigDict:
   """Get the ConfigDict of a CASP14 model."""
 
@@ -36,10 +35,6 @@ def model_config(name: str) -> ml_collections.ConfigDict:
   cfg.update_from_flattened_dict(CONFIG_DIFFS[name])
   return cfg
 
-# def defaults_config():
-    # print("testing")
-
-# I don't like this way of doing it...
 MODEL_PRESETS = {
     'monomer': (
         'model_1',

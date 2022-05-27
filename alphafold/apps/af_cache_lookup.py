@@ -1,25 +1,26 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+# We are only going to worry about making this work for monomers.
+# It would not be too much work to make it work for multimers but it should be easier to store a single version of each file
+# I have stripped this down a lot to only use the monomer pipeline.... We were going to support multimers at one point but we decided not to do that.
 
 import pickle
 import os
-import sys
+# import sys
 import uuid
 import shutil
 from enum import Enum
 import fcntl 
 import unittest
 import tempfile
-# from typing import List 
 import argparse
 from pathlib import Path
 
 from absl import logging
 
-from alphafold.data.tools import jackhmmer
-
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
-from alphafold.user_config import alignment_methods 
-from alphafold.user_config import database_sets
+# from alphafold.user_config import alignment_methods  # we removed this now 
+# from alphafold.user_config import database_sets # we removed this
 from alphafold.user_config import model_presets
 
 '''
@@ -32,46 +33,61 @@ Future thing to support
 
 # Options that are specific to this module
 class operation_types(Enum):
-    fetch = "fetch"
-    stash = "stash"
-    lookup = "lookup"
-    fasta = "fasta"
-    test = "test"
+    fetch = "fetch" # Fetch = retrieve a copy of the given alignments
+    stash = "stash" # Store a set of alignment sin the cache
+    lookup = "lookup" # Check to see if there are matching alignments
+    fasta = "create_fasta" # Create cache for searching # probably not implemented yet 
+    test = "test" # run test cases 
+    link = "link" # symlink the directory into its proper location 
 
+# New Style much simpler. May need to expand it later in order to support all use cases.
 '''
-Example of the manifest scheme:
+    Example of the manifest scheme:
     {
-        "sequence_1": {
-            (database_set, alignment_method, preset): {"path", "date", "database_version"}
+        "sequence_1": "path"
         }     
     }
+
 '''
 
 class alignment_retriever:
-    '''
-    Fetches a set of alignments from a cache
-    
-    commands: 
-        fetch copies a set of alignments to a destination
-
-    '''
     def __init__(self, root_path):
         self.root_path = Path(root_path)
         self.manifest_path = os.path.join(self.root_path, "manifest.pkl")
         self.read_manifest()
         self.manifest_updates = {}
 
+    def seq_upper(self, sequence):
+        # Check if the input is good
+        return sequence.upper()
+        
+
     def read_manifest(self):
         '''Reads the manifest file'''
         try: 
-            with open(self.manifest_file,'rb') as f:
+            with open(self.manifest_path,'rb') as f:
                 fcntl.flock(f, fcntl.LOCK_SH)
                 self.manifest = pickle.load(f) # if it bombs here I don't know if it will be able to unlock
                 fcntl.flock(f, fcntl.LOCK_UN)
         except:
-            #logging.info("The manifest.pkl file did not exist. Creating it now.")
-            print("The manifest.pkl file did not exist. Creating it now.")
+            print("The manifest.pkl file did not exist.")
             self.manifest = {}
+
+            with open(self.manifest_path,'wb+') as out_file:
+                pickle.dump(self.manifest, out_file)   
+
+
+    def link_msa_dir(self, sequence, destination_dir):
+
+        assert sequence is not None, "Link operation request a sequence"
+        assert destination_dir is not None, "Link operation requires destination path"
+
+        dir = self.lookup_sequence(sequence)
+
+        if dir == False: 
+            dir = self.create_new_directory()
+
+        os.symlink(dir, destination_dir)
 
     def save_manifest(self):
         '''
@@ -80,21 +96,28 @@ class alignment_retriever:
         Applies updates
         Saves manifest
         '''
+        print("saving")
 
-        with open(self.manifest_file,'rb+') as f:
-            fcntl.flock(f, fcntl.LOCK_EX)
+        in_file = open(self.manifest_path,'rb+')
+        fcntl.flock(in_file, fcntl.LOCK_EX)
+        self.manifest = pickle.load(in_file)
 
-            self.manifest = pickle.load(f)
+        t = {**self.manifest, **self.manifest_updates}
 
-            # apply updates to the manifest
-            logging.info("not implemeneted: apply updates to the manifest")
+        out_file = open(self.manifest_path,'wb+')
 
-            pickle.dump(self.manifest, f)   
-            fcntl.flock(f, fcntl.LOCK_UN)     
+        pickle.dump(t, out_file)   
 
-    def create_new_directory(self):
+        out_file.close()
+
+
+        fcntl.flock(in_file, fcntl.LOCK_UN)     
+        in_file.close()
+
+    def create_new_directory(self) -> str:
         '''
-            Creates a unique directory name and returns the full path to it.
+        Creates a directory with a unique identifier. Uniqueness is confirmed 
+        Returns string which is a path to the directory 
         '''
 
         new_dir = str(uuid.uuid4())
@@ -106,32 +129,24 @@ class alignment_retriever:
     
         return os.path.join(self.root_path, new_dir)
         
-    def lookup_sequence(self, sequence,  method = None, database_set = None, preset = None):
+    def lookup_sequence(self, sequence,  method = None, database_set = None, preset = model_presets.monomer):
         '''
             Find out what directories may contain the given query.
         '''
 
         assert sequence, "Must specify a sequence for the lookup operation"
 
+        sequence = self.seq_upper(sequence)
+
         result =  self.manifest.get(sequence, False)
 
-        if not result:
-            return False
-
-        results = [] 
-
-        for key_pair, value in result.items():
-            if database_set == None or database_set == key_pair[0]:
-                if method == None or method == key_pair[1]:
-                    if model_preset == None or model_preset == key_pair[2]:
-                        results.append(value)    
-
-        return results 
+        return result
 
     def create_fasta_from_manifest(self, destination_path) -> bool:
         '''
         Creates a fasta file from the manifest
         '''
+
         assert not os.path.exists(destination_path), 'The destination path already exists'
         assert os.path.exists('/'.join(destination_path.split('/')[:-1])), 'The parent folder does not exist'
 
@@ -151,40 +166,41 @@ class alignment_retriever:
 
         return True
 
-    def fetch_alignments(self, sequence:str, dest_output_path,method = None, database_set = None):
+    def fetch_alignments(self, sequence:str, dest_output_path,method = None, database_set = None, preset=None):
         '''
             fetch a set of alignments
         '''
 
-        source_dir_path = self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset)
+        assert sequence != "", "af_cache_lookup: Fetch operation requires sequence argument"
+        assert dest_output_path != "", "af_cache_lookup: Fetch operation requires directory argument argument"
         
-        #shutil.copy2(source_dir_path, dest_output_path) # The documentation seems to suggest that this should work... but does not...
+        sequence = self.seq_upper(sequence)
+
+        source_dir_path = self.lookup_sequence(seq, method=method, database_set = database_set, preset=preset)
+        
         shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
 
     
     def stash_alignments(self, sequence, dest_path= None, method = None, database_set = None, preset = None):
+        '''
+        Takes a directory and copies it to a places. Records the sequence in the manifest.pkl file.
+        '''
 
-        assert (method != None), "You must specify an alignment method to stash alignments"
-        assert (database_set != None), "You must specify a database set to stash alignments"
-        assert (preset != None), "You must specify a preset in order to store alignments"
-        assert(dest_path != None), "You need to specify a destination path to stash alignments"
+        assert dest_path != None, "You need to specify a destination path to stash alignments"
+        assert sequence != None, "Stash operations request a sequence argument" 
 
+        sequence= self.seq_upper(sequence)
+        
+        result = self.lookup_sequence(sequence)
 
-        # if not self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset):
-        #     #logging.info("not implemented:insert into database")
-        #     print("not implemented:insert into database")
+        assert result == False, "The sequence you are trying to stash is already in the manifest"
 
         dir = self.create_new_directory()
-        # print("not implemented: copy the file to the new directory")
-        #logging.info("not implemented: copy the file to the new directory")
-        #print(dir.__str__)
-        #shutil.copy2(dest_path, dir.__str__)
-        print("dir: ",dir)
-        # print("")
-        #shutil.copy2("/Users/taylorjones/Documents/alphafold/alphafold/apps/1SSP_E.fasta/msas/mgnify_hits.sto", dir)
-        shutil.copytree("/Users/taylorjones/Documents/alphafold/alphafold/apps/1SSP_E.fasta/msas/", os.path.join(dir,"msas"))
 
-        return False 
+        self.manifest_updates[sequence] = dir
+        shutil.copytree(dest_path, os.path.join(dir,"msas"))
+
+        return True
 
  # write a unit test class for the alignment retriever       
         
@@ -211,25 +227,19 @@ class TestAlignmentRetriever(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    #logging.info("not implemented yet")
-    print("not implemented yet")
 
-    parser = argparse.ArgumentParser(description="call_cache_lookup_util.py")
+    logging.set_verbosity(logging.INFO)
+
+    parser = argparse.ArgumentParser(description="af_cache_lookup.py")
     parser.add_argument("operation", type=operation_types, choices=list(operation_types), help="The operation to perform")
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
-    parser.add_argument('-m', '--method', help='Alignment method to use',type=alignment_methods, choices=list(alignment_methods))
-    parser.add_argument('-p', '--preset', help='Monomer or Multimer?', type=model_presets, choices=list(model_presets))
-    parser.add_argument("-d", "--database_set", type=database_sets, choices=list(database_sets), help="The database set to use", default=defvalues.get('database_set', None)) 
-    parser.add_argument("-dest_path", "--destination_path", help="Where do you want to place the output or copy from the alignment.")
-    parser.add_argument('--date', help='Date to use newer than date')
-
+    parser.add_argument("-d", "--dir", help="Where do you want to place the output or copy from the alignment.")
 
     args = parser.parse_args()
+    print(args)
     
     if args.operation == operation_types.test:
-        #logging.info("testing")
-        print("testing")
         unittest.main()
     else:
 
@@ -239,36 +249,27 @@ if __name__ == "__main__":
         ar = alignment_retriever(args.root_path)
 
         if args.operation == operation_types.stash:   # add a new sequence
-            #logging.info('stashing')
             print('stashing')
-            msg = "stash operation requires: --sequence --method --database_set --destination_path."
 
-            assert(args.sequence != "" and args.sequence != None), msg + " Sequence not provided."
-            assert(args.destination_path != "" and args.destination_path != None), msg + " destination_path not provided."
+            ar.stash_alignments(args.sequence,  dest_path = args.dir )
 
-            assert(args.method != "" and args.method != None), msg+ " Alignment method not provided."
-            assert(args.database_set != "" and args.database_set != None), "database_set should not bee an empty string or None"
-
-            ar.stash_alignments(args.sequence,  dest_path = args.destination_path, method= args.method, database_set =  args.database_set, preset=args.preset)
+            ar.save_manifest()
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
-            #logging.info('fetching')
             print('fetching')
 
-            assert(args.sequence != "" and args.sequence != None), "sequence not provided"
-            assert(args.destination_path != "" and args.destination_path != None), "destination_path not provided"
+            ar.fetch_alignments(args.sequence, args.dir )
 
-            ar.fetch_alignments(args.sequence, args.destination_path, args.method, args.database_set)
+        elif args.operation == operation_types.link:
+
+            ar.link_msa_dir(args.sequence, args.dir)
 
         elif args.operation == operation_types.lookup: # lookup a sequence
-            #logging.info('looking up')
-            print('looking up')
 
-            ar.lookup_sequence(args.sequence, args.method, args.database_set)
+            results = ar.lookup_sequence(args.sequence)
+            print(results)
 
         elif args.operation == operation_types.create_fasta:
-            #logging.info("create_fasta not implemented yet ")
             print("create_fasta not implemented yet ")
 
-            ar.create_fasta_from_manifest(args.destination_path)
-
+            ar.create_fasta_from_manifest(args.dir)

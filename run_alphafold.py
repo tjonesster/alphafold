@@ -112,16 +112,8 @@ flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000)
 
 flags.DEFINE_boolean("write_pickle", defvalues.get("write_pickle", True), "Do you want to store the pkl file of the output?")
 
-flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many '
-                     'predictions (each with a different random seed) will be '
-                     'generated per model. E.g. if this is 2 and there are 5 '
-                     'models then there will be 10 predictions per input. '
-                     'Note: this FLAG only applies if model_preset=multimer')
-flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. '
-                     'Relax on GPU can be much faster than CPU, so it is '
-                     'recommended to enable if possible. GPUs must be available'
-                     ' if this setting is enabled.')
-
+flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many predictions (each with a different random seed) will be generated per model. E.g. if this is 2 and there are 5 models then there will be 10 predictions per input. Note: this FLAG only applies if model_preset=multimer')
+flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. Relax on GPU can be much faster than CPU, so it is recommended to enable if possible. GPUs must be available if this setting is enabled.')
 
 # This really has not been performing the way I expected
 flags.DEFINE_integer("max_extra_msa", defvalues.get("max_extra_msa", None), "What should the new number of max sequences be?")
@@ -353,20 +345,20 @@ def main(argv):
 
   # Check flags checks postive or negative values when we really only care about checking that it is set when we need it. We add this little if checks in order to get around changing the default behavior of this
   if use_small_bfd:
-    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=use_small_bfd)
+    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=True)
 
   if not use_small_bfd: 
-    _check_flag('uniclust30_database_path', 'db_preset', should_be_set=not use_small_bfd)
-    _check_flag('bfd_database_path', 'db_preset', should_be_set=not use_small_bfd)
+    _check_flag('uniclust30_database_path', 'db_preset', should_be_set=True)
+    _check_flag('bfd_database_path', 'db_preset', should_be_set=True)
 
   run_multimer_system = 'multimer' in FLAGS.model_preset
 
   if not  run_multimer_system: 
-    _check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+    _check_flag('pdb70_database_path', 'model_preset', should_be_set=True)
 
   if run_multimer_system:
-    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=run_multimer_system)
-    _check_flag('uniprot_database_path', 'model_preset', should_be_set=run_multimer_system)
+    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=True)
+    _check_flag('uniprot_database_path', 'model_preset', should_be_set=True)
 
   if FLAGS.model_preset == 'monomer_casp14':
     num_ensemble = 8
