@@ -1,0 +1,1011 @@
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.11.0
+  latest version: 4.12.0
+
+Please update conda by running
+
+    $ conda update -n base conda
+
+
+
+## Package Plan ##
+
+  environment location: /home/jonestl5/miniconda3/envs/af2_cpu
+
+  added / updated specs:
+    - python=3.9.7
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-1_gnu
+  ca-certificates    conda-forge/linux-64::ca-certificates-2021.10.8-ha878542_0
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.36.1-hea4e1c9_2
+  libffi             conda-forge/linux-64::libffi-3.4.2-h7f98852_5
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-11.2.0-h1d223b6_14
+  libgomp            conda-forge/linux-64::libgomp-11.2.0-h1d223b6_14
+  libzlib            conda-forge/linux-64::libzlib-1.2.11-h166bdaf_1014
+  ncurses            conda-forge/linux-64::ncurses-6.3-h9c3ff4c_0
+  openssl            conda-forge/linux-64::openssl-3.0.2-h166bdaf_1
+  pip                conda-forge/noarch::pip-22.0.4-pyhd8ed1ab_0
+  python             conda-forge/linux-64::python-3.9.7-hf930737_3_cpython
+  python_abi         conda-forge/linux-64::python_abi-3.9-2_cp39
+  readline           conda-forge/linux-64::readline-8.1-h46c0cb4_0
+  setuptools         conda-forge/linux-64::setuptools-61.2.0-py39hf3d152e_3
+  sqlite             conda-forge/linux-64::sqlite-3.37.1-h4ff8645_0
+  tk                 conda-forge/linux-64::tk-8.6.12-h27826a3_0
+  tzdata             conda-forge/noarch::tzdata-2022a-h191b570_0
+  wheel              conda-forge/noarch::wheel-0.37.1-pyhd8ed1ab_0
+  xz                 conda-forge/linux-64::xz-5.2.5-h516909a_1
+  zlib               conda-forge/linux-64::zlib-1.2.11-h166bdaf_1014
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate af2_cpu
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.11.0
+  latest version: 4.12.0
+
+Please update conda by running
+
+    $ conda update -n base conda
+
+
+
+## Package Plan ##
+
+  environment location: /home/jonestl5/miniconda3/envs/af2_cpu
+
+  added / updated specs:
+    - absl-py=1.0.0
+
+
+The following NEW packages will be INSTALLED:
+
+  absl-py            conda-forge/noarch::absl-py-1.0.0-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting jax[cpu]
+  Using cached jax-0.3.4-py3-none-any.whl
+Requirement already satisfied: absl-py in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from jax[cpu]) (1.0.0)
+Collecting numpy>=1.19
+  Using cached numpy-1.22.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+Collecting typing-extensions
+  Using cached typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+Collecting scipy>=1.2.1
+  Using cached scipy-1.8.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (42.1 MB)
+Collecting opt-einsum
+  Using cached opt_einsum-3.3.0-py3-none-any.whl (65 kB)
+Collecting jaxlib==0.3.2
+  Using cached jaxlib-0.3.2-cp39-none-manylinux2010_x86_64.whl (68.6 MB)
+Collecting flatbuffers<3.0,>=1.12
+  Using cached flatbuffers-2.0-py2.py3-none-any.whl (26 kB)
+Requirement already satisfied: six in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from absl-py->jax[cpu]) (1.16.0)
+Installing collected packages: flatbuffers, typing-extensions, numpy, scipy, opt-einsum, jaxlib, jax
+Successfully installed flatbuffers-2.0 jax-0.3.4 jaxlib-0.3.2 numpy-1.22.3 opt-einsum-3.3.0 scipy-1.8.0 typing-extensions-4.1.1
+chmod: cannot access ‘/homea/jonestl5/miniconda3/envs/af2_cpu/pkgs/cuda-toolkit’: No such file or directory
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.11.0
+  latest version: 4.12.0
+
+Please update conda by running
+
+    $ conda update -n base conda
+
+
+
+## Package Plan ##
+
+  environment location: /home/jonestl5/miniconda3/envs/af2_cpu
+
+  added / updated specs:
+    - hhsuite
+    - hmmer=3.3.2
+    - kalign2
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    libstdcxx-ng-11.2.0        |      he4da1e4_14         4.2 MB  conda-forge
+    ------------------------------------------------------------
+                                           Total:         4.2 MB
+
+The following NEW packages will be INSTALLED:
+
+  hhsuite            bioconda/linux-64::hhsuite-3.3.0-py39pl5321h67e14b5_5
+  hmmer              bioconda/linux-64::hmmer-3.3.2-h87f3376_2
+  kalign2            bioconda/linux-64::kalign2-2.04-hec16e2b_3
+  libnsl             conda-forge/linux-64::libnsl-2.0.0-h7f98852_0
+  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-11.2.0-he4da1e4_14
+  perl               conda-forge/linux-64::perl-5.32.1-2_h7f98852_perl5
+
+
+
+Downloading and Extracting Packages
+libstdcxx-ng-11.2.0  | 4.2 MB    |            |   0% libstdcxx-ng-11.2.0  | 4.2 MB    |            |   0% libstdcxx-ng-11.2.0  | 4.2 MB    | ###1       |  32% libstdcxx-ng-11.2.0  | 4.2 MB    | #########5 |  95% libstdcxx-ng-11.2.0  | 4.2 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.11.0
+  latest version: 4.12.0
+
+Please update conda by running
+
+    $ conda update -n base conda
+
+
+
+## Package Plan ##
+
+  environment location: /home/jonestl5/miniconda3/envs/af2_cpu
+
+  added / updated specs:
+    - openmm=7.5.1
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    libgfortran-ng-11.2.0      |      h69a702a_14          20 KB  conda-forge
+    libgfortran5-11.2.0        |      h5c6108e_14         1.7 MB  conda-forge
+    numpy-1.22.3               |   py39h18676bf_0         6.8 MB  conda-forge
+    ------------------------------------------------------------
+                                           Total:         8.6 MB
+
+The following NEW packages will be INSTALLED:
+
+  cudatoolkit        conda-forge/linux-64::cudatoolkit-11.6.0-habf752d_10
+  fftw               conda-forge/linux-64::fftw-3.3.10-nompi_h77c792f_102
+  libblas            conda-forge/linux-64::libblas-3.9.0-13_linux64_openblas
+  libcblas           conda-forge/linux-64::libcblas-3.9.0-13_linux64_openblas
+  libgfortran-ng     conda-forge/linux-64::libgfortran-ng-11.2.0-h69a702a_14
+  libgfortran5       conda-forge/linux-64::libgfortran5-11.2.0-h5c6108e_14
+  liblapack          conda-forge/linux-64::liblapack-3.9.0-13_linux64_openblas
+  libopenblas        conda-forge/linux-64::libopenblas-0.3.18-pthreads_h8fe5266_0
+  numpy              conda-forge/linux-64::numpy-1.22.3-py39h18676bf_0
+  ocl-icd            conda-forge/linux-64::ocl-icd-2.3.1-h7f98852_0
+  ocl-icd-system     conda-forge/linux-64::ocl-icd-system-1.0.0-1
+  openmm             conda-forge/linux-64::openmm-7.5.1-py39h71eca04_1
+
+
+
+Downloading and Extracting Packages
+numpy-1.22.3         | 6.8 MB    |            |   0% numpy-1.22.3         | 6.8 MB    |            |   0% numpy-1.22.3         | 6.8 MB    | #4         |  15% numpy-1.22.3         | 6.8 MB    | ####2      |  42% numpy-1.22.3         | 6.8 MB    | #####8     |  59% numpy-1.22.3         | 6.8 MB    | #######1   |  72% numpy-1.22.3         | 6.8 MB    | ########## | 100% numpy-1.22.3         | 6.8 MB    | ########## | 100% 
+libgfortran5-11.2.0  | 1.7 MB    |            |   0% libgfortran5-11.2.0  | 1.7 MB    | #######2   |  72% libgfortran5-11.2.0  | 1.7 MB    | ########## | 100% 
+libgfortran-ng-11.2. | 20 KB     |            |   0% libgfortran-ng-11.2. | 20 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... By downloading and using the CUDA Toolkit conda packages, you accept the terms and conditions of the CUDA End User License Agreement (EULA): https://docs.nvidia.com/cuda/eula/index.html
+
+done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Solving environment: ...working... Building graph of deps:   0%|          | 0/46 [00:00<?, ?it/s]Examining readline:   0%|          | 0/46 [00:00<?, ?it/s]    Examining hhsuite:   2%|▏         | 1/46 [00:00<00:01, 23.39it/s]Examining libgfortran-ng:   4%|▍         | 2/46 [00:00<00:13,  3.24it/s]Examining libgfortran-ng:   7%|▋         | 3/46 [00:00<00:08,  4.86it/s]Examining libgcc-ng:   7%|▋         | 3/46 [00:00<00:08,  4.86it/s]     Examining ocl-icd:   9%|▊         | 4/46 [00:00<00:08,  4.86it/s]  Examining absl-py=1.0.0:  11%|█         | 5/46 [00:00<00:08,  4.86it/s]Examining ld_impl_linux-64:  13%|█▎        | 6/46 [00:00<00:08,  4.86it/s]Examining ld_impl_linux-64:  15%|█▌        | 7/46 [00:00<00:03, 11.10it/s]Examining ocl-icd-system:  15%|█▌        | 7/46 [00:00<00:03, 11.10it/s]  Examining cudatoolkit:  17%|█▋        | 8/46 [00:00<00:03, 11.10it/s]   Examining libcblas:  20%|█▉        | 9/46 [00:00<00:03, 11.10it/s]   Examining openmm=7.5.1:  22%|██▏       | 10/46 [00:00<00:03, 11.10it/s]Examining openmm=7.5.1:  24%|██▍       | 11/46 [00:00<00:02, 14.24it/s]Examining hmmer=3.3.2:  24%|██▍       | 11/46 [00:07<00:02, 14.24it/s] Examining @/linux-64::__unix==0=0:  26%|██▌       | 12/46 [00:07<00:02, 14.24it/s]Examining @/linux-64::__linux==3.10.0=0:  28%|██▊       | 13/46 [00:07<00:02, 14.24it/s]Examining @/linux-64::__linux==3.10.0=0:  30%|███       | 14/46 [00:07<00:26,  1.21it/s]Examining tzdata:  30%|███       | 14/46 [00:07<00:26,  1.21it/s]                       Examining zlib:  33%|███▎      | 15/46 [00:07<00:25,  1.21it/s]  Examining openssl:  35%|███▍      | 16/46 [00:07<00:24,  1.21it/s]Examining libblas:  37%|███▋      | 17/46 [00:07<00:23,  1.21it/s]Examining libblas:  39%|███▉      | 18/46 [00:07<00:14,  1.92it/s]Examining python_abi:  39%|███▉      | 18/46 [00:08<00:14,  1.92it/s]Examining perl:  41%|████▏     | 19/46 [00:08<00:14,  1.92it/s]      Examining perl:  43%|████▎     | 20/46 [00:08<00:11,  2.27it/s]Examining libstdcxx-ng:  43%|████▎     | 20/46 [00:08<00:11,  2.27it/s]Examining xz:  46%|████▌     | 21/46 [00:08<00:11,  2.27it/s]          Examining ncurses:  48%|████▊     | 22/46 [00:08<00:10,  2.27it/s]Examining fftw:  50%|█████     | 23/46 [00:08<00:10,  2.27it/s]   Examining fftw:  52%|█████▏    | 24/46 [00:08<00:06,  3.53it/s]Examining biopython=1.78:  52%|█████▏    | 24/46 [00:08<00:06,  3.53it/s]Examining libffi:  54%|█████▍    | 25/46 [00:11<00:05,  3.53it/s]        Examining libffi:  57%|█████▋    | 26/46 [00:11<00:12,  1.65it/s]Examining libopenblas:  57%|█████▋    | 26/46 [00:12<00:12,  1.65it/s]Examining tk:  59%|█████▊    | 27/46 [00:12<00:11,  1.65it/s]         Examining tk:  61%|██████    | 28/46 [00:12<00:08,  2.03it/s]Examining setuptools:  61%|██████    | 28/46 [00:12<00:08,  2.03it/s]Examining pip:  63%|██████▎   | 29/46 [00:23<00:08,  2.03it/s]       Examining pip:  65%|██████▌   | 30/46 [00:23<00:28,  1.79s/it]Examining libzlib:  65%|██████▌   | 30/46 [00:35<00:28,  1.79s/it]Examining libzlib:  67%|██████▋   | 31/46 [00:35<00:49,  3.28s/it]Examining python=3.9.7:  67%|██████▋   | 31/46 [00:35<00:49,  3.28s/it]Examining @/linux-64::__glibc==2.17=0:  70%|██████▉   | 32/46 [00:35<00:45,  3.28s/it]Examining sqlite:  72%|███████▏  | 33/46 [00:35<00:42,  3.28s/it]                     Examining ca-certificates:  74%|███████▍  | 34/46 [00:35<00:39,  3.28s/it]Examining ca-certificates:  76%|███████▌  | 35/46 [00:35<00:19,  1.79s/it]Examining _libgcc_mutex:  76%|███████▌  | 35/46 [00:35<00:19,  1.79s/it]  Examining @/linux-64::__archspec==1=x86_64:  78%|███████▊  | 36/46 [00:35<00:17,  1.79s/it]Examining six:  80%|████████  | 37/46 [00:35<00:16,  1.79s/it]                             Examining numpy:  83%|████████▎ | 38/46 [00:36<00:14,  1.79s/it]Examining numpy:  85%|████████▍ | 39/46 [00:36<00:08,  1.18s/it]Examining wheel:  85%|████████▍ | 39/46 [00:53<00:08,  1.18s/it]Examining wheel:  87%|████████▋ | 40/46 [00:53<00:18,  3.16s/it]Examining libnsl:  87%|████████▋ | 40/46 [00:59<00:18,  3.16s/it]Examining libnsl:  89%|████████▉ | 41/46 [00:59<00:17,  3.52s/it]Examining kalign2:  89%|████████▉ | 41/46 [00:59<00:17,  3.52s/it]Examining liblapack:  91%|█████████▏| 42/46 [00:59<00:14,  3.52s/it]Examining libgfortran5:  93%|█████████▎| 43/46 [00:59<00:10,  3.52s/it]Examining _openmp_mutex:  96%|█████████▌| 44/46 [00:59<00:07,  3.52s/it]Examining libgomp:  98%|█████████▊| 45/46 [00:59<00:03,  3.52s/it]      Examining libgomp: 100%|██████████| 46/46 [00:59<00:00,  1.70s/it]                                                                  Determining conflicts:   0%|          | 0/46 [00:00<?, ?it/s]Examining conflict for readline six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi numpy wheel openmm biopython:   0%|          | 0/46 [00:00<?, ?it/s]Examining conflict for readline six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi numpy wheel ncurses openmm biopython:   2%|▏         | 1/46 [00:05<04:14,  5.65s/it]Examining conflict for readline six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi numpy wheel ncurses openmm biopython:   4%|▍         | 2/46 [00:05<02:04,  2.82s/it]Examining conflict for readline hhsuite libgcc-ng ocl-icd absl-py ocl-icd-system openmm cudatoolkit libcblas hmmer zlib openssl libblas python_abi perl xz ncurses biopython fftw libffi libopenblas tk setuptools pip libzlib python sqlite six numpy wheel libnsl kalign2 liblapack _openmp_mutex:   4%|▍         | 2/46 [00:11<02:04,  2.82s/it]Examining conflict for readline hhsuite libgcc-ng ocl-icd absl-py ocl-icd-system openmm cudatoolkit libcblas hmmer zlib openssl libblas python_abi perl xz ncurses biopython fftw libffi libopenblas tk setuptools pip libzlib python sqlite six numpy wheel libnsl kalign2 liblapack _openmp_mutex:   7%|▋         | 3/46 [00:11<02:50,  3.96s/it]Examining conflict for readline hhsuite ocl-icd absl-py cudatoolkit openmm hmmer libblas python_abi libstdcxx-ng ncurses biopython fftw libffi libopenblas setuptools pip python sqlite six numpy wheel _openmp_mutex:   7%|▋         | 3/46 [00:17<02:50,  3.96s/it]                                                                              Examining conflict for readline hhsuite ocl-icd absl-py cudatoolkit openmm hmmer libblas python_abi libstdcxx-ng ncurses biopython fftw libffi libopenblas setuptools pip python sqlite six numpy wheel _openmp_mutex:   9%|▊         | 4/46 [00:17<03:15,  4.66s/it]Examining conflict for readline hhsuite libgfortran-ng libgcc-ng ocl-icd openmm cudatoolkit libcblas hmmer zlib openssl libblas perl libstdcxx-ng xz ncurses biopython fftw libffi libopenblas tk libzlib python __glibc sqlite numpy kalign2 liblapack:   9%|▊         | 4/46 [00:22<03:15,  4.66s/it]Examining conflict for readline hhsuite libgfortran-ng libgcc-ng ocl-icd openmm cudatoolkit libcblas hmmer zlib openssl libblas perl libstdcxx-ng xz ncurses biopython fftw libffi libopenblas tk libzlib python __glibc sqlite numpy kalign2 liblapack:  11%|█         | 5/46 [00:22<03:25,  5.01s/it]Examining conflict for readline hhsuite libgcc-ng ocl-icd openmm cudatoolkit libcblas hmmer zlib openssl libblas perl xz ncurses biopython fftw libffi libopenblas tk libzlib python sqlite _libgcc_mutex numpy libnsl kalign2 liblapack _openmp_mutex libgomp:  11%|█         | 5/46 [00:27<03:25,  5.01s/it]Examining conflict for readline hhsuite libgcc-ng ocl-icd openmm cudatoolkit libcblas hmmer zlib openssl libblas perl xz ncurses biopython fftw libffi libopenblas tk libzlib python sqlite _libgcc_mutex numpy libnsl kalign2 liblapack _openmp_mutex libgomp:  13%|█▎        | 6/46 [00:27<03:23,  5.09s/it]Examining conflict for readline hhsuite libgcc-ng ocl-icd openmm cudatoolkit libcblas hmmer zlib openssl libblas perl xz ncurses biopython fftw libffi libopenblas tk libzlib python sqlite numpy libnsl kalign2 liblapack _openmp_mutex:  13%|█▎        | 6/46 [00:32<03:23,  5.09s/it]                      Examining conflict for readline hhsuite libgcc-ng ocl-icd openmm cudatoolkit libcblas hmmer zlib openssl libblas perl xz ncurses biopython fftw libffi libopenblas tk libzlib python sqlite numpy libnsl kalign2 liblapack _openmp_mutex:  15%|█▌        | 7/46 [00:32<03:16,  5.03s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi numpy wheel openmm biopython:  15%|█▌        | 7/46 [00:37<03:16,  5.03s/it]                                                                                                                 Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi numpy wheel openmm biopython:  17%|█▋        | 8/46 [00:37<03:08,  4.97s/it]Examining conflict for six hhsuite setuptools pip numpy absl-py wheel python_abi openmm biopython:  17%|█▋        | 8/46 [00:45<03:08,  4.97s/it]                      Examining conflict for six hhsuite setuptools pip numpy absl-py wheel python_abi openmm biopython:  20%|█▉        | 9/46 [00:45<03:38,  5.90s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py openssl python_abi numpy wheel openmm biopython:  20%|█▉        | 9/46 [00:51<03:38,  5.90s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py openssl python_abi numpy wheel openmm biopython:  22%|██▏       | 10/46 [00:51<03:30,  5.85s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel openmm biopython libffi:  22%|██▏       | 10/46 [00:57<03:30,  5.85s/it] Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel openmm biopython libffi:  24%|██▍       | 11/46 [00:57<03:22,  5.79s/it]Examining conflict for libopenblas hhsuite libgcc-ng numpy libblas _openmp_mutex:  24%|██▍       | 11/46 [01:02<03:22,  5.79s/it]                                       Examining conflict for libopenblas hhsuite libgcc-ng numpy libblas _openmp_mutex:  26%|██▌       | 12/46 [01:02<03:16,  5.78s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel ocl-icd-system openmm biopython:  26%|██▌       | 12/46 [01:06<03:16,  5.78s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel ocl-icd-system openmm biopython:  28%|██▊       | 13/46 [01:06<02:48,  5.12s/it]Examining conflict for tk six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel openmm biopython:  28%|██▊       | 13/46 [01:11<02:48,  5.12s/it]            Examining conflict for tk six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel openmm biopython:  30%|███       | 14/46 [01:11<02:48,  5.26s/it]Examining conflict for tzdata six hhsuite setuptools pip python numpy absl-py wheel python_abi openmm biopython:  30%|███       | 14/46 [01:17<02:48,  5.26s/it]    Examining conflict for tzdata six hhsuite setuptools pip python numpy absl-py wheel python_abi openmm biopython:  33%|███▎      | 15/46 [01:17<02:46,  5.37s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel xz openmm biopython:  33%|███▎      | 15/46 [01:23<02:46,  5.37s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel xz openmm biopython:  35%|███▍      | 16/46 [01:23<02:43,  5.45s/it]Examining conflict for zlib tk six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi biopython numpy wheel openmm fftw:  35%|███▍      | 16/46 [01:28<02:43,  5.45s/it]Examining conflict for zlib tk six hhsuite setuptools pip python ocl-icd absl-py sqlite python_abi biopython numpy wheel openmm fftw:  37%|███▋      | 17/46 [01:28<02:39,  5.51s/it]Examining conflict for six hhsuite setuptools pip python numpy absl-py wheel python_abi ld_impl_linux-64 openmm biopython:  37%|███▋      | 17/46 [01:34<02:39,  5.51s/it]           Examining conflict for six hhsuite setuptools pip python numpy absl-py wheel python_abi ld_impl_linux-64 openmm biopython:  39%|███▉      | 18/46 [01:34<02:35,  5.56s/it]Examining conflict for perl hhsuite:  39%|███▉      | 18/46 [01:40<02:35,  5.56s/it]                                                                                      Examining conflict for perl hhsuite:  41%|████▏     | 19/46 [01:40<02:29,  5.54s/it]Examining conflict for libopenblas hhsuite libgcc-ng _openmp_mutex libgomp:  41%|████▏     | 19/46 [01:40<02:29,  5.54s/it]Examining conflict for libopenblas zlib tk six hhsuite setuptools pip libzlib python numpy absl-py sqlite python_abi biopython wheel openmm _openmp_mutex fftw:  43%|████▎     | 20/46 [01:40<02:24,  5.54s/it]Examining conflict for libopenblas zlib tk six hhsuite setuptools pip libzlib python numpy absl-py sqlite python_abi biopython wheel openmm _openmp_mutex fftw:  46%|████▌     | 21/46 [01:40<01:15,  3.02s/it]Examining conflict for six hhsuite setuptools pip numpy absl-py wheel python_abi libnsl perl openmm biopython:  46%|████▌     | 21/46 [01:45<01:15,  3.02s/it]                                                 Examining conflict for six hhsuite setuptools pip numpy absl-py wheel python_abi libnsl perl openmm biopython:  48%|████▊     | 22/46 [01:45<01:27,  3.66s/it]Examining conflict for six hhsuite setuptools pip ocl-icd absl-py numpy python_abi wheel openmm biopython:  48%|████▊     | 22/46 [01:51<01:27,  3.66s/it]    Examining conflict for six hhsuite setuptools pip ocl-icd absl-py numpy python_abi wheel openmm biopython:  50%|█████     | 23/46 [01:51<01:35,  4.15s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel openmm biopython:  50%|█████     | 23/46 [01:57<01:35,  4.15s/it]Examining conflict for six hhsuite setuptools pip python ocl-icd absl-py numpy python_abi wheel openmm biopython:  52%|█████▏    | 24/46 [01:57<01:40,  4.55s/it]Examining conflict for six pip setuptools hhsuite python numpy openssl wheel python_abi ca-certificates:  52%|█████▏    | 24/46 [02:02<01:40,  4.55s/it]         Examining conflict for six pip setuptools hhsuite python numpy openssl wheel python_abi ca-certificates:  54%|█████▍    | 25/46 [02:02<01:39,  4.75s/it]Examining conflict for libopenblas libgfortran-ng numpy libblas biopython liblapack openmm libcblas fftw:  54%|█████▍    | 25/46 [02:06<01:39,  4.75s/it]Examining conflict for libopenblas libgfortran-ng numpy libblas biopython liblapack openmm libcblas fftw:  57%|█████▋    | 26/46 [02:06<01:32,  4.61s/it]Examining conflict for libopenblas libgfortran5 libgfortran-ng numpy libblas liblapack openmm libcblas fftw:  57%|█████▋    | 26/46 [02:11<01:32,  4.61s/it]Examining conflict for libopenblas libgfortran5 libgfortran-ng numpy libblas liblapack openmm libcblas fftw:  59%|█████▊    | 27/46 [02:11<01:27,  4.60s/it]Examining conflict for libopenblas libgfortran-ng numpy libblas liblapack libcblas fftw:  59%|█████▊    | 27/46 [02:15<01:27,  4.60s/it]                    Examining conflict for libopenblas libgfortran-ng numpy libblas liblapack libcblas fftw:  61%|██████    | 28/46 [02:15<01:19,  4.44s/it]Examining conflict for openmm ocl-icd ocl-icd-system:  61%|██████    | 28/46 [02:18<01:19,  4.44s/it]                                   Examining conflict for openmm ocl-icd ocl-icd-system:  63%|██████▎   | 29/46 [02:18<01:10,  4.15s/it]Examining conflict for wheel six numpy absl-py:  63%|██████▎   | 29/46 [02:19<01:10,  4.15s/it]      Examining conflict for wheel six numpy absl-py:  65%|██████▌   | 30/46 [02:19<00:49,  3.08s/it]Examining conflict for openmm ocl-icd-system:  65%|██████▌   | 30/46 [02:22<00:49,  3.08s/it]  Examining conflict for openmm ocl-icd-system:  67%|██████▋   | 31/46 [02:22<00:47,  3.18s/it]Examining conflict for cudatoolkit openmm:  67%|██████▋   | 31/46 [02:22<00:47,  3.18s/it]   Examining conflict for openmm libcblas biopython numpy:  70%|██████▉   | 32/46 [02:23<00:44,  3.18s/it]Examining conflict for openmm libcblas biopython numpy:  72%|███████▏  | 33/46 [02:23<00:23,  1.85s/it]Examining conflict for numpy libblas liblapack openmm libcblas biopython:  72%|███████▏  | 33/46 [02:27<00:23,  1.85s/it]Examining conflict for numpy libblas liblapack openmm libcblas biopython:  74%|███████▍  | 34/46 [02:27<00:29,  2.47s/it]Examining conflict for libopenblas numpy libblas liblapack openmm libcblas biopython:  74%|███████▍  | 34/46 [02:32<00:29,  2.47s/it]Examining conflict for libopenblas numpy libblas liblapack openmm libcblas biopython:  76%|███████▌  | 35/46 [02:32<00:33,  3.00s/it]Examining conflict for libcblas liblapack numpy libblas:  76%|███████▌  | 35/46 [02:36<00:33,  3.00s/it]                             Examining conflict for libcblas liblapack numpy libblas:  78%|███████▊  | 36/46 [02:36<00:34,  3.44s/it]Examining conflict for openmm biopython numpy:  78%|███████▊  | 36/46 [02:40<00:34,  3.44s/it]          Examining conflict for openmm biopython numpy:  80%|████████  | 37/46 [02:40<00:30,  3.44s/it]Examining conflict for openmm biopython numpy libblas:  80%|████████  | 37/46 [02:40<00:30,  3.44s/it]Examining conflict for openmm fftw:  83%|████████▎ | 38/46 [02:44<00:27,  3.44s/it]                   Examining conflict for openmm fftw:  85%|████████▍ | 39/46 [02:44<00:20,  2.89s/it]Examining conflict for openmm biopython fftw numpy:  85%|████████▍ | 39/46 [02:44<00:20,  2.89s/it]Examining conflict for setuptools numpy python_abi openmm biopython:  87%|████████▋ | 40/46 [02:48<00:17,  2.89s/it]Examining conflict for setuptools numpy python_abi openmm biopython:  89%|████████▉ | 41/46 [02:48<00:13,  2.62s/it]Examining conflict for openmm biopython numpy liblapack:  89%|████████▉ | 41/46 [02:53<00:13,  2.62s/it]            Examining conflict for openmm biopython numpy liblapack:  91%|█████████▏| 42/46 [02:53<00:12,  3.12s/it]Examining conflict for numpy libblas:  91%|█████████▏| 42/46 [02:58<00:12,  3.12s/it]                   Examining conflict for numpy libblas:  93%|█████████▎| 43/46 [02:58<00:10,  3.51s/it]Examining conflict for python wheel pip setuptools:  93%|█████████▎| 43/46 [03:12<00:10,  3.51s/it]Examining conflict for python wheel pip setuptools:  96%|█████████▌| 44/46 [03:12<00:12,  6.15s/it]Examining conflict for wheel pip setuptools:  96%|█████████▌| 44/46 [03:12<00:12,  6.15s/it]       Examining conflict for python wheel pip:  98%|█████████▊| 45/46 [03:13<00:06,  6.15s/it]    Examining conflict for python wheel pip: 100%|██████████| 46/46 [03:13<00:00,  3.74s/it]Examining conflict for wheel pip: 100%|██████████| 46/46 [03:13<00:00,  3.74s/it]                                                                                        
+Found conflicts! Looking for incompatible packages.
+This can take several minutes.  Press CTRL-C to abort.
+failed
+
+UnsatisfiableError: The following specifications were found
+to be incompatible with the existing python installation in your environment:
+
+Specifications:
+
+  - ocl-icd -> python=3.5
+  - ocl-icd-system -> python=3.5
+
+Your python: python=3.9.7
+
+If python is on the left-most side of the chain, that's the version you've asked for.
+When python appears to the right, that indicates that the thing on the left is somehow
+not available for the python version you are constrained to. Note that conda will not
+change your python version to a different minor version unless you explicitly specify
+that.
+
+The following specifications were found to be incompatible with each other:
+
+Output in format: Requested package -> Available versions
+
+Package python_abi conflicts for:
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> python_abi[version='3.6|3.7|3.8|3.9',build='*_pypy36_pp73|*_pypy39_pp73|*_pypy38_pp73|*_pypy37_pp73']
+biopython=1.78 -> python_abi[version='3.6.*|3.6|3.7.*|3.9.*|3.7|3.8.*',build='*_cp36m|*_cp38|*_pypy36_pp73|*_cp37m|*_cp39|*_pypy37_pp73']
+setuptools -> certifi[version='>=2016.9.26'] -> python_abi=2.7[build=*_cp27mu]
+six -> python -> python_abi[version='3.6|3.7|3.8|3.9',build='*_pypy36_pp73|*_pypy39_pp73|*_pypy38_pp73|*_pypy37_pp73']
+pip -> python[version='>=3.7'] -> python_abi[version='3.10.*|3.7|3.8|3.9|3.9.*|3.7.*|3.8.*|3.6.*|3.6',build='*_cp36m|*_cp38|*_cp37m|*_cp310|*_pypy39_pp73|*_pypy38_pp73|*_pypy37_pp73|*_cp39|*_pypy36_pp73']
+openmm=7.5.1 -> python_abi[version='3.6.*|3.7|3.7.*|3.9.*|3.8.*',build='*_cp38|*_cp36m|*_cp37m|*_pypy37_pp73|*_cp39']
+setuptools -> python_abi[version='3.10.*|3.8|3.9.*|3.7.*|3.9|3.8.*|3.7|3.6.*|3.6',build='*_pypy36_pp73|*_cp36m|*_cp38|*_pypy39_pp73|*_cp37m|*_cp310|*_pypy38_pp73|*_cp39|*_pypy37_pp73']
+numpy -> python_abi[version='3.10.*|3.8.*|3.9.*|3.7|3.7.*|3.6.*|3.6',build='*_cp36m|*_cp37m|*_pypy37_pp73|*_cp310|*_cp38|*_cp39|*_pypy36_pp73']
+biopython=1.78 -> numpy -> python_abi[version='3.10.*|3.9|3.8',build='*_cp310|*_pypy39_pp73|*_pypy38_pp73']
+hhsuite -> python_abi[version='2.7.*|3.7.*|3.8.*|3.9.*|3.6.*',build='*_cp36m|*_cp27mu|*_cp37m|*_cp38|*_cp39']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> python_abi[version='3.10.*|3.6|3.7|3.8|3.9|3.9.*|3.7.*|3.8.*|3.6.*',build='*_cp36m|*_cp37m|*_cp310|*_pypy36_pp73|*_pypy39_pp73|*_pypy38_pp73|*_pypy37_pp73|*_cp39|*_cp38']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> python_abi[version='3.8|3.9',build='*_pypy39_pp73|*_pypy38_pp73']
+absl-py=1.0.0 -> python[version='>=3.6'] -> python_abi[version='3.6|3.7|3.8|3.9',build='*_pypy36_pp73|*_pypy39_pp73|*_pypy38_pp73|*_pypy37_pp73']
+openmm=7.5.1 -> numpy -> python_abi[version='3.10.*|3.6|3.9|3.8',build='*_pypy38_pp73|*_pypy39_pp73|*_cp310|*_pypy36_pp73']
+
+Package _openmp_mutex conflicts for:
+libnsl -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+openmm=7.5.1 -> libgcc-ng[version='>=7.5.0'] -> _openmp_mutex[version='>=4.5']
+cudatoolkit -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+openssl -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='>=4.5']
+hhsuite -> _openmp_mutex[version='>=4.5']
+libffi -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+python=3.9.7 -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+biopython=1.78 -> libgcc-ng[version='>=9.3.0'] -> _openmp_mutex[version='>=4.5']
+libgcc-ng -> _openmp_mutex[version='>=4.5']
+libcblas -> libgcc-ng[version='>=9.3.0'] -> _openmp_mutex[version='>=4.5']
+xz -> libgcc-ng[version='>=7.5.0'] -> _openmp_mutex[version='>=4.5']
+perl -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+fftw -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+libopenblas -> _openmp_mutex[version='*|>=4.5',build=*_llvm]
+hmmer=3.3.2 -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='>=4.5']
+liblapack -> libgcc-ng[version='>=9.3.0'] -> _openmp_mutex[version='>=4.5']
+sqlite -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='>=4.5']
+libblas -> mkl[version='>=2022.0.1,<2023.0a0'] -> _openmp_mutex[version='*|>=4.5',build=*_llvm]
+libzlib -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='>=4.5']
+zlib -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='>=4.5']
+ncurses -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+numpy -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='*|>=4.5',build=*_llvm]
+tk -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+ocl-icd -> libgcc-ng[version='>=9.4.0'] -> _openmp_mutex[version='>=4.5']
+kalign2 -> libgcc-ng[version='>=10.3.0'] -> _openmp_mutex[version='>=4.5']
+
+Package libgfortran5 conflicts for:
+libblas -> libopenblas[version='>=0.3.18,<0.3.19.0a0'] -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|11.2.0|11.2.0|11.2.0|11.2.0|11.2.0|11.2.0|>=9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+fftw -> libgfortran-ng -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*|>=10.3.0',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+libgfortran-ng -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+libopenblas -> libgfortran-ng -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+numpy -> libblas[version='>=3.8.0,<4.0a0'] -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|11.2.0|11.2.0|11.2.0|11.2.0|11.2.0|11.2.0|>=9.3.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*|>=9.4.0',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+openmm=7.5.1 -> fftw[version='>=3.3.9,<4.0a0'] -> libgfortran5[version='>=9.3.0|>=9.4.0']
+libcblas -> libgfortran5[version='>=9.3.0']
+libblas -> libgfortran5[version='>=9.3.0']
+fftw -> libgfortran5[version='>=9.3.0|>=9.4.0']
+libopenblas -> libgfortran5[version='>=9.3.0|>=9.4.0']
+liblapack -> libgfortran5[version='>=9.3.0']
+libcblas -> libgfortran-ng -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+liblapack -> libgfortran-ng -> libgfortran5[version='10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|10.3.0|11.1.0|11.1.0|11.1.0|11.1.0|11.1.0|11.2.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.4.0|9.3.0.*|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.5.0|8.4.0.*',build='h0ffbd86_9|h0ffbd86_11|h0ffbd86_12|h0ffbd86_13|h0ffbd86_14|h62347ff_5|h62347ff_7|h62347ff_8|h62347ff_13|hb56cab1_5|hb56cab1_7|hb56cab1_13|hb56cab1_14|h6c583b3_5|h6c583b3_7|h6c583b3_8|h5c6108e_8|h5c6108e_9|h5c6108e_11|h5c6108e_13|h5c6108e_14|h5c6108e_12|h5c6108e_10|h6c583b3_6|h6c583b3_4|hb56cab1_12|hb56cab1_11|hb56cab1_10|hb56cab1_9|hb56cab1_8|hb56cab1_6|hb56cab1_4|h62347ff_14|h62347ff_12|h62347ff_11|h62347ff_10|h62347ff_9|h62347ff_6|h62347ff_4|h0ffbd86_10|h0ffbd86_8']
+
+Package libgfortran4 conflicts for:
+libblas -> libgfortran4[version='>=7.5.0']
+liblapack -> libgfortran-ng -> libgfortran4=7.5.0
+libcblas -> libgfortran4[version='>=7.5.0']
+fftw -> libgfortran4[version='>=7.5.0']
+libcblas -> libgfortran-ng -> libgfortran4=7.5.0
+libblas -> libgfortran-ng -> libgfortran4=7.5.0
+numpy -> libblas[version='>=3.8.0,<4.0a0'] -> libgfortran4[version='7.5.0.*|>=7.5.0']
+liblapack -> libgfortran4[version='>=7.5.0']
+libopenblas -> libgfortran-ng -> libgfortran4=7.5.0
+libgfortran-ng -> libgfortran4=7.5.0
+fftw -> libgfortran-ng -> libgfortran4=7.5.0
+libopenblas -> libgfortran4[version='>=7.5.0']
+
+Package tzdata conflicts for:
+hhsuite -> python[version='>=3.9,<3.10.0a0'] -> tzdata
+numpy -> python[version='>=3.9,<3.10.0a0'] -> tzdata
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> tzdata
+absl-py=1.0.0 -> python[version='>=3.6'] -> tzdata
+python_abi -> python=3.10 -> tzdata
+python=3.9.7 -> tzdata
+openmm=7.5.1 -> python[version='>=3.9,<3.10.0a0'] -> tzdata
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> tzdata
+setuptools -> python[version='>=3.9,<3.10.0a0'] -> tzdata
+pip -> python[version='>=3.7'] -> tzdata
+six -> python -> tzdata
+
+Package libffi conflicts for:
+setuptools -> pypy3.8[version='>=7.3.8'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+python_abi -> python=3.10 -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+pip -> python[version='>=3.7'] -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+python=3.9.7 -> libffi[version='>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0']
+ocl-icd -> python=3.5 -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.2.1,<3.3a0']
+six -> python -> libffi[version='3.2.*|>=3.2.1,<3.3.0a0|>=3.3,<3.4.0a0|>=3.4.2,<3.5.0a0|>=3.2.1,<3.3a0']
+
+Package liblapack conflicts for:
+openmm=7.5.1 -> numpy -> liblapack[version='>=3.8.0,<4.0.0a0|>=3.8.0,<4.0a0']
+biopython=1.78 -> numpy -> liblapack[version='>=3.8.0,<4.0.0a0|>=3.8.0,<4.0a0']
+numpy -> blas=[build=openblas] -> liblapack[version='3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0',build='5_mkl|8_mkl|9_mkl|10_mkl|14_mkl|15_mkl|19_mkl|20_mkl|21_mkl|5_mkl|10_mkl|12_linux64_mkl|13_linux64_mkl|2_openblas|3_openblas|4_openblas|5_openblas|6_openblas|7_openblas|10_openblas|14_openblas|16_openblas|6_openblas|10_openblas|11_linux64_openblas|13_linux64_openblas|12_linux64_openblas|9_openblas|8_openblas|7_openblas|5_openblas|17_openblas|15_openblas|13_openblas|12_openblas|11_openblas|9_openblas|8_openblas|0_openblas|11_linux64_mkl|9_mkl|8_mkl|7_mkl|6_mkl|18_mkl|16_mkl|13_mkl|12_mkl|11_mkl|7_mkl|6_mkl|4_mkl']
+numpy -> liblapack[version='>=3.8.0,<4.0.0a0|>=3.8.0,<4.0a0']
+
+Package libzlib conflicts for:
+setuptools -> pypy3.8[version='>=7.3.8'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+libopenblas -> llvm-openmp[version='>=12.0.1'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+six -> python -> libzlib[version='>=1.2.11,<1.3.0a0']
+pip -> python[version='>=3.7'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+tk -> zlib[version='>=1.2.11,<1.3.0a0'] -> libzlib==1.2.11[build='h166bdaf_1014|h36c2ea0_1013|h36c2ea0_1012']
+python=3.9.7 -> sqlite[version='>=3.36.0,<4.0a0'] -> libzlib[version='1.2.11|1.2.11|1.2.11|>=1.2.11,<1.3.0a0',build='h166bdaf_1014|h36c2ea0_1013|h36c2ea0_1012']
+fftw -> openmpi[version='>=4.1.2,<5.0a0'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+sqlite -> zlib[version='>=1.2.11,<1.3.0a0'] -> libzlib==1.2.11[build='h166bdaf_1014|h36c2ea0_1013|h36c2ea0_1012']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+_openmp_mutex -> llvm-openmp[version='>=9.0.1'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+sqlite -> libzlib[version='>=1.2.11,<1.3.0a0']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+tk -> libzlib[version='>=1.2.11,<1.3.0a0']
+python_abi -> python=3.10 -> libzlib[version='>=1.2.11,<1.3.0a0']
+zlib -> libzlib==1.2.11[build='h166bdaf_1014|h36c2ea0_1013|h36c2ea0_1012']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> libzlib[version='>=1.2.11,<1.3.0a0']
+
+Package xz conflicts for:
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+pip -> python[version='>=3.7'] -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> xz[version='5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> xz[version='5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+six -> python -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+setuptools -> pypy3.8[version='>=7.3.8'] -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+ocl-icd -> python=3.5 -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+python=3.9.7 -> xz[version='>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> xz[version='5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+python_abi -> python=3.10 -> xz[version='5.0.*|5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> xz[version='5.2.*|>=5.2.3,<5.3.0a0|>=5.2.4,<5.3.0a0|>=5.2.5,<5.3.0a0|>=5.2.5,<6.0a0|>=5.2.4,<6.0a0|>=5.2.3,<6.0a0']
+
+Package libstdcxx-ng conflicts for:
+python=3.9.7 -> libffi[version='>=3.4.2,<3.5.0a0'] -> libstdcxx-ng[version='>=7.3.0|>=9.4.0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+biopython=1.78 -> numpy -> libstdcxx-ng[version='>=10.3.0|>=9.4.0|>=7.3.0|>=4.9|>=9.3.0|>=7.5.0|>=7.2.0']
+hhsuite -> python[version='>=3.7,<3.8.0a0'] -> libstdcxx-ng[version='>=4.9|>=7.2.0']
+ncurses -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=7.2.0']
+python=3.9.7 -> libstdcxx-ng[version='>=7.5.0']
+ocl-icd -> python=3.5 -> libstdcxx-ng[version='>=4.9|>=7.5.0|>=7.3.0|>=7.2.0']
+cudatoolkit -> libstdcxx-ng[version='>=7.3.0|>=9.3.0|>=9.4.0']
+sqlite -> ncurses[version='>=6.2,<7.0.0a0'] -> libstdcxx-ng[version='>=7.2.0|>=7.5.0']
+openmm=7.5.1 -> libstdcxx-ng[version='>=7.5.0']
+setuptools -> python[version='>=3.8,<3.9.0a0'] -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+sqlite -> libstdcxx-ng[version='>=4.9|>=7.3.0']
+libopenblas -> libstdcxx-ng[version='>=7.5.0']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> libstdcxx-ng[version='>=7.2.0|>=7.5.0|>=9.3.0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+numpy -> libstdcxx-ng[version='>=10.3.0|>=9.4.0|>=7.3.0|>=4.9']
+_openmp_mutex -> llvm-openmp[version='>=9.0.1'] -> libstdcxx-ng[version='>=7.3.0']
+libblas -> libopenblas[version='>=0.3.17,<0.3.18.0a0'] -> libstdcxx-ng[version='>=7.5.0']
+openmm=7.5.1 -> cudatoolkit[version='11.0|11.0.*'] -> libstdcxx-ng[version='>=10.3.0|>=7.3.0|>=9.3.0|>=9.4.0|>=4.9|>=7.2.0']
+hmmer=3.3.2 -> libstdcxx-ng[version='>=10.3.0|>=9.3.0|>=7.5.0']
+libopenblas -> llvm-openmp[version='>=9.0.1'] -> libstdcxx-ng[version='>=7.3.0']
+six -> python -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+fftw -> mpich[version='>=3.4.2,<5.0a0'] -> libstdcxx-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9']
+hhsuite -> libstdcxx-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0']
+pip -> python[version='>=3.7'] -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+python_abi -> python=3.9 -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+libffi -> libstdcxx-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.4.0|>=7.2.0']
+
+Package ocl-icd conflicts for:
+openmm=7.5.1 -> ocl-icd[version='>=2.3.0,<3.0a0']
+ocl-icd-system -> ocl-icd
+openmm=7.5.1 -> ocl-icd-system -> ocl-icd
+
+Package sqlite conflicts for:
+setuptools -> pypy3.8[version='>=7.3.8'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.37.2,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0|3.9.*']
+python=3.9.7 -> sqlite[version='>=3.36.0,<4.0a0']
+ocl-icd -> python=3.5 -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|3.9.*|>=3.35.4,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|3.9.*|>=3.38.0,<4.0a0|>=3.37.2,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.30.0,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.4,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.38.0,<4.0a0|>=3.31.1,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.37.1,<4.0a0|>=3.37.0,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0|>=3.30.0,<4.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.37.2,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.30.0,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.37.2,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0|3.9.*']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0|>=3.30.0,<4.0a0|>=3.37.2,<4.0a0']
+pip -> python[version='>=3.7'] -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.37.2,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.30.0,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0|3.9.*']
+six -> python -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|3.9.*|>=3.38.0,<4.0a0|>=3.37.2,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.30.0,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0']
+python_abi -> python=3.10 -> sqlite[version='3.13.*|3.20.*|>=3.24.0,<4.0a0|>=3.25.1,<4.0a0|>=3.25.2,<4.0a0|>=3.25.3,<4.0a0|>=3.26.0,<4.0a0|>=3.28.0,<4.0a0|>=3.30.0,<4.0a0|>=3.30.1,<4.0a0|>=3.32.3,<4.0a0|>=3.33.0,<4.0a0|>=3.34.0,<4.0a0|>=3.35.5,<4.0a0|>=3.36.0,<4.0a0|>=3.37.0,<4.0a0|>=3.37.1,<4.0a0|>=3.38.0,<4.0a0|>=3.37.2,<4.0a0|>=3.35.4,<4.0a0|>=3.31.1,<4.0a0|>=3.29.0,<4.0a0|>=3.27.2,<4.0a0|>=3.23.1,<4.0a0|>=3.22.0,<4.0a0|>=3.20.1,<4.0a0|3.9.*']
+
+Package llvm-openmp conflicts for:
+libgcc-ng -> _openmp_mutex[version='>=4.5'] -> llvm-openmp[version='>=9.0.1']
+numpy -> openblas[version='>=0.2.15'] -> llvm-openmp[version='>=10.0.0|>=10.0.1|>=11.0.0|>=11.1.0|>=12.0.1|>=9.0.1|>=11.0.1']
+_openmp_mutex -> llvm-openmp[version='>=9.0.1']
+hhsuite -> _openmp_mutex[version='>=4.5'] -> llvm-openmp[version='8.0.0|8.0.0|8.0.1|>=9.0.1',build='hc9558a2_0|hc9558a2_0|hc9558a2_1']
+libopenblas -> llvm-openmp[version='>=10.0.0|>=10.0.1|>=11.0.0|>=11.1.0|>=12.0.1|>=9.0.1']
+libblas -> mkl[version='>=2022.0.1,<2023.0a0'] -> llvm-openmp[version='>=10.0.0|>=11.0.0|>=11.1.0|>=12.0.1|>=9.0.1|>=10.0.1']
+
+Package ca-certificates conflicts for:
+six -> python -> ca-certificates
+pip -> python -> ca-certificates
+hhsuite -> python[version='>=2.7,<2.8.0a0'] -> ca-certificates
+openssl -> ca-certificates
+python_abi -> python=2.7 -> ca-certificates
+numpy -> python[version='>=2.7,<2.8.0a0'] -> ca-certificates
+python=3.9.7 -> openssl[version='>=3.0.0,<4.0a0'] -> ca-certificates
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> ca-certificates
+setuptools -> python[version='>=2.7,<2.8.0a0'] -> ca-certificates
+
+Package openssl conflicts for:
+pip -> python[version='>=3.7'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=3.0.0,<4.0a0|>=1.1.1n,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=3.0.2,<4.0a0|>=1.1.1f,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1d,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a|>=1.1.1m,<1.1.2a']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+ocl-icd -> python=3.5 -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.1.1k,<1.1.2a|>=1.0.2p,<1.0.3a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+python=3.9.7 -> openssl[version='>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=3.0.0,<4.0a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+absl-py=1.0.0 -> python[version='>=3.6'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+python_abi -> python=3.10 -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+six -> python -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+setuptools -> pypy3.8[version='>=7.3.8'] -> openssl[version='1.0.*|>=1.0.2o,<1.0.3a|>=1.0.2p,<1.0.3a|>=1.1.1a,<1.1.2a|>=1.1.1d,<1.1.2a|>=1.1.1e,<1.1.2a|>=1.1.1f,<1.1.2a|>=1.1.1g,<1.1.2a|>=1.1.1h,<1.1.2a|>=1.1.1i,<1.1.2a|>=1.1.1j,<1.1.2a|>=1.1.1k,<1.1.2a|>=1.1.1l,<1.1.2a|>=1.1.1n,<1.1.2a|>=3.0.2,<4.0a0|>=3.0.0,<4.0a0|>=1.1.1m,<1.1.2a|>=1.1.1c,<1.1.2a|>=1.1.1b,<1.1.2a|>=1.0.2n,<1.0.3a|>=1.0.2m,<1.0.3a|>=1.0.2l,<1.0.3a']
+
+Package bzip2 conflicts for:
+numpy -> python[version='>=3.9,<3.10.0a0'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+pip -> python[version='>=3.7'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+setuptools -> pypy3.8[version='>=7.3.8'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+python_abi -> python=3.10 -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+ocl-icd -> python=3.5 -> bzip2[version='>=1.0.6,<2.0a0']
+six -> python -> bzip2[version='>=1.0.6,<2.0a0|>=1.0.8,<2.0a0']
+
+Package pip conflicts for:
+ocl-icd -> python=3.5 -> pip
+setuptools -> python[version='>=3.8,<3.9.0a0'] -> pip
+openmm=7.5.1 -> python[version='>=3.7,<3.8.0a0'] -> pip
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> pip
+numpy -> python[version='>=3.9,<3.10.0a0'] -> pip
+absl-py=1.0.0 -> python[version='>=3.6'] -> pip
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> pip
+python=3.9.7 -> pip
+six -> python -> pip
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> pip
+python_abi -> python=3.10 -> pip
+
+Package _libgcc_mutex conflicts for:
+ocl-icd -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+tk -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+openmm=7.5.1 -> libgcc-ng[version='>=7.5.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+ncurses -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+libblas -> libgcc-ng[version='>=9.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+libgomp -> _libgcc_mutex==0.1[build='conda_forge|main']
+numpy -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+libgcc-ng -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+python=3.9.7 -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+libffi -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+_openmp_mutex -> _libgcc_mutex==0.1[build='conda_forge|main']
+xz -> libgcc-ng[version='>=7.5.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+biopython=1.78 -> libgcc-ng[version='>=9.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+sqlite -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+cudatoolkit -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+openssl -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+fftw -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+liblapack -> libgcc-ng[version='>=9.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+zlib -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+libzlib -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1|0.1',build='conda_forge|main|main']
+libcblas -> libgcc-ng[version='>=9.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+kalign2 -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+hmmer=3.3.2 -> libgcc-ng[version='>=10.3.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+libnsl -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex==0.1=conda_forge
+perl -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+libopenblas -> libgcc-ng[version='>=9.4.0'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+hhsuite -> _openmp_mutex[version='>=4.5'] -> _libgcc_mutex[version='*|0.1',build='conda_forge|main|main']
+
+Package libnsl conflicts for:
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+python_abi -> python=3.10 -> libnsl[version='>=2.0.0,<2.1.0a0']
+openmm=7.5.1 -> python[version='>=3.7,<3.8.0a0'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+setuptools -> python[version='>=3.8,<3.9.0a0'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+six -> python -> libnsl[version='>=2.0.0,<2.1.0a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+perl -> libnsl[version='>=2.0.0,<2.1.0a0']
+hhsuite -> perl[version='>=5.32.1,<5.33.0a0',build=*_perl5] -> libnsl[version='>=2.0.0,<2.1.0a0']
+pip -> python[version='>=3.7'] -> libnsl[version='>=2.0.0,<2.1.0a0']
+
+Package setuptools conflicts for:
+python=3.9.7 -> pip -> setuptools
+pip -> setuptools
+wheel -> setuptools
+
+Package libgfortran conflicts for:
+fftw -> mpich[version='>=3.2.1,<3.3.0a0'] -> libgfortran[version='>=3.0']
+openmm=7.5.1 -> numpy -> libgfortran[version='>=3.0']
+numpy -> openblas[version='>=0.2.20,<0.2.21.0a0'] -> libgfortran
+biopython=1.78 -> numpy -> libgfortran[version='>=3.0']
+numpy -> libgfortran[version='>=3.0']
+
+Package ld_impl_linux-64 conflicts for:
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+setuptools -> python[version='>=3.8,<3.9.0a0'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+absl-py=1.0.0 -> python[version='>=3.6'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+python_abi -> python=3.10 -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+openmm=7.5.1 -> python[version='>=3.7,<3.8.0a0'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+pip -> python[version='>=3.7'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+python=3.9.7 -> ld_impl_linux-64[version='>=2.36.1']
+six -> python -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> ld_impl_linux-64[version='>=2.34|>=2.36.1']
+
+Package readline conflicts for:
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*']
+six -> python -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.0.*|7.*']
+python=3.9.7 -> readline[version='>=8.0,<9.0a0|>=8.1,<9.0a0']
+python_abi -> python=3.10 -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*|7.0.*']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> readline[version='6.2.*|7.0|7.0.*|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*']
+sqlite -> readline[version='6.2.*|7.0|7.0.*|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0']
+setuptools -> python[version='>=3.8,<3.9.0a0'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*|7.0.*']
+openmm=7.5.1 -> python[version='>=3.7,<3.8.0a0'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*']
+ocl-icd -> python=3.5 -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|7.*']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*|7.0.*']
+absl-py=1.0.0 -> python[version='>=3.6'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*']
+pip -> python[version='>=3.7'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.*|7.0.*']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> readline[version='6.2.*|7.0|>=7.0,<8.0a0|>=8.0,<9.0a0|>=8.1,<9.0a0|7.0.*|7.*']
+
+Package libopenblas conflicts for:
+openmm=7.5.1 -> numpy -> libopenblas[version='>=0.2.20,<0.2.21.0a0|>=0.3.2,<0.3.3.0a0|>=0.3.3,<1.0a0']
+liblapack -> libblas==3.9.0=13_linux64_openblas -> libopenblas[version='>=0.3.10,<0.3.11.0a0|>=0.3.12,<0.3.13.0a0|>=0.3.15,<0.3.16.0a0|>=0.3.17,<0.3.18.0a0|>=0.3.18,<0.3.19.0a0|>=0.3.18,<1.0a0|>=0.3.17,<1.0a0|>=0.3.15,<1.0a0|>=0.3.12,<1.0a0|>=0.3.10,<1.0a0|>=0.3.9,<0.3.10.0a0|>=0.3.9,<1.0a0|>=0.3.8,<0.3.9.0a0|>=0.3.8,<1.0a0|>=0.3.7,<0.3.8.0a0|>=0.3.7,<1.0a0|>=0.3.6,<0.3.7.0a0|>=0.3.6,<1.0a0']
+numpy -> libblas[version='>=3.8.0,<4.0a0'] -> libopenblas[version='0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.10|0.3.12|0.3.12|0.3.12|0.3.12|0.3.12|0.3.12|0.3.12|0.3.12|0.3.13|0.3.13|0.3.15|0.3.15|0.3.15|0.3.15|0.3.16|0.3.16|0.3.17|0.3.17|0.3.17|0.3.17|0.3.18|0.3.18|0.3.3|0.3.3|0.3.3|>=0.3.10,<0.3.11.0a0|>=0.3.12,<0.3.13.0a0|>=0.3.15,<0.3.16.0a0|>=0.3.17,<0.3.18.0a0|>=0.3.18,<0.3.19.0a0|>=0.3.18,<1.0a0|>=0.3.17,<1.0a0|>=0.3.15,<1.0a0|>=0.3.12,<1.0a0|>=0.3.10,<1.0a0|>=0.3.9,<0.3.10.0a0|>=0.3.9,<1.0a0|>=0.3.8,<0.3.9.0a0|>=0.3.8,<1.0a0|>=0.3.7,<0.3.8.0a0|>=0.3.7,<1.0a0|>=0.3.6,<0.3.7.0a0|>=0.3.6,<1.0a0|0.3.9|0.3.8|0.3.7|0.3.7|0.3.7|0.3.7|0.3.7|0.3.7|0.3.7|0.3.7|0.3.6|0.3.6|0.3.6|0.3.6|0.3.17|0.3.13|0.3.6|0.3.6|0.3.6',build='h5a2b251_0|h5a2b251_1|h6e990d7_5|h6e990d7_1|h6e990d7_2|h5ec1e0e_4|h5ec1e0e_5|h5ec1e0e_6|h5ec1e0e_7|h5ec1e0e_0|h5ec1e0e_0|openmp_h709eae2_1|pthreads_hb3c22a3_2|pthreads_hb3c22a3_3|pthreads_h4812303_5|pthreads_hb3c22a3_5|pthreads_hb3c22a3_0|openmp_h709eae2_0|pthreads_hb3c22a3_1|openmp_h59f9010_1|openmp_h3d5035f_0|pthreads_h8fe5266_0|openmp_h3d5035f_0|openmp_h3d5035f_1|pthreads_h8fe5266_0|openmp_h3d5035f_0|openmp_h3d5035f_0|pthreads_h8fe5266_0|openmp_h3d5035f_0|pthreads_h8fe5266_0|h5a2b251_1|h5a2b251_3|h5a2b251_2|openmp_h3d5035f_1|pthreads_h8fe5266_1|pthreads_h8fe5266_1|pthreads_h8fe5266_0|pthreads_h4812303_1|openmp_h709eae2_1|pthreads_h4812303_0|openmp_h59f9010_0|openmp_h709eae2_5|openmp_h59f9010_5|openmp_h709eae2_4|pthreads_hb3c22a3_4|openmp_h709eae2_3|openmp_h709eae2_2|pthreads_hb3c22a3_1|h5ec1e0e_0|h6e990d7_3|h6e990d7_0|h6e990d7_6|h6e990d7_4|h6e990d7_3|hf726d26_1|h4367d64_0|h5a2b251_0|h5a2b251_2']
+biopython=1.78 -> numpy -> libopenblas[version='>=0.2.20,<0.2.21.0a0|>=0.3.2,<0.3.3.0a0|>=0.3.3,<1.0a0']
+libcblas -> libblas==3.9.0=13_linux64_openblas -> libopenblas[version='>=0.3.10,<0.3.11.0a0|>=0.3.12,<0.3.13.0a0|>=0.3.15,<0.3.16.0a0|>=0.3.17,<0.3.18.0a0|>=0.3.18,<0.3.19.0a0|>=0.3.18,<1.0a0|>=0.3.17,<1.0a0|>=0.3.15,<1.0a0|>=0.3.12,<1.0a0|>=0.3.10,<1.0a0|>=0.3.9,<0.3.10.0a0|>=0.3.9,<1.0a0|>=0.3.8,<0.3.9.0a0|>=0.3.8,<1.0a0|>=0.3.7,<0.3.8.0a0|>=0.3.7,<1.0a0|>=0.3.6,<0.3.7.0a0|>=0.3.6,<1.0a0']
+libblas -> openblas[version='>=0.3.6,<0.3.7.0a0'] -> libopenblas==0.3.6[build='h5a2b251_0|h6e990d7_5|h6e990d7_6|h6e990d7_4|h6e990d7_3|h5a2b251_2|h5a2b251_1']
+libblas -> libopenblas[version='>=0.3.10,<0.3.11.0a0|>=0.3.12,<0.3.13.0a0|>=0.3.15,<0.3.16.0a0|>=0.3.17,<0.3.18.0a0|>=0.3.18,<0.3.19.0a0|>=0.3.18,<1.0a0|>=0.3.17,<1.0a0|>=0.3.15,<1.0a0|>=0.3.12,<1.0a0|>=0.3.10,<1.0a0|>=0.3.9,<0.3.10.0a0|>=0.3.9,<1.0a0|>=0.3.8,<0.3.9.0a0|>=0.3.8,<1.0a0|>=0.3.7,<0.3.8.0a0|>=0.3.7,<1.0a0|>=0.3.6,<0.3.7.0a0|>=0.3.6,<1.0a0']
+numpy -> libopenblas[version='>=0.2.20,<0.2.21.0a0|>=0.3.2,<0.3.3.0a0|>=0.3.3,<1.0a0']
+
+Package tk conflicts for:
+numpy -> python[version='>=3.9,<3.10.0a0'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+ocl-icd -> python=3.5 -> tk[version='8.5.*|8.6.*|>=8.6.8,<8.7.0a0|>=8.6.10,<8.7.0a0|>=8.6.7,<8.7.0a0']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+python_abi -> python=3.10 -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+setuptools -> pypy3.8[version='>=7.3.8'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0|>=8.6.12,<8.7.0a0']
+pip -> python[version='>=3.7'] -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+python=3.9.7 -> tk[version='>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0']
+six -> python -> tk[version='8.5.*|8.6.*|>=8.6.10,<8.7.0a0|>=8.6.11,<8.7.0a0|>=8.6.12,<8.7.0a0|>=8.6.9,<8.7.0a0|>=8.6.8,<8.7.0a0|>=8.6.7,<8.7.0a0']
+
+Package libgcc-ng conflicts for:
+ocl-icd -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0']
+python_abi -> python=3.10 -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=7.5.0|>=9.3.0|>=7.3.0|>=4.9|>=7.2.0']
+python=3.9.7 -> libgcc-ng[version='>=7.5.0|>=9.4.0']
+biopython=1.78 -> libgcc-ng[version='>=7.3.0|>=7.5.0|>=9.3.0']
+openmm=7.5.1 -> libgcc-ng[version='>=7.5.0']
+cudatoolkit -> libgcc-ng[version='>=7.3.0|>=9.3.0|>=9.4.0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+numpy -> libopenblas[version='>=0.3.2,<0.3.3.0a0'] -> libgcc-ng[version='>=8.2.0']
+libblas -> libgcc-ng[version='>=7.3.0|>=7.5.0|>=9.3.0']
+ncurses -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.4.0|>=7.2.0']
+hhsuite -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0']
+tk -> libzlib[version='>=1.2.11,<1.3.0a0'] -> libgcc-ng[version='>=10.3.0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+pip -> python[version='>=3.7'] -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+libcblas -> libgcc-ng[version='>=7.3.0|>=7.5.0|>=9.3.0']
+tk -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.4.0|>=7.2.0']
+numpy -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+xz -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=7.2.0']
+hmmer=3.3.2 -> libgcc-ng[version='>=10.3.0|>=9.3.0|>=7.5.0']
+setuptools -> pypy3.8[version='>=7.3.8'] -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+_openmp_mutex -> llvm-openmp[version='>=9.0.1'] -> libgcc-ng[version='>=7.3.0']
+libnsl -> libgcc-ng[version='>=9.4.0']
+hhsuite -> python[version='>=3.7,<3.8.0a0'] -> libgcc-ng[version='>=4.9|>=7.2.0']
+libblas -> libopenblas[version='>=0.3.18,<0.3.19.0a0'] -> libgcc-ng[version='>=9.4.0']
+six -> python -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+openssl -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+libzlib -> libgcc-ng[version='>=10.3.0|>=7.5.0']
+ocl-icd -> python=3.5 -> libgcc-ng[version='>=7.2.0']
+libffi -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.4.0|>=7.2.0']
+zlib -> libgcc-ng[version='>=10.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+liblapack -> libgcc-ng[version='>=7.3.0|>=7.5.0|>=9.3.0']
+kalign2 -> libgcc-ng[version='>=10.3.0|>=9.3.0|>=7.5.0|>=4.9']
+libopenblas -> libgcc-ng[version='>=7.2.0|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=8.2.0']
+biopython=1.78 -> numpy -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=4.9|>=7.2.0']
+fftw -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+ocl-icd-system -> ocl-icd -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0']
+sqlite -> libgcc-ng[version='>=10.3.0|>=9.4.0|>=9.3.0|>=7.5.0|>=7.3.0|>=4.9|>=7.2.0']
+python=3.9.7 -> ncurses[version='>=6.2,<7.0.0a0'] -> libgcc-ng[version='>=10.3.0|>=7.3.0|>=9.3.0|>=4.9|>=7.2.0']
+fftw -> mpich[version='>=3.4.2,<5.0a0'] -> libgcc-ng[version='>=10.3.0']
+openmm=7.5.1 -> cudatoolkit[version='11.0|11.0.*'] -> libgcc-ng[version='>=10.3.0|>=7.3.0|>=9.3.0|>=9.4.0|>=4.9|>=7.2.0']
+perl -> libgcc-ng[version='>=4.9|>=7.3.0|>=7.5.0|>=9.3.0|>=9.4.0|>=7.2.0']
+
+Package expat conflicts for:
+biopython=1.78 -> pypy3.6[version='>=7.3.3'] -> expat[version='>=2.2.9,<3.0.0a0|>=2.4.1,<3.0a0|>=2.3.0,<3.0a0']
+numpy -> pypy3.7[version='>=7.3.7'] -> expat[version='>=2.2.9,<3.0.0a0|>=2.3.0,<3.0a0|>=2.4.1,<3.0a0']
+setuptools -> pypy3.8[version='>=7.3.8'] -> expat[version='>=2.2.9,<3.0.0a0|>=2.3.0,<3.0a0|>=2.4.1,<3.0a0|>=2.4.7,<3.0a0']
+python_abi -> pypy3.9=7.3 -> expat[version='>=2.2.9,<3.0.0a0|>=2.3.0,<3.0a0|>=2.4.1,<3.0a0|>=2.4.7,<3.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> expat[version='>=2.3.0,<3.0a0|>=2.4.1,<3.0a0']
+
+Package zlib conflicts for:
+tk -> zlib[version='>=1.2.11,<1.3.0a0']
+six -> python -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8|1.2.11.*']
+setuptools -> pypy3.8[version='>=7.3.8'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8|1.2.11.*']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8|1.2.11.*']
+python=3.9.7 -> zlib[version='>=1.2.11,<1.3.0a0']
+ocl-icd -> python=3.5 -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8']
+sqlite -> zlib[version='>=1.2.11,<1.3.0a0']
+pip -> python[version='>=3.7'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8|1.2.11.*']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8']
+python_abi -> python=3.10 -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8|1.2.11.*']
+fftw -> openmpi[version='>=4.1.2,<5.0a0'] -> zlib[version='>=1.2.11,<1.3.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> zlib[version='1.2.*|1.2.11|>=1.2.11,<1.3.0a0|1.2.8|1.2.11.*']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> zlib[version='1.2.*|1.2.11|1.2.11.*|>=1.2.11,<1.3.0a0|1.2.8']
+
+Package six conflicts for:
+wheel -> packaging[version='>=20.2'] -> six
+absl-py=1.0.0 -> six
+numpy -> mkl-service[version='>=2.3.0,<3.0a0'] -> six
+
+Package libcblas conflicts for:
+openmm=7.5.1 -> numpy -> libcblas[version='>=3.8.0,<4.0a0']
+biopython=1.78 -> numpy -> libcblas[version='>=3.8.0,<4.0a0']
+numpy -> libcblas[version='>=3.8.0,<4.0a0']
+numpy -> blas=[build=openblas] -> libcblas[version='3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0',build='5_mkl|8_mkl|9_mkl|10_mkl|14_mkl|15_mkl|19_mkl|20_mkl|21_mkl|5_mkl|10_mkl|12_linux64_mkl|13_linux64_mkl|2_openblas|3_openblas|4_openblas|5_openblas|6_openblas|7_openblas|10_openblas|14_openblas|16_openblas|6_openblas|10_openblas|11_linux64_openblas|13_linux64_openblas|12_linux64_openblas|9_openblas|8_openblas|7_openblas|5_openblas|17_openblas|15_openblas|13_openblas|12_openblas|11_openblas|9_openblas|8_openblas|0_openblas|11_linux64_mkl|9_mkl|8_mkl|7_mkl|6_mkl|18_mkl|16_mkl|13_mkl|12_mkl|11_mkl|7_mkl|6_mkl|4_mkl']
+
+Package libgfortran-ng conflicts for:
+fftw -> libgfortran-ng[version='>=7,<8.0a0']
+numpy -> libblas[version='>=3.8.0,<4.0a0'] -> libgfortran-ng[version='>=8,<9.0a0']
+libblas -> libgfortran-ng[version='>=7,<8.0a0']
+openmm=7.5.1 -> fftw[version='>=3.3.9,<4.0a0'] -> libgfortran-ng[version='>=4.9|>=7,<8.0a0|>=7.2.0,<8.0a0']
+liblapack -> libgfortran-ng[version='>=7,<8.0a0']
+libcblas -> libgfortran-ng[version='>=7,<8.0a0']
+biopython=1.78 -> numpy -> libgfortran-ng[version='>=4.9|>=7,<8.0a0|>=7.2.0,<8.0a0']
+libopenblas -> libgfortran-ng[version='>=7,<8.0a0|>=8,<9.0a0|>=7.2.0,<8.0a0']
+numpy -> libgfortran-ng[version='>=4.9|>=7,<8.0a0|>=7.2.0,<8.0a0']
+
+Package libblas conflicts for:
+libcblas -> libblas[version='3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0.*|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0.*',build='4_openblas|5_blis|5_openblas|5_mkl|6_openblas|7_blis|8_openblas|9_mkl|10_openblas|10_mkl|11_blis|12_blis|12_mkl|13_mkl|13_openblas|14_openblas|14_mkl|16_openblas|19_mkl|21_mkl|0_openblas|1_blis|1_openblas|2_openblas|4_openblas|5_blis|5_openblas|6_openblas|7_blis|7_openblas|8_mkl|9_blis|9_openblas|9_mkl|10_blis|10_openblas|10_mkl|11_linux64_blis|12_linux64_mkl|13_linux64_mkl|13_linux64_openblas|13_linux64_blis|12_linux64_blis|12_linux64_openblas|11_linux64_mkl|11_linux64_openblas|8_openblas|8_blis|7_mkl|6_mkl|6_blis|5_mkl|4_mkl|4_blis|3_openblas|3_blis|2_blis|0_blis|20_mkl|18_mkl|17_openblas|16_mkl|16_blis|15_openblas|15_mkl|15_blis|14_blis|13_blis|12_openblas|11_mkl|11_openblas|10_blis|9_blis|9_openblas|8_mkl|8_blis|7_mkl|7_openblas|6_mkl|6_blis|4_mkl|4_blis']
+numpy -> libblas[version='>=3.8.0,<4.0a0']
+numpy -> libcblas[version='>=3.8.0,<4.0a0'] -> libblas[version='3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0.*|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0.*',build='4_openblas|5_blis|5_openblas|5_mkl|6_openblas|7_blis|8_openblas|9_mkl|10_openblas|10_mkl|11_blis|12_blis|12_mkl|13_mkl|13_openblas|14_openblas|14_mkl|16_openblas|19_mkl|21_mkl|0_openblas|1_blis|1_openblas|2_openblas|4_openblas|5_blis|5_openblas|6_openblas|7_blis|7_openblas|8_mkl|9_blis|9_openblas|9_mkl|10_blis|10_openblas|10_mkl|11_linux64_blis|12_linux64_mkl|13_linux64_mkl|13_linux64_openblas|13_linux64_blis|12_linux64_blis|12_linux64_openblas|11_linux64_mkl|11_linux64_openblas|8_openblas|8_blis|7_mkl|6_mkl|6_blis|5_mkl|4_mkl|4_blis|3_openblas|3_blis|2_blis|0_blis|20_mkl|18_mkl|17_openblas|16_mkl|16_blis|15_openblas|15_mkl|15_blis|14_blis|13_blis|12_openblas|11_mkl|11_openblas|10_blis|9_blis|9_openblas|8_mkl|8_blis|7_mkl|7_openblas|6_mkl|6_blis|4_mkl|4_blis']
+biopython=1.78 -> numpy -> libblas[version='>=3.8.0,<4.0a0']
+openmm=7.5.1 -> numpy -> libblas[version='>=3.8.0,<4.0a0']
+liblapack -> libblas[version='3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0.*|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.8.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0|3.9.0.*',build='4_openblas|5_openblas|5_mkl|6_openblas|7_openblas|8_mkl|9_mkl|10_openblas|10_mkl|12_openblas|12_mkl|13_mkl|14_openblas|16_openblas|21_mkl|0_openblas|1_openblas|2_openblas|4_openblas|4_mkl|5_openblas|5_mkl|6_openblas|8_openblas|10_openblas|10_mkl|11_linux64_mkl|12_linux64_openblas|12_linux64_mkl|13_linux64_mkl|13_linux64_openblas|11_linux64_openblas|9_mkl|9_openblas|8_mkl|7_mkl|7_openblas|6_mkl|3_openblas|20_mkl|19_mkl|18_mkl|17_openblas|16_mkl|15_openblas|15_mkl|14_mkl|13_openblas|11_mkl|11_openblas|9_openblas|8_openblas|7_mkl|6_mkl|4_mkl']
+
+Package ncurses conflicts for:
+python=3.9.7 -> readline[version='>=8.1,<9.0a0'] -> ncurses[version='>=6.1,<7.0.0a0|>=6.3,<7.0a0|>=6.1,<7.0a0']
+absl-py=1.0.0 -> python[version='>=3.6'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<6.3.0a0|>=6.3,<7.0a0|>=6.2,<7.0.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+python_abi -> python=3.10 -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<6.3.0a0|>=6.3,<7.0a0|>=6.2,<7.0.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+sqlite -> ncurses[version='5.9|5.9.*|>=6.1,<7.0.0a0|>=6.2,<7.0.0a0|>=6.3,<7.0a0|>=6.2,<7.0a0']
+biopython=1.78 -> python[version='>=3.9,<3.10.0a0'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<7.0.0a0|>=6.3,<7.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*|>=6.2,<6.3.0a0']
+wheel -> python[version='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<6.3.0a0|>=6.3,<7.0a0|>=6.2,<7.0.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+python=3.9.7 -> ncurses[version='>=6.2,<7.0.0a0|>=6.2,<7.0a0']
+sqlite -> readline[version='>=8.0,<9.0a0'] -> ncurses[version='6.0.*|>=6.0,<7.0a0|>=6.1,<7.0a0']
+ocl-icd -> python=3.5 -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+setuptools -> pypy3.8[version='>=7.3.8'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<7.0.0a0|>=6.3,<7.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.2,<6.3.0a0|>=6.0,<7.0a0|6.0.*']
+hhsuite -> python[version='>=3.8,<3.9.0a0'] -> ncurses[version='5.9|5.9.*|>=6.1,<7.0.0a0|>=6.2,<7.0.0a0|>=6.3,<7.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+numpy -> python[version='>=3.9,<3.10.0a0'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<7.0.0a0|>=6.3,<7.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.2,<6.3.0a0|>=6.0,<7.0a0|6.0.*']
+six -> python -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<6.3.0a0|>=6.3,<7.0a0|>=6.2,<7.0.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+pip -> python[version='>=3.7'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<6.3.0a0|>=6.3,<7.0a0|>=6.2,<7.0.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+openmm=7.5.1 -> pypy3.7[version='>=7.3.4'] -> ncurses[version='5.9.*|5.9|>=6.1,<7.0.0a0|>=6.2,<7.0.0a0|>=6.3,<7.0a0|>=6.2,<7.0a0|>=6.1,<7.0a0|>=6.0,<7.0a0|6.0.*']
+
+Package blis conflicts for:
+numpy -> libblas[version='>=3.8.0,<4.0a0'] -> blis[version='0.5.1.*|>=0.5.2,<0.5.3.0a0|>=0.6.0,<0.6.1.0a0|>=0.6.1,<0.6.2.0a0|>=0.7.0,<0.7.1.0a0|>=0.8.0,<0.8.1.0a0|>=0.8.1,<0.8.2.0a0']
+libblas -> blis[version='0.5.1.*|>=0.5.2,<0.5.3.0a0|>=0.6.0,<0.6.1.0a0|>=0.6.1,<0.6.2.0a0|>=0.7.0,<0.7.1.0a0|>=0.8.0,<0.8.1.0a0|>=0.8.1,<0.8.2.0a0']
+libcblas -> libblas==3.9.0=13_linux64_blis -> blis[version='0.5.1.*|>=0.5.2,<0.5.3.0a0|>=0.6.0,<0.6.1.0a0|>=0.6.1,<0.6.2.0a0|>=0.7.0,<0.7.1.0a0|>=0.8.0,<0.8.1.0a0|>=0.8.1,<0.8.2.0a0']
+liblapack -> libblas=3.9.0 -> blis[version='0.5.1.*|>=0.5.2,<0.5.3.0a0|>=0.6.0,<0.6.1.0a0|>=0.6.1,<0.6.2.0a0|>=0.7.0,<0.7.1.0a0|>=0.8.0,<0.8.1.0a0|>=0.8.1,<0.8.2.0a0']
+
+Package numpy conflicts for:
+biopython=1.78 -> numpy
+openmm=7.5.1 -> numpy
+
+Package blas conflicts for:
+biopython=1.78 -> numpy -> blas[version='*|*|1.0|1.1|1.0',build='mkl|openblas|mkl|openblas|openblas']
+numpy -> blas[version='*|*|1.0|1.1|1.0',build='mkl|openblas|mkl|openblas|openblas']
+openmm=7.5.1 -> numpy -> blas[version='*|*|1.0|1.1|1.0',build='mkl|openblas|mkl|openblas|openblas']
+libblas -> openblas[version='>=0.3.6,<0.3.7.0a0'] -> blas==1.0=openblas
+
+Package libgomp conflicts for:
+hhsuite -> _openmp_mutex[version='>=4.5'] -> libgomp[version='>=7.3.0|>=7.5.0']
+libgcc-ng -> _openmp_mutex[version='>=4.5'] -> libgomp[version='>=7.3.0|>=7.5.0']
+_openmp_mutex -> libgomp[version='>=7.3.0|>=7.5.0']
+libopenblas -> _openmp_mutex[version='>=4.5'] -> libgomp[version='>=7.3.0|>=7.5.0']
+
+Package certifi conflicts for:
+setuptools -> certifi[version='>=2016.09|>=2016.9.26']
+pip -> setuptools -> certifi[version='>=2016.09|>=2016.9.26']
+wheel -> setuptools -> certifi[version='>=2016.09|>=2016.9.26']
+
+Package openblas-devel conflicts for:
+libblas -> openblas[version='>=0.3.6,<0.3.7.0a0'] -> openblas-devel==0.3.6[build='1|2|0']
+numpy -> openblas[version='>=0.3.3,<0.3.4.0a0'] -> openblas-devel[version='0.3.10|0.3.13|0.3.17|0.3.3|>=0.2.20,<0.2.21.0a0|0.3.6|0.3.6|0.3.6|>=0.3.2,<0.3.3.0a0',build='1|3|2|h06a4308_1|h06a4308_0|0|2|1|0']
+
+Package packaging conflicts for:
+wheel -> packaging[version='>=20.2']
+pip -> wheel -> packaging[version='>=20.2']
+
+Package wheel conflicts for:
+pip -> wheel
+python=3.9.7 -> pip -> wheelThe following specifications were found to be incompatible with your system:
+
+  - feature:/linux-64::__glibc==2.17=0
+  - feature:|@/linux-64::__glibc==2.17=0
+  - biopython=1.78 -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - cudatoolkit -> __glibc[version='>=2.17,<3.0.a0']
+  - cudatoolkit -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - fftw -> libgfortran-ng -> __glibc[version='>=2.17']
+  - hhsuite -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - hmmer=3.3.2 -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - kalign2 -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - libblas -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - libcblas -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - libffi -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+  - libgcc-ng -> __glibc[version='>=2.17']
+  - libgfortran-ng -> __glibc[version='>=2.17']
+  - liblapack -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - libopenblas -> libgfortran-ng -> __glibc[version='>=2.17']
+  - libstdcxx-ng -> __glibc[version='>=2.17']
+  - libzlib -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+  - ncurses -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+  - numpy -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - ocl-icd -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - openmm=7.5.1 -> __glibc[version='>=2.17']
+  - openmm=7.5.1 -> cudatoolkit[version='11.0|11.0.*'] -> __glibc[version='>=2.17,<3.0.a0']
+  - openssl -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - perl -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - python=3.9.7 -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+  - sqlite -> libgcc-ng[version='>=9.3.0'] -> __glibc[version='>=2.17']
+  - tk -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+  - xz -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+  - zlib -> libgcc-ng[version='>=7.5.0'] -> __glibc[version='>=2.17']
+
+Your installed version is: 2.17
+
+Note that strict channel priority may have removed packages required for satisfiability.
+
+usage: conda install [-h] [--revision REVISION] [-n ENVIRONMENT | -p PATH]
+                     [-c CHANNEL] [--use-local] [--override-channels]
+                     [--repodata-fn REPODATA_FNS] [--strict-channel-priority]
+                     [--no-channel-priority] [--no-deps | --only-deps]
+                     [--no-pin] [--copy] [-C] [-k] [--offline] [-d] [--json]
+                     [-q] [-v] [-y] [--download-only] [--show-channel-urls]
+                     [--file FILE] [--force-reinstall]
+                     [--freeze-installed | --update-deps | -S | --update-all | --update-specs]
+                     [-m] [--clobber] [--dev]
+                     [package_spec ...]
+conda install: error: argument -c/--channel: expected one argument
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - ml_collections==0.1.1
+
+Current channels:
+
+  - https://conda.anaconda.org/conda-forge/linux-64
+  - https://conda.anaconda.org/conda-forge/noarch
+  - https://repo.anaconda.com/pkgs/main/linux-64
+  - https://repo.anaconda.com/pkgs/main/noarch
+  - https://repo.anaconda.com/pkgs/r/linux-64
+  - https://repo.anaconda.com/pkgs/r/noarch
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+
+
+usage: conda install [-h] [--revision REVISION] [-n ENVIRONMENT | -p PATH]
+                     [-c CHANNEL] [--use-local] [--override-channels]
+                     [--repodata-fn REPODATA_FNS] [--strict-channel-priority]
+                     [--no-channel-priority] [--no-deps | --only-deps]
+                     [--no-pin] [--copy] [-C] [-k] [--offline] [-d] [--json]
+                     [-q] [-v] [-y] [--download-only] [--show-channel-urls]
+                     [--file FILE] [--force-reinstall]
+                     [--freeze-installed | --update-deps | -S | --update-all | --update-specs]
+                     [-m] [--clobber] [--dev]
+                     [package_spec ...]
+conda install: error: argument -c/--channel: expected one argument
+HEAD is now at 6c59d38... Support all lipid types from OpenMM 7.5
+Processing /gpfs51/dors2/meilerlab/home/jonestl5/alphafold/pdbfixer
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: numpy in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from pdbfixer==1.6) (1.22.3)
+Requirement already satisfied: openmm>=7.1 in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from pdbfixer==1.6) (7.5.1)
+Building wheels for collected packages: pdbfixer
+  Building wheel for pdbfixer (setup.py): started
+  Building wheel for pdbfixer (setup.py): finished with status 'done'
+  Created wheel for pdbfixer: filename=pdbfixer-1.6-py3-none-any.whl size=178127 sha256=4d2bbbac2d3b9afd0d6059c27a132d191334c184ea5112faccf0ea407307baa1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-hjc77d2n/wheels/03/04/cf/d35bcbdba32f010570925acb33b0ca8e52b866e3672e0c97f5
+Successfully built pdbfixer
+Installing collected packages: pdbfixer
+Successfully installed pdbfixer-1.6
+Requirement already satisfied: pip in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (22.0.4)
+Collecting absl-py==0.13.0
+  Using cached absl_py-0.13.0-py3-none-any.whl (132 kB)
+Collecting biopython==1.79
+  Using cached biopython-1.79-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (2.3 MB)
+Collecting chex==0.0.7
+  Using cached chex-0.0.7-py3-none-any.whl (52 kB)
+Collecting dm-haiku==0.0.4
+  Using cached dm_haiku-0.0.4-py3-none-any.whl (284 kB)
+Collecting dm-tree==0.1.6
+  Using cached dm_tree-0.1.6-cp39-cp39-manylinux2014_x86_64.whl (116 kB)
+Collecting docker==5.0.0
+  Using cached docker-5.0.0-py2.py3-none-any.whl (146 kB)
+Collecting immutabledict==2.0.0
+  Using cached immutabledict-2.0.0-py3-none-any.whl (4.0 kB)
+Collecting jax==0.2.14
+  Using cached jax-0.2.14-py3-none-any.whl
+Collecting ml-collections==0.1.0
+  Using cached ml_collections-0.1.0-py3-none-any.whl (88 kB)
+Collecting numpy==1.19.5
+  Using cached numpy-1.19.5-cp39-cp39-manylinux2010_x86_64.whl (14.9 MB)
+Collecting pandas==1.3.4
+  Using cached pandas-1.3.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.5 MB)
+Collecting scipy==1.7.0
+  Using cached scipy-1.7.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (28.4 MB)
+Collecting tensorflow-cpu==2.5.0
+  Using cached tensorflow_cpu-2.5.0-cp39-cp39-manylinux2010_x86_64.whl (168.4 MB)
+Requirement already satisfied: six in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from absl-py==0.13.0->-r requirements.txt (line 1)) (1.16.0)
+Requirement already satisfied: jaxlib>=0.1.37 in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from chex==0.0.7->-r requirements.txt (line 3)) (0.3.2)
+Collecting toolz>=0.9.0
+  Using cached toolz-0.11.2-py3-none-any.whl (55 kB)
+Collecting tabulate>=0.8.9
+  Using cached tabulate-0.8.9-py3-none-any.whl (25 kB)
+Collecting requests!=2.18.0,>=2.14.2
+  Using cached requests-2.27.1-py2.py3-none-any.whl (63 kB)
+Collecting websocket-client>=0.32.0
+  Downloading websocket_client-1.3.2-py3-none-any.whl (54 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.3/54.3 KB 156.1 kB/s eta 0:00:00
+Requirement already satisfied: opt-einsum in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from jax==0.2.14->-r requirements.txt (line 8)) (3.3.0)
+Collecting contextlib2
+  Using cached contextlib2-21.6.0-py2.py3-none-any.whl (13 kB)
+Collecting PyYAML
+  Using cached PyYAML-6.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (661 kB)
+Collecting python-dateutil>=2.7.3
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Collecting pytz>=2017.3
+  Downloading pytz-2022.1-py2.py3-none-any.whl (503 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 503.5/503.5 KB 826.7 kB/s eta 0:00:00
+Collecting protobuf>=3.9.2
+  Using cached protobuf-3.19.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+Collecting h5py~=3.1.0
+  Using cached h5py-3.1.0-cp39-cp39-manylinux1_x86_64.whl (4.4 MB)
+Collecting keras-nightly~=2.5.0.dev
+  Using cached keras_nightly-2.5.0.dev2021032900-py2.py3-none-any.whl (1.2 MB)
+Collecting google-pasta~=0.2
+  Using cached google_pasta-0.2.0-py3-none-any.whl (57 kB)
+Collecting typing-extensions~=3.7.4
+  Using cached typing_extensions-3.7.4.3-py3-none-any.whl (22 kB)
+Collecting flatbuffers~=1.12.0
+  Using cached flatbuffers-1.12-py2.py3-none-any.whl (15 kB)
+Collecting six
+  Using cached six-1.15.0-py2.py3-none-any.whl (10 kB)
+Collecting tensorflow-estimator<2.6.0,>=2.5.0rc0
+  Using cached tensorflow_estimator-2.5.0-py2.py3-none-any.whl (462 kB)
+Collecting grpcio~=1.34.0
+  Using cached grpcio-1.34.1-cp39-cp39-manylinux2014_x86_64.whl (4.0 MB)
+Collecting termcolor~=1.1.0
+  Using cached termcolor-1.1.0-py3-none-any.whl
+Collecting keras-preprocessing~=1.1.2
+  Using cached Keras_Preprocessing-1.1.2-py2.py3-none-any.whl (42 kB)
+Requirement already satisfied: wheel~=0.35 in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from tensorflow-cpu==2.5.0->-r requirements.txt (line 13)) (0.37.1)
+Collecting astunparse~=1.6.3
+  Using cached astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+Collecting tensorboard~=2.5
+  Using cached tensorboard-2.8.0-py3-none-any.whl (5.8 MB)
+Collecting gast==0.4.0
+  Using cached gast-0.4.0-py3-none-any.whl (9.8 kB)
+Collecting wrapt~=1.12.1
+  Using cached wrapt-1.12.1-cp39-cp39-linux_x86_64.whl
+Collecting idna<4,>=2.5
+  Using cached idna-3.3-py3-none-any.whl (61 kB)
+Collecting charset-normalizer~=2.0.0
+  Using cached charset_normalizer-2.0.12-py3-none-any.whl (39 kB)
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.9-py2.py3-none-any.whl (138 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 139.0/139.0 KB 3.3 MB/s eta 0:00:00
+Collecting certifi>=2017.4.17
+  Using cached certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
+Requirement already satisfied: setuptools>=41.0.0 in /gpfs52/home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.9/site-packages (from tensorboard~=2.5->tensorflow-cpu==2.5.0->-r requirements.txt (line 13)) (61.2.0)
+Collecting tensorboard-data-server<0.7.0,>=0.6.0
+  Using cached tensorboard_data_server-0.6.1-py3-none-manylinux2010_x86_64.whl (4.9 MB)
+Collecting werkzeug>=0.11.15
+  Downloading Werkzeug-2.1.0-py3-none-any.whl (224 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.6/224.6 KB 276.8 kB/s eta 0:00:00
+Collecting tensorboard-plugin-wit>=1.6.0
+  Using cached tensorboard_plugin_wit-1.8.1-py3-none-any.whl (781 kB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Using cached google_auth_oauthlib-0.4.6-py2.py3-none-any.whl (18 kB)
+Collecting markdown>=2.6.8
+  Using cached Markdown-3.3.6-py3-none-any.whl (97 kB)
+Collecting google-auth<3,>=1.6.3
+  Downloading google_auth-2.6.2-py2.py3-none-any.whl (156 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 156.5/156.5 KB 2.3 MB/s eta 0:00:00
+Collecting rsa<5,>=3.1.4
+  Using cached rsa-4.8-py3-none-any.whl (39 kB)
+Collecting pyasn1-modules>=0.2.1
+  Using cached pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting cachetools<6.0,>=2.0.0
+  Using cached cachetools-5.0.0-py3-none-any.whl (9.1 kB)
+Collecting requests-oauthlib>=0.7.0
+  Using cached requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+Collecting importlib-metadata>=4.4
+  Downloading importlib_metadata-4.11.3-py3-none-any.whl (18 kB)
+Collecting zipp>=0.5
+  Using cached zipp-3.7.0-py3-none-any.whl (5.3 kB)
+Collecting pyasn1<0.5.0,>=0.4.6
+  Using cached pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Collecting oauthlib>=3.0.0
+  Using cached oauthlib-3.2.0-py3-none-any.whl (151 kB)
+Installing collected packages: wrapt, typing-extensions, termcolor, tensorflow-estimator, tensorboard-plugin-wit, tabulate, pytz, pyasn1, keras-nightly, flatbuffers, certifi, zipp, werkzeug, websocket-client, urllib3, toolz, tensorboard-data-server, six, rsa, PyYAML, pyasn1-modules, protobuf, oauthlib, numpy, immutabledict, idna, gast, contextlib2, charset-normalizer, cachetools, scipy, requests, python-dateutil, keras-preprocessing, importlib-metadata, h5py, grpcio, google-pasta, google-auth, dm-tree, biopython, astunparse, absl-py, requests-oauthlib, pandas, ml-collections, markdown, jax, docker, dm-haiku, google-auth-oauthlib, chex, tensorboard, tensorflow-cpu
+  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.1.1
+    Uninstalling typing_extensions-4.1.1:
+      Successfully uninstalled typing_extensions-4.1.1
+  Attempting uninstall: flatbuffers
+    Found existing installation: flatbuffers 2.0
+    Uninstalling flatbuffers-2.0:
+      Successfully uninstalled flatbuffers-2.0
+  Attempting uninstall: six
+    Found existing installation: six 1.16.0
+    Uninstalling six-1.16.0:
+      Successfully uninstalled six-1.16.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.22.3
+    Uninstalling numpy-1.22.3:
+      Successfully uninstalled numpy-1.22.3
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.8.0
+    Uninstalling scipy-1.8.0:
+      Successfully uninstalled scipy-1.8.0
+  Attempting uninstall: absl-py
+    Found existing installation: absl-py 1.0.0
+    Uninstalling absl-py-1.0.0:
+      Successfully uninstalled absl-py-1.0.0
+  Attempting uninstall: jax
+    Found existing installation: jax 0.3.4
+    Uninstalling jax-0.3.4:
+      Successfully uninstalled jax-0.3.4
+Successfully installed PyYAML-6.0 absl-py-0.13.0 astunparse-1.6.3 biopython-1.79 cachetools-5.0.0 certifi-2021.10.8 charset-normalizer-2.0.12 chex-0.0.7 contextlib2-21.6.0 dm-haiku-0.0.4 dm-tree-0.1.6 docker-5.0.0 flatbuffers-1.12 gast-0.4.0 google-auth-2.6.2 google-auth-oauthlib-0.4.6 google-pasta-0.2.0 grpcio-1.34.1 h5py-3.1.0 idna-3.3 immutabledict-2.0.0 importlib-metadata-4.11.3 jax-0.2.14 keras-nightly-2.5.0.dev2021032900 keras-preprocessing-1.1.2 markdown-3.3.6 ml-collections-0.1.0 numpy-1.22.3 oauthlib-3.2.0 pandas-1.3.4 protobuf-3.19.4 pyasn1-0.4.8 pyasn1-modules-0.2.8 python-dateutil-2.8.2 pytz-2022.1 requests-2.27.1 requests-oauthlib-1.3.1 rsa-4.8 scipy-1.7.0 six-1.15.0 tabulate-0.8.9 tensorboard-2.8.0 tensorboard-data-server-0.6.1 tensorboard-plugin-wit-1.8.1 tensorflow-cpu-2.5.0 tensorflow-estimator-2.5.0 termcolor-1.1.0 toolz-0.11.2 typing-extensions-3.7.4.3 urllib3-1.26.9 websocket-client-1.3.2 werkzeug-2.1.0 wrapt-1.12.1 zipp-3.7.0
+/var/spool/slurmd.cn1600/job39340287/slurm_script: line 54: cd: /home/jonestl5/miniconda3/envs/af2_cpu/lib/python3.8/site-packages: No such file or directory
+can't find file to patch at input line 5
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|Index: simtk/openmm/app/topology.py
+|===================================================================
+|--- simtk.orig/openmm/app/topology.py
+|+++ simtk/openmm/app/topology.py
+--------------------------
+No file to patch.  Skipping patch.
+1 out of 1 hunk ignored
