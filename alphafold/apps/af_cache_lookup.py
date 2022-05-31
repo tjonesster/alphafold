@@ -19,8 +19,6 @@ from pathlib import Path
 from absl import logging
 
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
-# from alphafold.user_config import alignment_methods  # we removed this now 
-# from alphafold.user_config import database_sets # we removed this
 from alphafold.user_config import model_presets
 
 '''
@@ -73,7 +71,7 @@ class alignment_retriever:
             print("The manifest.pkl file did not exist.")
             self.manifest = {}
 
-            with open(self.manifest_path,'wb+') as out_file:
+            with open(self.manifest_path,'w+b') as out_file:
                 pickle.dump(self.manifest, out_file)   
 
 
@@ -181,12 +179,12 @@ class alignment_retriever:
         shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
 
     
-    def stash_alignments(self, sequence, dest_path= None, method = None, database_set = None, preset = None):
+    def stash_alignments(self, sequence, dir_path= None, method = None, database_set = None, preset = None):
         '''
         Takes a directory and copies it to a places. Records the sequence in the manifest.pkl file.
         '''
 
-        assert dest_path != None, "You need to specify a destination path to stash alignments"
+        assert dir_path != None, "You need to specify a destination path to stash alignments"
         assert sequence != None, "Stash operations request a sequence argument" 
 
         sequence= self.seq_upper(sequence)
@@ -198,7 +196,8 @@ class alignment_retriever:
         dir = self.create_new_directory()
 
         self.manifest_updates[sequence] = dir
-        shutil.copytree(dest_path, os.path.join(dir,"msas"))
+
+        shutil.copytree(dir_path, os.path.join(dir,"msas"))
 
         return True
 
@@ -251,7 +250,7 @@ if __name__ == "__main__":
         if args.operation == operation_types.stash:   # add a new sequence
             print('stashing')
 
-            ar.stash_alignments(args.sequence,  dest_path = args.dir )
+            ar.stash_alignments(args.sequence,  dir_path = args.dir )
 
             ar.save_manifest()
 

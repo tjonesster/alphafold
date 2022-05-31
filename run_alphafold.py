@@ -109,6 +109,7 @@ flags.DEFINE_boolean('run_relax', defvalues.get('run_relax', True), "Do you want
 flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
 flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
+flags.DEFINE_integer("bfd_max_hits", defvalues.get("bfd_max_hits", 10000), "asdfasdfasdf")
 
 flags.DEFINE_boolean("write_pickle", defvalues.get("write_pickle", True), "Do you want to store the pkl file of the output?")
 
@@ -404,8 +405,8 @@ def main(argv):
       use_small_bfd=use_small_bfd,
       mgnify_max_hits=FLAGS.mgnify_max_hits,
       uniref_max_hits=FLAGS.uniref_max_hits,
+      bfd_max_hits=FLAGS.bfd_max_hits,
       use_precomputed_msas=FLAGS.use_precomputed_msas,
-      # run_relax=FLAGS.run_relax,
       )
 
 # This is one place to set this 
@@ -472,14 +473,11 @@ def main(argv):
 
 
     model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
-
-    #model_runner, reps  = model.RunModel(model_config, model_params)
     model_runner = model.RunModel(model_config, model_params)
     for i in range(num_predictions_per_model):
       model_runners[f'{model_name}_pred_{i}'] = model_runner
 
   logging.info('Have %d models: %s', len(model_runners), list(model_runners.keys())) 
-
   if FLAGS.run_relax:
     amber_relaxer = relax.AmberRelaxation(
         max_iterations=RELAX_MAX_ITERATIONS,
@@ -497,28 +495,17 @@ def main(argv):
   logging.info('Using random seed %d for the data pipeline', random_seed)
 
   # Predict structure for each of the sequences.
-  #for i, fasta_path in enumerate(FLAGS.fasta_paths):
   for i, fasta_name in enumerate(FLAGS.fasta_names):
-    #fasta_name = fasta_names[i]
     fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
-    # predict_structure(
-        # fasta_path=fasta_path,
-        # fasta_name=fasta_name,
-        # output_dir_base=FLAGS.output_dir,
-        # data_pipeline=data_pipeline,
-        # model_runners=model_runners,
-        # amber_relaxer=amber_relaxer,
-        # benchmark=FLAGS.benchmark,
-        # random_seed=random_seed)
 
 
+# This for loop really does not work
     for structure_index in range(FLAGS.num_structures):
       random_seed = FLAGS.random_seed + structure_index if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))+structure_index
       random_seed = random_seed % 2147483648
       logging.info('Using random seed %d for the data pipeline', random_seed)
 
       # check what structure directories exist...
-
       structure_dir=f'structure_{structure_index}'
 
       predict_structure(
