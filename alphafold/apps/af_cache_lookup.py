@@ -174,7 +174,7 @@ class alignment_retriever:
         
         sequence = self.seq_upper(sequence)
 
-        source_dir_path = self.lookup_sequence(seq, method=method, database_set = database_set, preset=preset)
+        source_dir_path = self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset)
         
         shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
 
@@ -231,7 +231,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="af_cache_lookup.py")
     parser.add_argument("operation", type=operation_types, choices=list(operation_types), help="The operation to perform")
-    parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues['alignment_cache_path'])
+    parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues.get('alignment_cache_path', None))
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
     parser.add_argument("-d", "--dir", help="Where do you want to place the output or copy from the alignment.")
 

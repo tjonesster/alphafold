@@ -176,8 +176,7 @@ class DataPipeline:
 
     msa_for_templates = jackhmmer_uniref90_result['sto']
     msa_for_templates = parsers.deduplicate_stockholm_msa(msa_for_templates)
-    msa_for_templates = parsers.remove_empty_columns_from_stockholm_msa(
-        msa_for_templates)
+    msa_for_templates = parsers.remove_empty_columns_from_stockholm_msa(msa_for_templates)
 
     if self.template_searcher.input_format == 'sto':
       pdb_templates_result = self.template_searcher.query(msa_for_templates)

@@ -36,9 +36,12 @@ from alphafold.data.tools import hhsearch, hmmsearch
 from alphafold.model import config, model, data
 from alphafold.relax import relax
 
-from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
+from alphafold.apps.af_cache_lookup import alignment_retriever
 
+from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
+from alphafold.data import parsers
 import subprocess
+
 
 logging.set_verbosity(logging.INFO)
 
@@ -93,7 +96,7 @@ flags.DEFINE_string('activations_output_path', defvalues.get('activations_output
 
 # These two flags should do the same thing but process_msa = False may be broken now.
 # use_precomputed_msas was introduced in alphafold multimer
-flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', False), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
+flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', True), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
 
 # We have decided to remove this option
 # flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
@@ -120,16 +123,8 @@ flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. Relax on G
 flags.DEFINE_integer("max_extra_msa", defvalues.get("max_extra_msa", None), "What should the new number of max sequences be?")
 flags.DEFINE_integer("max_msa_clusters", defvalues.get("max_msa_clusters", None), "What should the new number of max sequences be?")
 
-#evoformer_num_block - default is 48 None is assumed 
-#flags.DEFINE_integer("evoformer_num_block", None)
-
-#structure_module - num_layer
-#flags.DEFINE_integer('structure_module_layers', None)
-
-# num_layer in transintion ? I don't really know what this does...?
-
-
-#max_msa_clusters
+flags.DEFINE_boolean("use_cache", defvalues.get("use_cache", None),"Do you want to use the sequence cache.")
+flags.DEFINE_string("alignment_cache_path", defvalues.get("alignment_cache_path", None), "Alignment cache path.")
 
 FLAGS = flags.FLAGS
 
@@ -159,10 +154,12 @@ def predict_structure(
     structure_dir: str,
     job_name: str, 
     overwrite: bool, 
+    alignment_cache_path: str = '',
     write_pickle: bool = True,
     exit_after_msa: bool = False,
     only_run_cleanup: bool = False,
     num_recycle: int = 3,
+    use_cache: bool = True,
     run_relax: bool = True
     ):
 
@@ -183,15 +180,39 @@ def predict_structure(
       exit()
 
   msa_output_dir = os.path.join(output_dir, 'msas')
+
+  # This is where we are going to support the sequence cache 
+  first_sequence = False 
+
   if not os.path.exists(msa_output_dir):
-    os.makedirs(msa_output_dir) # create the directory for the msa to be saved 
+    if use_cache and alignment_cache_path:
+      ar = alignment_retriever(alignment_cache_path)
+
+      with open(fasta_path) as f:
+        input_fasta_str = f.read()
+
+      seqs, _ = parsers.parse_fasta(input_fasta_str)
+
+      if ar.lookup_sequence(seqs[0]) != False:
+        ar.link_msa_dir(seqs[0],msa_output_dir)
+      else:
+        first_sequence = True
+        os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
+
+    else:
+      os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
   # Get features.
   t_0 = time.time()
 
-  feature_dict = data_pipeline.process( input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
+  feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
+
+  if first_sequence == True:
+    print("this is the first time this sequence has been seen")
+    ar.stash_alignments(seqs[0], msa_output_dir)
+
   timings['features'] = time.time() - t_0
 
   # Write out features as a pickled dictionary.  
@@ -221,7 +242,6 @@ def predict_structure(
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
-
 
   # I should also write out the git hash for the version of alphafold that is being run.
   # Something like ... : 
@@ -297,7 +317,6 @@ def predict_structure(
         f.write(relaxed_pdb_str)
 
 # End of model generation
-
   if only_run_cleanup == True: 
     timings = {} 
     relaxed_pdbs = {}
@@ -490,9 +509,6 @@ def main(argv):
     amber_relaxer = None
 
   random_seed = FLAGS.random_seed
-  if random_seed is None:
-    random_seed = random.randrange(sys.maxsize // len(model_runners))
-  logging.info('Using random seed %d for the data pipeline', random_seed)
 
   # Predict structure for each of the sequences.
   for i, fasta_name in enumerate(FLAGS.fasta_names):
@@ -524,6 +540,7 @@ def main(argv):
           exit_after_msa=FLAGS.exit_after_msa,
           only_run_cleanup=FLAGS.only_run_cleanup,
           num_recycle=FLAGS.num_recycle,
+          alignment_cache_path=FLAGS.alignment_cache_path,
           run_relax=FLAGS.run_relax,
       )
 
