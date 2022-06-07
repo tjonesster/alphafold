@@ -1,5 +1,0 @@
-head: filelist.txt: invalid number of lines
-total 17G
-drwxr-xr-x  2 jsmith csb 4.0K Nov  8 09:39 .
-drwxr-xr-x 12 jsmith csb 4.0K Dec  9 13:06 ..
--rw-r--r--  1 jsmith csb  17G Nov  8 09:36 bfd-first_non_consensus_sequences.fasta
