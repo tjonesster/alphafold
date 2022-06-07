@@ -108,7 +108,6 @@ class alignment_retriever:
 
         out_file.close()
 
-
         fcntl.flock(in_file, fcntl.LOCK_UN)     
         in_file.close()
 
@@ -176,7 +175,8 @@ class alignment_retriever:
 
         source_dir_path = self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset)
         
-        shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
+        #shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
+        shutil.copytree(source_dir_path, dest_output_path)
 
     
     def stash_alignments(self, sequence, dir_path= None, method = None, database_set = None, preset = None):
@@ -196,8 +196,11 @@ class alignment_retriever:
         dir = self.create_new_directory()
 
         self.manifest_updates[sequence] = dir
+ 
+        #shutil.copytree(dir_path, os.path.join(dir,"msas"))
+        shutil.copytree(dir_path, dir)
 
-        shutil.copytree(dir_path, os.path.join(dir,"msas"))
+        self.save_manifest()
 
         return True
 
@@ -252,7 +255,7 @@ if __name__ == "__main__":
 
             ar.stash_alignments(args.sequence,  dir_path = args.dir )
 
-            ar.save_manifest()
+            #ar.save_manifest()
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
             print('fetching')

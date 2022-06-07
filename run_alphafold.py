@@ -182,20 +182,24 @@ def predict_structure(
   msa_output_dir = os.path.join(output_dir, 'msas')
 
   # This is where we are going to support the sequence cache 
-  first_sequence = False 
+  first_sequence = False # Change this back at some point
+
+  with open(fasta_path) as f:
+    input_fasta_str = f.read()
+
+  seqs, _ = parsers.parse_fasta(input_fasta_str)
+
+  ar = alignment_retriever(alignment_cache_path)
 
   if not os.path.exists(msa_output_dir):
     if use_cache and alignment_cache_path:
-      ar = alignment_retriever(alignment_cache_path)
+      print("we are building the alignment retiever")
 
-      with open(fasta_path) as f:
-        input_fasta_str = f.read()
-
-      seqs, _ = parsers.parse_fasta(input_fasta_str)
-
-      if ar.lookup_sequence(seqs[0]) != False:
-        ar.link_msa_dir(seqs[0],msa_output_dir)
+      if ar.lookup_sequence(seqs[0]) != False: 
+        print("the sequence did exist")
+        ar.link_msa_dir(seqs[0], msa_output_dir)
       else:
+        print("the sequence did not exist")
         first_sequence = True
         os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
 
@@ -211,7 +215,8 @@ def predict_structure(
 
   if first_sequence == True:
     print("this is the first time this sequence has been seen")
-    ar.stash_alignments(seqs[0], msa_output_dir)
+    print(seqs[0])
+    ar.stash_alignments(seqs[0], dir_path=msa_output_dir)
 
   timings['features'] = time.time() - t_0
 

@@ -178,25 +178,33 @@ class DataPipeline:
     msa_for_templates = parsers.deduplicate_stockholm_msa(msa_for_templates)
     msa_for_templates = parsers.remove_empty_columns_from_stockholm_msa(msa_for_templates)
 
-    if self.template_searcher.input_format == 'sto':
-      pdb_templates_result = self.template_searcher.query(msa_for_templates)
-    elif self.template_searcher.input_format == 'a3m':
-      uniref90_msa_as_a3m = parsers.convert_stockholm_to_a3m(msa_for_templates)
-      pdb_templates_result = self.template_searcher.query(uniref90_msa_as_a3m)
-    else:
-      raise ValueError('Unrecognized template input format: '
-                       f'{self.template_searcher.input_format}')
+    #if not use_precomputed_msas or not os.path.exists(msa_out_path):
+    #check if a file exists  if not do it again. if so read it
 
     pdb_hits_out_path = os.path.join(msa_output_dir, f'pdb_hits.{self.template_searcher.output_format}')
 
-    with open(pdb_hits_out_path, 'w') as f:
-      f.write(pdb_templates_result)
+    if not os.path.exists(pdb_hits_out_path):
+
+      if self.template_searcher.input_format == 'sto':
+        pdb_templates_result = self.template_searcher.query(msa_for_templates)
+      elif self.template_searcher.input_format == 'a3m':
+        uniref90_msa_as_a3m = parsers.convert_stockholm_to_a3m(msa_for_templates)
+        pdb_templates_result = self.template_searcher.query(uniref90_msa_as_a3m)
+      else:
+        raise ValueError('Unrecognized template input format: '
+           f'{self.template_searcher.input_format}')
+
+      with open(pdb_hits_out_path, 'w') as f:
+        f.write(pdb_templates_result)
+
+    else: 
+      with open(pdb_hits_out_path,'r') as f:
+        pdb_templates_result = f.read()
 
     uniref90_msa = parsers.parse_stockholm(jackhmmer_uniref90_result['sto'])
     mgnify_msa = parsers.parse_stockholm(jackhmmer_mgnify_result['sto'])
 
-    pdb_template_hits = self.template_searcher.get_template_hits(
-        output_string=pdb_templates_result, input_sequence=input_sequence)
+    pdb_template_hits = self.template_searcher.get_template_hits(output_string=pdb_templates_result, input_sequence=input_sequence)
 
     if self._use_small_bfd: # Why sto instead of am3?
       bfd_out_path = os.path.join(msa_output_dir, 'small_bfd_hits.sto')
