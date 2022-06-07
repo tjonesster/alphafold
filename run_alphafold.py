@@ -160,8 +160,10 @@ def predict_structure(
     only_run_cleanup: bool = False,
     num_recycle: int = 3,
     use_cache: bool = True,
-    run_relax: bool = True
+    run_relax: bool = True,
+    model_config: Dict = {},
     ):
+  
 
   """Predicts structure using AlphaFold for the given sequence."""
   logging.info('Predicting %s', fasta_name)
@@ -236,7 +238,8 @@ def predict_structure(
     'msa_output_dir': msa_output_dir,
     'structure_output_dir': structure_output_dir,
     'random_seed': random_seed,
-    'num_recycle': num_recycle
+    'num_recycle': num_recycle,
+    'model_config': model_config.to_json_best_effort(), 
   } 
 
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
@@ -549,6 +552,7 @@ def main(argv):
           only_run_cleanup=FLAGS.only_run_cleanup,
           num_recycle=FLAGS.num_recycle,
           alignment_cache_path=FLAGS.alignment_cache_path,
+          model_config = model_config, 
           run_relax=FLAGS.run_relax,
       )
 
