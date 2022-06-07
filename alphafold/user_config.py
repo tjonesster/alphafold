@@ -22,7 +22,10 @@ CONFIG_RUN_ALPHAFOLD = {
     "db_preset": "reduced_dbs", 
     "benchmark": False,
     "model_preset": "monomer",
+    #"pdb_seqres_database_path": "/dors/csb/apps/alphafold-data/pdb_seqres/pdb_seqres.txt",
+    #"pdb_seqres_database_path": "/dors/csb/apps/alphafold-data/pdb_seqres/pdb_seqres.txt",
     "pdb_seqres_database_path": "/dors/csb/apps/alphafold-data/pdb_seqres/pdb_seqres.txt",
+#"/dors/csb/apps/alphafold-data/pdb_seqres/pdb_seqres.txt"
     "uniprot_database_path": "/dors/csb/apps/alphafold-data/uniprot/uniprot.fasta",
     "num_structures": 10,
     "small_bfd_database_path": "/dors/csb/apps/alphafold-data/small_bfd/bfd-first_non_consensus_sequences.fasta",
