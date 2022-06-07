@@ -36,9 +36,12 @@ from alphafold.data.tools import hhsearch, hmmsearch
 from alphafold.model import config, model, data
 from alphafold.relax import relax
 
-from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
+from alphafold.apps.af_cache_lookup import alignment_retriever
 
+from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
+from alphafold.data import parsers
 import subprocess
+
 
 logging.set_verbosity(logging.INFO)
 
@@ -93,7 +96,7 @@ flags.DEFINE_string('activations_output_path', defvalues.get('activations_output
 
 # These two flags should do the same thing but process_msa = False may be broken now.
 # use_precomputed_msas was introduced in alphafold multimer
-flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', False), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
+flags.DEFINE_boolean('use_precomputed_msas', defvalues.get('use_precomputed_msas', True), 'Whether to read MSAs that  have been written to disk. WARNING: This will not check if the sequence, database or configuration have changed.')
 
 # We have decided to remove this option
 # flags.DEFINE_boolean('process_msa', defvalues.get('process_msa', True), "Whether or not the msa should be computed. If false then loaded from file.") # This flag does the same thing as the use_precomputed_msas but I kinda like my sloppier means of phrasing it.
@@ -109,24 +112,19 @@ flags.DEFINE_boolean('run_relax', defvalues.get('run_relax', True), "Do you want
 flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
 flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
+flags.DEFINE_integer("bfd_max_hits", defvalues.get("bfd_max_hits", 10000), "asdfasdfasdf")
 
 flags.DEFINE_boolean("write_pickle", defvalues.get("write_pickle", True), "Do you want to store the pkl file of the output?")
 
-flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many '
-                     'predictions (each with a different random seed) will be '
-                     'generated per model. E.g. if this is 2 and there are 5 '
-                     'models then there will be 10 predictions per input. '
-                     'Note: this FLAG only applies if model_preset=multimer')
-flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. '
-                     'Relax on GPU can be much faster than CPU, so it is '
-                     'recommended to enable if possible. GPUs must be available'
-                     ' if this setting is enabled.')
-
+flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many predictions (each with a different random seed) will be generated per model. E.g. if this is 2 and there are 5 models then there will be 10 predictions per input. Note: this FLAG only applies if model_preset=multimer')
+flags.DEFINE_boolean('use_gpu_relax', True, 'Whether to relax on GPU. Relax on GPU can be much faster than CPU, so it is recommended to enable if possible. GPUs must be available if this setting is enabled.')
 
 # This really has not been performing the way I expected
 flags.DEFINE_integer("max_extra_msa", defvalues.get("max_extra_msa", None), "What should the new number of max sequences be?")
 flags.DEFINE_integer("max_msa_clusters", defvalues.get("max_msa_clusters", None), "What should the new number of max sequences be?")
-#max_msa_clusters
+
+flags.DEFINE_boolean("use_cache", defvalues.get("use_cache", None),"Do you want to use the sequence cache.")
+flags.DEFINE_string("alignment_cache_path", defvalues.get("alignment_cache_path", None), "Alignment cache path.")
 
 FLAGS = flags.FLAGS
 
@@ -156,9 +154,12 @@ def predict_structure(
     structure_dir: str,
     job_name: str, 
     overwrite: bool, 
+    alignment_cache_path: str = '',
     write_pickle: bool = True,
     exit_after_msa: bool = False,
     only_run_cleanup: bool = False,
+    num_recycle: int = 3,
+    use_cache: bool = True,
     run_relax: bool = True
     ):
 
@@ -179,15 +180,44 @@ def predict_structure(
       exit()
 
   msa_output_dir = os.path.join(output_dir, 'msas')
+
+  # This is where we are going to support the sequence cache 
+  first_sequence = False # Change this back at some point
+
+  with open(fasta_path) as f:
+    input_fasta_str = f.read()
+
+  seqs, _ = parsers.parse_fasta(input_fasta_str)
+
+  ar = alignment_retriever(alignment_cache_path)
+
   if not os.path.exists(msa_output_dir):
-    os.makedirs(msa_output_dir) # create the directory for the msa to be saved 
+    if use_cache and alignment_cache_path:
+      print("we are building the alignment retiever")
+
+      if ar.lookup_sequence(seqs[0]) != False: 
+        print("the sequence did exist")
+        ar.link_msa_dir(seqs[0], msa_output_dir)
+      else:
+        print("the sequence did not exist")
+        first_sequence = True
+        os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
+
+    else:
+      os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
   # Get features.
   t_0 = time.time()
 
-  feature_dict = data_pipeline.process( input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
+  feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
+
+  if first_sequence == True:
+    print("this is the first time this sequence has been seen")
+    print(seqs[0])
+    ar.stash_alignments(seqs[0], dir_path=msa_output_dir)
+
   timings['features'] = time.time() - t_0
 
   # Write out features as a pickled dictionary.  
@@ -206,6 +236,7 @@ def predict_structure(
     'msa_output_dir': msa_output_dir,
     'structure_output_dir': structure_output_dir,
     'random_seed': random_seed,
+    'num_recycle': num_recycle
   } 
 
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
@@ -216,7 +247,6 @@ def predict_structure(
 
   with open(os.path.join(structure_output_dir, "arguments.txt"),"w") as f:
     f.write(json.dumps(arguments_to_output)) #write out the arguments for each job
-
 
   # I should also write out the git hash for the version of alphafold that is being run.
   # Something like ... : 
@@ -269,6 +299,7 @@ def predict_structure(
       # Add the predicted LDDT in the b-factor column.
       # Note that higher predicted LDDT value means higher model confidence.
       plddt_b_factors = np.repeat(plddt[:, None], residue_constants.atom_type_num, axis=-1)
+
       unrelaxed_protein = protein.from_prediction(
           features=processed_feature_dict,
           result=prediction_result,
@@ -281,8 +312,6 @@ def predict_structure(
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
-    # Relax the prediction.
-    # if :
     if amber_relaxer and run_relax:
       t_0 = time.time()
       relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
@@ -296,7 +325,6 @@ def predict_structure(
         f.write(relaxed_pdb_str)
 
 # End of model generation
-
   if only_run_cleanup == True: 
     timings = {} 
     relaxed_pdbs = {}
@@ -345,20 +373,20 @@ def main(argv):
 
   # Check flags checks postive or negative values when we really only care about checking that it is set when we need it. We add this little if checks in order to get around changing the default behavior of this
   if use_small_bfd:
-    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=use_small_bfd)
+    _check_flag('small_bfd_database_path', 'db_preset', should_be_set=True)
 
   if not use_small_bfd: 
-    _check_flag('uniclust30_database_path', 'db_preset', should_be_set=not use_small_bfd)
-    _check_flag('bfd_database_path', 'db_preset', should_be_set=not use_small_bfd)
+    _check_flag('uniclust30_database_path', 'db_preset', should_be_set=True)
+    _check_flag('bfd_database_path', 'db_preset', should_be_set=True)
 
   run_multimer_system = 'multimer' in FLAGS.model_preset
 
   if not  run_multimer_system: 
-    _check_flag('pdb70_database_path', 'model_preset', should_be_set=not run_multimer_system)
+    _check_flag('pdb70_database_path', 'model_preset', should_be_set=True)
 
   if run_multimer_system:
-    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=run_multimer_system)
-    _check_flag('uniprot_database_path', 'model_preset', should_be_set=run_multimer_system)
+    _check_flag('pdb_seqres_database_path', 'model_preset', should_be_set=True)
+    _check_flag('uniprot_database_path', 'model_preset', should_be_set=True)
 
   if FLAGS.model_preset == 'monomer_casp14':
     num_ensemble = 8
@@ -404,8 +432,8 @@ def main(argv):
       use_small_bfd=use_small_bfd,
       mgnify_max_hits=FLAGS.mgnify_max_hits,
       uniref_max_hits=FLAGS.uniref_max_hits,
+      bfd_max_hits=FLAGS.bfd_max_hits,
       use_precomputed_msas=FLAGS.use_precomputed_msas,
-      # run_relax=FLAGS.run_relax,
       )
 
 # This is one place to set this 
@@ -451,39 +479,32 @@ def main(argv):
 
     #This path might be different for the multimer system
     # One of these works for the multimer and one of these works for the monomer 
+    # IN the current implementation this can't be None. It not defaults to 3... so we might want to change the way we implement this.
     if FLAGS.num_recycle != None:
       try:
-        model_config.model.num_recycle = FLAGS.num_recycle
-        print("changed the number of recycles to ", FLAGS.num_recycle)
+        model_config.model.num_recycle = num_recycle
+        print("changed the number of recycles to ", num_recycle)
       except: 
         pass
       try:
-        model_config.data.common.num_recycle  = FLAGS.num_recycle
-        print("changed the number of recycles to ", FLAGS.num_recycle)
+        model_config.data.common.num_recycle  = num_recycle
+        print("changed the number of recycles to ", num_recycle)
       except: 
         pass
 
     if FLAGS.max_extra_msa != None:
-      #try:
       model_config.data.common.max_extra_msa = FLAGS.max_extra_msa
-      #  print("managed to change the max msa")
-      #except: 
-      #  print("failed to change the max_msa value")
-      #  pass
 
     if FLAGS.max_msa_clusters != None:
       model_config.data.eval.max_msa_clusters = FLAGS.max_msa_clusters
 
 
     model_params = data.get_model_haiku_params(model_name=model_name, data_dir=FLAGS.data_dir)
-
-    #model_runner, reps  = model.RunModel(model_config, model_params)
     model_runner = model.RunModel(model_config, model_params)
     for i in range(num_predictions_per_model):
       model_runners[f'{model_name}_pred_{i}'] = model_runner
 
   logging.info('Have %d models: %s', len(model_runners), list(model_runners.keys())) 
-
   if FLAGS.run_relax:
     amber_relaxer = relax.AmberRelaxation(
         max_iterations=RELAX_MAX_ITERATIONS,
@@ -496,33 +517,19 @@ def main(argv):
     amber_relaxer = None
 
   random_seed = FLAGS.random_seed
-  if random_seed is None:
-    random_seed = random.randrange(sys.maxsize // len(model_runners))
-  logging.info('Using random seed %d for the data pipeline', random_seed)
 
   # Predict structure for each of the sequences.
-  #for i, fasta_path in enumerate(FLAGS.fasta_paths):
   for i, fasta_name in enumerate(FLAGS.fasta_names):
-    #fasta_name = fasta_names[i]
     fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
-    # predict_structure(
-        # fasta_path=fasta_path,
-        # fasta_name=fasta_name,
-        # output_dir_base=FLAGS.output_dir,
-        # data_pipeline=data_pipeline,
-        # model_runners=model_runners,
-        # amber_relaxer=amber_relaxer,
-        # benchmark=FLAGS.benchmark,
-        # random_seed=random_seed)
 
 
+# This for loop really does not work
     for structure_index in range(FLAGS.num_structures):
       random_seed = FLAGS.random_seed + structure_index if FLAGS.random_seed is not None else random.randrange(sys.maxsize // len(model_names))+structure_index
       random_seed = random_seed % 2147483648
       logging.info('Using random seed %d for the data pipeline', random_seed)
 
       # check what structure directories exist...
-
       structure_dir=f'structure_{structure_index}'
 
       predict_structure(
@@ -537,10 +544,11 @@ def main(argv):
           job_name=FLAGS.job_name,
           overwrite=FLAGS.overwrite,
           structure_dir=structure_dir,
-          # is_prokaryote=is_prokaryote,
           write_pickle=FLAGS.write_pickle,
           exit_after_msa=FLAGS.exit_after_msa,
           only_run_cleanup=FLAGS.only_run_cleanup,
+          num_recycle=FLAGS.num_recycle,
+          alignment_cache_path=FLAGS.alignment_cache_path,
           run_relax=FLAGS.run_relax,
       )
 
