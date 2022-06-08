@@ -101,6 +101,7 @@ class alignment_retriever:
         self.manifest = pickle.load(in_file)
 
         t = {**self.manifest, **self.manifest_updates}
+        #self.manifest_ = self.manifest
 
         out_file = open(self.manifest_path,'wb+')
 
@@ -110,6 +111,8 @@ class alignment_retriever:
 
         fcntl.flock(in_file, fcntl.LOCK_UN)     
         in_file.close()
+
+        self.manifest = t 
 
     def create_new_directory(self) -> str:
         '''
@@ -122,7 +125,7 @@ class alignment_retriever:
         while os.path.exists(os.path.join(self.root_path, new_dir)):
             new_dir = str(uuid.uuid4()) 
 
-        os.makedirs(os.path.join(self.root_path, new_dir))
+        #os.makedirs(os.path.join(self.root_path, new_dir))
     
         return os.path.join(self.root_path, new_dir)
         
@@ -134,6 +137,8 @@ class alignment_retriever:
         assert sequence, "Must specify a sequence for the lookup operation"
 
         sequence = self.seq_upper(sequence)
+
+        #temp = {**self.manifest, **self.manifest_updates}
 
         result =  self.manifest.get(sequence, False)
 
@@ -196,6 +201,7 @@ class alignment_retriever:
         dir = self.create_new_directory()
 
         self.manifest_updates[sequence] = dir
+        #self.manifest[sequence] = dir
  
         #shutil.copytree(dir_path, os.path.join(dir,"msas"))
         shutil.copytree(dir_path, dir)
