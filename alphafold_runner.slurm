@@ -1,4 +1,6 @@
-#!/usr/bin/bash
+#!/bin/bash --norc
+#/usr/bin/bash
+
 #SBATCH --account=csb_gpu_acc
 #SBATCH --partition=turing
 #SBATCH --mail-user=taylor.l.jones.1@vanderbilt.edu

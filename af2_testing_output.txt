@@ -8,19 +8,19 @@
   warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
-/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
-  warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
-/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
-  warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
@@ -38,70 +38,591 @@
   warnings.warn(
 /home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
   warnings.warn(
-I0607 21:43:17.963441 47924428230336 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
-I0607 21:43:17.971342 47648050519744 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
-I0607 21:43:19.006187 47648050519744 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
-I0607 21:43:19.011088 47924428230336 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
-I0607 21:43:19.289845 47924428230336 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
-I0607 21:43:19.299186 47648050519744 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
-I0607 21:43:20.896703 47648050519744 run_alphafold.py:510] Have 1 models: ['model_5_pred_0']
-I0607 21:43:20.896966 47648050519744 run_alphafold.py:533] Using random seed 247591921 for the data pipeline
-I0607 21:43:20.897209 47648050519744 run_alphafold.py:169] Predicting lmrp_inward
-I0607 21:43:20.901008 47924428230336 run_alphafold.py:510] Have 1 models: ['model_5_pred_0']
-I0607 21:43:20.901275 47924428230336 run_alphafold.py:533] Using random seed 1160613101 for the data pipeline
-I0607 21:43:20.901746 47924428230336 run_alphafold.py:169] Predicting lmrp_inward.fasta
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:07:49.598946 47204325637824 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:49.657239 47037448683200 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:49.732483 47479647219392 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:49.767349 47672472940224 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:49.788008 47204325637824 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:49.826645 47037448683200 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:49.918104 47479647219392 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:49.942095 47672472940224 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:50.045562 47204325637824 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:50.109432 47037448683200 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:50.227216 47672472940224 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:50.229281 47479647219392 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:07:50.827421 47782074805952 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:50.919667 47765159616192 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:50.951255 47686487121600 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:51.015368 47782074805952 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:51.103567 47765159616192 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:51.120067 47686487121600 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:51.167282 47782074805952 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:51.369305 47765159616192 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:51.381655 47204325637824 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:07:51.382133 47204325637824 run_alphafold.py:539] Using random seed 846783896 for the data pipeline
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:07:51.397116 47204325637824 run_alphafold.py:174] Predicting LaCY_wt.fasta
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:07:51.421587 47204325637824 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpm2p5pwyl/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/LaCY_wt.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:51.432758 47037448683200 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:51.433193 47037448683200 run_alphafold.py:539] Using random seed 103264353 for the data pipeline
+I0611 02:07:51.433685 47037448683200 run_alphafold.py:174] Predicting XyLE_inward.fasta
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+we are building the alignment retiever
 Traceback (most recent call last):
-  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 574, in <module>
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 582, in <module>
     app.run(main)
   File "/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/app.py", line 312, in run
     _run_main(main, args)
   File "/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/app.py", line 258, in _run_main
     sys.exit(main(argv))
-  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 538, in main
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 544, in main
     predict_structure(
-  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 189, in predict_structure
-    with open(fasta_path) as f:
-FileNotFoundError: [Errno 2] No such file or directory: '/home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward'
-I0607 21:43:20.922964 47924428230336 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp0qle7_9l/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
-I0607 21:43:21.158009 47924428230336 utils.py:36] Started Jackhmmer (uniref90.fasta) query
-I0607 21:50:10.218260 47924428230336 utils.py:40] Finished Jackhmmer (uniref90.fasta) query in 409.059 seconds
-I0607 21:50:10.391298 47924428230336 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp3nmmotaf/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/mgnify/mgy_clusters.fa"
-I0607 21:50:10.427520 47924428230336 utils.py:36] Started Jackhmmer (mgy_clusters.fa) query
-I0607 21:58:07.046899 47924428230336 utils.py:40] Finished Jackhmmer (mgy_clusters.fa) query in 476.619 seconds
-I0607 21:58:08.389453 47924428230336 hhsearch.py:81] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/hhsearch -i /tmp/tmpe_rjwmnq/query.a3m -o /tmp/tmpe_rjwmnq/output.hhr -maxseq 1000000 -d /csbtmp/alphafold-data/pdb70/pdb70"
-I0607 21:58:08.687114 47924428230336 utils.py:36] Started HHsearch query
-I0607 21:59:09.544026 47924428230336 utils.py:40] Finished HHsearch query in 60.856 seconds
-I0607 21:59:10.357110 47924428230336 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpuvhpgy23/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/small_bfd/bfd-first_non_consensus_sequences.fasta"
-I0607 21:59:10.394537 47924428230336 utils.py:36] Started Jackhmmer (bfd-first_non_consensus_sequences.fasta) query
-I0607 22:01:18.038289 47924428230336 utils.py:40] Finished Jackhmmer (bfd-first_non_consensus_sequences.fasta) query in 127.643 seconds
-I0607 22:01:18.082762 47924428230336 templates.py:893] Searching for template for: GKEFWNLDKNLQLRLGIVFLGAFSYGTVFSSMTIYYNCYLGSAITGILLALSAVATFVAGILAGFFADRNGRKPVMVFGTIIQLLGAALAIASNLPGHVNPWSTFIAFLLISFGYNFVITAGNAMIIDASNAENRKVVFMLDYWAQNLSVILGAALGAWLFRPAFEALLVILLLTVLVSFFLTTFVMTETFKPTVKVDNIFQAYKTVLQDKTYMIFMGANIATTFIIMQFDNFLPVHLSCSFKTITFWGFEIYGQRMLTIYLILACVLVVLLMTTLNRLTKDWSHQKGFIWGSLFMAIGMIFSFLTTTFTPIFIAGIVYTLGEIVYTPSVQTLGADLMNPEKIGSYNGVAAIKMPIASILAGLLVSISPMIKAIGVSLVLALTEVLAIILVLVAVNRHQKTKLNLEVLFQG
-I0607 22:01:18.262882 47924428230336 templates.py:268] Found an exact template match 6fmr_A.
-I0607 22:01:18.566612 47924428230336 templates.py:268] Found an exact template match 6exs_A.
-I0607 22:01:18.890768 47924428230336 templates.py:268] Found an exact template match 4zp0_A.
-I0607 22:01:19.175522 47924428230336 templates.py:268] Found an exact template match 4iky_A.
-I0607 22:01:19.453791 47924428230336 templates.py:268] Found an exact template match 6hzp_A.
-I0607 22:01:19.627050 47924428230336 templates.py:268] Found an exact template match 6gz9_A.
-I0607 22:01:19.901929 47924428230336 templates.py:268] Found an exact template match 4ikv_A.
-I0607 22:01:20.490447 47924428230336 templates.py:268] Found an exact template match 4zyr_A.
-I0607 22:01:21.358713 47924428230336 templates.py:268] Found an exact template match 4m64_A.
-I0607 22:01:21.377348 47924428230336 templates.py:268] Found an exact template match 4m64_C.
-I0607 22:01:21.653499 47924428230336 templates.py:268] Found an exact template match 5oxo_A.
-I0607 22:01:22.132154 47924428230336 templates.py:268] Found an exact template match 1pv6_A.
-I0607 22:01:22.290219 47924428230336 templates.py:268] Found an exact template match 2cfq_A.
-I0607 22:01:22.490387 47924428230336 templates.py:268] Found an exact template match 6gs1_A.
-I0607 22:01:22.809195 47924428230336 templates.py:268] Found an exact template match 6gs4_A.
-I0607 22:01:22.973913 47924428230336 templates.py:268] Found an exact template match 6jkd_A.
-I0607 22:01:23.119832 47924428230336 templates.py:268] Found an exact template match 5ayo_A.
-I0607 22:01:23.852847 47924428230336 templates.py:268] Found an exact template match 4tpg_B.
-I0607 22:01:24.010669 47924428230336 templates.py:268] Found an exact template match 5ayn_A.
-I0607 22:01:24.483576 47924428230336 templates.py:268] Found an exact template match 4tph_B.
-I0607 22:01:24.876461 47924428230336 pipeline.py:236] Uniref90 MSA size: 3651 sequences.
-I0607 22:01:24.876651 47924428230336 pipeline.py:237] BFD MSA size: 222 sequences.
-I0607 22:01:24.876710 47924428230336 pipeline.py:238] MGnify MSA size: 501 sequences.
-I0607 22:01:24.876753 47924428230336 pipeline.py:239] Final (deduplicated) MSA size: 4291 sequences.
-I0607 22:01:24.876944 47924428230336 pipeline.py:240] Total number of templates (NB: this can include bad templates and is later filtered to top 4): 20.
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 205, in predict_structure
+    if ar.lookup_sequence(seqs[0], db_preset=db_preset,model_preset=model_preset) != False: 
+  File "/gpfs51/dors2/meilerlab/home/jonestl5/alphafold/alphafold/apps/af_cache_lookup.py", line 161, in lookup_sequence
+    assert sequence, "Must specify a sequence for the lookup operation"
+AssertionError: Must specify a sequence for the lookup operation
+I0611 02:07:51.439373 47686487121600 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:51.467055 47204325637824 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:07:51.545046 47672472940224 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:51.552486 47672472940224 run_alphafold.py:539] Using random seed 89209886 for the data pipeline
+I0611 02:07:51.553012 47672472940224 run_alphafold.py:174] Predicting LaCY_inward.fasta
+I0611 02:07:51.552924 47479647219392 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:51.553376 47479647219392 run_alphafold.py:539] Using random seed 1985532810 for the data pipeline
+I0611 02:07:51.553883 47479647219392 run_alphafold.py:174] Predicting BbFPN_wt.fasta
+I0611 02:07:51.560937 47672472940224 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpz266xmnb/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/LaCY_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:51.565741 47479647219392 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpg4rud8sh/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/BbFPN_wt.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:51.590480 47672472940224 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:07:51.603216 47479647219392 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:07:51.908364 47233262317248 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:07:52.082610 47233262317248 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:07:52.214953 47233262317248 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:07:52.471553 47782074805952 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:52.472058 47782074805952 run_alphafold.py:539] Using random seed 711731419 for the data pipeline
+I0611 02:07:52.472564 47782074805952 run_alphafold.py:174] Predicting LaCY_inward.fasta
+I0611 02:07:52.477465 47782074805952 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpkxxyrly8/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/LaCY_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:52.510808 47782074805952 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:07:52.677257 47765159616192 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:52.684101 47765159616192 run_alphafold.py:539] Using random seed 781667392 for the data pipeline
+I0611 02:07:52.684621 47765159616192 run_alphafold.py:174] Predicting lmrp_inward.fasta
+I0611 02:07:52.694561 47765159616192 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmphp_83agt/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:52.725326 47765159616192 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:07:52.749248 47686487121600 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:52.749688 47686487121600 run_alphafold.py:539] Using random seed 368086429 for the data pipeline
+I0611 02:07:52.750185 47686487121600 run_alphafold.py:174] Predicting lmrp_inward.fasta
+I0611 02:07:52.757811 47686487121600 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp1_3b25ma/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:52.791653 47686487121600 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:07:53.492074 47233262317248 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:07:53.497375 47233262317248 run_alphafold.py:539] Using random seed 1420485428 for the data pipeline
+I0611 02:07:53.498561 47233262317248 run_alphafold.py:174] Predicting BbFPN_wt.fasta
+I0611 02:07:53.506039 47233262317248 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpk__i8jt7/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/BbFPN_wt.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:07:53.545387 47233262317248 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:08:01.589826 46939663011520 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:01.595799 47271660039872 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:01.596224 47226432048832 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:03.109504 46939663011520 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:03.109747 47271660039872 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:03.110030 47226432048832 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:03.543368 47226432048832 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:03.561478 46939663011520 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:03.561662 47271660039872 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:08:04.383409 47752210439872 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:04.383486 47134866894528 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:04.385400 47199686573760 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:04.650479 47134866894528 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:04.650732 47752210439872 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:04.652539 47199686573760 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:08:05.042288 47134866894528 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:05.130387 47752210439872 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:05.130735 47199686573760 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:05.201781 47271660039872 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:05.211872 47271660039872 run_alphafold.py:539] Using random seed 653131711 for the data pipeline
+I0611 02:08:05.212417 47271660039872 run_alphafold.py:174] Predicting LaCY_outward.fasta
+I0611 02:08:05.220790 47271660039872 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp82g7wg0x/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/LaCY_outward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:05.224785 47226432048832 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:05.225165 46939663011520 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:05.225026 47226432048832 run_alphafold.py:539] Using random seed 284879608 for the data pipeline
+I0611 02:08:05.225495 47226432048832 run_alphafold.py:174] Predicting LaCY_outward.fasta
+I0611 02:08:05.225402 46939663011520 run_alphafold.py:539] Using random seed 1522511733 for the data pipeline
+I0611 02:08:05.225854 46939663011520 run_alphafold.py:174] Predicting LaCY_wt.fasta
+I0611 02:08:05.230257 46939663011520 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpua458z2e/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/LaCY_wt.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:05.230287 47226432048832 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp1a1e680q/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/LaCY_outward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:05.264563 47271660039872 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:05.271448 47226432048832 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:05.272441 46939663011520 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:05.387476 47422039989952 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:05.821766 47422039989952 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:08:06.414490 46955861798592 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:06.414523 47646664027840 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:06.414531 47709190188736 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:06.432883 47134866894528 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:06.453980 47134866894528 run_alphafold.py:539] Using random seed 24860940 for the data pipeline
+I0611 02:08:06.454354 47134866894528 run_alphafold.py:174] Predicting BbFPN_outward.fasta
+I0611 02:08:06.476169 47134866894528 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmphfl5ow_0/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/BbFPN_outward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:06.477227 47422039989952 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:06.505585 47752210439872 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:06.511657 47134866894528 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:06.521386 47199686573760 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:06.706745 47752210439872 run_alphafold.py:539] Using random seed 529536285 for the data pipeline
+I0611 02:08:06.707016 47199686573760 run_alphafold.py:539] Using random seed 230943691 for the data pipeline
+I0611 02:08:06.707406 47752210439872 run_alphafold.py:174] Predicting BbFPN_inward.fasta
+I0611 02:08:06.707723 47199686573760 run_alphafold.py:174] Predicting BbFPN_outward.fasta
+I0611 02:08:06.717078 47199686573760 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp5qn65p_s/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/BbFPN_outward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:06.722039 47752210439872 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmplqw0dyi_/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/BbFPN_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:06.730111 47646664027840 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:06.730599 47709190188736 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:06.730792 46955861798592 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:06.757211 47199686573760 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:06.763769 47752210439872 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0611 02:08:07.149298 47646664027840 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:07.191068 46955861798592 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:07.200248 47709190188736 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:07.490442 47717382102720 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:07.491939 47688417025728 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0611 02:08:07.855458 47717382102720 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:07.856553 47688417025728 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0611 02:08:08.184822 47688417025728 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:08.195231 47717382102720 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0611 02:08:08.366483 47422039989952 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:08.373524 47422039989952 run_alphafold.py:539] Using random seed 1160262232 for the data pipeline
+I0611 02:08:08.373808 47422039989952 run_alphafold.py:174] Predicting BbFPN_inward.fasta
+I0611 02:08:08.385190 47422039989952 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp0dd_rpcm/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/BbFPN_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:08.428848 47422039989952 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:08.510922 47709190188736 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:08.520207 47709190188736 run_alphafold.py:539] Using random seed 1020092644 for the data pipeline
+I0611 02:08:08.520514 47709190188736 run_alphafold.py:174] Predicting XyLE_wt.fasta
+I0611 02:08:08.526314 47709190188736 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpa892i4lh/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/XyLE_wt.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:08.550455 46955861798592 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:08.550705 46955861798592 run_alphafold.py:539] Using random seed 1073360644 for the data pipeline
+I0611 02:08:08.550953 46955861798592 run_alphafold.py:174] Predicting XyLE_outward.fasta
+I0611 02:08:08.559520 46955861798592 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp6f3c42ce/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/XyLE_outward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:08.561199 47709190188736 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:08.568005 47646664027840 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:08.568265 47646664027840 run_alphafold.py:539] Using random seed 1951894932 for the data pipeline
+I0611 02:08:08.568530 47646664027840 run_alphafold.py:174] Predicting XyLE_wt.fasta
+I0611 02:08:08.578430 47646664027840 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpo20yj8r2/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/XyLE_wt.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:08.585001 46955861798592 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:08.603860 47646664027840 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0611 02:08:09.941870 47717382102720 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:09.953788 47717382102720 run_alphafold.py:539] Using random seed 1999493262 for the data pipeline
+I0611 02:08:09.954154 47717382102720 run_alphafold.py:174] Predicting XyLE_outward.fasta
+I0611 02:08:09.960381 47688417025728 run_alphafold.py:516] Have 1 models: ['model_5_pred_0']
+I0611 02:08:09.960628 47688417025728 run_alphafold.py:539] Using random seed 505380183 for the data pipeline
+I0611 02:08:09.960889 47688417025728 run_alphafold.py:174] Predicting XyLE_inward.fasta
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
 we are building the alignment retiever
-the sequence did not exist
-this is the first time this sequence has been seen
-GKEFWNLDKNLQLRLGIVFLGAFSYGTVFSSMTIYYNCYLGSAITGILLALSAVATFVAGILAGFFADRNGRKPVMVFGTIIQLLGAALAIASNLPGHVNPWSTFIAFLLISFGYNFVITAGNAMIIDASNAENRKVVFMLDYWAQNLSVILGAALGAWLFRPAFEALLVILLLTVLVSFFLTTFVMTETFKPTVKVDNIFQAYKTVLQDKTYMIFMGANIATTFIIMQFDNFLPVHLSCSFKTITFWGFEIYGQRMLTIYLILACVLVVLLMTTLNRLTKDWSHQKGFIWGSLFMAIGMIFSFLTTTFTPIFIAGIVYTLGEIVYTPSVQTLGADLMNPEKIGSYNGVAAIKMPIASILAGLLVSISPMIKAIGVSLVLALTEVLAIILVLVAVNRHQKTKLNLEVLFQG
-saving
+Traceback (most recent call last):
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 582, in <module>
+    app.run(main)
+  File "/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/app.py", line 312, in run
+    _run_main(main, args)
+  File "/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/app.py", line 258, in _run_main
+    sys.exit(main(argv))
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 544, in main
+    predict_structure(
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 205, in predict_structure
+    if ar.lookup_sequence(seqs[0], db_preset=db_preset,model_preset=model_preset) != False: 
+  File "/gpfs51/dors2/meilerlab/home/jonestl5/alphafold/alphafold/apps/af_cache_lookup.py", line 161, in lookup_sequence
+    assert sequence, "Must specify a sequence for the lookup operation"
+AssertionError: Must specify a sequence for the lookup operation
+I0611 02:08:09.980311 47717382102720 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp6_uoqicf/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/XyLE_outward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0611 02:08:10.032887 47717382102720 utils.py:36] Started Jackhmmer (uniref90.fasta) query
