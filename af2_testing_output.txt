@@ -1,0 +1,107 @@
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --fasta_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --model_names has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --output_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --data_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --uniref90_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --mgnify_database_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --template_mmcif_dir has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --max_template_date has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --obsolete_pdbs_path has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/flags/_validators.py:203: UserWarning: Flag --use_gpu_relax has a non-None default value; therefore, mark_flag_as_required will pass even if flag is not specified in the command line!
+  warnings.warn(
+I0607 21:43:17.963441 47924428230336 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0607 21:43:17.971342 47648050519744 templates.py:872] Using precomputed obsolete pdbs /csbtmp/alphafold-data/pdb_mmcif/obsolete.dat.
+I0607 21:43:19.006187 47648050519744 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0607 21:43:19.011088 47924428230336 xla_bridge.py:230] Unable to initialize backend 'tpu_driver': Not found: Unable to find driver in registry given worker: 
+I0607 21:43:19.289845 47924428230336 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0607 21:43:19.299186 47648050519744 xla_bridge.py:230] Unable to initialize backend 'tpu': Invalid argument: TpuPlatform is not available.
+I0607 21:43:20.896703 47648050519744 run_alphafold.py:510] Have 1 models: ['model_5_pred_0']
+I0607 21:43:20.896966 47648050519744 run_alphafold.py:533] Using random seed 247591921 for the data pipeline
+I0607 21:43:20.897209 47648050519744 run_alphafold.py:169] Predicting lmrp_inward
+I0607 21:43:20.901008 47924428230336 run_alphafold.py:510] Have 1 models: ['model_5_pred_0']
+I0607 21:43:20.901275 47924428230336 run_alphafold.py:533] Using random seed 1160613101 for the data pipeline
+I0607 21:43:20.901746 47924428230336 run_alphafold.py:169] Predicting lmrp_inward.fasta
+Traceback (most recent call last):
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 574, in <module>
+    app.run(main)
+  File "/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/app.py", line 312, in run
+    _run_main(main, args)
+  File "/home/jonestl5/miniconda3/envs/af2_7/lib/python3.9/site-packages/absl/app.py", line 258, in _run_main
+    sys.exit(main(argv))
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 538, in main
+    predict_structure(
+  File "/home/jonestl5/dorsdir/alphafold/run_alphafold.py", line 189, in predict_structure
+    with open(fasta_path) as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward'
+I0607 21:43:20.922964 47924428230336 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp0qle7_9l/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/uniref90/uniref90.fasta"
+I0607 21:43:21.158009 47924428230336 utils.py:36] Started Jackhmmer (uniref90.fasta) query
+I0607 21:50:10.218260 47924428230336 utils.py:40] Finished Jackhmmer (uniref90.fasta) query in 409.059 seconds
+I0607 21:50:10.391298 47924428230336 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmp3nmmotaf/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/mgnify/mgy_clusters.fa"
+I0607 21:50:10.427520 47924428230336 utils.py:36] Started Jackhmmer (mgy_clusters.fa) query
+I0607 21:58:07.046899 47924428230336 utils.py:40] Finished Jackhmmer (mgy_clusters.fa) query in 476.619 seconds
+I0607 21:58:08.389453 47924428230336 hhsearch.py:81] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/hhsearch -i /tmp/tmpe_rjwmnq/query.a3m -o /tmp/tmpe_rjwmnq/output.hhr -maxseq 1000000 -d /csbtmp/alphafold-data/pdb70/pdb70"
+I0607 21:58:08.687114 47924428230336 utils.py:36] Started HHsearch query
+I0607 21:59:09.544026 47924428230336 utils.py:40] Finished HHsearch query in 60.856 seconds
+I0607 21:59:10.357110 47924428230336 jackhmmer.py:133] Launching subprocess "/home/jonestl5/miniconda3/envs/af2_7/bin/jackhmmer -o /dev/null -A /tmp/tmpuvhpgy23/output.sto --noali --F1 0.0005 --F2 5e-05 --F3 5e-07 --incE 0.0001 -E 0.0001 --cpu 8 -N 1 /home/jonestl5/dorsdir/alphafold_fastas/lmrp_inward.fasta /csbtmp/alphafold-data/small_bfd/bfd-first_non_consensus_sequences.fasta"
+I0607 21:59:10.394537 47924428230336 utils.py:36] Started Jackhmmer (bfd-first_non_consensus_sequences.fasta) query
+I0607 22:01:18.038289 47924428230336 utils.py:40] Finished Jackhmmer (bfd-first_non_consensus_sequences.fasta) query in 127.643 seconds
+I0607 22:01:18.082762 47924428230336 templates.py:893] Searching for template for: GKEFWNLDKNLQLRLGIVFLGAFSYGTVFSSMTIYYNCYLGSAITGILLALSAVATFVAGILAGFFADRNGRKPVMVFGTIIQLLGAALAIASNLPGHVNPWSTFIAFLLISFGYNFVITAGNAMIIDASNAENRKVVFMLDYWAQNLSVILGAALGAWLFRPAFEALLVILLLTVLVSFFLTTFVMTETFKPTVKVDNIFQAYKTVLQDKTYMIFMGANIATTFIIMQFDNFLPVHLSCSFKTITFWGFEIYGQRMLTIYLILACVLVVLLMTTLNRLTKDWSHQKGFIWGSLFMAIGMIFSFLTTTFTPIFIAGIVYTLGEIVYTPSVQTLGADLMNPEKIGSYNGVAAIKMPIASILAGLLVSISPMIKAIGVSLVLALTEVLAIILVLVAVNRHQKTKLNLEVLFQG
+I0607 22:01:18.262882 47924428230336 templates.py:268] Found an exact template match 6fmr_A.
+I0607 22:01:18.566612 47924428230336 templates.py:268] Found an exact template match 6exs_A.
+I0607 22:01:18.890768 47924428230336 templates.py:268] Found an exact template match 4zp0_A.
+I0607 22:01:19.175522 47924428230336 templates.py:268] Found an exact template match 4iky_A.
+I0607 22:01:19.453791 47924428230336 templates.py:268] Found an exact template match 6hzp_A.
+I0607 22:01:19.627050 47924428230336 templates.py:268] Found an exact template match 6gz9_A.
+I0607 22:01:19.901929 47924428230336 templates.py:268] Found an exact template match 4ikv_A.
+I0607 22:01:20.490447 47924428230336 templates.py:268] Found an exact template match 4zyr_A.
+I0607 22:01:21.358713 47924428230336 templates.py:268] Found an exact template match 4m64_A.
+I0607 22:01:21.377348 47924428230336 templates.py:268] Found an exact template match 4m64_C.
+I0607 22:01:21.653499 47924428230336 templates.py:268] Found an exact template match 5oxo_A.
+I0607 22:01:22.132154 47924428230336 templates.py:268] Found an exact template match 1pv6_A.
+I0607 22:01:22.290219 47924428230336 templates.py:268] Found an exact template match 2cfq_A.
+I0607 22:01:22.490387 47924428230336 templates.py:268] Found an exact template match 6gs1_A.
+I0607 22:01:22.809195 47924428230336 templates.py:268] Found an exact template match 6gs4_A.
+I0607 22:01:22.973913 47924428230336 templates.py:268] Found an exact template match 6jkd_A.
+I0607 22:01:23.119832 47924428230336 templates.py:268] Found an exact template match 5ayo_A.
+I0607 22:01:23.852847 47924428230336 templates.py:268] Found an exact template match 4tpg_B.
+I0607 22:01:24.010669 47924428230336 templates.py:268] Found an exact template match 5ayn_A.
+I0607 22:01:24.483576 47924428230336 templates.py:268] Found an exact template match 4tph_B.
+I0607 22:01:24.876461 47924428230336 pipeline.py:236] Uniref90 MSA size: 3651 sequences.
+I0607 22:01:24.876651 47924428230336 pipeline.py:237] BFD MSA size: 222 sequences.
+I0607 22:01:24.876710 47924428230336 pipeline.py:238] MGnify MSA size: 501 sequences.
+I0607 22:01:24.876753 47924428230336 pipeline.py:239] Final (deduplicated) MSA size: 4291 sequences.
+I0607 22:01:24.876944 47924428230336 pipeline.py:240] Total number of templates (NB: this can include bad templates and is later filtered to top 4): 20.
+we are building the alignment retiever
+the sequence did not exist
+this is the first time this sequence has been seen
+GKEFWNLDKNLQLRLGIVFLGAFSYGTVFSSMTIYYNCYLGSAITGILLALSAVATFVAGILAGFFADRNGRKPVMVFGTIIQLLGAALAIASNLPGHVNPWSTFIAFLLISFGYNFVITAGNAMIIDASNAENRKVVFMLDYWAQNLSVILGAALGAWLFRPAFEALLVILLLTVLVSFFLTTFVMTETFKPTVKVDNIFQAYKTVLQDKTYMIFMGANIATTFIIMQFDNFLPVHLSCSFKTITFWGFEIYGQRMLTIYLILACVLVVLLMTTLNRLTKDWSHQKGFIWGSLFMAIGMIFSFLTTTFTPIFIAGIVYTLGEIVYTPSVQTLGADLMNPEKIGSYNGVAAIKMPIASILAGLLVSISPMIKAIGVSLVLALTEVLAIILVLVAVNRHQKTKLNLEVLFQG
+saving

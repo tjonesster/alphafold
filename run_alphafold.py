@@ -14,9 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""I am no longer following the coding standardard where you add linebreaks after 80 chars"""
 
-"""Full AlphaFold protein structure prediction script."""
 import json
 import os
 import pathlib

@@ -1,0 +1,10 @@
+BbFPN_inward.fasta
+BbFPN_outward.fasta
+BbFPN_wt.fasta
+LaCY_inward.fasta
+LaCY_outward.fasta
+LaCY_wt.fasta
+lmrp_inward.fasta
+XyLE_inward.fasta
+XyLE_outward.fasta
+XyLE_wt.fasta

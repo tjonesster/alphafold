@@ -7,10 +7,11 @@
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
-#SBATCH --mem=1G
-#SBATCH --time=00:01:00
-#SBATCH --job-name=af2_testing_output
-#SBATCH --output=turing.log
+#SBATCH --mem=30G
+#SBATCH --time=0:30:00
+#SBATCH --job-name=testing_stderr.txt
+#SBATCH --output=testing_stdout.txt
+#SBATCH --array=1-2
 
-nvidia-smi -a
 
+echo $testing
