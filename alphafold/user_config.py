@@ -102,7 +102,7 @@ CONFIG_RUN_ALPHAFOLD_HOME = {
     "mgnify_database_path":  "/media/taylorjones/nvme_databases/mgnify/mgy_clusters_2018_12.fa",
     "small_bfd_database_path": "/media/taylorjones/nvme_databases/bfd_small/bfd-first_non_consensus_sequences.fasta",
     "bfd_database_path": "/media/taylorjones/bigboi/alphafold_data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
-    "uniclust30_database_path": "/media/taylorjones/nvme_databases/alphafold_data/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+    "uniclust30_database_path": "/media/taylorjones/nvme_databases/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
     "pdb70_database_path": "/media/taylorjones/nvme_databases/pdb70/pdb70",
     "template_mmcif_dir": "/media/taylorjones/8Tb1/alphafold_data/pdb_mmcif/mmcif_files",
     "max_template_date": "2020-05-14",
@@ -111,7 +111,7 @@ CONFIG_RUN_ALPHAFOLD_HOME = {
     "benchmark": False,
     "activations_output_path": "/media/taylorjones/8Tb1/alphafold_activations/",
     "model_preset": "monomer",
-    "pdb_seqres_database_path":"/media/taylorjones/nvme_databases/alphafold_data/uniprot/pdb_seqres/pdb_seqres.txt",
+    "pdb_seqres_database_path":"/media/taylorjones/nvme_databases/uniprot/pdb_seqres/pdb_seqres.txt",
     "uniprot_database_path": "/media/taylorjones/nvme_databases/uniprot/uniprot.fasta",
     "num_structures": 10,
     "alignment_cache_path": "/media/taylorjones/bigboi/alignment_cache",
@@ -125,7 +125,7 @@ class alignment_methods(Enum):
     default = "default"
     mmseqs2 = "mmseqs2"
 
-class database_sets(Enum):
+class db_presets(Enum):
     full_dbs = "full"
     full = "full"
     reduced_dbs = "reduced"

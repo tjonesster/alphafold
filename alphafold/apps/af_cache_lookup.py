@@ -6,7 +6,7 @@
 
 import pickle
 import os
-# import sys
+from statistics import mode
 import uuid
 import shutil
 from enum import Enum
@@ -17,9 +17,12 @@ import argparse
 from pathlib import Path
 
 from absl import logging
+from alphafold import model
 
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 from alphafold.user_config import model_presets
+from alphafold.user_config import db_presets 
+
 
 '''
 CURRENTLY ONLY SUPPORTS EXACT MATCHES
@@ -42,13 +45,17 @@ class operation_types(Enum):
 '''
     Example of the manifest scheme:
     {
-        "sequence_1": "path"
+        ("sequence_1", "database_set", "model_preset"): "path"
         }     
     }
-
 '''
 
 class alignment_retriever:
+    """
+    This class aids in the storage and retrieval of alignments 
+    
+    """
+
     def __init__(self, root_path):
         self.root_path = Path(root_path)
         self.manifest_path = os.path.join(self.root_path, "manifest.pkl")
@@ -61,7 +68,10 @@ class alignment_retriever:
         
 
     def read_manifest(self):
-        '''Reads the manifest file'''
+        '''
+        Reads the manifest file
+
+        '''
         try: 
             with open(self.manifest_path,'rb') as f:
                 fcntl.flock(f, fcntl.LOCK_SH)
@@ -75,17 +85,30 @@ class alignment_retriever:
                 pickle.dump(self.manifest, out_file)   
 
 
-    def link_msa_dir(self, sequence, destination_dir):
+    def link_msa_dir(self, sequence = None, dir_path = None, db_preset = None, model_preset = None):
+        """
+        Links the directory to the destination directory.
+        
+        sequence: The sequence to link
+        destination_dir: The directory to link to
+        db_preset: The database preset to link to
+        model_preset: The model preset to link to
+        
+        
+        """
 
         assert sequence is not None, "Link operation request a sequence"
-        assert destination_dir is not None, "Link operation requires destination path"
+        assert dir_path is not None, "Link operation requires destination path"
+        assert db_preset is not None, "Link operation requires database preset"
+        assert model_preset is not None, "Link operation requires model preset"
 
-        dir = self.lookup_sequence(sequence)
+        dir = self.lookup_sequence(sequence, db_preset=db_preset, model_preset=model_preset)
+        
 
         if dir == False: 
             dir = self.create_new_directory()
 
-        os.symlink(dir, destination_dir)
+        os.symlink(dir, dir_path)
 
     def save_manifest(self):
         '''
@@ -96,12 +119,13 @@ class alignment_retriever:
         '''
         print("saving")
 
+        #"I don't that this file locking works across nodes... so this is kinda problematic... still has race conditions"
+        #"I think that we could easily be rewritten to use h5py which may be safe for multiple loaders... need to look into it"
         in_file = open(self.manifest_path,'rb+')
         fcntl.flock(in_file, fcntl.LOCK_EX)
         self.manifest = pickle.load(in_file)
 
         t = {**self.manifest, **self.manifest_updates}
-        #self.manifest_ = self.manifest
 
         out_file = open(self.manifest_path,'wb+')
 
@@ -129,7 +153,7 @@ class alignment_retriever:
     
         return os.path.join(self.root_path, new_dir)
         
-    def lookup_sequence(self, sequence,  method = None, database_set = None, preset = model_presets.monomer):
+    def lookup_sequence(self, sequence, db_preset, model_preset) -> str:
         '''
             Find out what directories may contain the given query.
         '''
@@ -138,12 +162,11 @@ class alignment_retriever:
 
         sequence = self.seq_upper(sequence)
 
-        #temp = {**self.manifest, **self.manifest_updates}
-
-        result =  self.manifest.get(sequence, False)
+        result =  self.manifest.get((sequence,db_preset,model_preset), False)
 
         return result
 
+    # This class has changed since this has been used so it is likely that there were compatability breaking changes 
     def create_fasta_from_manifest(self, destination_path) -> bool:
         '''
         Creates a fasta file from the manifest
@@ -168,9 +191,16 @@ class alignment_retriever:
 
         return True
 
-    def fetch_alignments(self, sequence:str, dest_output_path,method = None, database_set = None, preset=None):
+
+    
+    def fetch_alignments(self, sequence:str,dir_path, db_preset, model_preset):
         '''
-            fetch a set of alignments
+            Fetch a set of alignments and place it at a desgnated path
+        
+            sequence: str
+            dir_path: the path where you would like to copy the cache element to 
+            db_preset: reduced_dbs or full_dbs
+            model_prest: monomer, multimer, other 
         '''
 
         assert sequence != "", "af_cache_lookup: Fetch operation requires sequence argument"
@@ -178,15 +208,19 @@ class alignment_retriever:
         
         sequence = self.seq_upper(sequence)
 
-        source_dir_path = self.lookup_sequence(sequence, method=method, database_set = database_set, preset=preset)
+        source_dir_path = self.lookup_sequence(sequence, db_preset=db_preset, model_preset=model_preset)
         
-        #shutil.copytree(os.path.join(source_dir_path, "msas"), os.path.join(dest_output_path, "msas"))
-        shutil.copytree(source_dir_path, dest_output_path)
+        shutil.copytree(source_dir_path, dir_path)
 
     
-    def stash_alignments(self, sequence, dir_path= None, method = None, database_set = None, preset = None):
+    def stash_alignments(self, sequence,dir_path,db_preset, model_preset, ):
         '''
         Takes a directory and copies it to a places. Records the sequence in the manifest.pkl file.
+
+        sequence:
+        dir_path:
+        db_preset:
+        model_preset:
         '''
 
         assert dir_path != None, "You need to specify a destination path to stash alignments"
@@ -194,16 +228,14 @@ class alignment_retriever:
 
         sequence= self.seq_upper(sequence)
         
-        result = self.lookup_sequence(sequence)
+        result = self.lookup_sequence(sequence, db_preset=db_preset, model_preset=model_preset)
 
         assert result == False, "The sequence you are trying to stash is already in the manifest"
 
         dir = self.create_new_directory()
 
         self.manifest_updates[sequence] = dir
-        #self.manifest[sequence] = dir
  
-        #shutil.copytree(dir_path, os.path.join(dir,"msas"))
         shutil.copytree(dir_path, dir)
 
         self.save_manifest()
@@ -242,6 +274,8 @@ if __name__ == "__main__":
     parser.add_argument("operation", type=operation_types, choices=list(operation_types), help="The operation to perform")
     parser.add_argument('-r', '--root_path', help='Root path of the alignment cache.', default=defvalues.get('alignment_cache_path', None))
     parser.add_argument('-s', '--sequence', help='Sequence to lookup')    
+    parser.add_argument('-db', "--db_preset", type=db_presets, choices=list(db_presets), help='Database_status')
+    parser.add_argument('-mp', "--model_preset", type=model_presets, choices=list(model_presets), help='Database_status',default="monomer")
     parser.add_argument("-d", "--dir", help="Where do you want to place the output or copy from the alignment.")
 
     args = parser.parse_args()
@@ -259,18 +293,17 @@ if __name__ == "__main__":
         if args.operation == operation_types.stash:   # add a new sequence
             print('stashing')
 
-            ar.stash_alignments(args.sequence,  dir_path = args.dir )
-
-            #ar.save_manifest()
+            ar.stash_alignments(args.sequence,  dir_path = args.dir, db_set = None )
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
             print('fetching')
 
-            ar.fetch_alignments(args.sequence, args.dir )
+            #ar.fetch_alignments(args.sequence, args.dir)
+            ar.fetch_alignments(args.sequence, args.dir, db_preset = args.db_preset, model_preset = args.model_preset)
 
         elif args.operation == operation_types.link:
 
-            ar.link_msa_dir(args.sequence, args.dir)
+            ar.link_msa_dir(args.sequence, args.dir, args.database_set )
 
         elif args.operation == operation_types.lookup: # lookup a sequence
 
