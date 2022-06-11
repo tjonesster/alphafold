@@ -24,6 +24,7 @@ import pickle
 import random
 import shutil
 import sys
+from this import d
 import time
 from typing import Dict, Union, Optional
 
@@ -142,6 +143,9 @@ def _check_flag(flag_name: str, other_flag_name: str, should_be_set: bool):
     verb = 'be' if should_be_set else 'not be'
     raise ValueError(f'{flag_name} must {verb} set when running with "--{other_flag_name}={FLAGS[other_flag_name].value}".')
 
+
+# add database to the flags.
+
 def predict_structure(
     fasta_path: str,
     fasta_name: str,
@@ -154,6 +158,8 @@ def predict_structure(
     structure_dir: str,
     job_name: str, 
     overwrite: bool, 
+    db_preset: str = '',
+    model_preset: str = '',
     alignment_cache_path: str = '',
     write_pickle: bool = True,
     exit_after_msa: bool = False,
@@ -163,7 +169,8 @@ def predict_structure(
     run_relax: bool = True,
     model_config: Dict = {},
     ):
-  
+
+   
 
   """Predicts structure using AlphaFold for the given sequence."""
   logging.info('Predicting %s', fasta_name)
@@ -197,9 +204,9 @@ def predict_structure(
     if use_cache and alignment_cache_path:
       print("we are building the alignment retiever")
 
-      if ar.lookup_sequence(seqs[0]) != False: 
+      if ar.lookup_sequence(seqs[0], db_preset=db_preset,model_preset=model_preset) != False: 
         print("the sequence did exist")
-        ar.link_msa_dir(seqs[0], msa_output_dir)
+        ar.link_msa_dir(seqs[0], msa_output_dir, db_preset=db_preset,model_preset=model_preset)
       else:
         print("the sequence did not exist")
         first_sequence = True
@@ -210,15 +217,14 @@ def predict_structure(
 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
-  # Get features.
   t_0 = time.time()
 
   feature_dict = data_pipeline.process(input_fasta_path=fasta_path, msa_output_dir=msa_output_dir)
 
-  if first_sequence == True:
+  if first_sequence == True: # If the sequnece was not in the cache to start things off
     print("this is the first time this sequence has been seen")
     print(seqs[0])
-    ar.stash_alignments(seqs[0], dir_path=msa_output_dir)
+    ar.stash_alignments(seqs[0], dir_path=msa_output_dir, db_preset=db_preset, model_preset=model_preset)
 
   timings['features'] = time.time() - t_0
 
@@ -240,6 +246,8 @@ def predict_structure(
     'random_seed': random_seed,
     'num_recycle': num_recycle,
     'model_config': model_config.to_json_best_effort(), 
+    'db_preset': db_preset,
+    'model_preset': model_preset,
   } 
 
   features_output_path = os.path.join(structure_output_dir, 'features.pkl')
@@ -550,6 +558,8 @@ def main(argv):
           num_recycle=FLAGS.num_recycle,
           alignment_cache_path=FLAGS.alignment_cache_path,
           model_config = model_config, 
+          db_preset = FLAGS.db_preset,
+          model_preset = FLAGS.model_preset,
           run_relax=FLAGS.run_relax,
       )
 
