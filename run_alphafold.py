@@ -209,7 +209,8 @@ def predict_structure(
       os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
   else: # If the path exists
     if ar.lookup+sequence(seqs[0]) == False:
-    first_sequence = True
+      first_sequence = True
+    
 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
