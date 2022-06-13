@@ -1,4 +1,4 @@
-#!/usr/bin/bash 
+
 export options=' --uniref_max_hits 1 --max_msa_clusters 32 --max_extra_msa 32 --bfd_max_hits 1 --mgnify_max_hits 1 --norun_relax '
 export options2=' --num_recycle 0 '
 
