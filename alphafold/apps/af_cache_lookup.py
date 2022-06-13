@@ -234,7 +234,7 @@ class alignment_retriever:
 
         dir = self.create_new_directory()
 
-        self.manifest_updates[sequence] = dir
+        self.manifest_updates[(sequence,db_preset,model_preset)] = dir
  
         shutil.copytree(dir_path, dir)
 
@@ -293,13 +293,13 @@ if __name__ == "__main__":
         if args.operation == operation_types.stash:   # add a new sequence
             print('stashing')
 
-            ar.stash_alignments(args.sequence,  dir_path = args.dir, db_set = None )
+            ar.stash_alignments(args.sequence,  dir_path = args.dir, db_set = None, model_preset=str )
 
         elif args.operation == operation_types.fetch: # copy an existing sequence    
             print('fetching')
 
             #ar.fetch_alignments(args.sequence, args.dir)
-            ar.fetch_alignments(args.sequence, args.dir, db_preset = args.db_preset, model_preset = args.model_preset)
+            ar.fetch_alignments(args.sequence, args.dir, db_preset = args.db_preset.value, model_preset = args.model_preset.value)
 
         elif args.operation == operation_types.link:
 
