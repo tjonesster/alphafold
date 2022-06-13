@@ -207,6 +207,9 @@ def predict_structure(
 
     else:
       os.makedirs(msa_output_dir) # create the directory for the msa to be saved  
+  else: # If the path exists
+    ar.lookup+sequence(seqs[0]) == False:
+    first_sequence = True
 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
@@ -305,7 +308,6 @@ def predict_structure(
           result=prediction_result,
           b_factors=plddt_b_factors,
           remove_leading_feature_dimension=not model_runner.multimer_mode)
-
 
       unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
       unrelaxed_pdb_path = os.path.join(structure_output_dir, f'unrelaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
