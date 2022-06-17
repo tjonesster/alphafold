@@ -152,19 +152,19 @@ def pad_msa(np_example, min_num_seq):
 class DataPipeline:
   """Runs the alignment tools and assembles the input features."""
 
-  def __init__(self, monomer_data_pipeline: pipeline.DataPipeline, jackhmmer_binary_path: str, uniprot_database_path: str, max_uniprot_hits: int = 50000, use_precomputed_msas: bool = False):
+  def __init__(self, monomer_data_pipeline: pipeline.DataPipeline, jackhmmer_binary_path: str, uniprot_database_path: str, uniprot_max_hits: int = 50000, use_precomputed_msas: bool = False):
     """Initializes the data pipeline.
 
     Args:
       monomer_data_pipeline: An instance of pipeline.DataPipeline - that runs the data pipeline for the monomer AlphaFold system.
       jackhmmer_binary_path: Location of the jackhmmer binary.
       uniprot_database_path: Location of the unclustered uniprot sequences, that will be searched with jackhmmer and used for MSA pairing.
-      max_uniprot_hits: The maximum number of hits to return from uniprot.
+      uniprot_max_hits: The maximum number of hits to return from uniprot.
       use_precomputed_msas: Whether to use pre-existing MSAs; see run_alphafold.
     """
     self._monomer_data_pipeline = monomer_data_pipeline
     self._uniprot_msa_runner = jackhmmer.Jackhmmer(binary_path=jackhmmer_binary_path, database_path=uniprot_database_path)
-    self._max_uniprot_hits = max_uniprot_hits
+    self._uniprot_max_hits = uniprot_max_hits
     self.use_precomputed_msas = use_precomputed_msas
 
   def _process_single_chain( self, chain_id: str, sequence: str, description: str, msa_output_dir: str, is_homomer_or_monomer: bool) -> pipeline.FeatureDict:
@@ -189,7 +189,7 @@ class DataPipeline:
     out_path = os.path.join(msa_output_dir, 'uniprot_hits.sto')
     result = pipeline.run_msa_tool(self._uniprot_msa_runner, input_fasta_path, out_path, 'sto', self.use_precomputed_msas)
     msa = parsers.parse_stockholm(result['sto'])
-    msa = msa.truncate(max_seqs=self._max_uniprot_hits)
+    msa = msa.truncate(max_seqs=self._uniprot_max_hits)
     all_seq_features = pipeline.make_msa_features([msa])
     valid_feats = msa_pairing.MSA_FEATURES + (
         'msa_species_identifiers',

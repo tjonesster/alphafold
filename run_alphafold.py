@@ -111,7 +111,7 @@ flags.DEFINE_boolean('run_relax', defvalues.get('run_relax', True), "Do you want
 
 flags.DEFINE_integer("mgnify_max_hits", defvalues.get("mgnify_max_hits", 501), "How many hits should be kept from the mgnify clusters?")
 flags.DEFINE_integer("uniref_max_hits", defvalues.get("uniref_max_hits", 10000), "How many hits should be kept from the uniref hits?")
-flags.DEFINE_integer("max_uniprot_hits", defvalues.get("max_uniprot_hits", 5000), "How many hits should be kept from the uniprot hits?")
+flags.DEFINE_integer("uniprot_max_hits", defvalues.get("uniprot_max_hits", 5000), "How many hits should be kept from the uniprot hits?")
 flags.DEFINE_integer("bfd_max_hits", defvalues.get("bfd_max_hits", 10000), "asdfasdfasdf")
 
 flags.DEFINE_boolean("write_pickle", defvalues.get("write_pickle", True), "Do you want to store the pkl file of the output?")
@@ -210,7 +210,6 @@ def predict_structure(
   else: # If the path exists
     if ar.lookup_sequence(seqs[0]) == False:
       first_sequence = True
-    
 
   shutil.copy2(fasta_path, os.path.join(output_dir, fasta_name)) # copy the fasta into the location of the output job_dir
 
@@ -446,7 +445,7 @@ def main(argv):
         monomer_data_pipeline=monomer_data_pipeline,
         jackhmmer_binary_path=FLAGS.jackhmmer_binary_path,
         uniprot_database_path=FLAGS.uniprot_database_path,
-        max_uniprot_hits=FLAGS.max_uniprot_hits,
+        uniprot_max_hits=FLAGS.uniprot_max_hits,
         use_precomputed_msas=FLAGS.use_precomputed_msas)
   else:
     num_predictions_per_model = 1
