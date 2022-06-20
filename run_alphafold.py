@@ -42,7 +42,6 @@ from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues
 from alphafold.data import parsers
 import subprocess
 
-
 logging.set_verbosity(logging.INFO)
 
 #flags.DEFINE_list('is_prokaryote_list', None, 'Optional for multimer system, not used by the single chain system. This list should contain a boolean for each fasta false if unknown. These values determine the pairing method for the MSA.')
@@ -164,7 +163,6 @@ def predict_structure(
     model_config: Dict = {},
     ):
   
-
   """Predicts structure using AlphaFold for the given sequence."""
   logging.info('Predicting %s', fasta_name)
   timings = {}
@@ -459,18 +457,12 @@ def main(argv):
   else:
     model_names = FLAGS.model_names 
 
-
     # This is kinda sloppy
     # Need to add an assertion that states that the model must end in _multimer or _multimer_v2 if they are running the multimer preset
     if 'multimer' in  FLAGS.model_preset:
         for mod_name in model_names:
             assert "multimer" in  mod_name.split("_"), "One of the models selected in your multimer run did not include multimer in the model params number"
     
-
-    #for i, ele in enumerate(model_names):
-    #  if FLAGS.model_preset.split("_")[-1] in ["ptm", "multimer"]:
-    #model_names[i] = ele + "_" + FLAGS.model_preset.split("_")[-1]
-
   for model_name in model_names:
     model_config = config.model_config(model_name)
 
@@ -523,7 +515,6 @@ def main(argv):
   # Predict structure for each of the sequences.
   for i, fasta_name in enumerate(FLAGS.fasta_names):
     fasta_path = os.path.join(FLAGS.fasta_path, fasta_name)
-
 
 # This for loop really does not work
     for structure_index in range(FLAGS.num_structures):
