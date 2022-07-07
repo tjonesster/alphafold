@@ -5,8 +5,6 @@ from alphafold.data import parsers
 from alphafold.apps.af_cache_lookup import alignment_retriever
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 
-
-
 """
 
 Adds a set of sequences to an alignment cache

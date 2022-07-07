@@ -19,7 +19,7 @@
 """Full AlphaFold protein structure prediction script."""
 import json
 import os
-import pathlib
+# import pathlib
 import pickle
 import random
 import shutil
@@ -40,7 +40,7 @@ from alphafold.apps.af_cache_lookup import alignment_retriever
 
 from alphafold.user_config import CONFIG_RUN_ALPHAFOLD as defvalues 
 from alphafold.data import parsers
-import subprocess
+#import subprocess
 
 logging.set_verbosity(logging.INFO)
 
@@ -312,19 +312,20 @@ def predict_structure(
       with open(unrelaxed_pdb_path, 'w') as f:
         f.write(protein.to_pdb(unrelaxed_protein))
 
-    if amber_relaxer and run_relax:
-      t_0 = time.time()
-      relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
-      timings[f'relax_{model_name}'] = time.time() - t_0
+      if amber_relaxer and run_relax:
+        t_0 = time.time()
+        relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
+        timings[f'relax_{model_name}'] = time.time() - t_0
 
-      relaxed_pdbs[model_name] = relaxed_pdb_str
+        relaxed_pdbs[model_name] = relaxed_pdb_str
 
-      # Save the relaxed PDB.
-      relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
-      with open(relaxed_output_path, 'w') as f:
-        f.write(relaxed_pdb_str)
+        # Save the relaxed PDB.
+        relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
+        with open(relaxed_output_path, 'w') as f:
+          f.write(relaxed_pdb_str)
 
 # End of model generation
+# Might be a good idea to reimplment this at some point.
   if only_run_cleanup == True: 
     timings = {} 
     relaxed_pdbs = {}
