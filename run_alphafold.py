@@ -259,73 +259,7 @@ def predict_structure(
   unrelaxed_pdbs = {}
   num_models=len(model_runners)
 
-  for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
-    logging.info('Running model %s on %s', model_name, fasta_name)
-
-    model_random_seed = model_index + random_seed * num_models
-    processed_feature_dict = model_runner.process_features(feature_dict, random_seed=model_random_seed)
-    timings[f'process_features_{model_name}'] = time.time() - t_0
-    
-    relaxed_pdbs = {}
-    plddts = {}
-    ranking_confidences = {}
-
-    # Run a single model 
-    for model_name, model_runner in model_runners.items():
-      logging.info('Running model %s', model_name)
-
-      t_0 = time.time()
-      prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
-      t_diff =  time.time() - t_0
-      timings[f'predict_and_compile_{model_name}'] = t_diff
-      logging.info('Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?', model_name, t_diff)
-
-      if benchmark:
-        t_0 = time.time()
-        model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
-        timings[f'predict_benchmark_{model_name}'] = time.time() -t_0
-
-      # Get mean pLDDT confidence metric.
-      plddt = prediction_result['plddt']
-      plddts[model_name] = np.mean(plddt) # it looks like this was removed at some point 
-      ranking_confidences[model_name] = prediction_result['ranking_confidence']
-
-      # Save the model outputs.
-
-      structure_id =  os.path.basename(structure_dir)
-      result_output_path = os.path.join(structure_output_dir, f'result_{structure_id}_{model_name}.pkl') # Add structure number to this also 
-      with open(result_output_path, 'wb') as f:
-        pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
-
-      # Add the predicted LDDT in the b-factor column.
-      # Note that higher predicted LDDT value means higher model confidence.
-      plddt_b_factors = np.repeat(plddt[:, None], residue_constants.atom_type_num, axis=-1)
-
-      unrelaxed_protein = protein.from_prediction(
-          features=processed_feature_dict,
-          result=prediction_result,
-          b_factors=plddt_b_factors,
-          remove_leading_feature_dimension=not model_runner.multimer_mode)
-
-      unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
-      unrelaxed_pdb_path = os.path.join(structure_output_dir, f'unrelaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
-      with open(unrelaxed_pdb_path, 'w') as f:
-        f.write(protein.to_pdb(unrelaxed_protein))
-
-      if amber_relaxer and run_relax:
-        t_0 = time.time()
-        relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
-        timings[f'relax_{model_name}'] = time.time() - t_0
-
-        relaxed_pdbs[model_name] = relaxed_pdb_str
-
-        # Save the relaxed PDB.
-        relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
-        with open(relaxed_output_path, 'w') as f:
-          f.write(relaxed_pdb_str)
-
-# End of model generation
-# Might be a good idea to reimplment this at some point.
+  # If all the files are already ready just reload them
   if only_run_cleanup == True: 
     timings = {} 
     relaxed_pdbs = {}
@@ -339,7 +273,73 @@ def predict_structure(
       plddt = prediction_result['plddt']
       plddts[model_name] = np.mean(plddt) # it looks like this was removed at some point 
       ranking_confidences[model_name] = prediction_result['ranking_confidence']
-  
+
+  else:
+    for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
+      logging.info('Running model %s on %s', model_name, fasta_name)
+
+      model_random_seed = model_index + random_seed * num_models
+      processed_feature_dict = model_runner.process_features(feature_dict, random_seed=model_random_seed)
+      timings[f'process_features_{model_name}'] = time.time() - t_0
+      
+      relaxed_pdbs = {}
+      plddts = {}
+      ranking_confidences = {}
+
+      # Run a single model 
+      for model_name, model_runner in model_runners.items():
+        logging.info('Running model %s', model_name)
+
+        t_0 = time.time()
+        prediction_result = model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
+        t_diff =  time.time() - t_0
+        timings[f'predict_and_compile_{model_name}'] = t_diff
+        logging.info('Total JAX model %s predict time (includes compilation time, see --benchmark): %.0f?', model_name, t_diff)
+
+        if benchmark:
+          t_0 = time.time()
+          model_runner.predict(processed_feature_dict, random_seed=model_random_seed)
+          timings[f'predict_benchmark_{model_name}'] = time.time() -t_0
+
+        # Get mean pLDDT confidence metric.
+        plddt = prediction_result['plddt']
+        plddts[model_name] = np.mean(plddt) # it looks like this was removed at some point 
+        ranking_confidences[model_name] = prediction_result['ranking_confidence']
+
+        # Save the model outputs.
+
+        structure_id =  os.path.basename(structure_dir)
+        result_output_path = os.path.join(structure_output_dir, f'result_{structure_id}_{model_name}.pkl') # Add structure number to this also 
+        with open(result_output_path, 'wb') as f:
+          pickle.dump(prediction_result, f, protocol=4) # We are going to need to reload this
+
+        # Add the predicted LDDT in the b-factor column.
+        # Note that higher predicted LDDT value means higher model confidence.
+        plddt_b_factors = np.repeat(plddt[:, None], residue_constants.atom_type_num, axis=-1)
+
+        unrelaxed_protein = protein.from_prediction(
+            features=processed_feature_dict,
+            result=prediction_result,
+            b_factors=plddt_b_factors,
+            remove_leading_feature_dimension=not model_runner.multimer_mode)
+
+        unrelaxed_pdbs[model_name] = protein.to_pdb(unrelaxed_protein)
+        unrelaxed_pdb_path = os.path.join(structure_output_dir, f'unrelaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
+        with open(unrelaxed_pdb_path, 'w') as f:
+          f.write(protein.to_pdb(unrelaxed_protein))
+
+        if amber_relaxer and run_relax:
+          t_0 = time.time()
+          relaxed_pdb_str, _, _ = amber_relaxer.process(prot=unrelaxed_protein)
+          timings[f'relax_{model_name}'] = time.time() - t_0
+
+          relaxed_pdbs[model_name] = relaxed_pdb_str
+
+          # Save the relaxed PDB.
+          relaxed_output_path = os.path.join(structure_output_dir, f'relaxed_{structure_id}_{model_name}.pdb') # Add structure number to this also 
+          with open(relaxed_output_path, 'w') as f:
+            f.write(relaxed_pdb_str)
+
   ranked_order = []
   for idx, (model_name, _) in enumerate(
       sorted(ranking_confidences.items(), key=lambda x: x[1], reverse=True)):
