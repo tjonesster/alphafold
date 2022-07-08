@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic -msse2 -DLEPTON_USE_JIT -Wl,--no-as-needed -lrt CMakeFiles/TestCudaCMMotionRemover.dir/TestCudaCMMotionRemover.cpp.o  -o ../../../TestCudaCMMotionRemover  -Wl,-rpath,/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1 ../../../libOpenMMCUDA.so ../../../libOpenMM.so.7.5 -ldl -lcuda -lcufft -lpthread 

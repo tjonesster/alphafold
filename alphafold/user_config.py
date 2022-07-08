@@ -1,5 +1,28 @@
 from enum import Enum
 
+# This file mirrors the config.py setup that is used within alphafold
+
+CONFIG_GENERAL = {
+    "software": {
+        'jackhmmer': {
+
+        },
+        'hhsearch': {
+        },
+    },
+    "datasources": {
+        'uniprot': {},
+        'mgnify': {},
+        'bfd': {},
+        'pdb_structures': {},
+
+
+
+
+    }
+
+}
+
 CONFIG_RUN_ALPHAFOLD = {
     "fasta_path": "/home/taylorjones/Documents/alphafold_fastas/",
     "output_dir": "/home/taylorjones/Documents/alphafold_output", 
@@ -29,6 +52,7 @@ CONFIG_RUN_ALPHAFOLD = {
     "job_record_path": "/media/taylorjones/bigboi/alphafold_data/job_record.txt", 
 }
 
+# This is not exactly used
 # additional enumerated types
 # We are going to support mmseqs2 for alignments also
 class alignment_methods(Enum):

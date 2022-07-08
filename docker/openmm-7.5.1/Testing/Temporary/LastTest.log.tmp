@@ -1,0 +1,4112 @@
+Start testing: Jul 07 22:15 CDT
+----------------------------------------------------------
+1/466 Testing: TestReferenceAndersenThermostat
+1/466 Test: TestReferenceAndersenThermostat
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceAndersenThermostat"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceAndersenThermostat" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceAndersenThermostat" end time: Jul 07 22:15 CDT
+"TestReferenceAndersenThermostat" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/466 Testing: TestReferenceBrownianIntegrator
+2/466 Test: TestReferenceBrownianIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceBrownianIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceBrownianIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+exception: Assertion failure at TestBrownianIntegrator.h:280.  Expected 300, found 296.911 (This test is stochastic and may occasionally fail)
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Failed.
+"TestReferenceBrownianIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceBrownianIntegrator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/466 Testing: TestReferenceCMAPTorsionForce
+3/466 Test: TestReferenceCMAPTorsionForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCMAPTorsionForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCMAPTorsionForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCMAPTorsionForce" end time: Jul 07 22:15 CDT
+"TestReferenceCMAPTorsionForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/466 Testing: TestReferenceCMMotionRemover
+4/466 Test: TestReferenceCMMotionRemover
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCMMotionRemover"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCMMotionRemover" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCMMotionRemover" end time: Jul 07 22:15 CDT
+"TestReferenceCMMotionRemover" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/466 Testing: TestReferenceCheckpoints
+5/466 Test: TestReferenceCheckpoints
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCheckpoints"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCheckpoints" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCheckpoints" end time: Jul 07 22:15 CDT
+"TestReferenceCheckpoints" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/466 Testing: TestReferenceCompoundIntegrator
+6/466 Test: TestReferenceCompoundIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCompoundIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCompoundIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCompoundIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceCompoundIntegrator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/466 Testing: TestReferenceCustomAngleForce
+7/466 Test: TestReferenceCustomAngleForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomAngleForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomAngleForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomAngleForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomAngleForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/466 Testing: TestReferenceCustomBondForce
+8/466 Test: TestReferenceCustomBondForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomBondForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomBondForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomBondForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomBondForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/466 Testing: TestReferenceCustomCVForce
+9/466 Test: TestReferenceCustomCVForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomCVForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomCVForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomCVForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomCVForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/466 Testing: TestReferenceCustomCentroidBondForce
+10/466 Test: TestReferenceCustomCentroidBondForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomCentroidBondForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomCentroidBondForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomCentroidBondForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomCentroidBondForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/466 Testing: TestReferenceCustomCompoundBondForce
+11/466 Test: TestReferenceCustomCompoundBondForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomCompoundBondForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomCompoundBondForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomCompoundBondForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomCompoundBondForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/466 Testing: TestReferenceCustomExternalForce
+12/466 Test: TestReferenceCustomExternalForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomExternalForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomExternalForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomExternalForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomExternalForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/466 Testing: TestReferenceCustomGBForce
+13/466 Test: TestReferenceCustomGBForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomGBForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomGBForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.10 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomGBForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomGBForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/466 Testing: TestReferenceCustomHbondForce
+14/466 Test: TestReferenceCustomHbondForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomHbondForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomHbondForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomHbondForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomHbondForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/466 Testing: TestReferenceCustomIntegrator
+15/466 Test: TestReferenceCustomIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceCustomIntegrator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/466 Testing: TestReferenceCustomManyParticleForce
+16/466 Test: TestReferenceCustomManyParticleForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomManyParticleForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomManyParticleForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   9.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomManyParticleForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomManyParticleForce" time elapsed: 00:00:09
+----------------------------------------------------------
+
+17/466 Testing: TestReferenceCustomNonbondedForce
+17/466 Test: TestReferenceCustomNonbondedForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomNonbondedForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomNonbondedForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  15.62 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomNonbondedForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomNonbondedForce" time elapsed: 00:00:15
+----------------------------------------------------------
+
+18/466 Testing: TestReferenceCustomTorsionForce
+18/466 Test: TestReferenceCustomTorsionForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceCustomTorsionForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceCustomTorsionForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceCustomTorsionForce" end time: Jul 07 22:15 CDT
+"TestReferenceCustomTorsionForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/466 Testing: TestReferenceDispersionPME
+19/466 Test: TestReferenceDispersionPME
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceDispersionPME"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceDispersionPME" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.27 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceDispersionPME" end time: Jul 07 22:15 CDT
+"TestReferenceDispersionPME" time elapsed: 00:00:01
+----------------------------------------------------------
+
+20/466 Testing: TestReferenceEwald
+20/466 Test: TestReferenceEwald
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceEwald"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceEwald" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.68 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceEwald" end time: Jul 07 22:15 CDT
+"TestReferenceEwald" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/466 Testing: TestReferenceGBSAOBCForce
+21/466 Test: TestReferenceGBSAOBCForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceGBSAOBCForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceGBSAOBCForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.77 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceGBSAOBCForce" end time: Jul 07 22:15 CDT
+"TestReferenceGBSAOBCForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/466 Testing: TestReferenceGayBerneForce
+22/466 Test: TestReferenceGayBerneForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceGayBerneForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceGayBerneForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceGayBerneForce" end time: Jul 07 22:15 CDT
+"TestReferenceGayBerneForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/466 Testing: TestReferenceHarmonicAngleForce
+23/466 Test: TestReferenceHarmonicAngleForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceHarmonicAngleForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceHarmonicAngleForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceHarmonicAngleForce" end time: Jul 07 22:15 CDT
+"TestReferenceHarmonicAngleForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/466 Testing: TestReferenceHarmonicBondForce
+24/466 Test: TestReferenceHarmonicBondForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceHarmonicBondForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceHarmonicBondForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceHarmonicBondForce" end time: Jul 07 22:15 CDT
+"TestReferenceHarmonicBondForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/466 Testing: TestReferenceKineticEnergy
+25/466 Test: TestReferenceKineticEnergy
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceKineticEnergy"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceKineticEnergy" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceKineticEnergy" end time: Jul 07 22:15 CDT
+"TestReferenceKineticEnergy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/466 Testing: TestReferenceLangevinIntegrator
+26/466 Test: TestReferenceLangevinIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceLangevinIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceLangevinIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceLangevinIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceLangevinIntegrator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/466 Testing: TestReferenceLangevinMiddleIntegrator
+27/466 Test: TestReferenceLangevinMiddleIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceLangevinMiddleIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceLangevinMiddleIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.40 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceLangevinMiddleIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceLangevinMiddleIntegrator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/466 Testing: TestReferenceLocalEnergyMinimizer
+28/466 Test: TestReferenceLocalEnergyMinimizer
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceLocalEnergyMinimizer"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceLocalEnergyMinimizer" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.52 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceLocalEnergyMinimizer" end time: Jul 07 22:15 CDT
+"TestReferenceLocalEnergyMinimizer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/466 Testing: TestReferenceMonteCarloAnisotropicBarostat
+29/466 Test: TestReferenceMonteCarloAnisotropicBarostat
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceMonteCarloAnisotropicBarostat"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceMonteCarloAnisotropicBarostat" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.82 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceMonteCarloAnisotropicBarostat" end time: Jul 07 22:15 CDT
+"TestReferenceMonteCarloAnisotropicBarostat" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/466 Testing: TestReferenceMonteCarloBarostat
+30/466 Test: TestReferenceMonteCarloBarostat
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceMonteCarloBarostat"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceMonteCarloBarostat" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceMonteCarloBarostat" end time: Jul 07 22:15 CDT
+"TestReferenceMonteCarloBarostat" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/466 Testing: TestReferenceMonteCarloMembraneBarostat
+31/466 Test: TestReferenceMonteCarloMembraneBarostat
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceMonteCarloMembraneBarostat"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceMonteCarloMembraneBarostat" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.59 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceMonteCarloMembraneBarostat" end time: Jul 07 22:15 CDT
+"TestReferenceMonteCarloMembraneBarostat" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/466 Testing: TestReferenceNeighborList
+32/466 Test: TestReferenceNeighborList
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceNeighborList"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceNeighborList" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceNeighborList" end time: Jul 07 22:15 CDT
+"TestReferenceNeighborList" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/466 Testing: TestReferenceNonbondedForce
+33/466 Test: TestReferenceNonbondedForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceNonbondedForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceNonbondedForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceNonbondedForce" end time: Jul 07 22:15 CDT
+"TestReferenceNonbondedForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/466 Testing: TestReferenceNoseHooverIntegrator
+34/466 Test: TestReferenceNoseHooverIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceNoseHooverIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceNoseHooverIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.58 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceNoseHooverIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceNoseHooverIntegrator" time elapsed: 00:00:01
+----------------------------------------------------------
+
+35/466 Testing: TestReferencePeriodicTorsionForce
+35/466 Test: TestReferencePeriodicTorsionForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferencePeriodicTorsionForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferencePeriodicTorsionForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferencePeriodicTorsionForce" end time: Jul 07 22:15 CDT
+"TestReferencePeriodicTorsionForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/466 Testing: TestReferenceRBTorsionForce
+36/466 Test: TestReferenceRBTorsionForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceRBTorsionForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceRBTorsionForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceRBTorsionForce" end time: Jul 07 22:15 CDT
+"TestReferenceRBTorsionForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/466 Testing: TestReferenceRMSDForce
+37/466 Test: TestReferenceRMSDForce
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceRMSDForce"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceRMSDForce" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceRMSDForce" end time: Jul 07 22:15 CDT
+"TestReferenceRMSDForce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/466 Testing: TestReferenceRandom
+38/466 Test: TestReferenceRandom
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceRandom"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceRandom" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceRandom" end time: Jul 07 22:15 CDT
+"TestReferenceRandom" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/466 Testing: TestReferenceSettle
+39/466 Test: TestReferenceSettle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceSettle"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceSettle" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceSettle" end time: Jul 07 22:15 CDT
+"TestReferenceSettle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/466 Testing: TestReferenceVariableLangevinIntegrator
+40/466 Test: TestReferenceVariableLangevinIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceVariableLangevinIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceVariableLangevinIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  10.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceVariableLangevinIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceVariableLangevinIntegrator" time elapsed: 00:00:09
+----------------------------------------------------------
+
+41/466 Testing: TestReferenceVariableVerletIntegrator
+41/466 Test: TestReferenceVariableVerletIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceVariableVerletIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceVariableVerletIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.97 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceVariableVerletIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceVariableVerletIntegrator" time elapsed: 00:00:01
+----------------------------------------------------------
+
+42/466 Testing: TestReferenceVerletIntegrator
+42/466 Test: TestReferenceVerletIntegrator
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceVerletIntegrator"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceVerletIntegrator" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.24 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceVerletIntegrator" end time: Jul 07 22:15 CDT
+"TestReferenceVerletIntegrator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/466 Testing: TestReferenceVirtualSites
+43/466 Test: TestReferenceVirtualSites
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestReferenceVirtualSites"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/reference/tests
+"TestReferenceVirtualSites" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestReferenceVirtualSites" end time: Jul 07 22:15 CDT
+"TestReferenceVirtualSites" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/466 Testing: TestCudaAndersenThermostatSingle
+44/466 Test: TestCudaAndersenThermostatSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaAndersenThermostat" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaAndersenThermostatSingle" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaAndersenThermostatSingle" end time: Jul 07 22:15 CDT
+"TestCudaAndersenThermostatSingle" time elapsed: 00:00:04
+----------------------------------------------------------
+
+45/466 Testing: TestCudaAndersenThermostatMixed
+45/466 Test: TestCudaAndersenThermostatMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaAndersenThermostat" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaAndersenThermostatMixed" start time: Jul 07 22:15 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.91 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaAndersenThermostatMixed" end time: Jul 07 22:16 CDT
+"TestCudaAndersenThermostatMixed" time elapsed: 00:00:04
+----------------------------------------------------------
+
+46/466 Testing: TestCudaAndersenThermostatDouble
+46/466 Test: TestCudaAndersenThermostatDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaAndersenThermostat" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaAndersenThermostatDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   6.88 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaAndersenThermostatDouble" end time: Jul 07 22:16 CDT
+"TestCudaAndersenThermostatDouble" time elapsed: 00:00:06
+----------------------------------------------------------
+
+47/466 Testing: TestCudaBrownianIntegratorSingle
+47/466 Test: TestCudaBrownianIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaBrownianIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaBrownianIntegratorSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.92 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaBrownianIntegratorSingle" end time: Jul 07 22:16 CDT
+"TestCudaBrownianIntegratorSingle" time elapsed: 00:00:04
+----------------------------------------------------------
+
+48/466 Testing: TestCudaBrownianIntegratorMixed
+48/466 Test: TestCudaBrownianIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaBrownianIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaBrownianIntegratorMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   5.89 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaBrownianIntegratorMixed" end time: Jul 07 22:16 CDT
+"TestCudaBrownianIntegratorMixed" time elapsed: 00:00:05
+----------------------------------------------------------
+
+49/466 Testing: TestCudaBrownianIntegratorDouble
+49/466 Test: TestCudaBrownianIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaBrownianIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaBrownianIntegratorDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   5.65 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaBrownianIntegratorDouble" end time: Jul 07 22:16 CDT
+"TestCudaBrownianIntegratorDouble" time elapsed: 00:00:05
+----------------------------------------------------------
+
+50/466 Testing: TestCudaCMAPTorsionForceSingle
+50/466 Test: TestCudaCMAPTorsionForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCMAPTorsionForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCMAPTorsionForceSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.49 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCMAPTorsionForceSingle" end time: Jul 07 22:16 CDT
+"TestCudaCMAPTorsionForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+51/466 Testing: TestCudaCMAPTorsionForceMixed
+51/466 Test: TestCudaCMAPTorsionForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCMAPTorsionForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCMAPTorsionForceMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.62 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCMAPTorsionForceMixed" end time: Jul 07 22:16 CDT
+"TestCudaCMAPTorsionForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+52/466 Testing: TestCudaCMAPTorsionForceDouble
+52/466 Test: TestCudaCMAPTorsionForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCMAPTorsionForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCMAPTorsionForceDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.76 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCMAPTorsionForceDouble" end time: Jul 07 22:16 CDT
+"TestCudaCMAPTorsionForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+53/466 Testing: TestCudaCMMotionRemoverSingle
+53/466 Test: TestCudaCMMotionRemoverSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCMMotionRemover" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCMMotionRemoverSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.71 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCMMotionRemoverSingle" end time: Jul 07 22:16 CDT
+"TestCudaCMMotionRemoverSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+54/466 Testing: TestCudaCMMotionRemoverMixed
+54/466 Test: TestCudaCMMotionRemoverMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCMMotionRemover" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCMMotionRemoverMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.91 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCMMotionRemoverMixed" end time: Jul 07 22:16 CDT
+"TestCudaCMMotionRemoverMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/466 Testing: TestCudaCMMotionRemoverDouble
+55/466 Test: TestCudaCMMotionRemoverDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCMMotionRemover" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCMMotionRemoverDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.93 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCMMotionRemoverDouble" end time: Jul 07 22:16 CDT
+"TestCudaCMMotionRemoverDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/466 Testing: TestCudaCheckpointsSingle
+56/466 Test: TestCudaCheckpointsSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCheckpoints" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCheckpointsSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.62 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCheckpointsSingle" end time: Jul 07 22:16 CDT
+"TestCudaCheckpointsSingle" time elapsed: 00:00:02
+----------------------------------------------------------
+
+57/466 Testing: TestCudaCheckpointsMixed
+57/466 Test: TestCudaCheckpointsMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCheckpoints" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCheckpointsMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.94 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCheckpointsMixed" end time: Jul 07 22:16 CDT
+"TestCudaCheckpointsMixed" time elapsed: 00:00:02
+----------------------------------------------------------
+
+58/466 Testing: TestCudaCheckpointsDouble
+58/466 Test: TestCudaCheckpointsDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCheckpoints" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCheckpointsDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.13 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCheckpointsDouble" end time: Jul 07 22:16 CDT
+"TestCudaCheckpointsDouble" time elapsed: 00:00:03
+----------------------------------------------------------
+
+59/466 Testing: TestCudaCompoundIntegratorSingle
+59/466 Test: TestCudaCompoundIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCompoundIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCompoundIntegratorSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.91 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCompoundIntegratorSingle" end time: Jul 07 22:16 CDT
+"TestCudaCompoundIntegratorSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/466 Testing: TestCudaCompoundIntegratorMixed
+60/466 Test: TestCudaCompoundIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCompoundIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCompoundIntegratorMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.92 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCompoundIntegratorMixed" end time: Jul 07 22:16 CDT
+"TestCudaCompoundIntegratorMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+61/466 Testing: TestCudaCompoundIntegratorDouble
+61/466 Test: TestCudaCompoundIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCompoundIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCompoundIntegratorDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.86 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCompoundIntegratorDouble" end time: Jul 07 22:16 CDT
+"TestCudaCompoundIntegratorDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/466 Testing: TestCudaCustomAngleForceSingle
+62/466 Test: TestCudaCustomAngleForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomAngleForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomAngleForceSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.87 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomAngleForceSingle" end time: Jul 07 22:16 CDT
+"TestCudaCustomAngleForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+63/466 Testing: TestCudaCustomAngleForceMixed
+63/466 Test: TestCudaCustomAngleForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomAngleForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomAngleForceMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.92 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomAngleForceMixed" end time: Jul 07 22:16 CDT
+"TestCudaCustomAngleForceMixed" time elapsed: 00:00:02
+----------------------------------------------------------
+
+64/466 Testing: TestCudaCustomAngleForceDouble
+64/466 Test: TestCudaCustomAngleForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomAngleForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomAngleForceDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.82 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomAngleForceDouble" end time: Jul 07 22:16 CDT
+"TestCudaCustomAngleForceDouble" time elapsed: 00:00:02
+----------------------------------------------------------
+
+65/466 Testing: TestCudaCustomBondForceSingle
+65/466 Test: TestCudaCustomBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomBondForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomBondForceSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.66 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomBondForceSingle" end time: Jul 07 22:16 CDT
+"TestCudaCustomBondForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+66/466 Testing: TestCudaCustomBondForceMixed
+66/466 Test: TestCudaCustomBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomBondForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomBondForceMixed" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.66 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomBondForceMixed" end time: Jul 07 22:16 CDT
+"TestCudaCustomBondForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+67/466 Testing: TestCudaCustomBondForceDouble
+67/466 Test: TestCudaCustomBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomBondForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomBondForceDouble" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.67 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomBondForceDouble" end time: Jul 07 22:16 CDT
+"TestCudaCustomBondForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+68/466 Testing: TestCudaCustomCVForceSingle
+68/466 Test: TestCudaCustomCVForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCVForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCVForceSingle" start time: Jul 07 22:16 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.58 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCVForceSingle" end time: Jul 07 22:17 CDT
+"TestCudaCustomCVForceSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+69/466 Testing: TestCudaCustomCVForceMixed
+69/466 Test: TestCudaCustomCVForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCVForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCVForceMixed" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.75 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCVForceMixed" end time: Jul 07 22:17 CDT
+"TestCudaCustomCVForceMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+70/466 Testing: TestCudaCustomCVForceDouble
+70/466 Test: TestCudaCustomCVForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCVForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCVForceDouble" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.62 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCVForceDouble" end time: Jul 07 22:17 CDT
+"TestCudaCustomCVForceDouble" time elapsed: 00:00:03
+----------------------------------------------------------
+
+71/466 Testing: TestCudaCustomCentroidBondForceSingle
+71/466 Test: TestCudaCustomCentroidBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCentroidBondForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCentroidBondForceSingle" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCentroidBondForceSingle" end time: Jul 07 22:17 CDT
+"TestCudaCustomCentroidBondForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+72/466 Testing: TestCudaCustomCentroidBondForceMixed
+72/466 Test: TestCudaCustomCentroidBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCentroidBondForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCentroidBondForceMixed" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.53 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCentroidBondForceMixed" end time: Jul 07 22:17 CDT
+"TestCudaCustomCentroidBondForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+73/466 Testing: TestCudaCustomCentroidBondForceDouble
+73/466 Test: TestCudaCustomCentroidBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCentroidBondForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCentroidBondForceDouble" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.60 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCentroidBondForceDouble" end time: Jul 07 22:17 CDT
+"TestCudaCustomCentroidBondForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+74/466 Testing: TestCudaCustomCompoundBondForceSingle
+74/466 Test: TestCudaCustomCompoundBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCompoundBondForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCompoundBondForceSingle" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.14 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCompoundBondForceSingle" end time: Jul 07 22:17 CDT
+"TestCudaCustomCompoundBondForceSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+75/466 Testing: TestCudaCustomCompoundBondForceMixed
+75/466 Test: TestCudaCustomCompoundBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCompoundBondForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCompoundBondForceMixed" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.16 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCompoundBondForceMixed" end time: Jul 07 22:17 CDT
+"TestCudaCustomCompoundBondForceMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+76/466 Testing: TestCudaCustomCompoundBondForceDouble
+76/466 Test: TestCudaCustomCompoundBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomCompoundBondForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomCompoundBondForceDouble" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.40 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomCompoundBondForceDouble" end time: Jul 07 22:17 CDT
+"TestCudaCustomCompoundBondForceDouble" time elapsed: 00:00:03
+----------------------------------------------------------
+
+77/466 Testing: TestCudaCustomExternalForceSingle
+77/466 Test: TestCudaCustomExternalForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomExternalForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomExternalForceSingle" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomExternalForceSingle" end time: Jul 07 22:17 CDT
+"TestCudaCustomExternalForceSingle" time elapsed: 00:00:02
+----------------------------------------------------------
+
+78/466 Testing: TestCudaCustomExternalForceMixed
+78/466 Test: TestCudaCustomExternalForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomExternalForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomExternalForceMixed" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomExternalForceMixed" end time: Jul 07 22:17 CDT
+"TestCudaCustomExternalForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+79/466 Testing: TestCudaCustomExternalForceDouble
+79/466 Test: TestCudaCustomExternalForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomExternalForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomExternalForceDouble" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomExternalForceDouble" end time: Jul 07 22:17 CDT
+"TestCudaCustomExternalForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+80/466 Testing: TestCudaCustomGBForceSingle
+80/466 Test: TestCudaCustomGBForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomGBForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomGBForceSingle" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  12.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomGBForceSingle" end time: Jul 07 22:17 CDT
+"TestCudaCustomGBForceSingle" time elapsed: 00:00:12
+----------------------------------------------------------
+
+81/466 Testing: TestCudaCustomGBForceMixed
+81/466 Test: TestCudaCustomGBForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomGBForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomGBForceMixed" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  11.97 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomGBForceMixed" end time: Jul 07 22:17 CDT
+"TestCudaCustomGBForceMixed" time elapsed: 00:00:11
+----------------------------------------------------------
+
+82/466 Testing: TestCudaCustomGBForceDouble
+82/466 Test: TestCudaCustomGBForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomGBForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomGBForceDouble" start time: Jul 07 22:17 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  13.70 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomGBForceDouble" end time: Jul 07 22:18 CDT
+"TestCudaCustomGBForceDouble" time elapsed: 00:00:13
+----------------------------------------------------------
+
+83/466 Testing: TestCudaCustomHbondForceSingle
+83/466 Test: TestCudaCustomHbondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomHbondForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomHbondForceSingle" start time: Jul 07 22:18 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.97 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomHbondForceSingle" end time: Jul 07 22:18 CDT
+"TestCudaCustomHbondForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+84/466 Testing: TestCudaCustomHbondForceMixed
+84/466 Test: TestCudaCustomHbondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomHbondForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomHbondForceMixed" start time: Jul 07 22:18 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.99 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomHbondForceMixed" end time: Jul 07 22:18 CDT
+"TestCudaCustomHbondForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+85/466 Testing: TestCudaCustomHbondForceDouble
+85/466 Test: TestCudaCustomHbondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomHbondForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomHbondForceDouble" start time: Jul 07 22:18 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.26 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomHbondForceDouble" end time: Jul 07 22:18 CDT
+"TestCudaCustomHbondForceDouble" time elapsed: 00:00:02
+----------------------------------------------------------
+
+86/466 Testing: TestCudaCustomIntegratorSingle
+86/466 Test: TestCudaCustomIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomIntegratorSingle" start time: Jul 07 22:18 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  22.05 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomIntegratorSingle" end time: Jul 07 22:18 CDT
+"TestCudaCustomIntegratorSingle" time elapsed: 00:00:22
+----------------------------------------------------------
+
+87/466 Testing: TestCudaCustomIntegratorMixed
+87/466 Test: TestCudaCustomIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomIntegratorMixed" start time: Jul 07 22:18 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  22.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomIntegratorMixed" end time: Jul 07 22:18 CDT
+"TestCudaCustomIntegratorMixed" time elapsed: 00:00:22
+----------------------------------------------------------
+
+88/466 Testing: TestCudaCustomIntegratorDouble
+88/466 Test: TestCudaCustomIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomIntegratorDouble" start time: Jul 07 22:18 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  27.45 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomIntegratorDouble" end time: Jul 07 22:19 CDT
+"TestCudaCustomIntegratorDouble" time elapsed: 00:00:27
+----------------------------------------------------------
+
+89/466 Testing: TestCudaCustomManyParticleForceSingle
+89/466 Test: TestCudaCustomManyParticleForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomManyParticleForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomManyParticleForceSingle" start time: Jul 07 22:19 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   9.57 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomManyParticleForceSingle" end time: Jul 07 22:19 CDT
+"TestCudaCustomManyParticleForceSingle" time elapsed: 00:00:09
+----------------------------------------------------------
+
+90/466 Testing: TestCudaCustomManyParticleForceMixed
+90/466 Test: TestCudaCustomManyParticleForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomManyParticleForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomManyParticleForceMixed" start time: Jul 07 22:19 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   9.71 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomManyParticleForceMixed" end time: Jul 07 22:19 CDT
+"TestCudaCustomManyParticleForceMixed" time elapsed: 00:00:09
+----------------------------------------------------------
+
+91/466 Testing: TestCudaCustomManyParticleForceDouble
+91/466 Test: TestCudaCustomManyParticleForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomManyParticleForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomManyParticleForceDouble" start time: Jul 07 22:19 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  10.30 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomManyParticleForceDouble" end time: Jul 07 22:19 CDT
+"TestCudaCustomManyParticleForceDouble" time elapsed: 00:00:10
+----------------------------------------------------------
+
+92/466 Testing: TestCudaCustomNonbondedForceSingle
+92/466 Test: TestCudaCustomNonbondedForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomNonbondedForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomNonbondedForceSingle" start time: Jul 07 22:19 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  17.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomNonbondedForceSingle" end time: Jul 07 22:20 CDT
+"TestCudaCustomNonbondedForceSingle" time elapsed: 00:00:17
+----------------------------------------------------------
+
+93/466 Testing: TestCudaCustomNonbondedForceMixed
+93/466 Test: TestCudaCustomNonbondedForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomNonbondedForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomNonbondedForceMixed" start time: Jul 07 22:20 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  17.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomNonbondedForceMixed" end time: Jul 07 22:20 CDT
+"TestCudaCustomNonbondedForceMixed" time elapsed: 00:00:17
+----------------------------------------------------------
+
+94/466 Testing: TestCudaCustomNonbondedForceDouble
+94/466 Test: TestCudaCustomNonbondedForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomNonbondedForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomNonbondedForceDouble" start time: Jul 07 22:20 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  18.48 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomNonbondedForceDouble" end time: Jul 07 22:20 CDT
+"TestCudaCustomNonbondedForceDouble" time elapsed: 00:00:18
+----------------------------------------------------------
+
+95/466 Testing: TestCudaCustomTorsionForceSingle
+95/466 Test: TestCudaCustomTorsionForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomTorsionForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomTorsionForceSingle" start time: Jul 07 22:20 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.81 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomTorsionForceSingle" end time: Jul 07 22:20 CDT
+"TestCudaCustomTorsionForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+96/466 Testing: TestCudaCustomTorsionForceMixed
+96/466 Test: TestCudaCustomTorsionForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomTorsionForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomTorsionForceMixed" start time: Jul 07 22:20 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.82 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomTorsionForceMixed" end time: Jul 07 22:20 CDT
+"TestCudaCustomTorsionForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+97/466 Testing: TestCudaCustomTorsionForceDouble
+97/466 Test: TestCudaCustomTorsionForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaCustomTorsionForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaCustomTorsionForceDouble" start time: Jul 07 22:20 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.97 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaCustomTorsionForceDouble" end time: Jul 07 22:20 CDT
+"TestCudaCustomTorsionForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+98/466 Testing: TestCudaDispersionPMESingle
+98/466 Test: TestCudaDispersionPMESingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaDispersionPME" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaDispersionPMESingle" start time: Jul 07 22:20 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  45.35 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaDispersionPMESingle" end time: Jul 07 22:21 CDT
+"TestCudaDispersionPMESingle" time elapsed: 00:00:45
+----------------------------------------------------------
+
+99/466 Testing: TestCudaDispersionPMEMixed
+99/466 Test: TestCudaDispersionPMEMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaDispersionPME" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaDispersionPMEMixed" start time: Jul 07 22:21 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  43.40 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaDispersionPMEMixed" end time: Jul 07 22:22 CDT
+"TestCudaDispersionPMEMixed" time elapsed: 00:00:43
+----------------------------------------------------------
+
+100/466 Testing: TestCudaDispersionPMEDouble
+100/466 Test: TestCudaDispersionPMEDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaDispersionPME" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaDispersionPMEDouble" start time: Jul 07 22:22 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  49.68 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaDispersionPMEDouble" end time: Jul 07 22:23 CDT
+"TestCudaDispersionPMEDouble" time elapsed: 00:00:49
+----------------------------------------------------------
+
+101/466 Testing: TestCudaEwaldSingle
+101/466 Test: TestCudaEwaldSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaEwald" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaEwaldSingle" start time: Jul 07 22:23 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  46.46 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaEwaldSingle" end time: Jul 07 22:23 CDT
+"TestCudaEwaldSingle" time elapsed: 00:00:46
+----------------------------------------------------------
+
+102/466 Testing: TestCudaEwaldMixed
+102/466 Test: TestCudaEwaldMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaEwald" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaEwaldMixed" start time: Jul 07 22:23 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  43.71 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaEwaldMixed" end time: Jul 07 22:24 CDT
+"TestCudaEwaldMixed" time elapsed: 00:00:43
+----------------------------------------------------------
+
+103/466 Testing: TestCudaEwaldDouble
+103/466 Test: TestCudaEwaldDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaEwald" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaEwaldDouble" start time: Jul 07 22:24 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  51.76 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaEwaldDouble" end time: Jul 07 22:25 CDT
+"TestCudaEwaldDouble" time elapsed: 00:00:51
+----------------------------------------------------------
+
+104/466 Testing: TestCudaFFT3DSingle
+104/466 Test: TestCudaFFT3DSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaFFT3D" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaFFT3DSingle" start time: Jul 07 22:25 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.83 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaFFT3DSingle" end time: Jul 07 22:25 CDT
+"TestCudaFFT3DSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+105/466 Testing: TestCudaFFT3DMixed
+105/466 Test: TestCudaFFT3DMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaFFT3D" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaFFT3DMixed" start time: Jul 07 22:25 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.23 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaFFT3DMixed" end time: Jul 07 22:25 CDT
+"TestCudaFFT3DMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+106/466 Testing: TestCudaFFT3DDouble
+106/466 Test: TestCudaFFT3DDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaFFT3D" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaFFT3DDouble" start time: Jul 07 22:25 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.35 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaFFT3DDouble" end time: Jul 07 22:25 CDT
+"TestCudaFFT3DDouble" time elapsed: 00:00:04
+----------------------------------------------------------
+
+107/466 Testing: TestCudaGBSAOBCForceSingle
+107/466 Test: TestCudaGBSAOBCForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaGBSAOBCForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaGBSAOBCForceSingle" start time: Jul 07 22:25 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  18.28 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaGBSAOBCForceSingle" end time: Jul 07 22:26 CDT
+"TestCudaGBSAOBCForceSingle" time elapsed: 00:00:18
+----------------------------------------------------------
+
+108/466 Testing: TestCudaGBSAOBCForceMixed
+108/466 Test: TestCudaGBSAOBCForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaGBSAOBCForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaGBSAOBCForceMixed" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  18.34 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaGBSAOBCForceMixed" end time: Jul 07 22:26 CDT
+"TestCudaGBSAOBCForceMixed" time elapsed: 00:00:18
+----------------------------------------------------------
+
+109/466 Testing: TestCudaGBSAOBCForceDouble
+109/466 Test: TestCudaGBSAOBCForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaGBSAOBCForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaGBSAOBCForceDouble" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  22.41 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaGBSAOBCForceDouble" end time: Jul 07 22:26 CDT
+"TestCudaGBSAOBCForceDouble" time elapsed: 00:00:22
+----------------------------------------------------------
+
+110/466 Testing: TestCudaGayBerneForceSingle
+110/466 Test: TestCudaGayBerneForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaGayBerneForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaGayBerneForceSingle" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.58 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaGayBerneForceSingle" end time: Jul 07 22:26 CDT
+"TestCudaGayBerneForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+111/466 Testing: TestCudaGayBerneForceMixed
+111/466 Test: TestCudaGayBerneForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaGayBerneForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaGayBerneForceMixed" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.75 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaGayBerneForceMixed" end time: Jul 07 22:26 CDT
+"TestCudaGayBerneForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+112/466 Testing: TestCudaGayBerneForceDouble
+112/466 Test: TestCudaGayBerneForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaGayBerneForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaGayBerneForceDouble" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.78 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaGayBerneForceDouble" end time: Jul 07 22:26 CDT
+"TestCudaGayBerneForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+113/466 Testing: TestCudaHarmonicAngleForceSingle
+113/466 Test: TestCudaHarmonicAngleForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaHarmonicAngleForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaHarmonicAngleForceSingle" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.88 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaHarmonicAngleForceSingle" end time: Jul 07 22:26 CDT
+"TestCudaHarmonicAngleForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+114/466 Testing: TestCudaHarmonicAngleForceMixed
+114/466 Test: TestCudaHarmonicAngleForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaHarmonicAngleForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaHarmonicAngleForceMixed" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.87 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaHarmonicAngleForceMixed" end time: Jul 07 22:26 CDT
+"TestCudaHarmonicAngleForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+115/466 Testing: TestCudaHarmonicAngleForceDouble
+115/466 Test: TestCudaHarmonicAngleForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaHarmonicAngleForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaHarmonicAngleForceDouble" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.90 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaHarmonicAngleForceDouble" end time: Jul 07 22:26 CDT
+"TestCudaHarmonicAngleForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+116/466 Testing: TestCudaHarmonicBondForceSingle
+116/466 Test: TestCudaHarmonicBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaHarmonicBondForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaHarmonicBondForceSingle" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.13 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaHarmonicBondForceSingle" end time: Jul 07 22:26 CDT
+"TestCudaHarmonicBondForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+117/466 Testing: TestCudaHarmonicBondForceMixed
+117/466 Test: TestCudaHarmonicBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaHarmonicBondForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaHarmonicBondForceMixed" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.12 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaHarmonicBondForceMixed" end time: Jul 07 22:26 CDT
+"TestCudaHarmonicBondForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+118/466 Testing: TestCudaHarmonicBondForceDouble
+118/466 Test: TestCudaHarmonicBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaHarmonicBondForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaHarmonicBondForceDouble" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.16 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaHarmonicBondForceDouble" end time: Jul 07 22:26 CDT
+"TestCudaHarmonicBondForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+119/466 Testing: TestCudaLangevinIntegratorSingle
+119/466 Test: TestCudaLangevinIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLangevinIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLangevinIntegratorSingle" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.70 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLangevinIntegratorSingle" end time: Jul 07 22:26 CDT
+"TestCudaLangevinIntegratorSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+120/466 Testing: TestCudaLangevinIntegratorMixed
+120/466 Test: TestCudaLangevinIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLangevinIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLangevinIntegratorMixed" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.74 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLangevinIntegratorMixed" end time: Jul 07 22:26 CDT
+"TestCudaLangevinIntegratorMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+121/466 Testing: TestCudaLangevinIntegratorDouble
+121/466 Test: TestCudaLangevinIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLangevinIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLangevinIntegratorDouble" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.39 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLangevinIntegratorDouble" end time: Jul 07 22:26 CDT
+"TestCudaLangevinIntegratorDouble" time elapsed: 00:00:02
+----------------------------------------------------------
+
+122/466 Testing: TestCudaLangevinMiddleIntegratorSingle
+122/466 Test: TestCudaLangevinMiddleIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLangevinMiddleIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLangevinMiddleIntegratorSingle" start time: Jul 07 22:26 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.81 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLangevinMiddleIntegratorSingle" end time: Jul 07 22:27 CDT
+"TestCudaLangevinMiddleIntegratorSingle" time elapsed: 00:00:02
+----------------------------------------------------------
+
+123/466 Testing: TestCudaLangevinMiddleIntegratorMixed
+123/466 Test: TestCudaLangevinMiddleIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLangevinMiddleIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLangevinMiddleIntegratorMixed" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.90 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLangevinMiddleIntegratorMixed" end time: Jul 07 22:27 CDT
+"TestCudaLangevinMiddleIntegratorMixed" time elapsed: 00:00:02
+----------------------------------------------------------
+
+124/466 Testing: TestCudaLangevinMiddleIntegratorDouble
+124/466 Test: TestCudaLangevinMiddleIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLangevinMiddleIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLangevinMiddleIntegratorDouble" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.58 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLangevinMiddleIntegratorDouble" end time: Jul 07 22:27 CDT
+"TestCudaLangevinMiddleIntegratorDouble" time elapsed: 00:00:03
+----------------------------------------------------------
+
+125/466 Testing: TestCudaLocalEnergyMinimizerSingle
+125/466 Test: TestCudaLocalEnergyMinimizerSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLocalEnergyMinimizer" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLocalEnergyMinimizerSingle" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.04 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLocalEnergyMinimizerSingle" end time: Jul 07 22:27 CDT
+"TestCudaLocalEnergyMinimizerSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+126/466 Testing: TestCudaLocalEnergyMinimizerMixed
+126/466 Test: TestCudaLocalEnergyMinimizerMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLocalEnergyMinimizer" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLocalEnergyMinimizerMixed" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.55 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLocalEnergyMinimizerMixed" end time: Jul 07 22:27 CDT
+"TestCudaLocalEnergyMinimizerMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+127/466 Testing: TestCudaLocalEnergyMinimizerDouble
+127/466 Test: TestCudaLocalEnergyMinimizerDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaLocalEnergyMinimizer" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaLocalEnergyMinimizerDouble" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.68 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaLocalEnergyMinimizerDouble" end time: Jul 07 22:27 CDT
+"TestCudaLocalEnergyMinimizerDouble" time elapsed: 00:00:03
+----------------------------------------------------------
+
+128/466 Testing: TestCudaMonteCarloAnisotropicBarostatSingle
+128/466 Test: TestCudaMonteCarloAnisotropicBarostatSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMonteCarloAnisotropicBarostat" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMonteCarloAnisotropicBarostatSingle" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   6.41 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMonteCarloAnisotropicBarostatSingle" end time: Jul 07 22:27 CDT
+"TestCudaMonteCarloAnisotropicBarostatSingle" time elapsed: 00:00:06
+----------------------------------------------------------
+
+129/466 Testing: TestCudaMonteCarloAnisotropicBarostatMixed
+129/466 Test: TestCudaMonteCarloAnisotropicBarostatMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMonteCarloAnisotropicBarostat" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMonteCarloAnisotropicBarostatMixed" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   6.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMonteCarloAnisotropicBarostatMixed" end time: Jul 07 22:27 CDT
+"TestCudaMonteCarloAnisotropicBarostatMixed" time elapsed: 00:00:06
+----------------------------------------------------------
+
+130/466 Testing: TestCudaMonteCarloAnisotropicBarostatDouble
+130/466 Test: TestCudaMonteCarloAnisotropicBarostatDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMonteCarloAnisotropicBarostat" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMonteCarloAnisotropicBarostatDouble" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   6.46 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMonteCarloAnisotropicBarostatDouble" end time: Jul 07 22:27 CDT
+"TestCudaMonteCarloAnisotropicBarostatDouble" time elapsed: 00:00:06
+----------------------------------------------------------
+
+131/466 Testing: TestCudaMonteCarloBarostatSingle
+131/466 Test: TestCudaMonteCarloBarostatSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMonteCarloBarostat" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMonteCarloBarostatSingle" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.74 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMonteCarloBarostatSingle" end time: Jul 07 22:27 CDT
+"TestCudaMonteCarloBarostatSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+132/466 Testing: TestCudaMonteCarloBarostatMixed
+132/466 Test: TestCudaMonteCarloBarostatMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMonteCarloBarostat" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMonteCarloBarostatMixed" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.75 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMonteCarloBarostatMixed" end time: Jul 07 22:27 CDT
+"TestCudaMonteCarloBarostatMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+133/466 Testing: TestCudaMonteCarloBarostatDouble
+133/466 Test: TestCudaMonteCarloBarostatDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMonteCarloBarostat" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMonteCarloBarostatDouble" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   9.57 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMonteCarloBarostatDouble" end time: Jul 07 22:27 CDT
+"TestCudaMonteCarloBarostatDouble" time elapsed: 00:00:09
+----------------------------------------------------------
+
+134/466 Testing: TestCudaMultipleForcesSingle
+134/466 Test: TestCudaMultipleForcesSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMultipleForces" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMultipleForcesSingle" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.31 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMultipleForcesSingle" end time: Jul 07 22:27 CDT
+"TestCudaMultipleForcesSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+135/466 Testing: TestCudaMultipleForcesMixed
+135/466 Test: TestCudaMultipleForcesMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMultipleForces" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMultipleForcesMixed" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMultipleForcesMixed" end time: Jul 07 22:27 CDT
+"TestCudaMultipleForcesMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+136/466 Testing: TestCudaMultipleForcesDouble
+136/466 Test: TestCudaMultipleForcesDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaMultipleForces" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaMultipleForcesDouble" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaMultipleForcesDouble" end time: Jul 07 22:27 CDT
+"TestCudaMultipleForcesDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+137/466 Testing: TestCudaNonbondedForceSingle
+137/466 Test: TestCudaNonbondedForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaNonbondedForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaNonbondedForceSingle" start time: Jul 07 22:27 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  23.60 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaNonbondedForceSingle" end time: Jul 07 22:28 CDT
+"TestCudaNonbondedForceSingle" time elapsed: 00:00:23
+----------------------------------------------------------
+
+138/466 Testing: TestCudaNonbondedForceMixed
+138/466 Test: TestCudaNonbondedForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaNonbondedForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaNonbondedForceMixed" start time: Jul 07 22:28 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  23.05 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaNonbondedForceMixed" end time: Jul 07 22:28 CDT
+"TestCudaNonbondedForceMixed" time elapsed: 00:00:23
+----------------------------------------------------------
+
+139/466 Testing: TestCudaNonbondedForceDouble
+139/466 Test: TestCudaNonbondedForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaNonbondedForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaNonbondedForceDouble" start time: Jul 07 22:28 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  27.71 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaNonbondedForceDouble" end time: Jul 07 22:29 CDT
+"TestCudaNonbondedForceDouble" time elapsed: 00:00:27
+----------------------------------------------------------
+
+140/466 Testing: TestCudaNoseHooverIntegratorSingle
+140/466 Test: TestCudaNoseHooverIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaNoseHooverIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaNoseHooverIntegratorSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   8.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaNoseHooverIntegratorSingle" end time: Jul 07 22:29 CDT
+"TestCudaNoseHooverIntegratorSingle" time elapsed: 00:00:08
+----------------------------------------------------------
+
+141/466 Testing: TestCudaNoseHooverIntegratorMixed
+141/466 Test: TestCudaNoseHooverIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaNoseHooverIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaNoseHooverIntegratorMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  10.72 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaNoseHooverIntegratorMixed" end time: Jul 07 22:29 CDT
+"TestCudaNoseHooverIntegratorMixed" time elapsed: 00:00:10
+----------------------------------------------------------
+
+142/466 Testing: TestCudaNoseHooverIntegratorDouble
+142/466 Test: TestCudaNoseHooverIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaNoseHooverIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaNoseHooverIntegratorDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  12.83 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaNoseHooverIntegratorDouble" end time: Jul 07 22:29 CDT
+"TestCudaNoseHooverIntegratorDouble" time elapsed: 00:00:12
+----------------------------------------------------------
+
+143/466 Testing: TestCudaPeriodicTorsionForceSingle
+143/466 Test: TestCudaPeriodicTorsionForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaPeriodicTorsionForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaPeriodicTorsionForceSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaPeriodicTorsionForceSingle" end time: Jul 07 22:29 CDT
+"TestCudaPeriodicTorsionForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+144/466 Testing: TestCudaPeriodicTorsionForceMixed
+144/466 Test: TestCudaPeriodicTorsionForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaPeriodicTorsionForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaPeriodicTorsionForceMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaPeriodicTorsionForceMixed" end time: Jul 07 22:29 CDT
+"TestCudaPeriodicTorsionForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+145/466 Testing: TestCudaPeriodicTorsionForceDouble
+145/466 Test: TestCudaPeriodicTorsionForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaPeriodicTorsionForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaPeriodicTorsionForceDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.35 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaPeriodicTorsionForceDouble" end time: Jul 07 22:29 CDT
+"TestCudaPeriodicTorsionForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+146/466 Testing: TestCudaRBTorsionForceSingle
+146/466 Test: TestCudaRBTorsionForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRBTorsionForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRBTorsionForceSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.20 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRBTorsionForceSingle" end time: Jul 07 22:29 CDT
+"TestCudaRBTorsionForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+147/466 Testing: TestCudaRBTorsionForceMixed
+147/466 Test: TestCudaRBTorsionForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRBTorsionForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRBTorsionForceMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRBTorsionForceMixed" end time: Jul 07 22:29 CDT
+"TestCudaRBTorsionForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+148/466 Testing: TestCudaRBTorsionForceDouble
+148/466 Test: TestCudaRBTorsionForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRBTorsionForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRBTorsionForceDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.34 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRBTorsionForceDouble" end time: Jul 07 22:29 CDT
+"TestCudaRBTorsionForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+149/466 Testing: TestCudaRMSDForceSingle
+149/466 Test: TestCudaRMSDForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRMSDForce" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRMSDForceSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.67 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRMSDForceSingle" end time: Jul 07 22:29 CDT
+"TestCudaRMSDForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+150/466 Testing: TestCudaRMSDForceMixed
+150/466 Test: TestCudaRMSDForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRMSDForce" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRMSDForceMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRMSDForceMixed" end time: Jul 07 22:29 CDT
+"TestCudaRMSDForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+151/466 Testing: TestCudaRMSDForceDouble
+151/466 Test: TestCudaRMSDForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRMSDForce" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRMSDForceDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.74 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRMSDForceDouble" end time: Jul 07 22:29 CDT
+"TestCudaRMSDForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+152/466 Testing: TestCudaRandomSingle
+152/466 Test: TestCudaRandomSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRandom" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRandomSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.91 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRandomSingle" end time: Jul 07 22:29 CDT
+"TestCudaRandomSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+153/466 Testing: TestCudaRandomMixed
+153/466 Test: TestCudaRandomMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRandom" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRandomMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.16 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRandomMixed" end time: Jul 07 22:29 CDT
+"TestCudaRandomMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+154/466 Testing: TestCudaRandomDouble
+154/466 Test: TestCudaRandomDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaRandom" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaRandomDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.05 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaRandomDouble" end time: Jul 07 22:29 CDT
+"TestCudaRandomDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+155/466 Testing: TestCudaSettleSingle
+155/466 Test: TestCudaSettleSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaSettle" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaSettleSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.41 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaSettleSingle" end time: Jul 07 22:29 CDT
+"TestCudaSettleSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+156/466 Testing: TestCudaSettleMixed
+156/466 Test: TestCudaSettleMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaSettle" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaSettleMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaSettleMixed" end time: Jul 07 22:29 CDT
+"TestCudaSettleMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+157/466 Testing: TestCudaSettleDouble
+157/466 Test: TestCudaSettleDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaSettle" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaSettleDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.49 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaSettleDouble" end time: Jul 07 22:29 CDT
+"TestCudaSettleDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+158/466 Testing: TestCudaSortSingle
+158/466 Test: TestCudaSortSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaSort" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaSortSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.46 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaSortSingle" end time: Jul 07 22:29 CDT
+"TestCudaSortSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+159/466 Testing: TestCudaSortMixed
+159/466 Test: TestCudaSortMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaSort" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaSortMixed" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.42 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaSortMixed" end time: Jul 07 22:29 CDT
+"TestCudaSortMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+160/466 Testing: TestCudaSortDouble
+160/466 Test: TestCudaSortDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaSort" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaSortDouble" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.42 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaSortDouble" end time: Jul 07 22:29 CDT
+"TestCudaSortDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+161/466 Testing: TestCudaVariableLangevinIntegratorSingle
+161/466 Test: TestCudaVariableLangevinIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVariableLangevinIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVariableLangevinIntegratorSingle" start time: Jul 07 22:29 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.03 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVariableLangevinIntegratorSingle" end time: Jul 07 22:30 CDT
+"TestCudaVariableLangevinIntegratorSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+162/466 Testing: TestCudaVariableLangevinIntegratorMixed
+162/466 Test: TestCudaVariableLangevinIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVariableLangevinIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVariableLangevinIntegratorMixed" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.06 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVariableLangevinIntegratorMixed" end time: Jul 07 22:30 CDT
+"TestCudaVariableLangevinIntegratorMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+163/466 Testing: TestCudaVariableLangevinIntegratorDouble
+163/466 Test: TestCudaVariableLangevinIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVariableLangevinIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVariableLangevinIntegratorDouble" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.16 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVariableLangevinIntegratorDouble" end time: Jul 07 22:30 CDT
+"TestCudaVariableLangevinIntegratorDouble" time elapsed: 00:00:04
+----------------------------------------------------------
+
+164/466 Testing: TestCudaVariableVerletIntegratorSingle
+164/466 Test: TestCudaVariableVerletIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVariableVerletIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVariableVerletIntegratorSingle" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.10 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVariableVerletIntegratorSingle" end time: Jul 07 22:30 CDT
+"TestCudaVariableVerletIntegratorSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+165/466 Testing: TestCudaVariableVerletIntegratorMixed
+165/466 Test: TestCudaVariableVerletIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVariableVerletIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVariableVerletIntegratorMixed" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.20 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVariableVerletIntegratorMixed" end time: Jul 07 22:30 CDT
+"TestCudaVariableVerletIntegratorMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+166/466 Testing: TestCudaVariableVerletIntegratorDouble
+166/466 Test: TestCudaVariableVerletIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVariableVerletIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVariableVerletIntegratorDouble" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.28 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVariableVerletIntegratorDouble" end time: Jul 07 22:30 CDT
+"TestCudaVariableVerletIntegratorDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+167/466 Testing: TestCudaVerletIntegratorSingle
+167/466 Test: TestCudaVerletIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVerletIntegrator" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVerletIntegratorSingle" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.21 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVerletIntegratorSingle" end time: Jul 07 22:30 CDT
+"TestCudaVerletIntegratorSingle" time elapsed: 00:00:02
+----------------------------------------------------------
+
+168/466 Testing: TestCudaVerletIntegratorMixed
+168/466 Test: TestCudaVerletIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVerletIntegrator" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVerletIntegratorMixed" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.52 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVerletIntegratorMixed" end time: Jul 07 22:30 CDT
+"TestCudaVerletIntegratorMixed" time elapsed: 00:00:02
+----------------------------------------------------------
+
+169/466 Testing: TestCudaVerletIntegratorDouble
+169/466 Test: TestCudaVerletIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVerletIntegrator" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVerletIntegratorDouble" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.53 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVerletIntegratorDouble" end time: Jul 07 22:30 CDT
+"TestCudaVerletIntegratorDouble" time elapsed: 00:00:02
+----------------------------------------------------------
+
+170/466 Testing: TestCudaVirtualSitesSingle
+170/466 Test: TestCudaVirtualSitesSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVirtualSites" "single"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVirtualSitesSingle" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   5.88 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVirtualSitesSingle" end time: Jul 07 22:30 CDT
+"TestCudaVirtualSitesSingle" time elapsed: 00:00:05
+----------------------------------------------------------
+
+171/466 Testing: TestCudaVirtualSitesMixed
+171/466 Test: TestCudaVirtualSitesMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVirtualSites" "mixed"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVirtualSitesMixed" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   6.80 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVirtualSitesMixed" end time: Jul 07 22:30 CDT
+"TestCudaVirtualSitesMixed" time elapsed: 00:00:06
+----------------------------------------------------------
+
+172/466 Testing: TestCudaVirtualSitesDouble
+172/466 Test: TestCudaVirtualSitesDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestCudaVirtualSites" "double"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/cuda/tests
+"TestCudaVirtualSitesDouble" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   6.83 sec
+----------------------------------------------------------
+Test Passed.
+"TestCudaVirtualSitesDouble" end time: Jul 07 22:30 CDT
+"TestCudaVirtualSitesDouble" time elapsed: 00:00:06
+----------------------------------------------------------
+
+173/466 Testing: TestOpenCLAndersenThermostatSingle
+173/466 Test: TestOpenCLAndersenThermostatSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLAndersenThermostat" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLAndersenThermostatSingle" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.38 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLAndersenThermostatSingle" end time: Jul 07 22:30 CDT
+"TestOpenCLAndersenThermostatSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+174/466 Testing: TestOpenCLAndersenThermostatMixed
+174/466 Test: TestOpenCLAndersenThermostatMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLAndersenThermostat" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLAndersenThermostatMixed" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.56 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLAndersenThermostatMixed" end time: Jul 07 22:30 CDT
+"TestOpenCLAndersenThermostatMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+175/466 Testing: TestOpenCLAndersenThermostatDouble
+175/466 Test: TestOpenCLAndersenThermostatDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLAndersenThermostat" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLAndersenThermostatDouble" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.96 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLAndersenThermostatDouble" end time: Jul 07 22:30 CDT
+"TestOpenCLAndersenThermostatDouble" time elapsed: 00:00:04
+----------------------------------------------------------
+
+176/466 Testing: TestOpenCLBrownianIntegratorSingle
+176/466 Test: TestOpenCLBrownianIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLBrownianIntegrator" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLBrownianIntegratorSingle" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLBrownianIntegratorSingle" end time: Jul 07 22:30 CDT
+"TestOpenCLBrownianIntegratorSingle" time elapsed: 00:00:04
+----------------------------------------------------------
+
+177/466 Testing: TestOpenCLBrownianIntegratorMixed
+177/466 Test: TestOpenCLBrownianIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLBrownianIntegrator" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLBrownianIntegratorMixed" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.99 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLBrownianIntegratorMixed" end time: Jul 07 22:30 CDT
+"TestOpenCLBrownianIntegratorMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+
+178/466 Testing: TestOpenCLBrownianIntegratorDouble
+178/466 Test: TestOpenCLBrownianIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLBrownianIntegrator" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLBrownianIntegratorDouble" start time: Jul 07 22:30 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   4.07 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLBrownianIntegratorDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLBrownianIntegratorDouble" time elapsed: 00:00:04
+----------------------------------------------------------
+
+179/466 Testing: TestOpenCLCMAPTorsionForceSingle
+179/466 Test: TestOpenCLCMAPTorsionForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCMAPTorsionForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCMAPTorsionForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCMAPTorsionForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCMAPTorsionForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+180/466 Testing: TestOpenCLCMAPTorsionForceMixed
+180/466 Test: TestOpenCLCMAPTorsionForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCMAPTorsionForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCMAPTorsionForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCMAPTorsionForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCMAPTorsionForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+181/466 Testing: TestOpenCLCMAPTorsionForceDouble
+181/466 Test: TestOpenCLCMAPTorsionForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCMAPTorsionForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCMAPTorsionForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCMAPTorsionForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCMAPTorsionForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+182/466 Testing: TestOpenCLCMMotionRemoverSingle
+182/466 Test: TestOpenCLCMMotionRemoverSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCMMotionRemover" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCMMotionRemoverSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.41 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCMMotionRemoverSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCMMotionRemoverSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+183/466 Testing: TestOpenCLCMMotionRemoverMixed
+183/466 Test: TestOpenCLCMMotionRemoverMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCMMotionRemover" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCMMotionRemoverMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.39 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCMMotionRemoverMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCMMotionRemoverMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+184/466 Testing: TestOpenCLCMMotionRemoverDouble
+184/466 Test: TestOpenCLCMMotionRemoverDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCMMotionRemover" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCMMotionRemoverDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.42 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCMMotionRemoverDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCMMotionRemoverDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+185/466 Testing: TestOpenCLCheckpointsSingle
+185/466 Test: TestOpenCLCheckpointsSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCheckpoints" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCheckpointsSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCheckpointsSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCheckpointsSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+186/466 Testing: TestOpenCLCheckpointsMixed
+186/466 Test: TestOpenCLCheckpointsMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCheckpoints" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCheckpointsMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.48 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCheckpointsMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCheckpointsMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+187/466 Testing: TestOpenCLCheckpointsDouble
+187/466 Test: TestOpenCLCheckpointsDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCheckpoints" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCheckpointsDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCheckpointsDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCheckpointsDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+188/466 Testing: TestOpenCLCompoundIntegratorSingle
+188/466 Test: TestOpenCLCompoundIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCompoundIntegrator" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCompoundIntegratorSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.99 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCompoundIntegratorSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCompoundIntegratorSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+189/466 Testing: TestOpenCLCompoundIntegratorMixed
+189/466 Test: TestOpenCLCompoundIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCompoundIntegrator" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCompoundIntegratorMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCompoundIntegratorMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCompoundIntegratorMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+190/466 Testing: TestOpenCLCompoundIntegratorDouble
+190/466 Test: TestOpenCLCompoundIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCompoundIntegrator" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCompoundIntegratorDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.02 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCompoundIntegratorDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCompoundIntegratorDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+191/466 Testing: TestOpenCLCustomAngleForceSingle
+191/466 Test: TestOpenCLCustomAngleForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomAngleForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomAngleForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.60 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomAngleForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomAngleForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+192/466 Testing: TestOpenCLCustomAngleForceMixed
+192/466 Test: TestOpenCLCustomAngleForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomAngleForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomAngleForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.61 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomAngleForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomAngleForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+193/466 Testing: TestOpenCLCustomAngleForceDouble
+193/466 Test: TestOpenCLCustomAngleForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomAngleForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomAngleForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.62 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomAngleForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomAngleForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+194/466 Testing: TestOpenCLCustomBondForceSingle
+194/466 Test: TestOpenCLCustomBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomBondForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomBondForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.62 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomBondForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomBondForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+195/466 Testing: TestOpenCLCustomBondForceMixed
+195/466 Test: TestOpenCLCustomBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomBondForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomBondForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.61 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomBondForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomBondForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+196/466 Testing: TestOpenCLCustomBondForceDouble
+196/466 Test: TestOpenCLCustomBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomBondForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomBondForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.61 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomBondForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomBondForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+197/466 Testing: TestOpenCLCustomCVForceSingle
+197/466 Test: TestOpenCLCustomCVForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCVForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCVForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCVForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCVForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+198/466 Testing: TestOpenCLCustomCVForceMixed
+198/466 Test: TestOpenCLCustomCVForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCVForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCVForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCVForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCVForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+199/466 Testing: TestOpenCLCustomCVForceDouble
+199/466 Test: TestOpenCLCustomCVForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCVForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCVForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.46 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCVForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCVForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+200/466 Testing: TestOpenCLCustomCentroidBondForceSingle
+200/466 Test: TestOpenCLCustomCentroidBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCentroidBondForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCentroidBondForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.49 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCentroidBondForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCentroidBondForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+201/466 Testing: TestOpenCLCustomCentroidBondForceMixed
+201/466 Test: TestOpenCLCustomCentroidBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCentroidBondForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCentroidBondForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCentroidBondForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCentroidBondForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+202/466 Testing: TestOpenCLCustomCentroidBondForceDouble
+202/466 Test: TestOpenCLCustomCentroidBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCentroidBondForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCentroidBondForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCentroidBondForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCentroidBondForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+203/466 Testing: TestOpenCLCustomCompoundBondForceSingle
+203/466 Test: TestOpenCLCustomCompoundBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCompoundBondForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCompoundBondForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.17 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCompoundBondForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCompoundBondForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+204/466 Testing: TestOpenCLCustomCompoundBondForceMixed
+204/466 Test: TestOpenCLCustomCompoundBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCompoundBondForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCompoundBondForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.22 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCompoundBondForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCompoundBondForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+205/466 Testing: TestOpenCLCustomCompoundBondForceDouble
+205/466 Test: TestOpenCLCustomCompoundBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomCompoundBondForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomCompoundBondForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomCompoundBondForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomCompoundBondForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+206/466 Testing: TestOpenCLCustomExternalForceSingle
+206/466 Test: TestOpenCLCustomExternalForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomExternalForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomExternalForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomExternalForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomExternalForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+207/466 Testing: TestOpenCLCustomExternalForceMixed
+207/466 Test: TestOpenCLCustomExternalForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomExternalForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomExternalForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomExternalForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomExternalForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+208/466 Testing: TestOpenCLCustomExternalForceDouble
+208/466 Test: TestOpenCLCustomExternalForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomExternalForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomExternalForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomExternalForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomExternalForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+209/466 Testing: TestOpenCLCustomGBForceSingle
+209/466 Test: TestOpenCLCustomGBForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomGBForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomGBForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.38 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomGBForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomGBForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+210/466 Testing: TestOpenCLCustomGBForceMixed
+210/466 Test: TestOpenCLCustomGBForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomGBForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomGBForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.40 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomGBForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomGBForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+211/466 Testing: TestOpenCLCustomGBForceDouble
+211/466 Test: TestOpenCLCustomGBForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomGBForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomGBForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.28 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomGBForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomGBForceDouble" time elapsed: 00:00:02
+----------------------------------------------------------
+
+212/466 Testing: TestOpenCLCustomHbondForceSingle
+212/466 Test: TestOpenCLCustomHbondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomHbondForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomHbondForceSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.49 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomHbondForceSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomHbondForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+213/466 Testing: TestOpenCLCustomHbondForceMixed
+213/466 Test: TestOpenCLCustomHbondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomHbondForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomHbondForceMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomHbondForceMixed" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomHbondForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+214/466 Testing: TestOpenCLCustomHbondForceDouble
+214/466 Test: TestOpenCLCustomHbondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomHbondForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomHbondForceDouble" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.73 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomHbondForceDouble" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomHbondForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+215/466 Testing: TestOpenCLCustomIntegratorSingle
+215/466 Test: TestOpenCLCustomIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomIntegrator" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomIntegratorSingle" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  16.11 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomIntegratorSingle" end time: Jul 07 22:31 CDT
+"TestOpenCLCustomIntegratorSingle" time elapsed: 00:00:16
+----------------------------------------------------------
+
+216/466 Testing: TestOpenCLCustomIntegratorMixed
+216/466 Test: TestOpenCLCustomIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomIntegrator" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomIntegratorMixed" start time: Jul 07 22:31 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  16.28 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomIntegratorMixed" end time: Jul 07 22:32 CDT
+"TestOpenCLCustomIntegratorMixed" time elapsed: 00:00:16
+----------------------------------------------------------
+
+217/466 Testing: TestOpenCLCustomIntegratorDouble
+217/466 Test: TestOpenCLCustomIntegratorDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomIntegrator" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomIntegratorDouble" start time: Jul 07 22:32 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  23.13 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomIntegratorDouble" end time: Jul 07 22:32 CDT
+"TestOpenCLCustomIntegratorDouble" time elapsed: 00:00:23
+----------------------------------------------------------
+
+218/466 Testing: TestOpenCLCustomManyParticleForceSingle
+218/466 Test: TestOpenCLCustomManyParticleForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomManyParticleForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomManyParticleForceSingle" start time: Jul 07 22:32 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   9.03 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomManyParticleForceSingle" end time: Jul 07 22:32 CDT
+"TestOpenCLCustomManyParticleForceSingle" time elapsed: 00:00:09
+----------------------------------------------------------
+
+219/466 Testing: TestOpenCLCustomManyParticleForceMixed
+219/466 Test: TestOpenCLCustomManyParticleForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomManyParticleForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomManyParticleForceMixed" start time: Jul 07 22:32 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   8.96 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomManyParticleForceMixed" end time: Jul 07 22:32 CDT
+"TestOpenCLCustomManyParticleForceMixed" time elapsed: 00:00:08
+----------------------------------------------------------
+
+220/466 Testing: TestOpenCLCustomManyParticleForceDouble
+220/466 Test: TestOpenCLCustomManyParticleForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomManyParticleForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomManyParticleForceDouble" start time: Jul 07 22:32 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   9.86 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomManyParticleForceDouble" end time: Jul 07 22:32 CDT
+"TestOpenCLCustomManyParticleForceDouble" time elapsed: 00:00:09
+----------------------------------------------------------
+
+221/466 Testing: TestOpenCLCustomNonbondedForceSingle
+221/466 Test: TestOpenCLCustomNonbondedForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomNonbondedForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomNonbondedForceSingle" start time: Jul 07 22:32 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  12.06 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomNonbondedForceSingle" end time: Jul 07 22:33 CDT
+"TestOpenCLCustomNonbondedForceSingle" time elapsed: 00:00:12
+----------------------------------------------------------
+
+222/466 Testing: TestOpenCLCustomNonbondedForceMixed
+222/466 Test: TestOpenCLCustomNonbondedForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomNonbondedForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomNonbondedForceMixed" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  11.97 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomNonbondedForceMixed" end time: Jul 07 22:33 CDT
+"TestOpenCLCustomNonbondedForceMixed" time elapsed: 00:00:11
+----------------------------------------------------------
+
+223/466 Testing: TestOpenCLCustomNonbondedForceDouble
+223/466 Test: TestOpenCLCustomNonbondedForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomNonbondedForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomNonbondedForceDouble" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  13.37 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomNonbondedForceDouble" end time: Jul 07 22:33 CDT
+"TestOpenCLCustomNonbondedForceDouble" time elapsed: 00:00:13
+----------------------------------------------------------
+
+224/466 Testing: TestOpenCLCustomTorsionForceSingle
+224/466 Test: TestOpenCLCustomTorsionForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomTorsionForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomTorsionForceSingle" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.55 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomTorsionForceSingle" end time: Jul 07 22:33 CDT
+"TestOpenCLCustomTorsionForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+225/466 Testing: TestOpenCLCustomTorsionForceMixed
+225/466 Test: TestOpenCLCustomTorsionForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomTorsionForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomTorsionForceMixed" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.74 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomTorsionForceMixed" end time: Jul 07 22:33 CDT
+"TestOpenCLCustomTorsionForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+226/466 Testing: TestOpenCLCustomTorsionForceDouble
+226/466 Test: TestOpenCLCustomTorsionForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLCustomTorsionForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLCustomTorsionForceDouble" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.72 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLCustomTorsionForceDouble" end time: Jul 07 22:33 CDT
+"TestOpenCLCustomTorsionForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+227/466 Testing: TestOpenCLDeviceQuerySingle
+227/466 Test: TestOpenCLDeviceQuerySingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDeviceQuery" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLDeviceQuerySingle" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+OpenCL devices:
+
+OpenCLPlatformIndex 0, OpenCLDeviceIndex 0: "NVIDIA GeForce RTX 2070 SUPER"
+    CL_PLATFORM_NAME                 = NVIDIA CUDA
+    CL_PLATFORM_VENDOR               = NVIDIA Corporation
+    CL_DEVICE_VENDOR                 = NVIDIA Corporation
+    CL_DEVICE_VERSION                = OpenCL 3.0 CUDA
+    CL_DEVICE_TYPE                   = CL_DEVICE_TYPE_GPU
+    CL_DEVICE_MAX_COMPUTE_UNITS      = 40
+    CL_DEVICE_MAX_WORK_ITEM_SIZES    = [1024, 1024, 64]
+    CL_DEVICE_HOST_UNIFIED_MEMORY    = 0
+    CL_DEVICE_GLOBAL_MEM_SIZE        = 8334802944
+    CL_DEVICE_LOCAL_MEM_SIZE         = 49152
+    CL_DEVICE_MAX_MEM_ALLOC_SIZE     = 2083700736
+    CL_DEVICE_ADDRESS_BITS           = 64
+    CL_DEVICE_MAX_CLOCK_FREQUENCY    = 1815
+    processingElementsPerComputeUnit = 32
+    estimatedSpeed                   = 2323200
+    CL_DEVICE_EXTENSIONS             = cl_khr_3d_image_writes 
+        cl_khr_byte_addressable_store cl_khr_device_uuid cl_khr_fp64 
+        cl_khr_gl_sharing cl_khr_global_int32_base_atomics 
+        cl_khr_global_int32_extended_atomics cl_khr_icd 
+        cl_khr_int64_base_atomics cl_khr_int64_extended_atomics 
+        cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics 
+        cl_khr_pci_bus_info cl_nv_compiler_options cl_nv_copy_opts 
+        cl_nv_create_buffer cl_nv_device_attribute_query cl_nv_pragma_unroll 
+
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLDeviceQuerySingle" end time: Jul 07 22:33 CDT
+"TestOpenCLDeviceQuerySingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+228/466 Testing: TestOpenCLDeviceQueryMixed
+228/466 Test: TestOpenCLDeviceQueryMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDeviceQuery" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLDeviceQueryMixed" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+OpenCL devices:
+
+OpenCLPlatformIndex 0, OpenCLDeviceIndex 0: "NVIDIA GeForce RTX 2070 SUPER"
+    CL_PLATFORM_NAME                 = NVIDIA CUDA
+    CL_PLATFORM_VENDOR               = NVIDIA Corporation
+    CL_DEVICE_VENDOR                 = NVIDIA Corporation
+    CL_DEVICE_VERSION                = OpenCL 3.0 CUDA
+    CL_DEVICE_TYPE                   = CL_DEVICE_TYPE_GPU
+    CL_DEVICE_MAX_COMPUTE_UNITS      = 40
+    CL_DEVICE_MAX_WORK_ITEM_SIZES    = [1024, 1024, 64]
+    CL_DEVICE_HOST_UNIFIED_MEMORY    = 0
+    CL_DEVICE_GLOBAL_MEM_SIZE        = 8334802944
+    CL_DEVICE_LOCAL_MEM_SIZE         = 49152
+    CL_DEVICE_MAX_MEM_ALLOC_SIZE     = 2083700736
+    CL_DEVICE_ADDRESS_BITS           = 64
+    CL_DEVICE_MAX_CLOCK_FREQUENCY    = 1815
+    processingElementsPerComputeUnit = 32
+    estimatedSpeed                   = 2323200
+    CL_DEVICE_EXTENSIONS             = cl_khr_3d_image_writes 
+        cl_khr_byte_addressable_store cl_khr_device_uuid cl_khr_fp64 
+        cl_khr_gl_sharing cl_khr_global_int32_base_atomics 
+        cl_khr_global_int32_extended_atomics cl_khr_icd 
+        cl_khr_int64_base_atomics cl_khr_int64_extended_atomics 
+        cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics 
+        cl_khr_pci_bus_info cl_nv_compiler_options cl_nv_copy_opts 
+        cl_nv_create_buffer cl_nv_device_attribute_query cl_nv_pragma_unroll 
+
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLDeviceQueryMixed" end time: Jul 07 22:33 CDT
+"TestOpenCLDeviceQueryMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+229/466 Testing: TestOpenCLDeviceQueryDouble
+229/466 Test: TestOpenCLDeviceQueryDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDeviceQuery" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLDeviceQueryDouble" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+OpenCL devices:
+
+OpenCLPlatformIndex 0, OpenCLDeviceIndex 0: "NVIDIA GeForce RTX 2070 SUPER"
+    CL_PLATFORM_NAME                 = NVIDIA CUDA
+    CL_PLATFORM_VENDOR               = NVIDIA Corporation
+    CL_DEVICE_VENDOR                 = NVIDIA Corporation
+    CL_DEVICE_VERSION                = OpenCL 3.0 CUDA
+    CL_DEVICE_TYPE                   = CL_DEVICE_TYPE_GPU
+    CL_DEVICE_MAX_COMPUTE_UNITS      = 40
+    CL_DEVICE_MAX_WORK_ITEM_SIZES    = [1024, 1024, 64]
+    CL_DEVICE_HOST_UNIFIED_MEMORY    = 0
+    CL_DEVICE_GLOBAL_MEM_SIZE        = 8334802944
+    CL_DEVICE_LOCAL_MEM_SIZE         = 49152
+    CL_DEVICE_MAX_MEM_ALLOC_SIZE     = 2083700736
+    CL_DEVICE_ADDRESS_BITS           = 64
+    CL_DEVICE_MAX_CLOCK_FREQUENCY    = 1815
+    processingElementsPerComputeUnit = 32
+    estimatedSpeed                   = 2323200
+    CL_DEVICE_EXTENSIONS             = cl_khr_3d_image_writes 
+        cl_khr_byte_addressable_store cl_khr_device_uuid cl_khr_fp64 
+        cl_khr_gl_sharing cl_khr_global_int32_base_atomics 
+        cl_khr_global_int32_extended_atomics cl_khr_icd 
+        cl_khr_int64_base_atomics cl_khr_int64_extended_atomics 
+        cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics 
+        cl_khr_pci_bus_info cl_nv_compiler_options cl_nv_copy_opts 
+        cl_nv_create_buffer cl_nv_device_attribute_query cl_nv_pragma_unroll 
+
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLDeviceQueryDouble" end time: Jul 07 22:33 CDT
+"TestOpenCLDeviceQueryDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+230/466 Testing: TestOpenCLDispersionPMESingle
+230/466 Test: TestOpenCLDispersionPMESingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDispersionPME" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLDispersionPMESingle" start time: Jul 07 22:33 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  48.37 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLDispersionPMESingle" end time: Jul 07 22:34 CDT
+"TestOpenCLDispersionPMESingle" time elapsed: 00:00:48
+----------------------------------------------------------
+
+231/466 Testing: TestOpenCLDispersionPMEMixed
+231/466 Test: TestOpenCLDispersionPMEMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDispersionPME" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLDispersionPMEMixed" start time: Jul 07 22:34 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  41.51 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLDispersionPMEMixed" end time: Jul 07 22:35 CDT
+"TestOpenCLDispersionPMEMixed" time elapsed: 00:00:41
+----------------------------------------------------------
+
+232/466 Testing: TestOpenCLDispersionPMEDouble
+232/466 Test: TestOpenCLDispersionPMEDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDispersionPME" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLDispersionPMEDouble" start time: Jul 07 22:35 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  55.54 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLDispersionPMEDouble" end time: Jul 07 22:36 CDT
+"TestOpenCLDispersionPMEDouble" time elapsed: 00:00:55
+----------------------------------------------------------
+
+233/466 Testing: TestOpenCLEwaldSingle
+233/466 Test: TestOpenCLEwaldSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLEwald" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLEwaldSingle" start time: Jul 07 22:36 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  32.36 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLEwaldSingle" end time: Jul 07 22:36 CDT
+"TestOpenCLEwaldSingle" time elapsed: 00:00:32
+----------------------------------------------------------
+
+234/466 Testing: TestOpenCLEwaldMixed
+234/466 Test: TestOpenCLEwaldMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLEwald" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLEwaldMixed" start time: Jul 07 22:36 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  31.64 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLEwaldMixed" end time: Jul 07 22:37 CDT
+"TestOpenCLEwaldMixed" time elapsed: 00:00:31
+----------------------------------------------------------
+
+235/466 Testing: TestOpenCLEwaldDouble
+235/466 Test: TestOpenCLEwaldDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLEwald" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLEwaldDouble" start time: Jul 07 22:37 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  39.34 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLEwaldDouble" end time: Jul 07 22:37 CDT
+"TestOpenCLEwaldDouble" time elapsed: 00:00:39
+----------------------------------------------------------
+
+236/466 Testing: TestOpenCLFFTSingle
+236/466 Test: TestOpenCLFFTSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLFFT" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLFFTSingle" start time: Jul 07 22:37 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.89 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLFFTSingle" end time: Jul 07 22:37 CDT
+"TestOpenCLFFTSingle" time elapsed: 00:00:02
+----------------------------------------------------------
+
+237/466 Testing: TestOpenCLFFTMixed
+237/466 Test: TestOpenCLFFTMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLFFT" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLFFTMixed" start time: Jul 07 22:37 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.12 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLFFTMixed" end time: Jul 07 22:37 CDT
+"TestOpenCLFFTMixed" time elapsed: 00:00:02
+----------------------------------------------------------
+
+238/466 Testing: TestOpenCLFFTDouble
+238/466 Test: TestOpenCLFFTDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLFFT" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLFFTDouble" start time: Jul 07 22:37 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.09 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLFFTDouble" end time: Jul 07 22:37 CDT
+"TestOpenCLFFTDouble" time elapsed: 00:00:03
+----------------------------------------------------------
+
+239/466 Testing: TestOpenCLGBSAOBCForceSingle
+239/466 Test: TestOpenCLGBSAOBCForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLGBSAOBCForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLGBSAOBCForceSingle" start time: Jul 07 22:37 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  13.39 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLGBSAOBCForceSingle" end time: Jul 07 22:38 CDT
+"TestOpenCLGBSAOBCForceSingle" time elapsed: 00:00:13
+----------------------------------------------------------
+
+240/466 Testing: TestOpenCLGBSAOBCForceMixed
+240/466 Test: TestOpenCLGBSAOBCForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLGBSAOBCForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLGBSAOBCForceMixed" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  13.82 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLGBSAOBCForceMixed" end time: Jul 07 22:38 CDT
+"TestOpenCLGBSAOBCForceMixed" time elapsed: 00:00:13
+----------------------------------------------------------
+
+241/466 Testing: TestOpenCLGBSAOBCForceDouble
+241/466 Test: TestOpenCLGBSAOBCForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLGBSAOBCForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLGBSAOBCForceDouble" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =  16.80 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLGBSAOBCForceDouble" end time: Jul 07 22:38 CDT
+"TestOpenCLGBSAOBCForceDouble" time elapsed: 00:00:16
+----------------------------------------------------------
+
+242/466 Testing: TestOpenCLGayBerneForceSingle
+242/466 Test: TestOpenCLGayBerneForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLGayBerneForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLGayBerneForceSingle" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.08 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLGayBerneForceSingle" end time: Jul 07 22:38 CDT
+"TestOpenCLGayBerneForceSingle" time elapsed: 00:00:02
+----------------------------------------------------------
+
+243/466 Testing: TestOpenCLGayBerneForceMixed
+243/466 Test: TestOpenCLGayBerneForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLGayBerneForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLGayBerneForceMixed" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.50 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLGayBerneForceMixed" end time: Jul 07 22:38 CDT
+"TestOpenCLGayBerneForceMixed" time elapsed: 00:00:02
+----------------------------------------------------------
+
+244/466 Testing: TestOpenCLGayBerneForceDouble
+244/466 Test: TestOpenCLGayBerneForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLGayBerneForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLGayBerneForceDouble" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   2.40 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLGayBerneForceDouble" end time: Jul 07 22:38 CDT
+"TestOpenCLGayBerneForceDouble" time elapsed: 00:00:02
+----------------------------------------------------------
+
+245/466 Testing: TestOpenCLHarmonicAngleForceSingle
+245/466 Test: TestOpenCLHarmonicAngleForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLHarmonicAngleForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLHarmonicAngleForceSingle" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.59 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLHarmonicAngleForceSingle" end time: Jul 07 22:38 CDT
+"TestOpenCLHarmonicAngleForceSingle" time elapsed: 00:00:01
+----------------------------------------------------------
+
+246/466 Testing: TestOpenCLHarmonicAngleForceMixed
+246/466 Test: TestOpenCLHarmonicAngleForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLHarmonicAngleForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLHarmonicAngleForceMixed" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.46 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLHarmonicAngleForceMixed" end time: Jul 07 22:38 CDT
+"TestOpenCLHarmonicAngleForceMixed" time elapsed: 00:00:01
+----------------------------------------------------------
+
+247/466 Testing: TestOpenCLHarmonicAngleForceDouble
+247/466 Test: TestOpenCLHarmonicAngleForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLHarmonicAngleForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLHarmonicAngleForceDouble" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   1.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLHarmonicAngleForceDouble" end time: Jul 07 22:38 CDT
+"TestOpenCLHarmonicAngleForceDouble" time elapsed: 00:00:01
+----------------------------------------------------------
+
+248/466 Testing: TestOpenCLHarmonicBondForceSingle
+248/466 Test: TestOpenCLHarmonicBondForceSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLHarmonicBondForce" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLHarmonicBondForceSingle" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.78 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLHarmonicBondForceSingle" end time: Jul 07 22:38 CDT
+"TestOpenCLHarmonicBondForceSingle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+249/466 Testing: TestOpenCLHarmonicBondForceMixed
+249/466 Test: TestOpenCLHarmonicBondForceMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLHarmonicBondForce" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLHarmonicBondForceMixed" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.79 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLHarmonicBondForceMixed" end time: Jul 07 22:38 CDT
+"TestOpenCLHarmonicBondForceMixed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+250/466 Testing: TestOpenCLHarmonicBondForceDouble
+250/466 Test: TestOpenCLHarmonicBondForceDouble
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLHarmonicBondForce" "double" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLHarmonicBondForceDouble" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   0.79 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLHarmonicBondForceDouble" end time: Jul 07 22:38 CDT
+"TestOpenCLHarmonicBondForceDouble" time elapsed: 00:00:00
+----------------------------------------------------------
+
+251/466 Testing: TestOpenCLLangevinIntegratorSingle
+251/466 Test: TestOpenCLLangevinIntegratorSingle
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLLangevinIntegrator" "single" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLLangevinIntegratorSingle" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.28 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLLangevinIntegratorSingle" end time: Jul 07 22:38 CDT
+"TestOpenCLLangevinIntegratorSingle" time elapsed: 00:00:03
+----------------------------------------------------------
+
+252/466 Testing: TestOpenCLLangevinIntegratorMixed
+252/466 Test: TestOpenCLLangevinIntegratorMixed
+Command: "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLLangevinIntegrator" "mixed" "-1" "-1"
+Directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/platforms/opencl/tests
+"TestOpenCLLangevinIntegratorMixed" start time: Jul 07 22:38 CDT
+Output:
+----------------------------------------------------------
+Done
+<end of output>
+Test time =   3.38 sec
+----------------------------------------------------------
+Test Passed.
+"TestOpenCLLangevinIntegratorMixed" end time: Jul 07 22:38 CDT
+"TestOpenCLLangevinIntegratorMixed" time elapsed: 00:00:03
+----------------------------------------------------------
+

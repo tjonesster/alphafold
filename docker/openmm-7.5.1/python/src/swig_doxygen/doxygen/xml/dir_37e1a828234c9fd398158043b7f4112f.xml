@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_37e1a828234c9fd398158043b7f4112f" kind="dir">
+    <compoundname>/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/serialization</compoundname>
+    <innerdir refid="dir_57fe51f549af7d7c286f9e7e56977ced">/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/serialization/include</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/serialization/"/>
+  </compounddef>
+</doxygen>

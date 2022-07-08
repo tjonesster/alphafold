@@ -1,0 +1,30 @@
+# CMake generated Testfile for 
+# Source directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests
+# Build directory: /home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(TestOpenCLDrudeForceSingle "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeForce" "single" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeForceSingle PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;20;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeForceMixed "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeForce" "mixed" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeForceMixed PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;22;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeForceDouble "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeForce" "double" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeForceDouble PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;23;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeLangevinIntegratorSingle "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeLangevinIntegrator" "single" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeLangevinIntegratorSingle PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;20;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeLangevinIntegratorMixed "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeLangevinIntegrator" "mixed" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeLangevinIntegratorMixed PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;22;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeLangevinIntegratorDouble "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeLangevinIntegrator" "double" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeLangevinIntegratorDouble PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;23;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeNoseHooverSingle "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeNoseHoover" "single" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeNoseHooverSingle PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;20;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeNoseHooverMixed "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeNoseHoover" "mixed" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeNoseHooverMixed PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;22;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeNoseHooverDouble "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeNoseHoover" "double" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeNoseHooverDouble PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;23;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeSCFIntegratorSingle "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeSCFIntegrator" "single" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeSCFIntegratorSingle PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;20;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeSCFIntegratorMixed "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeSCFIntegrator" "mixed" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeSCFIntegratorMixed PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;22;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
+add_test(TestOpenCLDrudeSCFIntegratorDouble "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/TestOpenCLDrudeSCFIntegrator" "double" "-1" "-1")
+set_tests_properties(TestOpenCLDrudeSCFIntegratorDouble PROPERTIES  _BACKTRACE_TRIPLES "/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;23;ADD_TEST;/home/taylorjones/Documents/alphafold/docker/openmm-7.5.1/plugins/drude/platforms/opencl/tests/CMakeLists.txt;0;")
