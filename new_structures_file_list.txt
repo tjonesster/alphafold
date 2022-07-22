@@ -1,0 +1,13 @@
+2.A.4.3.5.fasta
+2.A.1.2.15.fasta
+2.A.1.14.16.fasta
+2.A.1.2.5.fasta
+2.A.1.13.5.fasta
+2.A.100.1.4.fasta
+2.A.49.3.3.fasta
+2.A.18.9.1.fasta
+2.A.53.2.15.fasta
+2.A.6.9.1.fasta
+2.A.23.2.3.fasta
+2.A.50.1.4.fasta
+2.A.41.2.8.fasta

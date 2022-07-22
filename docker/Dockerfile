@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG CUDA=11.1
+ARG CUDA=11.7
 FROM nvidia/cuda:${CUDA}-cudnn8-runtime-ubuntu18.04
 # FROM directive resets ARGS, so we specify again (the value is retained if
 # previously set).
@@ -24,13 +24,14 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       build-essential \
       cmake \
-      cuda-command-line-tools-${CUDA/./-} \
+      #cuda-command-line-tools-${CUDA/./-} \
+      cuda-command-line-tools-11.4 \
       git \
       hmmer \
       kalign \
+      wget  \
       tzdata \
-      wget \
-    && rm -rf /var/lib/apt/lists/*
+#     && rm -rf /var/lib/apt/lists/*
 
 # Compile HHsuite from source.
 RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite \
@@ -40,7 +41,7 @@ RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh
     && make -j 4 && make install \
     && ln -s /opt/hhsuite/bin/* /usr/bin \
     && popd \
-    && rm -rf /tmp/hh-suite
+    #&& rm -rf /tmp/hh-suite
 
 # Install Miniconda package manager.
 RUN wget -q -P /tmp \
