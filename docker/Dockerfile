@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG CUDA=11.7
+ARG CUDA=11.1.1
 FROM nvidia/cuda:${CUDA}-cudnn8-runtime-ubuntu18.04
 # FROM directive resets ARGS, so we specify again (the value is retained if
 # previously set).
@@ -22,26 +22,31 @@ ARG CUDA
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      build-essential \
-      cmake \
-      #cuda-command-line-tools-${CUDA/./-} \
-      cuda-command-line-tools-11.4 \
-      git \
-      hmmer \
-      kalign \
-      wget  \
-      tzdata \
-#     && rm -rf /var/lib/apt/lists/*
+        build-essential \
+        cmake \
+        cuda-command-line-tools-$(cut -f1,2 -d- <<< ${CUDA//./-}) \
+        git \
+        hmmer \
+        kalign \
+        tzdata \
+        wget \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pwd
 
 # Compile HHsuite from source.
 RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite \
     && mkdir /tmp/hh-suite/build \
-    && pushd /tmp/hh-suite/build \
+    && cd /tmp/hh-suite/build \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite .. \
     && make -j 4 && make install \
     && ln -s /opt/hhsuite/bin/* /usr/bin \
-    && popd \
+
+    && cd / 
+#    && popd \
     #&& rm -rf /tmp/hh-suite
+#k
+#    && pushd /tmp/hh-suite/build \
 
 # Install Miniconda package manager.
 RUN wget -q -P /tmp \
@@ -66,8 +71,10 @@ RUN wget -q -P /app/alphafold/alphafold/common/ \
 # Install pip packages.
 RUN pip3 install --upgrade pip \
     && pip3 install -r /app/alphafold/requirements.txt \
-    && pip3 install --upgrade jax==0.2.14 jaxlib==0.1.69+cuda${CUDA/./} -f \
-      https://storage.googleapis.com/jax-releases/jax_releases.html
+    && pip3 install --upgrade \
+      jax==0.2.14 \
+      jaxlib==0.1.69+cuda$(cut -f1,2 -d. <<< ${CUDA} | sed 's/\.//g') \
+      -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # Apply OpenMM patch.
 WORKDIR /opt/conda/lib/python3.7/site-packages
