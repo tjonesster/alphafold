@@ -542,6 +542,7 @@ def main(argv):
           only_run_cleanup=FLAGS.only_run_cleanup,
           num_recycle=FLAGS.num_recycle,
           alignment_cache_path=FLAGS.alignment_cache_path,
+          use_cache = FLAGS.use_cachce,
           model_config = model_config, 
           run_relax=FLAGS.run_relax,
       )
